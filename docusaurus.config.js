@@ -15,15 +15,15 @@ const config = {
 
   // --- Deployment target (GitHub Pages, hosted by the public ts-documentation repo) ---
   // Source lives here in terminal-solution/documentation (private); CI publishes the
-  // built site to the public meiliverani-erline/ts-documentation repo, which serves Pages at:
-  //   https://meiliverani-erline.github.io/ts-documentation/
-  url: 'https://meiliverani-erline.github.io',
+  // built site to the public Sindo-Ferry/ts-documentation repo (main branch), which serves Pages at:
+  //   https://sindo-ferry.github.io/ts-documentation/
+  url: 'https://sindo-ferry.github.io',
   baseUrl: '/ts-documentation/',
   trailingSlash: true,
 
-  organizationName: 'meiliverani-erline', // GitHub account that owns the Pages repo
+  organizationName: 'Sindo-Ferry', // GitHub org that owns the Pages repo
   projectName: 'ts-documentation', // the PUBLIC repo that hosts Pages
-  deploymentBranch: 'gh-pages',
+  deploymentBranch: 'main',
 
   // 'warn' keeps the first build from failing on a stray link; switch to 'throw' later.
   onBrokenLinks: 'warn',

@@ -1,0 +1,86 @@
+---
+id: register-account
+title: Register an Account
+sidebar_label: Register an Account
+sidebar_position: 1
+description: Create your Opusbay account, confirm your email, and get activated by an administrator before signing in to the Terminal or Operator Portal.
+keywords:
+  - register
+  - sign up
+  - email confirmation
+  - account activation
+---
+
+Both **terminal staff** and **ferry operators** create their account on the same
+public registration page before they can sign in to either portal:
+
+> **Register → Confirm your email → Administrator activates your account → Sign in**
+
+:::note
+The registration page is public — no sign-in required:
+`https://ts-terminal.sindoferry.com.sg/public/register/`
+:::
+
+## Step 1 — Sign up
+
+Open the registration page and fill in the form:
+
+- **Full Name**
+- **Email** — you will need access to this inbox to confirm it.
+- **Password** / **Confirm Password**
+
+Then click **Sign Up**.
+
+![Create an Account registration form](/img/public/register.png)
+_The public registration form._
+
+## Step 2 — Confirm your email
+
+After signing up, a confirmation email is sent to the address you registered.
+Open it and click the **confirmation link** — you are redirected back to the
+login page, ready to sign in.
+
+:::tip No email in your inbox?
+Check your **Spam / Junk** folder. If it is not there either, use the resend
+flow below.
+:::
+
+### If the confirmation link expired (resend)
+
+Confirmation links are time-limited. If yours expired — or the email never
+arrived — simply try to **sign in** with your registered email and password. The
+login page will show *"Email not confirmed. Please check your inbox."* together
+with a **Resend confirmation email** button. Click it, then check your inbox
+(and spam folder) for the new confirmation email.
+
+![Login page showing the Resend confirmation email button](/img/public/resend-confirmation.png)
+_Signing in with an unconfirmed email reveals the **Resend confirmation email** button._
+
+## Step 3 — Get activated by an administrator
+
+Confirming your email is not the final step: a new account must also be
+**activated by an administrator** before it can access a portal. If you sign in
+before activation, you will see:
+
+> _"Login succeeded, but your account is not provisioned for Opusbay access.
+> Please contact your administrator."_
+
+If you see this message, contact your administrator and ask them to activate
+your account.
+
+### For administrators — activating a new user
+
+A new user can be activated in either of two ways:
+
+1. **Via API** — refer to the **API Documentation** provided by the development
+   team.
+2. **Via the portal UI** (available in both the Terminal Portal and the Operator
+   Portal): open **Users**, find the new user in the list table, click the
+   **… (Actions)** button on their row, and choose **Activate**.
+
+## Step 4 — Sign in
+
+Once your email is confirmed and your account is activated, you can sign in:
+
+- [Sign In to the Terminal Portal](/terminal-staff/sign-in) — terminal staff
+- [Sign In to the Operator Portal](/ferry-operator/operator-sign-in) — ferry operators

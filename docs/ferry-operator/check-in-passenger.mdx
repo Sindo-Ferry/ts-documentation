@@ -18,10 +18,18 @@ passenger list with status **CheckedIn**.
 
 > **Departure Trips → Filter the trip → View → Check In Passenger → CheckedIn**
 
+:::info What operators can check in
+Through the Operator Portal, ferry operators check in **Ordinary** passengers
+only. Check-in is available **only on upcoming trips that are still in
+`Scheduled` status** — once a trip starts boarding (or is closed, departed, or
+cancelled) it no longer accepts check-ins here — and the trip must have available
+seats.
+:::
+
 :::note
 You must be signed in and have an operator workspace selected — see
 [Sign In to the Operator Portal](/ferry-operator/operator-sign-in). The
-screenshots below use the local environment at `http://localhost:5001`.
+screenshots below use `https://ts-operator.sindoferry.com.sg/`.
 :::
 
 ## Prerequisites
@@ -67,12 +75,18 @@ Then click **Check In Passenger**.
 ![Check In Passenger dialog, completed](/img/ferry-operator/check-in-passenger/03-check-in-dialog.png)
 _The Check In Passenger form. Date of Birth and Expiry Date are required._
 
-## Step 4 — Passenger is checked in
+## Outcome
 
-The passenger is added to the trip and now appears in the **Passengers** table
-with **Status: `CheckedIn`** and a generated **Boarding Pass** (see the trip
-detail in Step 2). The trip's **Checked-In** count and **Load** increase
-accordingly.
+The passenger is added to the trip as an **Ordinary** passenger and appears in
+the **Passengers** table with:
+
+- **Status: `Checked-In`** — from here the passenger progresses through
+  **Pre-Immigration** and **Boarded** as they are scanned (or can be
+  **Cancelled**).
+- A unique **boarding pass number** — the passenger's reference for the rest of
+  the boarding process, so make sure it's captured.
+
+The trip's **Checked-In** count and **Load** increase accordingly.
 
 :::tip
 Use the **Passengers** search or **Show Filters** on the trip detail page to find

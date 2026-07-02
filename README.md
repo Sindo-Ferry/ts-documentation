@@ -3,9 +3,9 @@
 User guides for the Sindo Ferry portals, built with [Docusaurus](https://docusaurus.io/).
 
 - **Source** lives here in the private `terminal-solution` repo, under `documentation/`.
-- **Published** (compiled site only) to the public `meiliverani-erline/ts-documentation`
-  repo, which serves GitHub Pages at:
-  **https://meiliverani-erline.github.io/ts-documentation/**
+- **Published** (compiled site only) to the public `Sindo-Ferry/ts-documentation`
+  repo (`main` branch), which serves GitHub Pages at:
+  **https://sindo-ferry.github.io/ts-documentation/**
 
 Keeping the source next to the app means guides get updated in the same PR as the
 feature they document.
@@ -16,13 +16,14 @@ feature they document.
 documentation/
 ├── docs/
 │   ├── intro.md                     # Overview / landing page (slug: /)
-│   ├── terminal-staff/              # Audience: Terminal Portal (localhost:5000)
+│   ├── register-account.mdx         # Shared: sign up, email confirmation, admin activation
+│   ├── terminal-staff/              # Audience: Terminal Portal (ts-terminal.sindoferry.com.sg)
 │   │   ├── _category_.json          #   category label + order
 │   │   ├── sign-in.mdx
 │   │   ├── generate-departure-trips.mdx
 │   │   ├── set-trip-as-boarding.mdx
 │   │   └── check-in-ntl-lm-passenger.mdx
-│   └── ferry-operator/              # Audience: Operator Portal (localhost:5001)
+│   └── ferry-operator/              # Audience: Operator Portal (ts-operator.sindoferry.com.sg)
 │       ├── _category_.json
 │       ├── sign-in.mdx
 │       ├── check-in-passenger.mdx
@@ -78,21 +79,21 @@ A GitHub Actions workflow in the app repo,
 `documentation/**`:
 
 1. `npm ci` + `npm run build` in `documentation/`.
-2. Pushes the compiled `build/` to the `gh-pages` branch of the public
-   `meiliverani-erline/ts-documentation` repo (via an SSH deploy key stored as the
-   `DOCS_DEPLOY_KEY` secret).
+2. Mints a short-lived **GitHub App** token (App ID + private key stored as the
+   `DOCS_APP_ID` / `DOCS_APP_KEY` secrets) and pushes the compiled `build/` to the
+   `main` branch of the public `Sindo-Ferry/ts-documentation` repo.
 3. GitHub Pages serves that branch.
 
 So: **push to `main` → the site republishes automatically.** You can also trigger it
 manually from the repo's **Actions** tab (workflow: *Publish documentation to
 ts-documentation*).
 
-### One-time deploy setup (already done, for reference)
+### One-time deploy setup (for reference)
 
-- SSH deploy keypair generated; **public** key added to
-  `meiliverani-erline/ts-documentation` → Settings → Deploy keys (write access);
-  **private** key stored as `DOCS_DEPLOY_KEY` secret in `terminal-solution`.
-- `ts-documentation` → Settings → Pages → **Deploy from branch → `gh-pages` / root**.
+- A **GitHub App** with **Contents: Read & write**, installed on
+  `Sindo-Ferry/ts-documentation`. Its **App ID** and **private key** are stored as
+  the `DOCS_APP_ID` and `DOCS_APP_KEY` secrets in `terminal-solution`.
+- `Sindo-Ferry/ts-documentation` → Settings → Pages → **Deploy from branch → `main` / root**.
 
 ### If the URL changes
 

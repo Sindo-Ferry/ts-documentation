@@ -1,9 +1,9 @@
 {
   "label": "Ferry Operator",
-  "position": 2,
+  "position": 3,
   "link": {
     "type": "generated-index",
     "slug": "/ferry-operator",
-    "description": "Guides for ferry operators using the Operator Portal (localhost:5001)."
+    "description": "Guides for ferry operators using the Operator Portal (ts-operator.sindoferry.com.sg)."
   }
 }

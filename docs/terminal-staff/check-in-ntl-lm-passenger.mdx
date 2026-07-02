@@ -23,9 +23,18 @@ manually onto a departure trip:
 This guide covers how terminal staff add either type from a trip's detail page in
 the **Terminal Portal**.
 
+:::info Who checks in whom
+From the Terminal Portal, authorized staff can **only** check in **Not To Land
+(NTL)** and **Last Minute (LM)** passengers. Ordinary passengers are checked in
+by the ferry operator — see
+[Check In a Passenger](/ferry-operator/operator-check-in-passenger). An NTL / LM
+passenger can be added as long as the trip has open seats and is not yet
+**Closed**, **Departed**, or **Cancelled**.
+:::
+
 :::note
 You need permission to view **Current Trips** and to check in passengers. The
-screenshots below use the local environment at `http://localhost:5000`.
+screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
 :::
 
 ## Prerequisites
@@ -74,14 +83,25 @@ Fill in the passenger's details:
 | **Date of Birth** | Format `YYYY-MM-DD`. |
 | **Issue Date** _(optional)_ / **Expiry Date** / **Issue Country** | Travel-document details. |
 
-Then click **Check In Passenger**. The passenger is added to the trip and appears
-in the Passengers list, and the trip's counts update accordingly.
+Then click **Check In Passenger**.
 
 :::tip
 Pick **NotToLand** for passengers remaining on board (not landing) and
 **LastMinute** for walk-ups added just before departure. The type is recorded on
 the trip so downstream boarding and manifest reports classify them correctly.
 :::
+
+## Outcome
+
+The passenger is added to the trip and appears in the **Passengers** list with:
+
+- **Status: `Checked-In`** — the first stage of the passenger journey. From here
+  the passenger progresses through **Pre-Immigration** and **Boarded** as they
+  are scanned (or can be **Cancelled**).
+- A unique **boarding pass number** — the passenger's reference for the rest of
+  the process (the pre-immigration and boarding scans), so be sure it's captured.
+
+The trip's **Checked-In** count and occupied seats increase accordingly.
 
 ## Related
 

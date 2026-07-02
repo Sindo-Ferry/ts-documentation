@@ -9,12 +9,18 @@ description: Operating documentation for the Sindo Ferry terminal and operator p
 
 Operating documentation for the Sindo Ferry ports, organized by audience.
 
+## Getting started
+
+New user? Both terminal staff and ferry operators must
+**[register an account](/register-account)** first — sign up, confirm your
+email, and get activated by an administrator before signing in.
+
 ## Audiences
 
 - **[Terminal Staff](/terminal-staff/)** — operating the **Terminal Portal**
-  (`localhost:5000`): current trips, passenger check-in, departures, and more.
+  (`ts-terminal.sindoferry.com.sg`): current trips, passenger check-in, departures, and more.
 - **[Ferry Operator](/ferry-operator/)** — using the **Operator Portal**
-  (`localhost:5001`).
+  (`ts-operator.sindoferry.com.sg`).
 
 ## Terminal Staff guides
 
