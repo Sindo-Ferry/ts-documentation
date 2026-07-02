@@ -1,0 +1,84 @@
+---
+id: operator-check-in-passenger
+title: Check In a Passenger
+sidebar_label: Check In Passenger
+sidebar_position: 2
+description: Add a passenger directly to a departure trip from the Operator Portal so they appear in the passenger list as CheckedIn.
+keywords:
+  - check in
+  - passenger
+  - departure trip
+  - operator portal
+  - checkedin
+---
+
+Ferry operators can add a passenger directly onto a departure trip. The passenger
+is recorded against the trip, issued a boarding pass, and shown in the trip's
+passenger list with status **CheckedIn**.
+
+> **Departure Trips → Filter the trip → View → Check In Passenger → CheckedIn**
+
+:::note
+You must be signed in and have an operator workspace selected — see
+[Sign In to the Operator Portal](/ferry-operator/operator-sign-in). The
+screenshots below use the local environment at `http://localhost:5001`.
+:::
+
+## Prerequisites
+
+- You are signed in and have selected your operator (e.g. `SINDO`).
+- The departure trip exists for the date you want.
+
+## Step 1 — Open Departure Trips and filter to the trip
+
+From the sidebar, open **Departure Trips**. The trips are shown as a grid of
+days × departure times. Use **Show Filters** to narrow the results — for this
+guide, set both **From Date** and **To Date** to **today** so only today's trips
+remain.
+
+![Departure Trips filtered to today](/img/ferry-operator/check-in-passenger/01-departure-trips.png)
+_Departure Trips filtered to a single day. Each trip card has a **View** button._
+
+## Step 2 — View the target trip
+
+Find the trip you need (for this guide, the **last trip of the day**) and click
+**View** on its card. The **Departure Trip Detail** page opens, showing the trip
+info and a **Passengers** section with the **Check In Passenger** button.
+
+![Departure Trip Detail with the Check In Passenger button](/img/ferry-operator/check-in-passenger/02-trip-detail.png)
+_The trip detail page. Checked-in passengers appear in the Passengers table._
+
+## Step 3 — Check in the passenger
+
+Click **Check In Passenger** and complete the form:
+
+| Field | Notes |
+| --- | --- |
+| **No** | Passport / ID number. |
+| **Name** | Passenger's full name. |
+| **Gender** | Optional; defaults to _Unspecified_. |
+| **Nationality** | Required — pick from the country list. |
+| **Date of Birth** | **Required** (`YYYY-MM-DD`). |
+| **Expiry Date** | **Required** — travel-document expiry. |
+| **Issue Date** / **Issue Country** | Optional travel-document details. |
+
+Then click **Check In Passenger**.
+
+![Check In Passenger dialog, completed](/img/ferry-operator/check-in-passenger/03-check-in-dialog.png)
+_The Check In Passenger form. Date of Birth and Expiry Date are required._
+
+## Step 4 — Passenger is checked in
+
+The passenger is added to the trip and now appears in the **Passengers** table
+with **Status: `CheckedIn`** and a generated **Boarding Pass** (see the trip
+detail in Step 2). The trip's **Checked-In** count and **Load** increase
+accordingly.
+
+:::tip
+Use the **Passengers** search or **Show Filters** on the trip detail page to find
+a specific passenger, and **Download Manifest** to export the full list.
+:::
+
+## Related
+
+- [Sign In to the Operator Portal](/ferry-operator/operator-sign-in)

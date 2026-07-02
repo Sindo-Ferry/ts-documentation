@@ -1,0 +1,66 @@
+---
+id: operator-sign-in
+title: Sign In to the Operator Portal
+sidebar_label: Sign In
+sidebar_position: 1
+description: How ferry operators sign in to the Operator Portal and select their operator workspace with an Operator Code.
+keywords:
+  - sign in
+  - login
+  - operator code
+  - operator portal
+---
+
+Signing in to the Operator Portal has two parts: authenticate with your account,
+then choose your **operator workspace** using an **Operator Code**. Other
+Operator guides link here instead of repeating this step.
+
+> **Login → Sign In → Select Operator (enter Operator Code) → Dashboard**
+
+:::note
+Your **Operator Code** is provided by your administrator. This guide uses
+**`SINDO`**. The screenshots below use the local environment at
+`http://localhost:5001`.
+:::
+
+## Prerequisites
+
+- A Ferry Operator account and password (or a linked Google / Microsoft account).
+- Your **Operator Code** (from your administrator).
+
+## Step 1 — Sign in with your account
+
+Open the Operator Portal and go to the login page. Enter your **Email** and
+**Password**, then click **Sign In**. Single sign-on with **Google** or
+**Microsoft** is also available.
+
+![Operator Portal sign-in page](/img/ferry-operator/sign-in/01-login.png)
+_The Operator Portal sign-in page._
+
+## Step 2 — Select your operator
+
+After signing in, the **Select Operator** screen asks you to choose a workspace:
+
+- **First time:** type your **Operator Code** (e.g. `SINDO`) into the
+  **Enter operator code…** field and click the **+** button to verify and add it.
+- **Returning:** your verified operators are saved below — just click the
+  workspace card (or search for it) to continue.
+
+![Select Operator screen with the Operator Code entered](/img/ferry-operator/sign-in/02-select-operator.png)
+_Enter the Operator Code and add it, or pick a saved workspace._
+
+## Step 3 — You're authenticated
+
+Once the operator is selected, you land on the **Dashboard** for that workspace
+(here, **Sindo Ferry Pte Ltd**), showing today's trips, boarding activity, and
+passenger totals. Use the sidebar to reach **Departure Trips**, **Passengers**,
+and the other modules.
+
+![Operator Portal dashboard](/img/ferry-operator/sign-in/03-dashboard.png)
+_The Operator Portal dashboard after selecting the operator._
+
+:::tip
+Use **Switch** (top right) at any time to change to a different operator
+workspace, or **Sign out of account** on the Select Operator screen to log out
+completely.
+:::

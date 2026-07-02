@@ -1,0 +1,77 @@
+---
+id: operator-edit-remove-passenger
+title: Edit & Remove a Checked-In Passenger
+sidebar_label: Edit & Remove Passenger
+sidebar_position: 3
+description: Edit a checked-in passenger's details, or cancel (remove) their check-in, from the passenger table on the Departure Trip Detail page.
+keywords:
+  - edit passenger
+  - remove passenger
+  - cancel passenger
+  - departure trip
+  - operator portal
+---
+
+Once a passenger is checked in, operators can **edit** their details or
+**cancel** (remove) their check-in directly from the passenger table on the
+**Departure Trip Detail** page.
+
+> **Passengers table → row Actions (…) → Edit Passenger _or_ Cancel Passenger**
+
+:::note
+You must be signed in with an operator selected — see
+[Sign In to the Operator Portal](/ferry-operator/operator-sign-in). The
+screenshots below use the local environment at `http://localhost:5001`.
+:::
+
+## Prerequisites
+
+- You are viewing a trip's **Departure Trip Detail** page (open **Departure
+  Trips → View** on a trip).
+- The trip already has at least one checked-in passenger — see
+  [Check In a Passenger](/ferry-operator/operator-check-in-passenger).
+
+## Open the row Actions menu
+
+In the **Passengers** table, click the **…** (Actions) button at the end of a
+passenger's row. A menu appears with **View Passenger**, **Edit Passenger**, and
+**Cancel Passenger**.
+
+![Passenger row Actions menu](/img/ferry-operator/edit-remove-passenger/01-action-menu.png)
+_The row Actions menu: View, Edit, and Cancel Passenger._
+
+## Edit a passenger
+
+1. In the Actions menu, click **Edit Passenger**.
+2. The **Edit Passenger** dialog opens, pre-filled with the passenger's current
+   details (No, Full Name, Gender, Date of Birth, Expiry Date, Nationality,
+   Issue Country, Issue Date).
+3. Change the fields you need to correct, then click **Save Changes** (or
+   **Cancel** to discard).
+
+![Edit Passenger dialog](/img/ferry-operator/edit-remove-passenger/02-edit-dialog.png)
+_The Edit Passenger dialog, pre-filled with the passenger's details._
+
+## Remove (cancel) a passenger
+
+1. In the Actions menu, click **Cancel Passenger** (the red option).
+2. A confirmation asks you to confirm — it names the passenger being cancelled.
+   Click **Confirm Cancel** (or **Keep Passenger** to abort).
+
+![Cancel Passenger confirmation](/img/ferry-operator/edit-remove-passenger/03-cancel-confirm.png)
+_Confirm before cancelling the passenger's check-in._
+
+:::info
+**Cancel Passenger** cancels the check-in rather than deleting the record. The
+passenger's **Status** changes to **`Cancelled`**, the seat is released (the
+trip's **Checked-In** count drops and **Available** increases), and the row
+remains in the table for reference.
+:::
+
+![Passenger shown as Cancelled after removal](/img/ferry-operator/edit-remove-passenger/04-cancelled-result.png)
+_After confirming, the passenger's status shows **Cancelled** and the seat is freed._
+
+## Related
+
+- [Check In a Passenger](/ferry-operator/operator-check-in-passenger)
+- [Sign In to the Operator Portal](/ferry-operator/operator-sign-in)

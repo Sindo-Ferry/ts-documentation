@@ -1,0 +1,9 @@
+{
+  "label": "Terminal Staff",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-staff",
+    "description": "Guides for terminal staff operating the Terminal Portal (localhost:5000)."
+  }
+}

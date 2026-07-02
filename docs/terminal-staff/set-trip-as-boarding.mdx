@@ -1,0 +1,79 @@
+---
+id: set-trip-as-boarding
+title: Set a Trip As Boarding
+sidebar_label: Set As Boarding
+sidebar_position: 3
+description: Transition a scheduled departure trip to Boarding and assign its gate and berth.
+keywords:
+  - boarding
+  - set as boarding
+  - gate
+  - berth
+  - departure trip
+---
+
+When a scheduled trip is ready for passengers, terminal staff move it to
+**Boarding** and assign the **gate** and **berth** it will use:
+
+> **Current Trips → Select the trip → Set As Boarding → Assign Gate & Berth**
+
+:::note
+You need permission to view **Current Trips** and to manage boarding. The
+screenshots below use the local environment at `http://localhost:5000`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The trip exists in **Current Trips** and is still **Scheduled**.
+
+## Step 1 — Open Current Trips and select the trip
+
+Open **Current Trips** (route: `/current-departure-trips`) and click the trip you
+want to board. Its detail page opens.
+
+_These first two steps are the same as in
+[Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
+(Steps 1–2) — see there for screenshots of the Current Trips list and the trip
+detail page._
+
+## Step 2 — Click Set As Boarding
+
+On the trip's detail page, while the **Status** is **Scheduled**, click
+**Set As Boarding** (top right). The **Gate / Berth** field shows `- / -` until
+you assign them in the next step.
+
+![Scheduled trip detail with the Set As Boarding button](/img/terminal-staff/set-trip-as-boarding/01-set-as-boarding.png)
+_A Scheduled trip. The **Set As Boarding** button is at the top right._
+
+## Step 3 — Assign a gate and berth
+
+A dialog opens: **Assign a gate and berth … to begin boarding.**
+
+1. Click **Gate** and pick an active gate from the picker (it is filtered to the
+   trip's port and to **Active** gates).
+2. Click **Berth** and pick an active berth the same way.
+3. Click **Set As Boarding** to confirm.
+
+![Assign a gate and berth dialog](/img/terminal-staff/set-trip-as-boarding/02-assign-gate-berth.png)
+_The Set As Boarding dialog — choose a Gate and Berth, then confirm._
+
+![Select Gate picker](/img/terminal-staff/set-trip-as-boarding/03-select-gate.png)
+_The gate picker lists active gates for the trip's port; the berth picker works the same way._
+
+After you confirm, the trip's **Status** changes to **Boarding**, the assigned
+**Gate / Berth** appear in Trip Info, and you can start boarding operations
+(e.g. open the boarding scan or
+[check in NTL / LM passengers](/terminal-staff/check-in-ntl-lm-passenger)).
+
+:::tip
+Only **active** gates and berths at the trip's port are selectable. If the one
+you need isn't listed, check that it exists and is marked active under the port's
+master data.
+:::
+
+## Related
+
+- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
+- **Current Trips** — `/current-departure-trips`

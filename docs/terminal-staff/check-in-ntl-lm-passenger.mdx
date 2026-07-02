@@ -1,0 +1,90 @@
+---
+id: check-in-ntl-lm-passenger
+title: Check In an NTL / LM Passenger
+sidebar_label: Check In NTL / LM Passenger
+sidebar_position: 4
+description: Manually check in a Not-To-Land (NTL) or Last-Minute (LM) passenger onto a departure trip from the trip detail page.
+keywords:
+  - check in
+  - NTL
+  - not to land
+  - LM
+  - last minute
+  - departure trip
+---
+
+Some passengers are not part of the normal check-in flow and must be added
+manually onto a departure trip:
+
+- **NTL — Not To Land:** a passenger who stays on board and is not landing at the
+  destination (e.g. transit or crew-type cases).
+- **LM — Last Minute:** a walk-up passenger added right before departure.
+
+This guide covers how terminal staff add either type from a trip's detail page in
+the **Terminal Portal**.
+
+:::note
+You need permission to view **Current Trips** and to check in passengers. The
+screenshots below use the local environment at `http://localhost:5000`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The departure trip already exists and is visible in **Current Trips**.
+
+## Step 1 — Open Current Trips
+
+In the sidebar under **Operational**, open **Current Trips**
+(route: `/current-departure-trips`). This lists today's departure trips with their
+vessel, destination, departure time, status, and live passenger counts.
+
+![Current Departure Trips list](/img/terminal-staff/check-in-ntl-lm-passenger/01-current-trips.png)
+_The Current Departure Trips list._
+
+## Step 2 — Select a trip to open its detail page
+
+Click the trip you want to add the passenger to. Its **detail page** opens,
+showing Trip Info, Timings, and the **Passengers** section with live counts
+(Checked-In, Pre-Immigration, Boarded, Available).
+
+![Trip detail page with the Check In NTL / LM Passenger button](/img/terminal-staff/check-in-ntl-lm-passenger/02-trip-detail.png)
+_The trip detail page. The **Check In NTL / LM Passenger** button is in the Passengers section._
+
+## Step 3 — Click "Check In NTL / LM Passenger"
+
+In the **Passengers** section, click **Check In NTL / LM Passenger**. A dialog
+opens, pre-filled with the current **Departure Trip**.
+
+![Check In NTL / LM Passenger dialog with the Passenger Type options](/img/terminal-staff/check-in-ntl-lm-passenger/03-check-in-dialog.png)
+_The dialog. Use **Passenger Type** to choose between **NotToLand** and **LastMinute**._
+
+## Step 4 — Enter the passenger details and check in
+
+Fill in the passenger's details:
+
+| Field | Notes |
+| --- | --- |
+| **No** | Passport / ID number. |
+| **Name** | Passenger's full name. |
+| **Gender** | Optional; defaults to _Unspecified_. |
+| **Passenger Type** | **NotToLand** (NTL) or **LastMinute** (LM) — this is the key choice. |
+| **Nationality** | Select from the list. |
+| **Date of Birth** | Format `YYYY-MM-DD`. |
+| **Issue Date** _(optional)_ / **Expiry Date** / **Issue Country** | Travel-document details. |
+
+Then click **Check In Passenger**. The passenger is added to the trip and appears
+in the Passengers list, and the trip's counts update accordingly.
+
+:::tip
+Pick **NotToLand** for passengers remaining on board (not landing) and
+**LastMinute** for walk-ups added just before departure. The type is recorded on
+the trip so downstream boarding and manifest reports classify them correctly.
+:::
+
+## Related
+
+- [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+- **Current Trips** — `/current-departure-trips`
+- **Departure Trips** — `/departure-trips/list`

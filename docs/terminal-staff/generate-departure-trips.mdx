@@ -1,0 +1,100 @@
+---
+id: generate-departure-trips
+title: Generate Departure Trips with a Trip Sync Job
+sidebar_label: Generate Departure Trips
+sidebar_position: 2
+description: Step-by-step guide for terminal staff — create and execute a Trip Sync Job, and verify the generated trips in Departure Trips.
+keywords:
+  - trip sync
+  - departure trips
+  - terminal portal
+---
+
+This guide walks terminal staff through generating ferry departure trips in the
+**Terminal Portal**:
+
+> **Trip Sync Job → Create New Sync Job → Execute Job → Departure Trips**
+
+A _Trip Sync Job_ reconciles the scheduled departure trips for a date range
+against the configured routes and timeslots. When you execute it, the portal
+creates any missing trips (and removes ones that should no longer exist), so the
+generated trips become visible in **Departure Trips**.
+
+:::note
+You need an account with permission to manage trip synchronizations. The
+screenshots below use the local environment at `http://localhost:5000`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- Permission to view and manage **Trip Synchronizations** and **Departure Trips**.
+
+## Step 1 — Open Trip Synchronizations
+
+In the sidebar under **Operational**, open **Trip Synchronizations**
+(route: `/departure-trip-synchronizations`). This page lists previous sync jobs
+with their date range, scope, results (trips created / deleted), and status.
+
+![Trip Synchronizations list](/img/terminal-staff/generate-departure-trips/01-trip-sync-list.png)
+_The Trip Synchronizations list with the New Sync Job button._
+
+## Step 2 — Create a new sync job
+
+Click **New Sync Job** (top right) and fill in the job configuration:
+
+- **Start Date / End Date** — the period to generate trips for (use the same day
+  for a single date).
+- **Operator** _(optional)_ — leave blank to include all operators.
+- **Route** _(optional)_ — leave as **All Routes** to include every route.
+- **Day Filter** _(optional)_ — leave unchecked to include all days, or pick
+  specific weekdays / weekends / public holidays.
+- **Remarks** _(optional)_ — a note describing the job's purpose.
+
+Then click **Create Sync Job**.
+
+![New Sync Job form](/img/terminal-staff/generate-departure-trips/02-new-sync-job.png)
+_The New Sync Job form, filled in for a single date._
+
+## Step 3 — Review the preview and execute the job
+
+Creating the job opens its detail page with a **Preview** section showing how
+many trips will be created, deleted, and how many conflicts were detected.
+Conflicts are skipped during execution.
+
+When the preview looks correct, click **Execute Job** and confirm. The job is
+enqueued and processed in the background; its status moves from **Pending** →
+**Enqueued** → **Completed**.
+
+![Sync job preview and Execute Job button](/img/terminal-staff/generate-departure-trips/03-execute-job.png)
+_The job preview and the Execute Job action._
+
+:::tip
+A preview of **0 to create** simply means the trips for that period already
+exist — the sync is idempotent and safe to run repeatedly.
+:::
+
+## Step 4 — Verify the trips in Departure Trips
+
+Open **Departure Trips** (route: `/departure-trips/list`). Filter the **Trip
+Date** to the period you just synced to see the generated trips, each with its
+code, operator, route, departure time, status, and passenger counts.
+
+![Departure Trips list for the synced date](/img/terminal-staff/generate-departure-trips/04-departure-trips.png)
+_Generated trips shown in Departure Trips for the synced date._
+
+## What happens during a sync
+
+| Result        | Meaning                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Created**   | New departure trips added for the selected period and scope.                                                 |
+| **Deleted**   | Trips removed because they no longer match the schedule.                                                     |
+| **Conflicts** | Trips that could not be reconciled automatically; these are skipped and should be reviewed manually.         |
+
+## Related
+
+- [Sign In to the Terminal Portal](/terminal-staff/sign-in)
+- **Trip Synchronizations** — `/departure-trip-synchronizations`
+- **Departure Trips** — `/departure-trips/list`
+- **Current Trips** — `/current-departure-trips`
