@@ -7,8 +7,6 @@ slug: /
 description: Operating documentation for the Sindo Ferry terminal and operator portals.
 ---
 
-Operating documentation for the Sindo Ferry ports, organized by audience.
-
 ## Getting started
 
 New user? Both terminal staff and ferry operators must
