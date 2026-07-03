@@ -75,6 +75,17 @@ Then click **Check In Passenger**.
 ![Check In Passenger dialog, completed](/img/ferry-operator/check-in-passenger/03-check-in-dialog.png)
 _The Check In Passenger form. Date of Birth and Expiry Date are required._
 
+:::warning[No duplicate passengers]
+Each passenger can be checked in **once per trip**. If the **No** (passport / ID
+number) you enter is already checked in on the same trip, a **Validation Failed**
+message appears — _"A passenger with this No already exists on this trip"_ — and
+the passenger is **not** added. Correct the number, or find the existing entry in
+the Passengers list, then try again.
+:::
+
+![Validation error shown when the passenger's No already exists on the trip](/img/ferry-operator/check-in-passenger/04-duplicate-passenger.png)
+_Checking in a passenger whose No is already on the trip is rejected._
+
 ## Outcome
 
 The passenger is added to the trip as an **Ordinary** passenger and appears in

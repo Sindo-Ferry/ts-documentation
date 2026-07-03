@@ -25,7 +25,7 @@ email, and get activated by an administrator before signing in.
 - [Sign In to the Terminal Portal](/terminal-staff/sign-in)
 - [Set Port Context](/terminal-staff/set-port-context)
 - [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
-- [Set a Trip As Boarding](/terminal-staff/set-trip-as-boarding)
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip) — Boarding → Close → Depart
 - [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
 
 ## Ferry Operator guides
