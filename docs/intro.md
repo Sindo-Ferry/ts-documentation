@@ -23,6 +23,7 @@ email, and get activated by an administrator before signing in.
 ## Terminal Staff guides
 
 - [Sign In to the Terminal Portal](/terminal-staff/sign-in)
+- [Set Port Context](/terminal-staff/set-port-context)
 - [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
 - [Set a Trip As Boarding](/terminal-staff/set-trip-as-boarding)
 - [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)

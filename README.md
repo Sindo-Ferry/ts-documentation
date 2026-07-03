@@ -20,6 +20,7 @@ documentation/
 │   ├── terminal-staff/              # Audience: Terminal Portal (ts-terminal.sindoferry.com.sg)
 │   │   ├── _category_.json          #   category label + order
 │   │   ├── sign-in.mdx
+│   │   ├── set-port-context.mdx
 │   │   ├── generate-departure-trips.mdx
 │   │   ├── set-trip-as-boarding.mdx
 │   │   └── check-in-ntl-lm-passenger.mdx

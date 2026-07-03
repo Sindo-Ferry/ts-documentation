@@ -1,0 +1,79 @@
+---
+id: set-port-context
+title: Set Port Context
+sidebar_label: Set Port Context
+sidebar_position: 2
+description: Select your active port in Settings — a required first step that scopes the Terminal Portal to your terminal for all operational work.
+keywords:
+  - port context
+  - active port
+  - settings
+  - current trips
+---
+
+Before doing any operational work, terminal staff must set an **active port**.
+This tells the Terminal Portal which terminal you are working at, and it scopes
+what you see across the operational screens to that port.
+
+> **Settings → Port Context → Select Active Port**
+
+:::warning[Set this first]
+Setting your active port is a **mandatory first step** after signing in. Until an
+active port is selected, operational screens cannot load your trips — see
+[If no active port is selected](#if-no-active-port-is-selected) below.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+
+## Why the active port matters
+
+Each terminal has its own trips and operations. The **active port** acts as your
+working context: once set, screens such as **Current Trips** are filtered to that
+port, so you only see the trips relevant to where you are working. Choosing the
+correct port keeps your view focused and ensures scan and check-in actions are
+recorded against the right terminal.
+
+## Step 1 — Open Settings
+
+From the sidebar, open **Settings**. At the top you will find the **Port Context**
+section.
+
+## Step 2 — Select your active port
+
+Open the **Active Port** dropdown and choose your terminal from the list. Each
+entry shows the port code and name (for example, **WFC – Waterfront Terminal**).
+
+![Selecting the active port in Settings → Port Context](/img/terminal-staff/set-port-context/01-port-context.png)
+_The Port Context section, with the Active Port list open._
+
+Your selection is applied immediately and remembered for your session.
+
+:::tip[Can't find your port?]
+If your terminal is not in the list, click **Refresh Ports** to reload the
+available ports, then open the list again. If it is still missing, please
+**contact your administrator** — your account or port may need to be configured.
+:::
+
+You can also use **Clear** to remove the current selection (for example, before
+switching to a different terminal).
+
+## If no active port is selected
+
+Operational screens require a port context. If you open an operational screen with
+a role that needs one — and no active port is set — you will see:
+
+> _"Port context is required. Please select an active port in terminal portal."_
+
+If this appears, return to **Settings → Port Context** and select your active
+port using the steps above.
+
+## Next steps
+
+With your active port set, you can begin operational work:
+
+- [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+- [Set a Trip As Boarding](/terminal-staff/set-trip-as-boarding)
+- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
