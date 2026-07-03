@@ -1,0 +1,9 @@
+{
+  "label": "Operational Staff",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-staff/operational",
+    "description": "Modules used by operational staff to run trips on the day of departure — boarding, scanning, timings, and the passenger manifest."
+  }
+}

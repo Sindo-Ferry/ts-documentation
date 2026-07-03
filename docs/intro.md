@@ -22,14 +22,23 @@ email, and get activated by an administrator before signing in.
 
 ## Terminal Staff guides
 
+**Common**
+
 - [Sign In to the Terminal Portal](/terminal-staff/sign-in)
 - [Set Port Context](/terminal-staff/set-port-context)
+
+**[Administrative Staff](/terminal-staff/administrative)**
+
 - [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+
+**[Operational Staff](/terminal-staff/operational)**
+
 - [Manage Current Trip Status](/terminal-staff/manage-departure-trip) — Boarding → Close → Depart
 - [Update Current Trip Timings](/terminal-staff/update-current-trip-timings) — gate times & delays
+- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
 - [Pre-Immigration Scan](/terminal-staff/pre-immigration-scan) — clear passengers to Pre-Immigration
 - [Boarding Scan](/terminal-staff/boarding-scan) — board passengers at the gate
-- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
+- [Passenger Manifest](/terminal-staff/passenger-manifest) — download the boarded-passenger manifest
 
 ## Ferry Operator guides
 

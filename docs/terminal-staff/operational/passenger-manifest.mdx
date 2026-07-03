@@ -1,0 +1,84 @@
+---
+id: passenger-manifest
+title: Passenger Manifest
+sidebar_label: Passenger Manifest
+sidebar_position: 6
+slug: /terminal-staff/passenger-manifest
+description: Download the boarded-passenger manifest (Excel, English or Indonesian) for a closed or departed trip from the trip detail page.
+keywords:
+  - passenger manifest
+  - manifest
+  - download manifest
+  - export
+  - xlsx
+  - departed trip
+---
+
+Once a trip has been [set as departed](/terminal-staff/manage-departure-trip#3-set-as-depart),
+its passenger **manifest** becomes available to download from the trip's detail
+page. The manifest is the official list of **boarded** passengers on the trip.
+
+> **Current Trips → open the trip → Download Manifest → English / Indonesian**
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## When the manifest is available
+
+The **Download Manifest** button appears on the trip's detail page and is enabled
+only once the trip is **Closed** or **Departed**. Before that, the action is
+disabled with a hint:
+
+- _"Select a trip to download its manifest."_ — no trip is loaded.
+- _"Available once the trip is closed or departed."_ — the trip is still Scheduled
+  or Boarding.
+
+:::info[What the manifest contains]
+The manifest lists only **Boarded** passengers, ordered by check-in time. For each
+passenger it includes the trip details (code, date, departure, route, vessel) and
+the passenger's **No (passport / ID)**, **name**, **gender**, **date of birth**,
+**nationality**, **issue country**, **issue / expiry dates**, **boarding pass
+number**, **passenger type**, and **status**.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have permission to export passenger manifests.
+- The trip is **Closed** or **Departed**.
+
+## Step 1 — Open the trip detail page
+
+Open **Current Trips** (route: `/current-departure-trips`) and select the
+**Departed** (or Closed) trip. Its detail page shows the trip info, timings, and
+the passenger list, with **Download Manifest** at the top right.
+
+![The departed trip detail page with the Download Manifest button](/img/terminal-staff/passenger-manifest/01-download-manifest.png)
+_A Departed trip. **Download Manifest** is enabled at the top right._
+
+## Step 2 — Choose a language and download
+
+Click **Download Manifest** and choose the manifest language:
+
+- **English**
+- **Indonesian**
+
+![The Download Manifest menu showing English and Indonesian options](/img/terminal-staff/passenger-manifest/02-language-options.png)
+_Pick the language for the manifest — the report is generated in that language._
+
+The manifest is generated as an **Excel (`.xlsx`)** file and downloaded to your
+browser, named like `passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.xlsx` (for example,
+`passenger-manifest-SSFHW202607031300-2026-07-03.xlsx`).
+
+:::tip
+You can download the manifest again at any time while the trip stays Closed or
+Departed, in either language — the list always reflects the trip's boarded
+passengers.
+:::
+
+## Next steps
+
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip) — the trip
+  lifecycle up to departure.

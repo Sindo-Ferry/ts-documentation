@@ -1,0 +1,9 @@
+{
+  "label": "Administrative Staff",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-staff/administrative",
+    "description": "Modules used by administrative staff to set up schedules, trips, and passengers in the Terminal Portal."
+  }
+}
