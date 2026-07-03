@@ -1,0 +1,82 @@
+---
+id: pre-immigration-scan
+title: Pre-Immigration Scan
+sidebar_label: Pre-Immigration Scan
+sidebar_position: 6
+description: Clear passengers through the pre-immigration stage — scan boarding passes to move them from Checked-In to Pre-Immigration, with a public Passenger Display and a revert action.
+keywords:
+  - pre-immigration
+  - scan
+  - boarding pass
+  - passenger display
+  - checked-in
+  - revert
+---
+
+Before passengers are allowed into the boarding gate, they must clear the
+**pre-immigration** stage. On this page, operational staff scan each passenger's
+boarding pass to move them from **Checked-In** to **Pre-Immigration**.
+
+> **Pre-Immigration Scan → Open Passenger Display → scan boarding pass → (revert if needed)**
+
+:::warning[Restricted access]
+This page can only be accessed by **authorized operational staff**.
+:::
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context).
+- Passengers have already been **checked in** for the trip.
+
+## Step 1 — Open the Pre-Immigration Scan view
+
+From the sidebar, open **Pre-Immigration Scan** (route: `/pre-immigration-scan`).
+
+## Step 2 — Set up the Passenger Display
+
+Next to the scanning field, click **Open Passenger Display** to launch the
+dedicated **public-facing monitor** interface. For the best setup, **drag this new
+window onto a second screen** and press **F11** to enter full-screen mode, so it
+faces the passengers while you scan from the operator screen.
+
+![The Passenger Display shown to passengers on a second screen](/img/terminal-staff/pre-imm-scan/01-display.png)
+_The Passenger Display — the public-facing monitor for passengers._
+
+## Step 3 — Scan the boarding pass
+
+Click into the active scanner input field on your operator screen, then **scan**
+(or manually type) the passenger's **boarding pass number** and confirm.
+
+## Step 4 — Outcome (operator screen and Passenger Display)
+
+On a successful scan, the system **instantly moves the passenger from Checked-In to
+Pre-Immigration**. At the same time, the **Passenger Display** on the second screen
+shows a **Success** or **Reject** message along with the relevant passenger details.
+
+![The Passenger Display showing a successful pre-immigration scan](/img/terminal-staff/pre-imm-scan/02-success.png)
+_A successful scan — the passenger is cleared to Pre-Immigration._
+
+![The Passenger Display showing a rejected scan](/img/terminal-staff/pre-imm-scan/03-error.png)
+_A rejected scan — the passenger is not cleared; check the message and try again._
+
+## Step 5 — Revert a scan
+
+If a passenger is scanned by mistake or needs to step back out, use the **revert**
+action (**Revert To Check-In**) to instantly return the passenger back to
+**Checked-In** status.
+
+:::tip
+Reverting is optional and only affects the passenger you scanned. Use it to undo an
+accidental scan; the passenger can then be scanned again when they are ready.
+:::
+
+## Next steps
+
+- [Boarding Scan](/terminal-staff/boarding-scan) — the next stage, at the boarding gate.
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip)

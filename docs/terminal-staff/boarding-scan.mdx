@@ -1,0 +1,104 @@
+---
+id: boarding-scan
+title: Boarding Scan
+sidebar_label: Boarding Scan
+sidebar_position: 7
+description: Board passengers at the gate — set a trip to Boarding, scan boarding passes to board passengers, and revert or re-scan to remove them, with a public Passenger Display.
+keywords:
+  - boarding scan
+  - boarding
+  - gate
+  - berth
+  - boarding pass
+  - passenger display
+  - revert
+  - duplicate scan
+---
+
+Once passengers clear pre-immigration, they move to the final **boarding gate**. On
+this page, operational staff scan each passenger's boarding pass to board them onto
+the trip, with a public **Passenger Display** for the gate.
+
+> **Current Trips → select the trip → Set As Boarding (gate & berth) → scan boarding pass**
+
+:::warning[Restricted access]
+This page can only be accessed by **authorized operational staff**.
+:::
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context).
+- The trip exists in **Current Trips** and passengers have cleared
+  [pre-immigration](/terminal-staff/pre-immigration-scan).
+
+## Step 1 — Open Current Trips and select today's trip
+
+Open **Current Trips** (route: `/current-departure-trips`) and select an active
+trip scheduled for today.
+
+## Step 2 — Set the trip to Boarding
+
+Open the boarding module for that trip. If the trip is still **Scheduled**, set its
+status to **Boarding** first by assigning a **gate** and **berth** — see
+[Manage Current Trip Status → Set As Boarding](/terminal-staff/manage-departure-trip#1-set-as-boarding)
+for the full gate/berth steps.
+
+## Step 3 — The Boarding Scan page
+
+Setting the trip to Boarding launches the **Boarding Scan** page for that trip. The
+**pre-immigration passenger list** (passengers ready to board) is shown on the
+right side.
+
+![The Boarding Scan page for a trip that is now Boarding](/img/terminal-staff/boarding-scan/04-operator-display-ready.png)
+_The Boarding Scan page — scan field on the left, ready-to-board passengers on the right._
+
+## Step 4 — Set up the Passenger Display
+
+Next to the scanning field, click **Open Passenger Display** to launch the
+dedicated **gate interface**. As before, **drag this window onto a second
+monitor** and press **F11** for full-screen mode so it faces the passengers.
+
+![The Passenger Display in its ready-for-scan state at the boarding gate](/img/terminal-staff/boarding-scan/01-passenger-display-ready.png)
+_The Passenger Display — the ready-for-scan gate screen shown to passengers._
+
+## Step 5 — Scan the boarding pass
+
+Back on your operator screen, click into the active scanner input field. You can
+either **type a valid Boarding Pass Number and press Enter**, or use a **hardware
+scanner** to scan the physical barcode.
+
+## Step 6 — Outcome (operator screen and Passenger Display)
+
+On a successful scan, the operator view instantly processes the boarding pass and
+updates the **trip metrics** (Boarded count). At the same time, the **Passenger
+Display** on the second screen shows a **Success** or **Reject** message with the
+relevant passenger details.
+
+![The Passenger Display showing a successful boarding scan](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
+_A successful scan — the passenger is boarded._
+
+![The Passenger Display showing a rejected boarding scan](/img/terminal-staff/boarding-scan/03-passenger-display-error.png)
+_A rejected scan — the passenger is not boarded; check the message and try again._
+
+## Step 7 — Revert a boarded passenger
+
+If a boarded passenger needs to be reverted, simply **re-scan their boarding pass
+number**. The **Revert To Pre-Immigration** button is shown again for that scanned
+boarding pass, and the boarding-gate staff can click **Revert** to move the
+passenger back — removing them from the active **Boarded** count.
+
+:::tip
+Reverting returns the passenger to **Pre-Immigration**, so they can be boarded
+again with another scan when they are ready.
+:::
+
+## Next steps
+
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip) — close the trip and record departure once boarding is done.
+- [Pre-Immigration Scan](/terminal-staff/pre-immigration-scan) — the stage before boarding.

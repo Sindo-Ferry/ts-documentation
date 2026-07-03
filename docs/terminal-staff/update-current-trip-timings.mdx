@@ -1,0 +1,95 @@
+---
+id: update-current-trip-timings
+title: Update Current Trip Timings
+sidebar_label: Update Current Trip Timings
+sidebar_position: 5
+description: Update a trip's gate open/close times and record a departure delay from the Current Trips detail page, while the trip is still Scheduled or Boarding.
+keywords:
+  - update timings
+  - gate open
+  - gate close
+  - delay
+  - mark as delayed
+  - delayed to
+  - departure trip
+---
+
+Terminal staff can adjust a trip's **gate open** and **gate close** times, and
+record a **departure delay**, from the trip's detail page in **Current Trips**.
+
+> **Current Trips → select the trip → Update Timings → Save Timings**
+
+:::warning[Only Scheduled or Boarding trips]
+Timings can be updated **only while the trip is Scheduled or Boarding**. Once the
+trip is **Closed**, **Departed**, or **Cancelled**, its timings are locked and the
+**Update Timings** action is no longer available.
+:::
+
+:::note
+You need permission to view **Current Trips** and manage trips. The screenshots
+below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context).
+- The trip exists in **Current Trips** and is still **Scheduled** or **Boarding**.
+
+## Step 1 — Open Current Trips and select the trip
+
+Open **Current Trips** (route: `/current-departure-trips`) and click a
+**Scheduled** or **Boarding** trip to open its detail page.
+
+_(For screenshots of the Current Trips list and the trip detail page, see
+[Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger),
+Steps 1–2.)_
+
+## Step 2 — Click Update Timings
+
+On the trip's detail page, click **Update Timings**. A dialog opens with the trip's
+current timing fields.
+
+## Step 3 — Enter the timings
+
+Fill in the fields as needed:
+
+| Field | Notes |
+| --- | --- |
+| **Gate Open** | The time the gate opens for this trip. |
+| **Gate Close** | The time the gate closes. |
+| **Departure Time** | The trip's **original** scheduled departure — this **cannot be changed**. |
+| **Mark as Delayed** | Check this only if the departure is delayed. |
+| **Delayed To** | The **new** departure time. Shown/required once **Mark as Delayed** is checked. |
+
+If the departure runs late, tick **Mark as Delayed** and enter the new departure
+time in **Delayed To**. The original **Departure Time** stays as the scheduled
+reference; the **Delayed To** value becomes the effective departure time.
+
+![The Update Timings dialog with Gate Open, Gate Close, and Mark as Delayed](/img/terminal-staff/update-current-trip-timings/01-update-timings.png)
+_The Update Timings dialog. Tick **Mark as Delayed** to reveal and set **Delayed To**._
+
+## Step 4 — Save Timings
+
+Click **Save Timings** to apply the changes.
+
+:::tip
+You can update timings **as many times as needed**, as long as the trip is still
+**Scheduled** or **Boarding**. Adjust the gate times or the **Delayed To** value
+again whenever the situation changes.
+:::
+
+## Outcome
+
+The trip's detail page reloads with the updated timings. If you marked the trip as
+delayed, the **Delayed To** time is shown alongside the original departure, so
+everyone sees the current expected departure.
+
+![The trip detail page showing the updated, delayed timings](/img/terminal-staff/update-current-trip-timings/02-delayed-trip.png)
+_The trip after saving — the delayed departure time is now reflected._
+
+## Next steps
+
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip)
+- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)
