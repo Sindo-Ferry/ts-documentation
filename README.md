@@ -22,7 +22,7 @@ documentation/
 │   │   ├── sign-in.mdx
 │   │   ├── set-port-context.mdx
 │   │   ├── generate-departure-trips.mdx
-│   │   ├── set-trip-as-boarding.mdx
+│   │   ├── manage-departure-trip.mdx   # Boarding → Close → Depart lifecycle
 │   │   └── check-in-ntl-lm-passenger.mdx
 │   └── ferry-operator/              # Audience: Operator Portal (ts-operator.sindoferry.com.sg)
 │       ├── _category_.json
