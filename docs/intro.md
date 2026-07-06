@@ -19,6 +19,8 @@ email, and get activated by an administrator before signing in.
   (`ts-terminal.sindoferry.com.sg`): current trips, passenger check-in, departures, and more.
 - **[Ferry Operator](/ferry-operator/)** — using the **Operator Portal**
   (`ts-operator.sindoferry.com.sg`).
+- **[Public / Passengers](/public-live-tv)** — the no-login **Live TV** departure
+  boards shown on terminal monitors.
 
 ## Terminal Staff guides
 

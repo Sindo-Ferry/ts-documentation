@@ -1,0 +1,113 @@
+---
+id: public-live-tv
+title: Public Live TV Display
+sidebar_label: Public Live TV Display
+sidebar_position: 4
+slug: /public-live-tv
+description: The public, no-login departure boards shown on terminal monitors — Pre-Immigration and Boarding Gate Live-TV displays, and how to configure their layout and pacing.
+keywords:
+  - live tv
+  - public display
+  - departure board
+  - pre-immigration
+  - boarding gate
+  - monitor
+  - kiosk
+---
+
+The Terminal Portal provides two full-screen, **public (no-login) Live-TV displays**
+meant to run on monitors in the terminal:
+
+- **Pre-Immigration Live-TV** — for passengers clearing immigration before boarding
+  (gate open / close timing).
+- **Boarding Gate Live-TV** — for passengers about to board (gate / berth,
+  "boarding now", "last call").
+
+Both boards show the **same set of trips** for a port; they differ only in a few
+columns and labels. All times are shown in the **port's local timezone**.
+
+:::note[Completely public — no login required]
+These pages are public and require **no system login** to view. They are intended
+to be opened on terminal display monitors.
+:::
+
+## Opening a board
+
+Each board is a link that takes a **`portId`** (the origin port) in the query
+string. Using port `2` as an example:
+
+- **Pre-Immigration Live-TV:**
+  `https://ts-terminal.sindoferry.com.sg/public/live-tv/pre-immigration/?portId=2`
+- **Boarding Gate Live-TV:**
+  `https://ts-terminal.sindoferry.com.sg/public/live-tv/boarding-gate/?portId=2`
+
+For the best display, open the board on the monitor's browser and press **F11** for
+full-screen (kiosk) mode.
+
+![The Pre-Immigration Live-TV board](/img/public-live-tv/01-pre-immigration-board.png)
+_The Pre-Immigration board — note the **Gate** column showing gate open / close state._
+
+![The Boarding Gate Live-TV board](/img/public-live-tv/02-boarding-gate-board.png)
+_The Boarding Gate board — with **Vessel** and **Gate / Berth** columns._
+
+:::tip
+The board only ever shows **today's** trips for the selected port, in the port's
+timezone. Cancelled trips are never shown; a trip that has **departed** stays on the
+board for about an hour, then drops off.
+:::
+
+## What each board shows
+
+The board lists today's trips ordered by departure time. For each trip you see the
+scheduled **departure**, **trip code**, **operator**, **destination**, **vessel**,
+**gate / berth**, and a **status** badge (**Scheduled**, **Boarding**, **Closed**,
+**Departed**).
+
+A **Remarks** signal highlights what matters right now:
+
+| Signal | Meaning |
+| --- | --- |
+| **BOARDING NOW** | The trip is open for boarding. |
+| **LAST CALL** | Boarding and departure is ~5 minutes away or less. |
+| **DELAYED TO hh:mm** | The trip is delayed to a revised time. |
+| **DEPARTED AT hh:mm** | The actual departure time (shown for ~1 hour after departure). |
+
+On the **Pre-Immigration** board, a **Gate** column also shows the immigration gate
+state based on the scheduled gate open / close times: **Open at hh:mm** (not open
+yet), **Gate Open / until hh:mm**, or **Gate Closed / … ago**.
+
+## Auto-refresh and rotation
+
+- The board **refreshes its data** automatically (every few seconds) and keeps
+  showing the last good data if a refresh briefly fails.
+- If there are more trips than fit on one screen, the board **rotates through
+  pages** automatically, pausing on each page before flipping to the next.
+- When there are no trips, it shows _"No departure trip schedule found for selected
+  port."_
+
+## Configuring the screen display
+
+When a Live-TV page is open, you can open a hidden settings panel to control the
+board's layout and pacing:
+
+1. Click anywhere on the screen.
+2. Press **Ctrl + Shift + S** to open the **Live TV Settings** panel.
+
+![The Live TV Settings panel opened with Ctrl + Shift + S](/img/public-live-tv/03-settings-panel.png)
+_The Live TV Settings panel — Items per screen, Page display duration, and Refresh interval._
+
+In the panel you can customize:
+
+| Setting | What it controls |
+| --- | --- |
+| **Items per screen** | How many trips (rows) are shown on a single page before it paginates. |
+| **Page display duration** | How long (in seconds) a page stays on screen before rotating to the next. |
+| **Refresh interval** | How often (in seconds) the board pulls fresh data to stay up to date. |
+
+Click **Save** to apply. These settings are stored **per device** (in that browser),
+so each monitor can be tuned independently and keeps its settings after a reload.
+
+:::tip[Per-device settings]
+Because the settings are saved on the device, set them once on each terminal monitor.
+Re-open the panel with **Ctrl + Shift + S** any time to adjust.
+:::
