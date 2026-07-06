@@ -1,0 +1,110 @@
+---
+id: passengers
+title: Passengers
+sidebar_label: Passengers
+sidebar_position: 4
+slug: /terminal-staff/passengers
+description: Look up customer records in the Terminal Portal. The Passengers list is search-only — passenger actions are taken from within a trip's detail view.
+keywords:
+  - passengers
+  - passenger lookup
+  - search
+  - filter
+  - trip detail
+---
+
+The **Passengers** module is the entry point for looking up customer records. It is
+a **search-only** list: use it to find existing passengers across trips. Any action
+on a passenger (edit, status change) is taken from within a **trip's detail view**,
+not from this list.
+
+> **Passengers → search / filter → View Passenger (read-only)**
+
+:::warning[Lookup only — no actions here]
+The Passengers list is strictly for **filtering and searching** existing records.
+You **cannot** edit, change status, or take any other action on a passenger from
+this screen. To act on a passenger, open the trip and work within its **Trip
+Detail** view (see [Taking action on a passenger](#taking-action-on-a-passenger)).
+:::
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have permission to view passengers.
+
+## The Passengers list
+
+Open **Passengers** (route: `/passengers`). By default the list is scoped to
+**today's** trip date. Each row shows the passenger's **Trip**, **No** (passport /
+ID), **Name** (and gender), **Operator / Route**, **Type**, **Status**, and
+**Nationality**.
+
+![The Passengers list view, filtered by trip date](/img/terminal-staff/passengers/01-passengers-list.png)
+_The Passengers list — a search-only view of customer records._
+
+### Search and filter
+
+- **Quick search** — type in the **search** box for a **partial match**: it returns
+  any passenger whose **No** _or_ **Name** _contains_ the text you typed.
+- **Show Filters** — open the **Filter Passengers** dialog to narrow results by:
+  **Trip Date From / To**, **Operator**, **Route**, **No** (Passport No),
+  **Name**, **Date of Birth**, **Passenger Type**, **Passenger Status**, and
+  **Nationality**.
+- Applied filters appear as **chips** below the search box; remove a chip to drop
+  that filter, or click **Reset** to clear them all.
+- **Refresh** reloads the current results.
+
+:::warning[The No and Name filters must match exactly]
+In the **Filter Passengers** dialog, the **No** (Passport No) and **Name** fields
+require an **exact, whole-value match** — the entire passport / ID number, or the
+passenger's **full name**. Matching is **case-insensitive**, but a **partial value
+returns no results**. For partial matching, use the **quick search** box instead,
+which matches any passenger whose No or Name _contains_ your text.
+:::
+
+### View a passenger
+
+The row **⋯** menu offers a single action — **View Passenger** — which opens a
+**read-only** details page for that record. There are no edit or status actions
+on the list.
+
+The details page shows the **full record**, grouped into three sections. Beyond
+what the list already shows (No, Name, Gender, Operator / Route, Type, Status,
+Nationality), it surfaces additional data — the extra fields are shown in **bold**:
+
+- **Trips Informations** — Trip Code, Trip Date / Departure, **Trip Status**,
+  **Trip Type**, Operator / Route, **Vessel**, and **Boarding Gate / Berth**.
+- **Passport Informations** — No, Name, Gender, **Date of Birth**, **Issuance
+  Date**, Nationality, **Issuance Country**, and **Passport Expiry Date**.
+- **Check In Informations** — **Boarding Pass No**, Type, Status, **Checked-in At**,
+  **Pre-Immigration At**, **Boarded At**, and whether the passenger was
+  **Cancelled** (with the time and who cancelled).
+
+## Taking action on a passenger
+
+To take any operational action against a passenger, work from the trip, not the
+Passengers list:
+
+1. Open the trip from **Current Trips** (or the trip list) and go to its **Trip
+   Detail** view.
+2. Locate the passenger within that specific trip's context.
+3. Perform the action there — for example
+   [check in an NTL / LM passenger](/terminal-staff/check-in-ntl-lm-passenger) or
+   run the boarding actions in
+   [Manage Current Trip Status](/terminal-staff/manage-departure-trip).
+
+:::info[Why actions live in the Trip Detail view]
+Forcing passenger actions to happen within the Trip Detail view safeguards **data
+integrity**: every action is always tied directly to a specific voyage, which
+prevents accidental cross-trip modifications.
+:::
+
+## Next steps
+
+- [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip)

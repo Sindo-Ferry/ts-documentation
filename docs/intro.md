@@ -30,6 +30,7 @@ email, and get activated by an administrator before signing in.
 **[Administrative Staff](/terminal-staff/administrative)**
 
 - [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+- [Passengers](/terminal-staff/passengers) — look up customer records (search-only)
 
 **[Operational Staff](/terminal-staff/operational)**
 
