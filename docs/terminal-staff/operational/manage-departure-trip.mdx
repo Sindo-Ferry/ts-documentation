@@ -44,7 +44,7 @@ A departure trip moves through the statuses below. The normal lifecycle is
 
 | Status | What it means | How it gets there |
 | --- | --- | --- |
-| **Scheduled** | Planned and listed, but not yet open for boarding. | Created by a [Trip Sync Job](/terminal-staff/generate-departure-trips) |
+| **Scheduled** | Planned and listed, but not yet open for boarding. | Created by a [Trip Sync Job](/trip-sync-job) |
 | **Boarding** | Boarding is open; passengers can board. | [Set As Boarding](#1-set-as-boarding) (requires gate & berth) |
 | **Closed** | Boarding is closed; no more passengers can board; ready for departure. | [Set As Close](#2-set-as-close) |
 | **Departed** | The trip has departed; the trip is finalized. | [Set As Depart](#3-set-as-depart) |

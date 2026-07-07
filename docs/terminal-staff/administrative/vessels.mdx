@@ -1,0 +1,106 @@
+---
+id: vessels
+title: Vessels
+sidebar_label: Vessels
+sidebar_position: 1
+slug: /terminal-staff/vessels
+description: Manage the vessels used for departure trips — search the list, create a vessel, activate/deactivate it, and edit or delete it.
+keywords:
+  - vessels
+  - vessel
+  - create vessel
+  - activate
+  - deactivate
+  - operator
+  - capacity
+---
+
+The **Vessels** module is where administrative staff manage the ferries used for
+departure trips. From here you can search existing vessels, create new ones, and
+activate, deactivate, edit, or delete a vessel.
+
+> **Vessels → List View / Create Vessel → Actions (Activate · Edit · Delete)**
+
+:::note
+You need permission to manage vessels. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have permission to manage vessels.
+- The vessel's **operator** already exists.
+
+## The Vessels list
+
+Open **Vessels** (route: `/vessels`). Each row shows the vessel's **Code**,
+**Name**, **Operator**, **Capacity**, and **Status** (**Active** / **Inactive**),
+plus an **Actions** (**⋯**) menu.
+
+![The Vessels list view](/img/terminal-staff/vessels/01-vessels-list.png)
+_The Vessels list — sortable by Code, Name, and Capacity._
+
+### Search and filter
+
+- **Quick search** — type in the **search** box to find vessels as you type.
+- **Show Filters** — open the **Filter Vessels** dialog to narrow results by
+  **Operator** and **Status** (**All Statuses**, **Active Only**, or **Inactive
+  Only**).
+- Applied filters appear as **chips**; remove a chip or click **Reset** to clear
+  them. **Refresh** reloads the results.
+
+## Create a vessel
+
+1. Click **Create Vessel** (top right) to open the **New Vessel** form.
+2. Fill in the fields:
+
+   | Field | Notes |
+   | --- | --- |
+   | **Operator** | Select the operator that owns the vessel (e.g. **Waterfront Ferry**). |
+   | **Vessel code** | A short code, e.g. `WF-01`. |
+   | **Vessel name** | The vessel's name, e.g. `Waterfront Star`. |
+   | **Certification number** | The vessel's certification reference, e.g. `CERT-WF-001`. |
+   | **Capacity** | Maximum number of passengers (must be greater than 0). |
+
+3. Click **Create Vessel**.
+
+![The New Vessel form filled in under the Waterfront Ferry operator](/img/terminal-staff/vessels/02-create-vessel.png)
+_Creating a vessel under the **Waterfront Ferry** operator._
+
+## Activate a vessel
+
+:::warning[New vessels start Inactive]
+A newly created vessel is **Inactive** and **cannot be used** on departure trips
+until it is activated.
+:::
+
+To activate (or deactivate) a vessel, open its **⋯ Actions** menu on the list and
+choose:
+
+- **Activate** — shown when the vessel is **Inactive**; makes it available for use.
+- **Deactivate** — shown when the vessel is **Active**.
+
+![The Actions menu on an inactive vessel, showing Edit, Activate, and Delete](/img/terminal-staff/vessels/03-actions-menu.png)
+_The just-created **WF-01** vessel is **Inactive**; its **⋯** menu offers **Activate**._
+
+:::tip[Deactivation is guarded]
+A vessel that is assigned to one or more **scheduled departure trips** cannot be
+deactivated. Reassign those trips to another vessel first, then deactivate it.
+:::
+
+## Edit or delete a vessel
+
+From the same **⋯ Actions** menu:
+
+- **Edit** — opens the vessel's form to update its operator, code, name,
+  certification number, or capacity.
+- **Delete** — permanently removes the vessel. A confirmation dialog appears
+  (_"Are you sure you want to delete …? This action cannot be undone."_); click
+  **Delete** to confirm.
+
+## Next steps
+
+- [Generate Departure Trips with a Trip Sync Job](/trip-sync-job)
+- [Passengers](/terminal-staff/passengers)

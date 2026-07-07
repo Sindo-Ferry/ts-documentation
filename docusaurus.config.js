@@ -91,8 +91,8 @@ const config = {
             items: [
               {label: 'Overview', to: '/'},
               {
-                label: 'Generate Departure Trips',
-                to: '/terminal-staff/generate-departure-trips',
+                label: 'Trip Sync Job',
+                to: '/trip-sync-job',
               },
             ],
           },

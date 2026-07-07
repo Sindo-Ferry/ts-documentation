@@ -31,7 +31,10 @@ email, and get activated by an administrator before signing in.
 
 **[Administrative Staff](/terminal-staff/administrative)**
 
-- [Generate Departure Trips with a Trip Sync Job](/terminal-staff/generate-departure-trips)
+- [Vessels](/terminal-staff/vessels) — manage the ferries used for trips
+- [Timeslots](/terminal-staff/timeslots) — recurring weekly schedule templates
+- [Generate Departure Trips with a Trip Sync Job](/trip-sync-job)
+- [Departure Trips](/terminal-staff/departure-trips) — view/manage trips & create AdHoc trips
 - [Passengers](/terminal-staff/passengers) — look up customer records (search-only)
 
 **[Operational Staff](/terminal-staff/operational)**

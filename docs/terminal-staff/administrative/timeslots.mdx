@@ -1,0 +1,122 @@
+---
+id: timeslots
+title: Timeslots
+sidebar_label: Timeslots
+sidebar_position: 2
+slug: /terminal-staff/timeslots
+description: Create and manage departure timeslots — the recurring weekly schedule templates that Trip Sync Jobs turn into departure trips.
+keywords:
+  - timeslot
+  - departure timeslot
+  - schedule
+  - calendar
+  - gate open
+  - gate close
+  - departure
+  - trip sync
+---
+
+A **timeslot** is a recurring weekly schedule template: it defines an operator's
+service on a route — the vessel, the gate-open/close and departure times, and which
+days it runs. Timeslots are the source that a
+[Trip Sync Job](/trip-sync-job) turns into actual
+**departure trips**.
+
+> **Timeslots → Create Timeslot → Save Timeslot → (Calendar / List views)**
+
+:::note
+You need permission to manage timeslots. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The operator, route, and an **active** [vessel](/terminal-staff/vessels) for that
+  operator already exist.
+
+## Create a timeslot
+
+Open **Timeslots** and click **Create Timeslot**. Fill in the form:
+
+| Field | Notes |
+| --- | --- |
+| **Operator** | The operator running the service (e.g. **Waterfront Ferry**). |
+| **Route** | The route (e.g. **WFC - TMFT — Waterfront to Tanah Merah**). |
+| **Default Vessel** | The vessel to assign. The picker is enabled **after** you choose an operator and lists only that operator's vessels. |
+| **Gate Open** / **Gate Close** / **Departure** | The timings — e.g. depart at **11:20 AM**. |
+| **Suffix** _(optional)_ | Distinguishes timeslots that share the same operator, route, and departure time (see the note below). |
+| **Days** | Tick **Weekday**, **Weekend**, **Public Holiday**, or individual days — **All Days** ticks everything. |
+| **Active** | Ticked by default. Only **active** timeslots are picked up by Trip Sync Jobs. |
+
+Then click **Create Timeslot**.
+
+![The Create Timeslot form filled in for Waterfront Ferry on the WFC–TMFT route departing 11:20 AM](/img/terminal-staff/timeslots/01-create-timeslot.png)
+_Creating a Waterfront Ferry timeslot on **WFC - TMFT**, departing **11:20 AM**, on weekdays._
+
+:::warning[Validation rules]
+The backend enforces these when you save:
+
+- **Times must be in order:** **Gate Open ≤ Gate Close ≤ Departure**.
+- The **Default Vessel** must **belong to the selected operator** and be **active**.
+- Timeslots that share the **same operator, route, and departure time** must have a
+  **different Suffix** (otherwise they would generate identical trip codes).
+:::
+
+## Calendar and List views
+
+Once created, the timeslot appears in both the **Calendar** and **List** views,
+each with a **filter** (operator, route, status, and — in the list — day). Use the
+**Calendar / List** toggle at the top right to switch.
+
+### Calendar view
+
+The **Departure Timeslot Weekly Grid** lays out timeslots by **departure time**
+(rows) across **days** (columns). Each card shows the operator, route, vessel, and
+Active/Inactive status. Empty cells show **+ Add** to create a timeslot for that
+time and day.
+
+- **Select to group** — click a card to **select the whole timeslot**: every day it
+  runs on is highlighted together, making it easy to identify the schedules that
+  belong to the same timeslot.
+- **Double-click to edit** — double-click a card to open its edit form.
+
+![The calendar view filtered to Waterfront Ferry, with the 11:20 timeslot selected and its weekday cells highlighted](/img/terminal-staff/timeslots/02-calendar-grouping.png)
+_Selecting the 11:20 timeslot highlights all of its weekday cells as one group._
+
+### List view
+
+The list shows each timeslot's **operator** (with day badges), **route**,
+**vessel**, **departure** (with the gate open–close window), and **status**.
+
+![The Timeslots list view filtered to Waterfront Ferry](/img/terminal-staff/timeslots/03-timeslots-list.png)
+_The list view — the 11:20 weekday timeslot with its Gate 10:50–11:10 window._
+
+From the row **⋯ Actions** menu you can:
+
+- **Edit** — open the timeslot's form.
+- **Activate / Deactivate** — toggle whether the timeslot is used by Trip Sync Jobs.
+- **Delete** — remove the timeslot.
+
+![The Actions menu on a timeslot row, showing Edit, Deactivate, and Delete](/img/terminal-staff/timeslots/04-list-actions.png)
+_The Actions menu — Edit, Deactivate, and Delete._
+
+:::tip[Activation needs an active vessel]
+A timeslot can only be **activated** while its **default vessel is active**. If the
+vessel has been deactivated, reactivate it (or change the timeslot's vessel) first.
+:::
+
+## From timeslot to departure trip
+
+Timeslots are templates — they are not trips by themselves. To turn them into the
+actual **departure trips** used across the check-in → boarding → depart process, an
+authorized user runs a [Trip Sync Job](/trip-sync-job).
+Every **active** timeslot that matches the job's criteria (**operator**, **route**,
+**days**) is generated as a departure trip for each matching date in the job's
+**date range**.
+
+## Next steps
+
+- [Generate Departure Trips with a Trip Sync Job](/trip-sync-job)
+- [Vessels](/terminal-staff/vessels)
