@@ -1,0 +1,65 @@
+---
+id: operator-passengers
+title: Passengers
+sidebar_label: Passengers
+sidebar_position: 4
+description: View your operator's passengers in the Operator Portal — a read-only list, with a per-passenger detail page reached from the row actions.
+keywords:
+  - operator portal
+  - passengers
+  - read only
+  - view passenger
+---
+
+The **Passengers** page shows your operator's passenger records. It is a
+**read-only** view — you can search, filter, and open a passenger's full details,
+but you cannot edit or change status from here.
+
+> **Passengers → search / filter → Actions → View Passenger**
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/operator-sign-in).
+
+## The Passengers list
+
+Open **Passengers** (route: `/passengers`). Each row shows the passenger's **Trip**
+(code), **No** (passport / ID), **Name**, **Type**, **Status**, and **Nationality**,
+plus an **Actions** (**⋯**) menu. Use the **search** box and **Show Filters** (for
+example, by **trip date**) to narrow the list.
+
+![The operator's read-only Passengers list, filtered to a trip date](/img/ferry-operator/passengers/01-list.png)
+_The Passengers list — Trip, No, Name, Type, Status, and Nationality._
+
+## View a passenger
+
+The row **⋯ Actions** menu offers a single action — **View Passenger** — which opens
+a **read-only** details page for that record, grouped into three sections:
+
+- **Trips Informations** — Trip Code, Trip Date / Departure, Trip Status, Trip Type,
+  Route, and Vessel.
+- **Passport Informations** — No, Name, Gender, Date of Birth, Issuance Date,
+  Nationality, Issuance Country, and Passport Expiry Date.
+- **Check In Informations** — Boarding Pass No, Type, Status, Checked-in At,
+  Pre-Immigration At, Boarded At, and whether the passenger was Cancelled.
+
+![The read-only View Passenger detail page](/img/ferry-operator/passengers/02-view.png)
+_The View Passenger page — trip, passport, and check-in details._
+
+:::info[Read-only]
+This page (and the detail view) is **read-only** — there are no edit, status, or
+other passenger actions here. Passenger check-in and edits are done from the
+[Check In a Passenger](/ferry-operator/operator-check-in-passenger) and
+[Edit & Remove a Checked-In Passenger](/ferry-operator/operator-edit-remove-passenger)
+flows.
+:::
+
+## Next steps
+
+- [Departure Trips](/ferry-operator/operator-departure-trips)
+- [Check In a Passenger](/ferry-operator/operator-check-in-passenger)

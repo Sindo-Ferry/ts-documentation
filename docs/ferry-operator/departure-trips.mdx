@@ -1,0 +1,95 @@
+---
+id: operator-departure-trips
+title: Departure Trips
+sidebar_label: Departure Trips
+sidebar_position: 3
+description: View your operator's departure trips in a weekly calendar, switch to compact view, reassign the vessel on selected trips, open a trip's detail, and download the manifest.
+keywords:
+  - operator portal
+  - departure trips
+  - calendar
+  - assign vessel
+  - change vessel
+  - manifest
+---
+
+The **Departure Trips** page shows your operator's trips in a **weekly calendar**.
+From here you can **reassign the vessel** on one or more trips, open a trip's
+**detail**, and **download the manifest** for a departed trip.
+
+> **Departure Trips → (select trips) → Assign Vessel → choose vessel → Confirm Assign**
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/operator-sign-in).
+
+## The weekly calendar
+
+Open **Departure Trips** (route: `/departure-trips`). It shows a grid of **departure
+times** (rows) across the **dates** of a **one-week** window (today through the next
+6 days) by default — adjust the **date range** and other filters at the top. Each
+trip cell shows the trip code, route, assigned **vessel**, the seat load, and
+status.
+
+![The operator Departure Trips weekly calendar](/img/ferry-operator/departure-trips/01-calendar.png)
+_The weekly calendar of departure trips._
+
+### Compact view
+
+To fit a whole week on screen, click **Compact view** (top right) — it shrinks the
+cells. Click **Normal view** to switch back.
+
+![The Departure Trips calendar in compact view](/img/ferry-operator/departure-trips/02-compact.png)
+_Compact view fits more of the week on screen._
+
+## Change the assigned vessel
+
+You can reassign the vessel on **one or many** trips at once:
+
+1. **Filter** the calendar down to the trips you want (by date range, route, status, etc.).
+2. **Select the trips**:
+   - **Click** a trip to select just that one.
+   - **Ctrl + Click** (⌘ on Mac) to add / remove trips **one by one**.
+   - **Shift + Click** to select a **block** (range) of trips from the first selected.
+3. The bar at the bottom shows how many are selected — e.g. **"N trip cell(s)
+   selected"**. Click **Assign Vessel**.
+4. In the **Assign Vessel to Selected Trips** dialog, **choose a vessel**, then click
+   **Confirm Assign**. This changes the vessel on **all selected trips**.
+
+![Selected trips with the Assign Vessel bar, and the Assign Vessel dialog](/img/ferry-operator/departure-trips/03-assign.png)
+_Select trips → Assign Vessel → choose a vessel → Confirm Assign._
+
+:::warning[Check the selected count first]
+The dialog states **"This will assign one vessel to N selected trip(s)."** Confirm
+that **N** matches the number of trips you intended before clicking **Confirm
+Assign** — the change applies to **every** selected trip.
+:::
+
+:::info[When a vessel change is allowed]
+The backend enforces these rules on assignment:
+
+- Only **Scheduled**, **Boarding**, or **Closed** trips can change vessel —
+  **Departed** or **Cancelled** trips are rejected (and can't be selected).
+- The chosen vessel must be **active**.
+- The vessel's **capacity must be at least the seats already occupied** on each trip —
+  a vessel that is too small for a trip's existing passengers is rejected.
+:::
+
+## View a trip and download the manifest
+
+Each trip cell also has:
+
+- **View** — opens the trip's **detail** page.
+- **Manifest** — available once the trip is **Closed** or **Departed**; choose a
+  language (**English** or **Indonesian**) to download the passenger manifest as an
+  Excel file.
+
+## Next steps
+
+- [Timeslots](/ferry-operator/operator-timeslots)
+- [Check In a Passenger](/ferry-operator/operator-check-in-passenger)

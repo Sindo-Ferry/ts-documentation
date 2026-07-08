@@ -1,0 +1,57 @@
+---
+id: operator-timeslots
+title: Timeslots
+sidebar_label: Timeslots
+sidebar_position: 2
+description: View your operator's departure timeslots in the Operator Portal — a read-only list of the recurring weekly schedules configured for your routes.
+keywords:
+  - operator portal
+  - timeslots
+  - departure timeslot
+  - read only
+---
+
+The **Timeslots** page shows all of the departure timeslots that belong to **your
+ferry operator**. It is a **read-only** view — you can browse and filter the
+timeslots, but you cannot change them here.
+
+> **Timeslots → view / filter (read-only)**
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Prerequisites
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/operator-sign-in).
+
+## The Timeslots list
+
+Open **Timeslots** (route: `/departure-timeslots`). The table lists your operator's
+timeslots, each showing:
+
+| Column | Notes |
+| --- | --- |
+| **Route** | The route the timeslot runs on. |
+| **Default Vessel** | The vessel assigned to trips generated from this timeslot. |
+| **Departure** | The departure time, with the **Gate** open–close window below it. |
+| **Days** | The days it runs (Mon–Sun and **PH** for public holidays). |
+| **Status** | **Active** or **Inactive**. |
+
+Use the filter toolbar to narrow by **route**, **status**, or **day**.
+
+![The operator's read-only Timeslots list](/img/ferry-operator/timeslots/01-list.png)
+_The Timeslots list — Route, Default Vessel, Departure, Days, and Status._
+
+:::info[Read-only — changes are made by the terminal]
+This page has **no create, edit, or delete actions**. Timeslots are master data
+managed by **terminal staff** in the Terminal Portal. If a timeslot needs to be
+added or changed, ask the terminal to update it — see the terminal
+[Timeslots](/terminal-staff/timeslots) guide.
+:::
+
+## Next steps
+
+- [Departure Trips](/ferry-operator/operator-departure-trips)
+- [Check In a Passenger](/ferry-operator/operator-check-in-passenger)

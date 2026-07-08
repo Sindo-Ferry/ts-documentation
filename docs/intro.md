@@ -56,6 +56,9 @@ email, and get activated by an administrator before signing in.
 ## Ferry Operator guides
 
 - [Sign In to the Operator Portal](/ferry-operator/operator-sign-in)
+- [Timeslots](/ferry-operator/operator-timeslots) — read-only view of your timeslots
+- [Departure Trips](/ferry-operator/operator-departure-trips) — weekly calendar & change vessel
+- [Passengers](/ferry-operator/operator-passengers) — read-only passenger list & details
 - [Check In a Passenger](/ferry-operator/operator-check-in-passenger)
 - [Edit & Remove a Checked-In Passenger](/ferry-operator/operator-edit-remove-passenger)
 
