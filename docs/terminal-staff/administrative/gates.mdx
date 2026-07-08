@@ -1,0 +1,66 @@
+---
+id: gates
+title: Gates
+sidebar_label: Gates
+sidebar_position: 4
+slug: /terminal-staff/gates
+description: Manage boarding gates — create, edit, activate/deactivate, and delete the gates at each port that trips are assigned to for boarding.
+keywords:
+  - gates
+  - gate
+  - boarding gate
+  - port
+  - master data
+---
+
+A **gate** is a boarding gate at a port. When a trip is set to
+[Boarding](/terminal-staff/manage-departure-trip#1-set-as-boarding), staff assign it
+a gate (and a [berth](/terminal-staff/berths)) — only **active** gates at the trip's
+port are selectable.
+
+> **Gates → Create Gate / Actions (Edit · Activate · Delete)**
+
+:::note
+You need permission to manage gates. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Gates list
+
+Open **Gates** (route: `/gates`). Each row shows the gate's **Code**, its **Port**,
+and **Status** (**Active** / **Inactive**), plus an **Actions** (**⋯**) menu. Use
+the **search** box and **Show Filters** (Port, Status) to narrow the list.
+
+![The Gates list view](/img/terminal-staff/gates/01-gates-list.png)
+_The Gates list — Code, Port, and Status._
+
+## Create a gate
+
+Click **Create Gate** (top right) and fill in the **New Gate** form:
+
+| Field | Notes |
+| --- | --- |
+| **Gate code** | The gate's code, e.g. `G1`. |
+| **Port** | The port the gate belongs to. |
+| **Active** | Whether the gate is available for assignment. |
+
+Then click **Create Gate**.
+
+![The New Gate form](/img/terminal-staff/gates/02-create-gate.png)
+_Creating a gate._
+
+:::warning[Unique within the port]
+The **Gate code** must be **unique within the selected port** (two ports can each
+have a gate `G1`, but one port cannot have two).
+:::
+
+## Edit, activate/deactivate, and delete
+
+From the row **⋯ Actions** menu you can **Edit** the gate, **Activate / Deactivate**
+it (only active gates can be assigned to a boarding trip), or **Delete** it
+(confirmation required).
+
+## Next steps
+
+- [Berths](/terminal-staff/berths)
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip)

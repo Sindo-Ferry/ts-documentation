@@ -1,0 +1,80 @@
+---
+id: countries
+title: Countries
+sidebar_label: Countries
+sidebar_position: 7
+slug: /terminal-staff/countries
+description: Manage the country list used for passenger nationality and issuing country — create, edit, delete, and set/remove countries from the popular list.
+keywords:
+  - countries
+  - country
+  - nationality
+  - popular
+  - master data
+---
+
+The **Countries** list is the master data behind a passenger's **nationality** and
+**issuing country**. When a passenger is [checked in](/ferry-operator/operator-check-in-passenger)
+or [added as NTL / LM](/terminal-staff/check-in-ntl-lm-passenger), their nationality
+is chosen from this list. Frequently-used countries can be flagged as **Popular** so
+they surface at the top of the selector for faster check-in.
+
+> **Countries → Create Country / Actions (Edit · Add to / Remove Popular · Delete)**
+
+:::note
+You need permission to manage countries. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Countries list
+
+Open **Countries** (route: `/countries`). Each row shows the country's **Name**,
+**Nationality**, **Codes** (Alpha-2 / Alpha-3 / phone), and whether it is in the
+**Popular** list, plus an **Actions** (**⋯**) menu. Use the **search** box and the
+**Popular** filter to narrow the list.
+
+![The Countries list view](/img/terminal-staff/countries/01-list.png)
+_The Countries list — Name, Nationality, Codes, and Popular, with search and a Popular filter._
+
+## Create a country
+
+Click **Add Country** (top right) to open the **New Country** form and fill it in:
+
+| Field | Notes |
+| --- | --- |
+| **Country Name** | The country's name, e.g. `United States`. |
+| **Nationality** | The nationality label used at check-in, e.g. `American`. |
+| **Alpha-2 Code** | The 2-letter ISO code, e.g. `US`. |
+| **Alpha-3 Code** | The 3-letter ISO code, e.g. `USA`. |
+| **Phone Code** | The dialing code, e.g. `+1`. |
+
+Then click **Create Country**.
+
+![The New Country form](/img/terminal-staff/countries/02-create.png)
+_Creating a country._
+
+:::warning[Code rules]
+- The **Alpha-2 Code** must be **exactly 2 letters** and **unique**.
+- The **Alpha-3 Code** must be **exactly 3 letters** and **unique**.
+- The **Phone Code** can be at most 10 characters.
+:::
+
+## Set or remove Popular
+
+From the row **⋯ Actions** menu, use **Add To Popular** / **Remove From Popular** to
+toggle whether a country appears in the **Popular** list. Popular countries are shown at
+the top of the nationality / country selectors during passenger check-in, so mark
+the countries your terminal handles most often.
+
+![The Actions menu on a country row](/img/terminal-staff/countries/03-actions.png)
+_The Actions menu — Edit, Add To / Remove From Popular, and Delete (this country is already Popular, so it shows **Remove From Popular**)._
+
+## Edit and delete
+
+The same **⋯ Actions** menu lets you **Edit** a country's details or **Delete** it
+(confirmation required).
+
+## Next steps
+
+- [Routes](/terminal-staff/routes)
+- [Check In an NTL / LM Passenger](/terminal-staff/check-in-ntl-lm-passenger)

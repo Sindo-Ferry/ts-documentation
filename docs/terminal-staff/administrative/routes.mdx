@@ -1,0 +1,73 @@
+---
+id: routes
+title: Routes
+sidebar_label: Routes
+sidebar_position: 6
+slug: /terminal-staff/routes
+description: Manage routes — create, edit, activate/deactivate, and delete the origin-to-destination routes used by timeslots and trips.
+keywords:
+  - routes
+  - route
+  - origin port
+  - destination port
+  - master data
+---
+
+A **route** connects an **origin port** to a **destination port**. Routes are used
+by [timeslots](/terminal-staff/timeslots) and by the trips generated from them, and
+their **trip code** forms part of each trip's code.
+
+> **Routes → Create Route / Actions (Edit · Activate · Delete)**
+
+:::note
+You need permission to manage routes. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Routes list
+
+Open **Routes** (route: `/routes`). Each row shows the route's **Code**, **Name**,
+**Trip Code**, **Origin Port**, **Destination Port**, and **Status** (**Active** /
+**Inactive**), plus an **Actions** (**⋯**) menu. Use the **search** box and **Show
+Filters** to narrow the list.
+
+![The Routes list view](/img/terminal-staff/routes/01-routes-list.png)
+_The Routes list — Code, Name, Trip Code, Origin/Destination Port, and Status._
+
+## Create a route
+
+Click **Create Route** (top right) and fill in the **New Route** form:
+
+| Field | Notes |
+| --- | --- |
+| **Route code** | A short unique code, e.g. `RTE-001`. |
+| **Name** | A descriptive name, e.g. `Harbourfront to Waterfront`. |
+| **Trip code** | A short code used in generated trip codes, e.g. `HW`. |
+| **Origin Port** | The port the route departs from. |
+| **Destination Port** | The port the route arrives at. |
+| **Active** | Whether the route is available for use. |
+
+Then click **Create Route**.
+
+![The New Route form](/img/terminal-staff/routes/02-create-route.png)
+_Creating a route._
+
+:::warning[Validation rules]
+- The **Route code** and **Trip code** must each be **unique** across all routes.
+- The **Destination Port** cannot be the **same as the Origin Port**.
+:::
+
+## Edit, activate/deactivate, and delete
+
+From the row **⋯ Actions** menu you can **Edit** the route, **Activate /
+Deactivate** it, or **Delete** it (confirmation required).
+
+:::info[Delete is blocked when in use]
+A route **cannot be deleted** while it is assigned to **timeslots**, **trips**, or
+referenced by **trip sync jobs** — set the route **inactive** instead.
+:::
+
+## Next steps
+
+- [Timeslots](/terminal-staff/timeslots)
+- [Ports](/terminal-staff/ports)

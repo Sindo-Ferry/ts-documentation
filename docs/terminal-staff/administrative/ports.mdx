@@ -1,0 +1,75 @@
+---
+id: ports
+title: Ports
+sidebar_label: Ports
+sidebar_position: 3
+slug: /terminal-staff/ports
+description: Manage ports — create, edit, and delete the terminals that routes connect and that host gates and berths.
+keywords:
+  - ports
+  - port
+  - terminal
+  - timezone
+  - master data
+---
+
+A **port** is a terminal that ferries depart from and arrive at. Ports are the
+origin and destination of [routes](/terminal-staff/routes) and host the terminal's
+[gates](/terminal-staff/gates) and [berths](/terminal-staff/berths). Each port has a
+**timezone**, which drives the local times shown across the system.
+
+> **Ports → Create Port / Actions (Edit · Delete)**
+
+:::note
+You need permission to manage ports. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Ports list
+
+Open **Ports** (route: `/ports`). Each row shows the port's **Code**, **Name**, and
+**Timezone**, plus an **Actions** (**⋯**) menu. Use the **search** box to find a
+port.
+
+![The Ports list view](/img/terminal-staff/ports/01-ports-list.png)
+_The Ports list — Code, Name, and Timezone._
+
+## Create a port
+
+Click **Create Port** (top right) and fill in the **New Port** form:
+
+| Field | Notes |
+| --- | --- |
+| **Port code** | A short unique code, e.g. `PRT-01`. |
+| **Name** | The port's name, e.g. `Waterfront`. |
+| **Timezone** | Select the port's timezone — this drives the local times shown for its trips and on the public boards. |
+
+:::note[Timezone list is fixed]
+The **Timezone** dropdown is a **hardcoded** list in the system. If the timezone you
+need isn't listed, please **contact your administrator**.
+:::
+
+Then click **Create Port**.
+
+![The New Port form](/img/terminal-staff/ports/02-create-port.png)
+_Creating a port._
+
+:::warning[Unique code]
+The **Port code** must be **unique** across all ports.
+:::
+
+## Edit and delete
+
+From the row **⋯ Actions** menu you can **Edit** the port's code, name, or timezone,
+or **Delete** it (confirmation required).
+
+:::info[Delete is blocked when in use]
+A port **cannot be deleted** while it still has **berths** attached or is **used by
+routes**. Remove or reassign those first.
+:::
+
+## Next steps
+
+- [Gates](/terminal-staff/gates)
+- [Berths](/terminal-staff/berths)
+- [Routes](/terminal-staff/routes)

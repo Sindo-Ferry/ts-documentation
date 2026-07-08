@@ -1,0 +1,78 @@
+---
+id: operators
+title: Operators
+sidebar_label: Operators
+sidebar_position: 1
+slug: /terminal-staff/operators
+description: Manage ferry operators — create, edit, activate/deactivate, and delete operator records used across vessels, routes, timeslots, and trips.
+keywords:
+  - operators
+  - operator
+  - master data
+  - activate
+  - deactivate
+---
+
+An **operator** is a ferry company that runs services from the terminal. Operators
+are referenced throughout the system — by [vessels](/terminal-staff/vessels),
+[routes](/terminal-staff/routes), [timeslots](/terminal-staff/timeslots), and trips.
+
+> **Operators → Create Operator / Actions (Edit · Activate · Delete)**
+
+:::note
+You need permission to manage operators. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Operators list
+
+Open **Operators** (route: `/operators`). Each row shows the operator's **Code**,
+**Name**, **Trip Code**, and **Status** (**Active** / **Inactive**), plus an
+**Actions** (**⋯**) menu. Use the **search** box and **Show Filters** (Status) to
+narrow the list.
+
+![The Operators list view](/img/terminal-staff/operators/01-operators-list.png)
+_The Operators list — Code, Name, Trip Code, and Status._
+
+## Create an operator
+
+Click **Create Operator** (top right) and fill in the **New Operator** form:
+
+| Field | Notes |
+| --- | --- |
+| **Operator code** | A short unique code, e.g. `OP001`. |
+| **Name** | The operator's name. |
+| **Trip code** | A short code used when generating trip codes. |
+| **Logo URL** _(optional)_ | A link to the operator's logo (`https://…`), shown on the public boards. |
+
+Then click **Create Operator**.
+
+![The New Operator form](/img/terminal-staff/operators/02-create-operator.png)
+_Creating an operator._
+
+:::warning[Unique codes]
+Both the **Operator code** and the **Trip code** must be **unique** across all
+operators.
+:::
+
+## Edit, activate/deactivate, and delete
+
+From the row **⋯ Actions** menu:
+
+- **Edit** — update the operator's code, name, trip code, or logo.
+- **Activate / Deactivate** — toggle whether the operator is available for use.
+- **Delete** — permanently remove the operator (confirmation required).
+
+![The Actions menu on an operator row](/img/terminal-staff/operators/03-actions.png)
+_The Actions menu — Edit, Activate/Deactivate, and Delete._
+
+:::info[Delete is blocked when in use]
+An operator **cannot be deleted** while it still has **vessels**, or is assigned to
+**timeslots** or **trips** — the system asks you to set the operator **inactive**
+instead. Deactivating keeps the history intact while removing it from new selections.
+:::
+
+## Next steps
+
+- [Vessels](/terminal-staff/vessels)
+- [Routes](/terminal-staff/routes)

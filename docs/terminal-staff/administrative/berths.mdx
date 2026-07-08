@@ -1,0 +1,64 @@
+---
+id: berths
+title: Berths
+sidebar_label: Berths
+sidebar_position: 5
+slug: /terminal-staff/berths
+description: Manage berths — create, edit, activate/deactivate, and delete the berths at each port that trips are assigned to for boarding.
+keywords:
+  - berths
+  - berth
+  - port
+  - master data
+---
+
+A **berth** is a docking position at a port. When a trip is set to
+[Boarding](/terminal-staff/manage-departure-trip#1-set-as-boarding), staff assign it
+a berth (and a [gate](/terminal-staff/gates)) — only **active** berths at the trip's
+port are selectable.
+
+> **Berths → Create Berth / Actions (Edit · Activate · Delete)**
+
+:::note
+You need permission to manage berths. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## The Berths list
+
+Open **Berths** (route: `/berths`). Each row shows the berth's **Code**, its
+**Port**, and **Status** (**Active** / **Inactive**), plus an **Actions** (**⋯**)
+menu. Use the **search** box and **Show Filters** (Port, Status) to narrow the list.
+
+![The Berths list view](/img/terminal-staff/berths/01-berths-list.png)
+_The Berths list — Code, Port, and Status._
+
+## Create a berth
+
+Click **Create Berth** (top right) and fill in the **New Berth** form:
+
+| Field | Notes |
+| --- | --- |
+| **Berth code** | The berth's code, e.g. `B1`. |
+| **Port** | The port the berth belongs to. |
+| **Active** | Whether the berth is available for assignment. |
+
+Then click **Create Berth**.
+
+![The New Berth form](/img/terminal-staff/berths/02-create-berth.png)
+_Creating a berth._
+
+:::warning[Unique within the port]
+The **Berth code** must be **unique within the selected port**.
+:::
+
+## Edit, activate/deactivate, and delete
+
+From the row **⋯ Actions** menu you can **Edit** the berth, **Activate /
+Deactivate** it (only active berths can be assigned to a boarding trip), or
+**Delete** it (confirmation required).
+
+## Next steps
+
+- [Gates](/terminal-staff/gates)
+- [Manage Current Trip Status](/terminal-staff/manage-departure-trip)

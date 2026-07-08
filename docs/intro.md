@@ -31,7 +31,14 @@ email, and get activated by an administrator before signing in.
 
 **[Administrative Staff](/terminal-staff/administrative)**
 
+- [Operators](/terminal-staff/operators) — ferry operator master data
 - [Vessels](/terminal-staff/vessels) — manage the ferries used for trips
+- [Ports](/terminal-staff/ports) — terminals, with timezone
+- [Gates](/terminal-staff/gates) — boarding gates per port
+- [Berths](/terminal-staff/berths) — berths per port
+- [Routes](/terminal-staff/routes) — origin → destination routes
+- [Countries](/terminal-staff/countries) — nationality list & popular flag
+- [Public Holiday](/terminal-staff/public-holiday) — holiday dates for scheduling
 - [Timeslots](/terminal-staff/timeslots) — recurring weekly schedule templates
 - [Generate Departure Trips with a Trip Sync Job](/trip-sync-job)
 - [Departure Trips](/terminal-staff/departure-trips) — view/manage trips & create AdHoc trips
