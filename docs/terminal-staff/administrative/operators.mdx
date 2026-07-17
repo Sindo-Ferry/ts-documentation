@@ -36,23 +36,45 @@ _The Operators list — Code, Name, Trip Code, and Status._
 
 ## Create an operator
 
-Click **Create Operator** (top right) and fill in the **New Operator** form:
+Click **Create Operator** (top right) to open the **New Operator** form. It has two
+parts: the **operator details** and the operator's **Admin Account**.
+
+### 1. Operator details
 
 | Field | Notes |
 | --- | --- |
 | **Operator code** | A short unique code, e.g. `OP001`. |
-| **Name** | The operator's name. |
 | **Trip code** | A short code used when generating trip codes. |
-| **Logo URL** _(optional)_ | A link to the operator's logo (`https://…`), shown on the public boards. |
+| **Name** | The operator's name. |
+| **Logo URL** | A link to the operator's logo (`https://…`), shown on the public boards. Must be a valid URL. |
+
+### 2. Admin Account
+
+Below the operator details, enter the details of the operator's administrator —
+the form notes that _"This user will be created with Admin & Super Admin right"_:
+
+| Field | Notes |
+| --- | --- |
+| **Username** | The administrator's username, e.g. `jane.doe`. |
+| **Email** | The administrator's email, e.g. `admin@operator.com`. |
 
 Then click **Create Operator**.
 
-![The New Operator form](/img/terminal-staff/operators/02-create-operator.png)
-_Creating an operator._
+![The New Operator form, with the operator details and the Admin Account section](/img/terminal-staff/operators/02-create-operator.png)
+_Creating an operator — operator details plus the Admin Account._
 
-:::warning[Unique codes]
-Both the **Operator code** and the **Trip code** must be **unique** across all
-operators.
+:::info[One super-admin user is created with the operator]
+Submitting the form creates the operator **and**, in the same step, **one user** for
+that ferry operator — granted **Admin** and **Super Admin** rights and set
+**active**. This account is the ferry operator's administrator: they use it to sign
+in to the **Operator Portal** and create the operator's other users from there.
+:::
+
+:::warning[Validation]
+- Both the **Operator code** and the **Trip code** must be **unique** across all
+  operators.
+- The **Logo URL** must be a valid URL.
+- The **Username** is required, and the **Email** must be a valid email address.
 :::
 
 ## Edit, activate/deactivate, and delete

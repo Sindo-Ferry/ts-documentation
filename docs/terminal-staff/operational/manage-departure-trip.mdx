@@ -117,7 +117,7 @@ From this page you can:
   scan, the scanned passenger's card shows a **Revert to Pre-Immigration** button
   that moves that passenger back to the Pre-Immigration state when needed for
   operational reasons. See
-  [Boarding Scan → Revert a boarded passenger](/terminal-staff/boarding-scan#step-7--revert-a-boarded-passenger)
+  [Boarding Scan → Revert a boarded passenger](/terminal-staff/boarding-scan#step-6--revert-a-boarded-passenger)
   for details.
 - **Work the passenger list** — a filterable list that, by default, shows
   passengers who have **cleared pre-immigration and are ready to board** (the
@@ -153,9 +153,30 @@ You can set a trip as close from **two** places:
 
 ### Confirm and outcome
 
-A **confirmation** appears — it reminds you that no further passengers can board,
-that the trip must be ready for departure, and that the action **cannot be undone**.
-Click **Confirm**.
+A **Set As Close** confirmation appears, showing the trip's code, date, and
+departure time. It reminds you that no further passengers can board, that the trip
+can then be departed, and that the action **cannot be undone**. Click
+**Set As Close** to confirm.
+
+:::warning[Passengers still in Pre-Immigration]
+If any passengers have **cleared pre-immigration but have not boarded**, the dialog
+shows an amber warning first — _"**N** passenger(s) still in Pre-Immigration — they
+have not boarded yet. Closing this trip will prevent them from boarding."_
+
+The warning is there for you to **confirm the closure deliberately**; it does not
+block you. If those passengers are still expected, **Cancel**, board them from
+[Boarding Scan](/terminal-staff/boarding-scan), and close the trip afterwards.
+Otherwise, go ahead and close — they will be left behind.
+:::
+
+![The Set As Close dialog warning that a passenger is still in Pre-Immigration](/img/terminal-staff/manage-departure-trip/07-close-preimm-warning.png)
+_Closing a trip that still has a passenger in Pre-Immigration — the amber warning appears above the usual confirmation text._
+
+:::tip
+The Pre-Immigration count in the dialog is **re-fetched when the dialog opens**, so
+it reflects scans made at other terminals — not a stale number from the page you
+were looking at.
+:::
 
 The trip's **Status** changes to **Closed** and a **Set As Departed** action
 becomes available. From here you can review the trip and its **boarded passengers**,
