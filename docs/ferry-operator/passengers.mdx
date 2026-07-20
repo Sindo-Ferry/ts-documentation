@@ -3,12 +3,13 @@ id: operator-passengers
 title: Passengers
 sidebar_label: Passengers
 sidebar_position: 4
-description: View your operator's passengers in the Operator Portal — a read-only list, with a per-passenger detail page reached from the row actions.
+description: View your operator's passengers in the Operator Portal — a read-only list of passengers on scheduled trips, with a per-passenger detail page reached from the row actions.
 keywords:
   - operator portal
   - passengers
   - read only
   - view passenger
+  - scheduled trips
 ---
 
 The **Passengers** page shows your operator's passenger records. It is a
@@ -35,6 +36,19 @@ example, by **trip date**) to narrow the list.
 
 ![The operator's read-only Passengers list, filtered to a trip date](/img/ferry-operator/passengers/01-list.png)
 _The Passengers list — Trip, No, Name, Type, Status, and Nationality._
+
+:::info[Scheduled trips only]
+This page lists **only passengers on trips that are still `Scheduled`**, and it opens
+on **today's trip date**. Once a trip moves on — to `Boarding`, `Closed`, `Departed`,
+or `Cancelled` — its passengers stop appearing here, even if you widen the trip-date
+filter to cover that day. This is expected: the page is meant for trips that have not
+yet sailed.
+
+To see the passengers on a trip that has already departed, open the trip instead:
+**Departure Trips → find the trip → View**. The
+[Departure Trip Detail](/ferry-operator/operator-departure-trips) page lists every
+passenger on that trip with their final status, and offers **Download Manifest**.
+:::
 
 ## View a passenger
 
