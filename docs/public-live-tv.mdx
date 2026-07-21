@@ -33,13 +33,36 @@ to be opened on terminal display monitors.
 
 ## Opening a board
 
-Each board is a link that takes a **`portId`** (the origin port) in the query
-string. Using port `2` as an example:
+### Start from the port picker
+
+The easiest way in is the **Live TV Schedules** landing page:
+
+`https://ts-terminal.sindoferry.com.sg/public/live-tv/`
+
+It lists every port as a card showing the **port name** and **port code**, each with
+two buttons — **Pre-Immigration** and **Boarding Gate**. Click the board you want and
+it opens for that port. Nothing to type by hand, and no login.
+
+![The Choose Port landing page](/img/public-live-tv/00-choose-port.png)
+_The Choose Port page — one card per port, each opening either board._
+
+This is the page to use when setting up a new monitor: pick the port once, then
+bookmark the board it opens.
+
+### Or link straight to a board
+
+If you already know the port's id, you can skip the picker and open a board directly.
+The **`portId`** is the origin port; using port `2` as an example:
 
 - **Pre-Immigration Live-TV:**
   `https://ts-terminal.sindoferry.com.sg/public/live-tv/pre-immigration/?portId=2`
 - **Boarding Gate Live-TV:**
   `https://ts-terminal.sindoferry.com.sg/public/live-tv/boarding-gate/?portId=2`
+
+:::caution[Keep the slash before the `?`]
+The trailing slash in `.../pre-immigration/?portId=2` matters. Without it, the site's
+redirect drops the query string, the board loses its `portId`, and nothing loads.
+:::
 
 For the best display, open the board on the monitor's browser and press **F11** for
 full-screen (kiosk) mode.
