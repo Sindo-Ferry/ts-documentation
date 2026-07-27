@@ -13,6 +13,11 @@ New user? Both terminal staff and ferry operators must
 **[register an account](/register-account)** first — sign up, confirm your
 email, and get activated by an administrator before signing in.
 
+New to the system as a whole? Read
+**[How the Pieces Fit Together](/how-it-fits-together)** — a one-page map of how
+ports, operators, vessels, routes, timeslots, trips, and passengers depend on each
+other, and the order to set them up in.
+
 ## Audiences
 
 - **[Terminal Staff](/terminal-staff/)** — operating the **Terminal Portal**

@@ -29,10 +29,14 @@ const config = {
   onBrokenLinks: 'warn',
 
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
   },
+
+  // Renders ```mermaid fences as diagrams (used by /how-it-fits-together).
+  themes: ['@docusaurus/theme-mermaid'],
 
   i18n: {
     defaultLocale: 'en',

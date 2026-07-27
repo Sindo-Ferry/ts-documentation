@@ -1,0 +1,188 @@
+---
+id: how-it-fits-together
+title: How the Pieces Fit Together
+sidebar_label: How the Pieces Fit Together
+sidebar_position: 2
+slug: /how-it-fits-together
+description: A high-level map of the system — which records depend on which, the recommended order for setting up a new terminal, and how a schedule becomes a boarded passenger.
+keywords:
+  - overview
+  - setup order
+  - data model
+  - relationships
+  - dependencies
+  - getting started
+---
+
+Most of the rules you will meet in this system come from **one idea**: records depend
+on other records. A vessel belongs to an operator. A route joins two ports. A timeslot
+needs all three.
+
+Understanding that map answers two questions at once:
+
+- **What order do I set things up in?** — you cannot create a timeslot before its
+  operator, route, and vessel exist.
+- **Why won't the system let me delete this?** — because something else is still
+  using it.
+
+This page is the map. Every box links to its own guide.
+
+## The dependency map
+
+```mermaid
+flowchart TD
+  OP["Operator<br/><i>ferry company</i>"] --> VE["Vessel<br/><i>capacity</i>"]
+  PO["Port<br/><i>timezone</i>"] --> GA["Gate"]
+  PO --> BE["Berth"]
+  PO --> RO["Route<br/><i>origin → destination</i>"]
+
+  OP --> TS["Timeslot<br/><i>the recurring pattern</i>"]
+  RO --> TS
+  VE --> TS
+  PH["Public Holiday"] -.-> TS
+
+  TS --> SJ["Trip Sync Job"]
+  SJ --> TR["Departure Trip"]
+  AD["AdHoc Trip"] -.-> TR
+
+  GA -.-> TR
+  BE -.-> TR
+
+  TR --> PA["Passenger"]
+  CO["Country<br/><i>nationality</i>"] -.-> PA
+  PA --> BP["Boarding Pass<br/><i>16 characters</i>"]
+  BP --> SC["Pre-Immigration<br/>& Boarding scans"]
+
+  classDef master fill:#e8f0fe,stroke:#4285f4,color:#111
+  classDef sched fill:#fef7e0,stroke:#f9ab00,color:#111
+  classDef ops fill:#e6f4ea,stroke:#34a853,color:#111
+  class OP,VE,PO,GA,BE,RO,CO,PH master
+  class TS,SJ,TR,AD sched
+  class PA,BP,SC ops
+```
+
+**Solid arrows** mean *required* — the target cannot exist without the source.
+**Dotted arrows** mean *used by* — an optional or run-time link.
+
+The colours group the records into the three layers you work in:
+**blue** is master data you set up once, **amber** is scheduling, and **green** is the
+day-of-departure operation.
+
+Read it top to bottom and you have the setup order. Read an arrow backwards and you
+have the reason a deletion was blocked.
+
+## Setting up a new terminal, in order
+
+Work down this list. Each step only needs the steps above it.
+
+| # | Create | Needs first | Guide |
+| --- | --- | --- | --- |
+| 1 | **Ports** | — | [Ports](/terminal-staff/ports) |
+| 2 | **Gates** and **Berths** | A port | [Gates](/terminal-staff/gates) · [Berths](/terminal-staff/berths) |
+| 3 | **Routes** | Two *different* ports | [Routes](/terminal-staff/routes) |
+| 4 | **Operators** | — | [Operators](/terminal-staff/operators) |
+| 5 | **Vessels** | An operator | [Vessels](/terminal-staff/vessels) |
+| 6 | **Countries** | — | [Countries](/terminal-staff/countries) |
+| 7 | **Public Holidays** | — | [Public Holiday](/terminal-staff/public-holiday) |
+| 8 | **Timeslots** | Operator + route + **active** vessel | [Timeslots](/terminal-staff/timeslots) |
+| 9 | **Departure Trips** | Timeslots (via a sync job) | [Trip Sync Job](/trip-sync-job) |
+
+Steps 1–3 and 4–5 are two independent chains — you can do either first. They only have
+to meet before step 8.
+
+:::tip[Activate as you go]
+New **vessels** and **operators** are created **Inactive**. Pickers elsewhere in the
+system list **active** records only — so a vessel you just created will not appear in
+the timeslot's **Default Vessel** list until you activate it. Activate each record as
+you create it and you will avoid the most common set-up confusion.
+:::
+
+## What each record is
+
+| Record | In plain terms | Requires | Blocks deletion while… |
+| --- | --- | --- | --- |
+| **[Port](/terminal-staff/ports)** | A terminal, with its own timezone and clock | — | it has berths, or is used by routes |
+| **[Gate](/terminal-staff/gates)** | Where passengers board, within a port | A port | — |
+| **[Berth](/terminal-staff/berths)** | Where the vessel ties up, within a port | A port | — |
+| **[Route](/terminal-staff/routes)** | Origin → destination (must differ) | Two ports | it is used by timeslots, trips, or sync jobs |
+| **[Operator](/terminal-staff/operators)** | A ferry company | — | it has vessels, timeslots, or trips |
+| **[Vessel](/terminal-staff/vessels)** | A ferry, carrying a **capacity** | An operator | it is assigned to scheduled trips |
+| **[Country](/terminal-staff/countries)** | The nationality list used at check-in | — | — |
+| **[Public Holiday](/terminal-staff/public-holiday)** | A date that runs the holiday timetable | — | — |
+| **[Timeslot](/terminal-staff/timeslots)** | The *recurring pattern* — "this operator, this route, departs 11:20 on these days" | Operator + route + active vessel | — |
+| **[Departure Trip](/terminal-staff/departure-trips)** | One real sailing on one date | A timeslot (or created directly as AdHoc) | — |
+| **[Passenger](/terminal-staff/passengers)** | One person on one trip | A trip with a free seat | — |
+
+:::info[Deactivate rather than delete]
+Where history matters, the system steers you toward **Inactive** instead of **Delete** —
+an inactive record keeps every trip and passenger that already references it, while
+disappearing from new selections. That is why most "cannot delete" messages suggest
+deactivating instead.
+:::
+
+## From a schedule to a boarded passenger
+
+The master data above exists to produce **trips**, and trips exist to carry
+**passengers**. That path runs like this:
+
+```mermaid
+flowchart LR
+  TS["Timeslot<br/><i>the pattern</i>"] -->|Trip Sync Job| TR["Departure Trip<br/><i>Scheduled</i>"]
+  TR -->|check-in| PA["Passenger<br/><i>Checked-In</i>"]
+  PA -->|issued| BP["Boarding Pass"]
+  BP -->|scan| PI["Pre-Immigration"]
+  PI -->|scan| BO["Boarded"]
+  BO -->|trip departs| MA["Manifest"]
+
+  classDef sched fill:#fef7e0,stroke:#f9ab00,color:#111
+  classDef ops fill:#e6f4ea,stroke:#34a853,color:#111
+  class TS,TR sched
+  class PA,BP,PI,BO,MA ops
+```
+
+A few things worth knowing about that path:
+
+- **A timeslot is not a trip.** The timeslot is the rule; the
+  [Trip Sync Job](/trip-sync-job) turns it into dated, bookable trips. Running the same
+  job twice changes nothing.
+- **A trip's code describes it** — operator trip code, route trip code, date, departure
+  time, and the timeslot's suffix.
+- **The boarding pass is the key to everything operational.** It is 16 characters,
+  issued per passenger at check-in, and it is the only thing the gate needs — both the
+  [pre-immigration](/terminal-staff/pre-immigration-scan) and
+  [boarding](/terminal-staff/boarding-scan) scans work from it alone.
+- **A trip needs a gate and a berth before it can board** — they are assigned when the
+  trip is [set to Boarding](/terminal-staff/manage-departure-trip#1-set-as-boarding),
+  not when it is created.
+- **Capacity comes from the vessel.** Check-in is refused once the seats are gone, and
+  a vessel cannot be swapped onto a trip that already carries more passengers than the
+  new vessel holds.
+
+## Who manages what
+
+Two portals share this data, but they do not share responsibility for it.
+
+| Managed by | Records |
+| --- | --- |
+| **Terminal staff** | Ports, gates, berths, routes, countries, public holidays, operators, vessels, timeslots, and trip sync jobs |
+| **Ferry operators** | Their own users and roles, their passengers' check-in, and the vessel assigned to their trips |
+| **The system** | Scheduled trips (from sync jobs), trip codes, and boarding pass numbers |
+
+Two rules follow from this table:
+
+- **Operators see only their own data.** Trips, vessels, and passengers are scoped to
+  the operator you are signed in as — there is no view across operators.
+- **The terminal sees every operator at its port**, because the terminal runs the port.
+
+Master data an operator can see — such as their [timeslots](/ferry-operator/operator-timeslots)
+and [passengers](/ferry-operator/operator-passengers) — is **read-only** to them.
+Changes are made by terminal staff.
+
+## Where to go next
+
+- Setting up for the first time → start at [Ports](/terminal-staff/ports) and follow the
+  order above.
+- Already set up, need trips → [Timeslots](/terminal-staff/timeslots) then
+  [Trip Sync Job](/trip-sync-job).
+- Running trips today → [Manage Current Trip Status](/terminal-staff/manage-departure-trip).
+- A ferry operator → [Sign In to the Operator Portal](/ferry-operator/operator-sign-in).
