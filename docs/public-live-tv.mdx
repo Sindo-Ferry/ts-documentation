@@ -4,27 +4,32 @@ title: Public Live TV Display
 sidebar_label: Public Live TV Display
 sidebar_position: 4
 slug: /public-live-tv
-description: The public, no-login departure boards shown on terminal monitors — Pre-Immigration and Boarding Gate Live-TV displays, and how to configure their layout and pacing.
+description: The public, no-login departure boards shown on terminal monitors — Pre-Immigration, Boarding Gate, and per-gate Gate Live-TV displays, and how to configure their layout and pacing.
 keywords:
   - live tv
   - public display
   - departure board
   - pre-immigration
   - boarding gate
+  - gate tv
   - monitor
   - kiosk
 ---
 
-The Terminal Portal provides two full-screen, **public (no-login) Live-TV displays**
+The Terminal Portal provides three full-screen, **public (no-login) Live-TV displays**
 meant to run on monitors in the terminal:
 
 - **Pre-Immigration Live-TV** — for passengers clearing immigration before boarding
   (gate open / close timing).
 - **Boarding Gate Live-TV** — for passengers about to board (gate / berth,
   "boarding now", "last call").
+- **Gate Live-TV** — a dedicated board for a **single boarding gate**, meant for the
+  TV mounted at that gate. It shows only the trips currently **boarding or closed at
+  that gate**, in a large, adjustable font.
 
-Both boards show the **same set of trips** for a port; they differ only in a few
-columns and labels. All times are shown in the **port's local timezone**.
+The two port-wide boards show the **same set of trips** for a port; they differ only
+in a few columns and labels. The Gate board shows just the subset assigned to its
+gate. All times are shown in the **port's local timezone**.
 
 :::note[Completely public — no login required]
 These pages are public and require **no system login** to view. They are intended
@@ -40,14 +45,35 @@ The easiest way in is the **Live TV Schedules** landing page:
 `https://ts-terminal.sindoferry.com.sg/public/live-tv/`
 
 It lists every port as a card showing the **port name** and **port code**, each with
-two buttons — **Pre-Immigration** and **Boarding Gate**. Click the board you want and
-it opens for that port. Nothing to type by hand, and no login.
+two buttons — **Pre-Immigration** and **Boarding Gate** — plus a **Gate TV** section
+with one button per gate. Click the board you want and it opens for that port (or
+gate). Nothing to type by hand, and no login.
 
 ![The Choose Port landing page](/img/public-live-tv/00-choose-port.png)
 _The Choose Port page — one card per port, each opening either board._
 
 This is the page to use when setting up a new monitor: pick the port once, then
 bookmark the board it opens.
+
+### Setting up a gate TV
+
+For the TV mounted at a boarding gate:
+
+1. On the gate's TV, open the landing page above.
+2. In the port's card, under **Gate TV**, click the button for that gate (e.g.
+   **Gate G1**).
+3. Press **F11** for full-screen and bookmark the page (or set it as the browser's
+   start page).
+
+The board's header shows a large **GATE** badge so it's obvious which gate the TV
+belongs to. It lists only trips that are **Boarding** or **Closed** at that gate —
+with the operator's logo, destination, departure time, berth, and a live signal
+(**BOARDING NOW**, **LAST CALL**, or **GATE CLOSED**). When nothing is boarding, it
+shows _"No boarding trips at this gate right now."_ — the normal idle state.
+
+Only **active** gates appear in the picker. If a gate is later deactivated or
+deleted, its TV shows a clear *"Gate not found"* message (and recovers by itself if
+the gate is re-activated).
 
 ### Or link straight to a board
 
@@ -58,6 +84,8 @@ The **`portId`** is the origin port; using port `2` as an example:
   `https://ts-terminal.sindoferry.com.sg/public/live-tv/pre-immigration/?portId=2`
 - **Boarding Gate Live-TV:**
   `https://ts-terminal.sindoferry.com.sg/public/live-tv/boarding-gate/?portId=2`
+- **Gate Live-TV** (also needs the gate's id, e.g. gate `5`):
+  `https://ts-terminal.sindoferry.com.sg/public/live-tv/gate/?portId=2&gateId=5`
 
 :::caution[Keep the slash before the `?`]
 The trailing slash in `.../pre-immigration/?portId=2` matters. Without it, the site's
@@ -126,6 +154,7 @@ In the panel you can customize:
 | **Items per screen** | How many trips (rows) are shown on a single page before it paginates. |
 | **Page display duration** | How long (in seconds) a page stays on screen before rotating to the next. |
 | **Refresh interval** | How often (in seconds) the board pulls fresh data to stay up to date. |
+| **Font size (%)** | **Gate board only** — scales the whole board (100 = normal, default 150). Use it to make the gate TV readable from a distance. |
 
 Click **Save** to apply. These settings are stored **per device** (in that browser),
 so each monitor can be tuned independently and keeps its settings after a reload.
