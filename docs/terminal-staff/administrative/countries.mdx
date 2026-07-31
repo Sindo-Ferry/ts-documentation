@@ -14,7 +14,10 @@ keywords:
 ---
 
 The **Countries** list is the master data behind a passenger's **nationality** and
-**issuing country**. When a passenger is [checked in](/ferry-operator/operator-check-in-passenger)
+**issuing country**, and behind **public-holiday scoping**: every
+[public holiday](/terminal-staff/public-holiday) belongs to a country, and
+holiday-running [timeslots](/terminal-staff/timeslots) pick which countries'
+holidays they follow. When a passenger is [checked in](/ferry-operator/operator-check-in-passenger)
 or [added as NTL / LM](/terminal-staff/check-in-ntl-lm-passenger), their nationality
 is chosen from this list. Frequently-used countries can be flagged as **Popular** so
 they surface at the top of the selector for faster check-in.
@@ -73,6 +76,17 @@ _The Actions menu — Edit, Add To / Remove From Popular, and Delete (this count
 
 The same **⋯ Actions** menu lets you **Edit** a country's details or **Delete** it
 (confirmation required).
+
+:::info[Delete is blocked when in use]
+A country that is still referenced cannot be deleted — the portal shows:
+
+- _"Cannot delete Country because it has public holidays. Delete those public
+  holidays first."_
+- _"Cannot delete Country because departure timeslots run on its public holidays."_
+
+Remove the country's [public holidays](/terminal-staff/public-holiday) and take it
+out of any timeslot's **Public Holiday** countries first.
+:::
 
 ## Next steps
 

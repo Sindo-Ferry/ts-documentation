@@ -4,19 +4,21 @@ title: Public Holiday
 sidebar_label: Public Holiday
 sidebar_position: 8
 slug: /terminal-staff/public-holiday
-description: Manage public holidays — create, edit, and delete the dates that timeslots and Trip Sync Jobs treat as public holidays.
+description: Manage public holidays — create, edit, and delete the per-country holiday dates that timeslots and Trip Sync Jobs use to schedule extra holiday sailings.
 keywords:
   - public holiday
   - holiday
+  - country
   - calendar
   - master data
 ---
 
-A **public holiday** marks a date that the system treats specially when generating
-trips. On a public-holiday date, a [Trip Sync Job](/trip-sync-job) applies only the
-[timeslots](/terminal-staff/timeslots) whose **Public Holiday** flag is ticked
-(weekday flags are ignored that day). Maintaining this list keeps holiday sailings
-correct.
+A **public holiday** marks a date as a holiday **in one country**. When a
+[Trip Sync Job](/trip-sync-job) reaches that date, every
+[timeslot](/terminal-staff/timeslots) whose **Public Holiday** countries include
+that country gets an **additional** run — on top of the normal weekday schedule,
+which is unaffected. The same date can be a holiday in several countries; create
+one entry per country. Maintaining this list keeps holiday sailings correct.
 
 > **Public Holiday → Create Public Holiday / Actions (Edit · Delete)**
 
@@ -25,13 +27,19 @@ You need permission to manage public holidays. The screenshots below use
 `https://ts-terminal.sindoferry.com.sg/`.
 :::
 
+## Prerequisites
+
+- The holiday's country exists in [Countries](/terminal-staff/countries).
+
 ## The Public Holiday list
 
 Open **Public Holiday** (route: `/public-holidays`). Each row shows the holiday's
-**Date** and **Description**, plus an **Actions** (**⋯**) menu.
+**Date**, its **Country** (as a country-code badge), and **Description**, plus an
+**Actions** (**⋯**) menu.
 
 - **Search** — type in the **search** box to find a holiday by its description.
 - **Filter by year** — narrow the list to a single **Year**.
+- **Filter by country** — show only one country's holidays.
 
 ![The Public Holiday list view with the search and year filter](/img/terminal-staff/public-holiday/01-list.png)
 _The Public Holiday list — Date and Description, with search and a Year filter._
@@ -43,6 +51,7 @@ form:
 
 | Field | Notes |
 | --- | --- |
+| **Country** | The country observing the holiday — required. |
 | **Date** | The holiday date. |
 | **Description** | A label for the holiday, e.g. `New Year's Day`. |
 
@@ -51,21 +60,25 @@ Then click **Create Public Holiday**.
 ![The New Public Holiday form](/img/terminal-staff/public-holiday/02-create.png)
 _Creating a public holiday._
 
-:::warning[One holiday per date]
-Each **date** can have only **one** public holiday — the system rejects a second
-entry for a date that already has one.
+:::warning[One holiday per date and country]
+Each **date + country** pair can have only **one** public holiday — the system
+rejects a duplicate for the same date and country. The same date **can** be entered
+again for a **different** country (e.g. New Year's Day for both Singapore and
+Indonesia).
 :::
 
 ## Edit and delete
 
-From the row **⋯ Actions** menu you can **Edit** a holiday's date or description, or
-**Delete** it (confirmation required).
+From the row **⋯ Actions** menu you can **Edit** a holiday's country, date, or
+description, or **Delete** it (confirmation required).
 
 :::tip[Effect on trips]
-Public holidays only affect trips for **dates going forward** — a Trip Sync Job run
-over a range containing a holiday date will use the **Public Holiday** timeslots for
-that day. Existing trips are not changed retroactively; re-run the sync if you add or
-remove a holiday for an already-generated period.
+A public holiday adds **extra** sailings; it never removes the normal weekday ones.
+When a Trip Sync Job covers the holiday date, timeslots whose **Public Holiday**
+countries include the holiday's country generate an additional trip that day,
+alongside every timeslot whose weekday flag matches as usual. Existing trips are not
+changed retroactively; re-run the sync if you add or remove a holiday for an
+already-generated period.
 :::
 
 ## Next steps
