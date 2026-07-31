@@ -32,7 +32,7 @@ Open **Berths** (route: `/berths`). Each row shows the berth's **Code**, its
 **Show Filters** (Port, Status) to narrow the list.
 
 ![The Berths list view](/img/terminal-staff/berths/01-berths-list.png)
-_The Berths list — Code, Name, Port, and Status._
+_The Berths list — Code, Name, Port, and Status. Note **B1** appearing at two different ports: codes only have to be unique **within** a port._
 
 ## Create a berth
 
@@ -40,15 +40,15 @@ Click **Create Berth** (top right) and fill in the **New Berth** form:
 
 | Field | Notes |
 | --- | --- |
+| **Port** | The port the berth belongs to — choose this first. |
 | **Berth code** | The berth's code, e.g. `B1`. |
 | **Name** | A descriptive name, e.g. `East Pier Berth 1`. |
-| **Port** | The port the berth belongs to. |
-| **Active** | Whether the berth is available for assignment. |
+| **Active** | Whether the berth is available for assignment. Ticked by default. |
 
 Then click **Create Berth**.
 
-![The New Berth form](/img/terminal-staff/berths/02-create-berth.png)
-_Creating a berth._
+![The New Berth form, with Port, Berth code, Name, and an Active checkbox](/img/terminal-staff/berths/02-create-berth.png)
+_Creating a berth — pick the **Port** first, then the code and name._
 
 :::warning[Unique within the port]
 The **Berth code** must be **unique within the selected port**.

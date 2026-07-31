@@ -11,6 +11,7 @@ keywords:
   - data model
   - relationships
   - dependencies
+  - public holiday
   - getting started
 ---
 
@@ -35,13 +36,15 @@ flowchart TD
   PO["Port<br/><i>timezone</i>"] --> GA["Gate"]
   PO --> BE["Berth"]
   PO --> RO["Route<br/><i>origin → destination</i>"]
+  CO["Country<br/><i>nationality</i>"] --> PH["Public Holiday<br/><i>date + country</i>"]
 
   OP --> TS["Timeslot<br/><i>the recurring pattern</i>"]
   RO --> TS
   VE --> TS
-  PH["Public Holiday"] -.-> TS
+  CO -.->|holiday countries| TS
 
   TS --> SJ["Trip Sync Job"]
+  PH -.->|holiday dates| SJ
   SJ --> TR["Departure Trip"]
   AD["AdHoc Trip"] -.-> TR
 
@@ -49,7 +52,7 @@ flowchart TD
   BE -.-> TR
 
   TR --> PA["Passenger"]
-  CO["Country<br/><i>nationality</i>"] -.-> PA
+  CO -.->|nationality| PA
   PA --> BP["Boarding Pass<br/><i>16 characters</i>"]
   BP --> SC["Pre-Immigration<br/>& Boarding scans"]
 
@@ -71,6 +74,13 @@ day-of-departure operation.
 Read it top to bottom and you have the setup order. Read an arrow backwards and you
 have the reason a deletion was blocked.
 
+:::note[Country sits in the middle of two very different things]
+**Countries** are used for **passenger nationality** and document issuing country
+**and** as the owner of **public holidays** — which is how the system knows a Singapore
+holiday from an Indonesian one. That second role is explained in
+[Public holidays are per country](#public-holidays-are-per-country) below.
+:::
+
 ## Setting up a new terminal, in order
 
 Work down this list. Each step only needs the steps above it.
@@ -83,18 +93,71 @@ Work down this list. Each step only needs the steps above it.
 | 4 | **Operators** | — | [Operators](/terminal-staff/operators) |
 | 5 | **Vessels** | An operator | [Vessels](/terminal-staff/vessels) |
 | 6 | **Countries** | — | [Countries](/terminal-staff/countries) |
-| 7 | **Public Holidays** | — | [Public Holiday](/terminal-staff/public-holiday) |
-| 8 | **Timeslots** | Operator + route + **active** vessel | [Timeslots](/terminal-staff/timeslots) |
+| 7 | **Public Holidays** | **A country** | [Public Holiday](/terminal-staff/public-holiday) |
+| 8 | **Timeslots** | Operator + route + **active** vessel, and **countries** if it runs on holidays | [Timeslots](/terminal-staff/timeslots) |
 | 9 | **Departure Trips** | Timeslots (via a sync job) | [Trip Sync Job](/trip-sync-job) |
 
-Steps 1–3 and 4–5 are two independent chains — you can do either first. They only have
-to meet before step 8.
+Steps 1–3, 4–5, and 6–7 are three independent chains — you can do them in any order.
+They only have to meet before step 8.
 
 :::tip[Activate as you go]
 New **vessels** and **operators** are created **Inactive**. Pickers elsewhere in the
 system list **active** records only — so a vessel you just created will not appear in
 the timeslot's **Default Vessel** list until you activate it. Activate each record as
 you create it and you will avoid the most common set-up confusion.
+:::
+
+## Public holidays are per country
+
+This matters for any terminal running **international** sailings, where the two ends of
+a route do not share a holiday calendar.
+
+- **A public holiday belongs to one country.** You record it as a **date**, a
+  **description**, and the **country** that observes it. The same calendar date can be a
+  holiday in two countries — that is simply two records. You cannot record the same date
+  twice for the *same* country.
+- **A timeslot names the countries whose holidays it follows.** When you tick
+  **Public Holiday** on a timeslot, you must also select **at least one country**. That
+  is what tells the system *whose* holidays this service runs on.
+
+### How a holiday changes the schedule
+
+The rule the [Trip Sync Job](/trip-sync-job) applies is **additive**:
+
+> A timeslot runs on its **ticked weekdays**, **and additionally** on any date that
+> **one of its selected countries** observes as a public holiday.
+
+```mermaid
+flowchart LR
+  CO["Country"] --> PH["Public Holiday<br/><i>a date this country observes</i>"]
+  CO -.->|selected on the timeslot| TS["Timeslot<br/><i>Public Holiday ticked</i>"]
+  PH --> SJ{"Trip Sync Job<br/><i>does the date match?</i>"}
+  TS --> SJ
+  SJ -->|weekday ticked<br/>OR holiday in a selected country| TR["Departure Trip created"]
+
+  classDef master fill:#e8f0fe,stroke:#4285f4,color:#111
+  classDef sched fill:#fef7e0,stroke:#f9ab00,color:#111
+  class CO,PH master
+  class TS,SJ,TR sched
+```
+
+Two consequences worth knowing:
+
+- **A holiday does not cancel the normal timetable.** Public-holiday timeslots are
+  *added* to whatever already runs that weekday — they do not replace or suppress it. If
+  you want a reduced holiday service, that is a scheduling decision you make in your
+  timeslots, not something the system does for you.
+- **A holiday in a country the timeslot did not select changes nothing.** Selecting the
+  countries is what activates the behaviour.
+
+:::warning[Validation you will meet]
+- Ticking **Public Holiday** on a timeslot without choosing a country →
+  _"At least one country is required when the timeslot runs on public holidays."_
+- Recording the same date twice for one country →
+  _"A public holiday already exists for this date and country."_
+- Deleting a country still in use →
+  _"Cannot delete Country because it has public holidays."_ or
+  _"Cannot delete Country because departure timeslots run on its public holidays."_
 :::
 
 ## What each record is
@@ -107,11 +170,11 @@ you create it and you will avoid the most common set-up confusion.
 | **[Route](/terminal-staff/routes)** | Origin → destination (must differ) | Two ports | it is used by timeslots, trips, or sync jobs |
 | **[Operator](/terminal-staff/operators)** | A ferry company | — | it has vessels, timeslots, or trips |
 | **[Vessel](/terminal-staff/vessels)** | A ferry, carrying a **capacity** | An operator | it is assigned to scheduled trips |
-| **[Country](/terminal-staff/countries)** | The nationality list used at check-in | — | — |
-| **[Public Holiday](/terminal-staff/public-holiday)** | A date that runs the holiday timetable | — | — |
-| **[Timeslot](/terminal-staff/timeslots)** | The *recurring pattern* — "this operator, this route, departs 11:20 on these days" | Operator + route + active vessel | — |
+| **[Country](/terminal-staff/countries)** | Passenger **nationality** and document issuing country — **and** the owner of public holidays | — | it has public holidays, or timeslots run on its holidays |
+| **[Public Holiday](/terminal-staff/public-holiday)** | A date **one country** observes | **A country** | — |
+| **[Timeslot](/terminal-staff/timeslots)** | The *recurring pattern* — "this operator, this route, departs 11:20 on these days" | Operator + route + active vessel (+ countries if it runs on holidays) | — |
 | **[Departure Trip](/terminal-staff/departure-trips)** | One real sailing on one date | A timeslot (or created directly as AdHoc) | — |
-| **[Passenger](/terminal-staff/passengers)** | One person on one trip | A trip with a free seat | — |
+| **[Passenger](/terminal-staff/passengers)** | One person on one trip | A trip with a free seat, and a nationality | — |
 
 :::info[Deactivate rather than delete]
 Where history matters, the system steers you toward **Inactive** instead of **Delete** —

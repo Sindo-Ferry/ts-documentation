@@ -45,17 +45,22 @@ Click **Create Port** (top right) and fill in the **New Port** form:
 | --- | --- |
 | **Port code** | A short unique code, e.g. `PRT-01`. |
 | **Name** | The port's name, e.g. `Waterfront`. |
-| **Timezone** | Select the port's timezone — this drives the local times shown for its trips and on the public boards. |
+| **Timezone** | Type the port's **IANA timezone ID**, e.g. `Asia/Singapore` — this drives the local times shown for its trips and on the public boards. |
 
-:::note[Timezone list is fixed]
-The **Timezone** dropdown is a **hardcoded** list in the system. If the timezone you
-need isn't listed, please **contact your administrator**.
+:::note[Timezone is typed, not picked from a list]
+**Timezone** is a **free-text** field, so any valid IANA zone can be used — you are
+not limited to a fixed list. Enter the ID in `Region/City` form, such as
+`Asia/Singapore` or `Asia/Jakarta`.
+
+The server checks the value when you save. An unrecognised entry is rejected with
+_"Timezone '&lt;value&gt;' is not a valid IANA timezone ID. Use a value like
+'Asia/Singapore'."_
 :::
 
 Then click **Create Port**.
 
-![The New Port form](/img/terminal-staff/ports/02-create-port.png)
-_Creating a port._
+![The New Port form, with Port code WFC and name Waterfront Terminal](/img/terminal-staff/ports/02-create-port.png)
+_Creating a port — **WFC / Waterfront Terminal**, with the Timezone field ready for an IANA ID._
 
 :::warning[Unique code]
 The **Port code** must be **unique** across all ports.

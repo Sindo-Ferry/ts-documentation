@@ -34,14 +34,39 @@ screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
   [Sign In to the Terminal Portal](/terminal-staff/sign-in).
 - Permission to view and manage **Trip Synchronizations** and **Departure Trips**.
 
-## Step 1 — Open Trip Synchronizations
+## Step 1 — Open Trip Sync Jobs
 
-In the sidebar under **Operational**, open **Trip Synchronizations**
-(route: `/departure-trip-synchronizations`). This page lists previous sync jobs
-with their date range, scope, results (trips created / deleted), and status.
+In the sidebar under **Management**, open **Trip Sync Jobs**
+(route: `/departure-trip-synchronizations`). The page itself is headed
+**Trip Synchronizations** and lists previous sync jobs, one row each:
+
+| Column | Shows |
+| --- | --- |
+| **Date Range** | The period the job covers (with the job's remark beneath it) |
+| **Operator** / **Route** | The job's scope — **All** when left blank |
+| **Results** | **+N created** and **−N deleted** |
+| **Status** | **Pending**, **Enqueued**, or **Completed** |
+| **Requested By** | Who created it, and when |
+
+Use **Show Filters** to narrow the list, and **New Sync Job** (top right) to start one.
 
 ![Trip Synchronizations list](/img/terminal-staff/generate-departure-trips/01-trip-sync-list.png)
-_The Trip Synchronizations list — the top job shows **+15 created / Completed** — with the New Sync Job button._
+_The Trip Synchronizations list — past jobs with their scope, results, and status, and the **New Sync Job** button._
+
+:::info[Trips are also synced automatically every day]
+Alongside the jobs you run by hand, the system runs its **own** sync once a day. It
+appears in this list as **Requested By: System (Daily Auto-Sync)**, with a remark
+like _"Automated daily rolling sync from 29-Sep-2026 to 29-Oct-2026"_.
+
+The automatic job covers a **rolling window 60 to 90 days ahead**, across **all
+operators, all routes, and all days** (public holidays included). It is created and
+executed straight away — there is no preview to approve.
+
+This is why trips usually **already exist** for dates a couple of months out, and
+why a manual job for a near date often previews **0 to create**. Run a job by hand
+when you need trips **sooner than the automatic window reaches**, or when you have
+just changed a timeslot and want the trips rebuilt now.
+:::
 
 ## Step 2 — Create a new sync job
 
@@ -49,9 +74,13 @@ Click **New Sync Job** (top right) and fill in the job configuration:
 
 - **Start Date / End Date** — the period to generate trips for (use the same day
   for a single date).
-- **Operator** _(optional)_ — leave blank to include all operators.
-- **Route** _(optional)_ — leave as **All Routes** to include every route.
-- **Day Filter** _(optional)_ — leave unchecked to include all days. Ticked
+- **Operator** _(optional — leave blank for all)_ — clicking it opens a
+  **Select Operator** picker: search the table, then **Select** the operator's row.
+  Only **active** operators are listed.
+- **Route** _(optional — leave blank for all)_ — leave as **All Routes** to include
+  every route.
+- **Day Filter** _(optional — leave unchecked for all)_ — **Weekdays** and
+  **Weekends** tick their days in one click, and **Clear All** resets them. Ticked
   weekdays include those days of the week; **P.H.** _additionally_ includes every
   date that is a public holiday (in any country).
 - **Remarks** _(optional)_ — a note describing the job's purpose.
@@ -64,20 +93,40 @@ the Start Date.
 :::
 
 ![New Sync Job form](/img/terminal-staff/generate-departure-trips/02-new-sync-job.png)
-_The New Sync Job form, scoped to **Waterfront Ferry** over 13–17 Jul 2026._
+_The New Sync Job form — a date range, an optional operator/route scope, and the day filter._
 
 ## Step 3 — Review the preview and execute the job
 
-Creating the job opens its detail page with a **Preview** section showing how
-many trips will be created (here, **15**), deleted, and how many conflicts were
-detected. Conflicts are skipped during execution.
+Creating the job opens its detail page, headed **Sync Job — _start_ → _end_** with
+its **status** badge and who created it. The page has three sections:
 
-When the preview looks correct, click **Execute Job** and confirm. The job is
-enqueued and processed in the background; its status moves from **Pending** →
-**Enqueued** → **Completed**.
+**1. Job Configuration** — the same fields you just filled in, still editable while
+the job is **Pending**. Correct anything with **Save Changes**, or scrap the job with
+**Delete Job**.
 
-![Sync job preview showing 15 trips to create, with the Execute Job button](/img/terminal-staff/generate-departure-trips/03-execute-job.png)
-_The preview — **15 to create** — and the Execute Job action._
+**2. Preview** — three counts, **To Create**, **To Delete**, and **Conflicts**.
+Below them, **Trips to Create** lists every trip the job will generate, grouped
+**by date**, then **by route**, with each individual departure showing its **time**
+and **operator**. Expand a date or a route to drill in and check the detail before
+committing. **Refresh Preview** (top right) re-runs the comparison if the underlying
+timeslots or trips have changed since the job was created.
+
+**3. Execute** — when the preview looks correct, click **Execute Job**. A
+confirmation asks _"Execute synchronization job?"_ and repeats that trips will be
+created and deleted as shown in the preview and that conflicts will be skipped.
+Click **Execute**.
+
+The job is then enqueued and processed in the background; its status moves from
+**Pending** → **Enqueued** → **Completed**. Reload the page to see the final counts.
+
+![Sync job preview grouped by date and route, with the Execute Job button](/img/terminal-staff/generate-departure-trips/03-execute-job.png)
+_The preview — **To Create / To Delete / Conflicts**, with the trip list expanded by date and route, and **Execute Job** below._
+
+:::note[Only pending jobs can be changed]
+**Edit**, **Delete**, and **Execute** apply only while a job is **Pending**. Once it
+is Enqueued or Completed the actions are no longer offered — a completed job is a
+record of what ran. To sync the same period again, create a **new** job.
+:::
 
 :::tip[Reading the preview]
 The preview compares each date's **active timeslots** against the existing
@@ -105,7 +154,7 @@ added manually are **AdHoc** instead — see [Departure Trips](/terminal-staff/d
 :::
 
 ![Departure Trips list for the synced date](/img/terminal-staff/generate-departure-trips/04-departure-trips.png)
-_The generated **Waterfront Ferry** trips — including the **11:20 WFC–TMFT** trips from the new timeslot — for 13–17 Jul._
+_The generated trips for the synced period, each with **Type = Scheduled**._
 
 ## What happens during a sync
 
