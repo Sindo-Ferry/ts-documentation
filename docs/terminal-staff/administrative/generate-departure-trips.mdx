@@ -51,8 +51,9 @@ Click **New Sync Job** (top right) and fill in the job configuration:
   for a single date).
 - **Operator** _(optional)_ — leave blank to include all operators.
 - **Route** _(optional)_ — leave as **All Routes** to include every route.
-- **Day Filter** _(optional)_ — leave unchecked to include all days, or pick
-  specific weekdays / weekends / public holidays.
+- **Day Filter** _(optional)_ — leave unchecked to include all days. Ticked
+  weekdays include those days of the week; **P.H.** _additionally_ includes every
+  date that is a public holiday (in any country).
 - **Remarks** _(optional)_ — a note describing the job's purpose.
 
 Then click **Create Sync Job**.
@@ -109,9 +110,29 @@ _The generated **Waterfront Ferry** trips — including the **11:20 WFC–TMFT**
 ## What happens during a sync
 
 The job only ever affects **Scheduled** trips — **AdHoc** trips are never touched.
-For each date in the range (subject to the **Day Filter**), it compares the **active
-timeslots whose operator is also active** against the existing scheduled trips,
-matching them by trip code (operator + route + date + departure + suffix):
+
+### Which timeslots run on a date
+
+The day rule is **additive** — a public holiday adds sailings and never removes the
+weekday ones:
+
+| The date is… | A timeslot runs when… |
+| --- | --- |
+| any date | its **weekday flag** for that day of the week is ticked |
+| also a [public holiday](/terminal-staff/public-holiday) in country X | _additionally_, its **Public Holiday** countries include **X** |
+
+For example, with a **Singapore** holiday falling on a Monday: every timeslot with
+**Monday** ticked runs as normal; a **Public Holiday (SG)** timeslot runs **as
+well** — an extra sailing that day; a **Public Holiday (ID)**-only timeslot does
+not, because the date is not an Indonesian holiday. A timeslot with both **Monday**
+and **Public Holiday (SG)** ticked still generates only **one** trip that day.
+
+### How trips are reconciled
+
+For each date in the range (subject to the **Day Filter**), the job compares the
+timeslots that run on that date — considering only **active timeslots whose
+operator is also active** — against the existing scheduled trips, matching them by
+trip code (operator + route + date + departure + suffix):
 
 | Result | When it happens | What execution does |
 | --- | --- | --- |
@@ -121,10 +142,10 @@ matching them by trip code (operator + route + date + departure + suffix):
 
 :::info[What makes a trip "orphaned"]
 A trip becomes orphaned when nothing generates it anymore — for example its timeslot
-was **deleted or deactivated**, or its **operator was deactivated**. Orphaned trips
-are then **deleted** if empty, or raised as a **conflict** if they already have
-passengers. Note that on a **public holiday** date, only timeslots with the **Public
-Holiday** flag apply (weekday flags are ignored that day).
+was **deleted or deactivated**, its **operator was deactivated**, or a
+holiday-added trip's **public holiday entry was deleted** (or its timeslot's holiday
+**countries** no longer include it). Orphaned trips are then **deleted** if empty,
+or raised as a **conflict** if they already have passengers.
 :::
 
 ## Next steps

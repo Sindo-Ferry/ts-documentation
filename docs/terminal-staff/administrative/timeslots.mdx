@@ -49,6 +49,7 @@ Open **Timeslots** and click **Create Timeslot**. Fill in the form:
 | **Gate Open** / **Gate Close** / **Departure** | The timings — e.g. depart at **11:20 AM**. |
 | **Suffix** _(optional)_ | Distinguishes timeslots that share the same operator, route, and departure time (see the note below). |
 | **Days** | Tick **Weekday**, **Weekend**, **Public Holiday**, or individual days — **All Days** ticks everything. |
+| **Public Holiday countries** | Appears when **Public Holiday** is ticked — pick **at least one** country whose [public holidays](/terminal-staff/public-holiday) this timeslot runs on. **Select countries** opens a checkbox table: tick several rows (the header checkbox ticks the whole page), then **Done**. Picked countries show as chips you can remove individually. |
 | **Active** | Ticked by default. Only **active** timeslots are picked up by Trip Sync Jobs. |
 
 Then click **Create Timeslot**.
@@ -63,6 +64,8 @@ The backend enforces these when you save:
 - The **Default Vessel** must **belong to the selected operator** and be **active**.
 - Timeslots that share the **same operator, route, and departure time** must have a
   **different Suffix** (otherwise they would generate identical trip codes).
+- **Public Holiday** requires **at least one country** — a timeslot with the flag
+  ticked but no countries selected is rejected.
 :::
 
 ## Calendar and List views
@@ -74,9 +77,10 @@ each with a **filter** (operator, route, status, and — in the list — day). U
 ### Calendar view
 
 The **Departure Timeslot Weekly Grid** lays out timeslots by **departure time**
-(rows) across **days** (columns). Each card shows the operator, route, vessel, and
-Active/Inactive status. Empty cells show **+ Add** to create a timeslot for that
-time and day.
+(rows) across **days** (columns), with **PH** as the last column. Each card shows
+the operator, route, vessel, and Active/Inactive status; in the **PH** column the
+card also carries a small tag with the timeslot's holiday **country codes**. Empty
+cells show **+ Add** to create a timeslot for that time and day.
 
 - **Select to group** — click a card to **select the whole timeslot**: every day it
   runs on is highlighted together, making it easy to identify the schedules that
@@ -89,7 +93,9 @@ _Selecting the 11:20 timeslot highlights all of its weekday cells as one group._
 ### List view
 
 The list shows each timeslot's **operator** (with day badges), **route**,
-**vessel**, **departure** (with the gate open–close window), and **status**.
+**vessel**, **departure** (with the gate open–close window), and **status**. A
+holiday-running timeslot's badge includes its country codes — e.g.
+**Public Holiday (SG, ID)**.
 
 ![The Timeslots list view filtered to Waterfront Ferry](/img/terminal-staff/timeslots/03-timeslots-list.png)
 _The list view — the 11:20 weekday timeslot with its Gate 10:50–11:10 window._
@@ -115,7 +121,11 @@ actual **departure trips** used across the check-in → boarding → depart proc
 authorized user runs a [Trip Sync Job](/trip-sync-job).
 Every **active** timeslot that matches the job's criteria (**operator**, **route**,
 **days**) is generated as a departure trip for each matching date in the job's
-**date range**.
+**date range**. On each date, a timeslot runs when its **weekday flag** for that day
+is ticked — and **additionally** on any date that is a
+[public holiday](/terminal-staff/public-holiday) in one of its **Public Holiday**
+countries. Holidays never suppress the weekday schedule; see
+[Which timeslots run on a date](/trip-sync-job#which-timeslots-run-on-a-date).
 
 ## Next steps
 

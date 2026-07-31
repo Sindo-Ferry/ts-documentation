@@ -42,8 +42,8 @@ other, and the order to set them up in.
 - [Gates](/terminal-staff/gates) — boarding gates per port
 - [Berths](/terminal-staff/berths) — berths per port
 - [Routes](/terminal-staff/routes) — origin → destination routes
-- [Countries](/terminal-staff/countries) — nationality list & popular flag
-- [Public Holiday](/terminal-staff/public-holiday) — holiday dates for scheduling
+- [Countries](/terminal-staff/countries) — nationality list, popular flag & holiday scoping
+- [Public Holiday](/terminal-staff/public-holiday) — per-country holiday dates for scheduling
 - [Timeslots](/terminal-staff/timeslots) — recurring weekly schedule templates
 - [Generate Departure Trips with a Trip Sync Job](/trip-sync-job)
 - [Departure Trips](/terminal-staff/departure-trips) — view/manage trips & create AdHoc trips
