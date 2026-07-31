@@ -4,6 +4,6 @@
   "link": {
     "type": "generated-index",
     "slug": "/terminal-staff/administrative",
-    "description": "Modules used by administrative staff to set up schedules, trips, and passengers in the Terminal Portal. Setting up for the first time? See How the Pieces Fit Together (/how-it-fits-together) for the recommended order."
+    "description": "Modules used by administrative staff to set up schedules, trips, and passengers in the Terminal Portal."
   }
 }
