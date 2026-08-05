@@ -68,15 +68,29 @@ before activation, you will see:
 If you see this message, contact your administrator and ask them to activate
 your account.
 
-### For administrators — activating a new user
+### For administrators — creating and activating the portal user
 
-A new user can be activated in either of two ways:
+Registering creates the **sign-in account only** — the new person does **not**
+appear in any portal's **Users** list yet. To grant them access, work in the
+portal they need (Terminal Portal for terminal staff, Operator Portal for
+ferry-company staff):
 
-1. **Via API** — refer to the **API Documentation** provided by the development
-   team.
-2. **Via the portal UI** (available in both the Terminal Portal and the Operator
-   Portal): open **Users**, find the new user in the list table, click the
-   **… (Actions)** button on their row, and choose **Activate**.
+1. **Create their portal user** — open **Users**, click **Create User**, and
+   enter a username together with the **exact same email address** the person
+   registered with. The person receives a notification email letting them know
+   they've been added — it also reminds them to register with that same email
+   if they haven't done so yet.
+2. **Activate it** — back in the **Users** list, click the **… (Actions)** button
+   on their row and choose **Activate**.
+
+:::info[How the two accounts connect]
+The sign-in account (email + password) and the portal user are matched by **email
+address** at sign-in time. If the two emails differ, the person keeps seeing the
+"not provisioned" message even after activation.
+:::
+
+Both steps can also be done **via API** — refer to the **API Documentation**
+provided by the development team.
 
 ## Step 4 — Sign in
 
