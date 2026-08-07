@@ -68,10 +68,10 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Terminal Portal Docs',
+        title: 'Terminal System',
         logo: {
-          alt: 'Terminal Portal',
-          src: 'img/logo.svg',
+          alt: 'Terminal System',
+          src: 'https://www.opus-bay.com/wp-content/uploads/2026/05/logo.png',
         },
         items: [
           {
