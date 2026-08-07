@@ -13,17 +13,17 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // --- Deployment target (GitHub Pages, hosted by the public ts-documentation repo) ---
-  // Source lives here in terminal-solution/documentation (private); CI publishes the
-  // built site to the public Sindo-Ferry/ts-documentation repo (main branch), which serves Pages at:
+  // --- Deployment target (GitHub Pages) ---
+  // This repo holds the docs source on `main`; CI builds it and publishes the
+  // static site to the `gh-pages` branch, which GitHub Pages serves at:
   //   https://sindo-ferry.github.io/ts-documentation/
   url: 'https://sindo-ferry.github.io',
   baseUrl: '/ts-documentation/',
   trailingSlash: true,
 
   organizationName: 'Sindo-Ferry', // GitHub org that owns the Pages repo
-  projectName: 'ts-documentation', // the PUBLIC repo that hosts Pages
-  deploymentBranch: 'main',
+  projectName: 'ts-documentation', // this repo
+  deploymentBranch: 'gh-pages', // build output branch (source stays on main)
 
   // 'warn' keeps the first build from failing on a stray link; switch to 'throw' later.
   onBrokenLinks: 'warn',

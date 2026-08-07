@@ -1,0 +1,49 @@
+name: Publish documentation to GitHub Pages
+
+# The docs source lives on `main` in this repo. This workflow builds it and pushes
+# the compiled static site to the `gh-pages` branch, which GitHub Pages serves at
+# https://sindo-ferry.github.io/ts-documentation/.
+#
+# Same-repo publish: the built-in GITHUB_TOKEN is enough, so no GitHub App token
+# and no DOCS_APP_ID / DOCS_APP_KEY secrets are required.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allow manual runs from the Actions tab
+
+# Needs write access to push the built site to gh-pages.
+permissions:
+  contents: write
+
+# Never run two publishes at once; cancel an in-flight one when a newer push lands.
+concurrency:
+  group: publish-docs
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./build
+          # peaceiris adds a .nojekyll file automatically (enable_jekyll defaults to false).
+          commit_message: "docs: publish from ${{ github.sha }}"
