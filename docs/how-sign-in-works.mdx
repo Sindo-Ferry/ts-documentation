@@ -1,0 +1,117 @@
+---
+id: how-sign-in-works
+title: How Sign-In and Access Work
+sidebar_label: How Sign-In and Access Work
+sidebar_position: 1
+slug: /how-sign-in-works
+description: A plain-language explanation of the three user records, how the sign-in account connects to portal access by email, and how long a session lasts.
+keywords:
+  - sign in
+  - authentication
+  - access
+  - session
+  - token
+  - terminal user
+  - operator user
+---
+
+A plain-language explanation of how signing in works and why access sometimes
+behaves the way it does — written for everyone, no technical background needed.
+
+## Three kinds of user records
+
+The system keeps **three separate user records**. They are not linked to each
+other in the database — they're connected only by having the **same email
+address**.
+
+| Record | What it answers |
+| --- | --- |
+| **User** (sign-in account) | *Who are you? May you sign in?* Holds the email, password, and email-confirmation status. |
+| **Terminal User** | *What may you do in the Terminal Portal?* Holds roles, permissions, and an active/inactive flag. |
+| **Operator User** | *What may you do in the Operator Portal, and for which ferry operator?* One email can have a separate record for each operator it belongs to. |
+
+**Think of it as a passport and building badges.**
+
+- The **User** record is the *passport* — it gets you through the front door
+  (sign-in).
+- The **Terminal User** and **Operator User** records are *building badges* —
+  they decide which doors you can open once inside.
+- They match by the name printed on both: the **email address**.
+
+A passport with no badge can sign in, but is turned away everywhere ("your
+account is not provisioned"). A badge with no passport can't sign in at all. One
+person can hold the passport plus any combination of badges — terminal access
+*and* membership in several operators — all under one email and one password.
+
+### Who creates what
+
+- The person themselves creates the **User** record by
+  [registering on the public page](/register-account) (or by signing in once
+  with Google/Microsoft).
+- An administrator creates the **Terminal User** or **Operator User** record
+  (**Users → Create User**), and must activate it before it works.
+- Registration **never** puts anyone in a portal's user list — if a name appears
+  there, an administrator put it there.
+
+### Setting up a new person
+
+Either order works:
+
+1. They register and confirm their email → sign-in account exists.
+2. An admin creates and activates a portal user *with the same email* → access
+   exists.
+3. They sign in and everything connects.
+
+## The two tokens
+
+Signing in gives the browser two tokens with very different jobs.
+
+:::note
+Their lifetimes are **configuration, not code** — currently set to **5 minutes**
+(access) and **30 days** (refresh).
+:::
+
+### Access token — the short-lived "day pass"
+
+- A signed token sent with **every API request** to prove who you are.
+- Contains only identity — **not** permissions. Permissions are looked up fresh
+  on every request, so deactivating a user or changing a role takes effect
+  within about a minute, no re-login needed.
+- Lives **5 minutes**. When it expires, the browser quietly swaps it for a new
+  one using the refresh token — **the user notices nothing**.
+
+### Refresh token — the long-lived "session key"
+
+- A random secret in a secure browser cookie that JavaScript can't read. Its
+  only job: get fresh access tokens.
+- Lives **30 days**, and this limit is **absolute** — staying active does *not*
+  extend it.
+- **Single-use**: each use replaces it with a new one. If an already-used token
+  shows up again, the system assumes theft and **kills the whole session** for
+  everyone holding it. A refresh from a different device/browser than the
+  session started on does the same.
+
+### Fresh start instead of a mid-shift cutoff
+
+When someone returns after a real break (**4+ hours idle**) and their session
+has **less than 24 hours left**, the system asks them to **sign in fresh right
+then** — at the door, before they start working. This prevents the bad
+alternative: letting them start a workday on a nearly-dead session that would
+expire in the middle of their shift. While someone is actively working, they are
+never kicked out by this check.
+
+## What users actually experience
+
+- **No inactivity timeout** — nobody is logged out for being idle.
+- The 5-minute access token renews silently, indefinitely, while the session
+  lives.
+- A session ends only when: the 30-day window runs out, the near-expiry
+  fresh-start check fires at a session start, the user signs out, or a security
+  revocation triggers.
+- In practice: staff sign in roughly once a month, always at the *start* of a
+  workday, never in the middle of one.
+
+:::info[The one exception]
+A device that is continuously active with no 4-hour break — such as an always-on
+kiosk — can still reach the 30-day deadline mid-use.
+:::
