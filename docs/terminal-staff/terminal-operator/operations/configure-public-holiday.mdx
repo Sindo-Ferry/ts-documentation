@@ -1,0 +1,120 @@
+---
+id: configure-public-holiday
+title: Configure Public Holiday
+sidebar_label: Configure Public Holiday
+sidebar_position: 1
+slug: /terminal-operator/configure-public-holiday
+description: Create, edit, and delete the per-country holiday dates that timeslots and trip generation use to schedule extra holiday sailings.
+keywords:
+  - public holiday
+  - holiday
+  - country
+  - calendar
+  - extra sailing
+---
+
+Holiday timetables are different from ordinary ones, and this is where that starts.
+A **public holiday** marks a date as a holiday **in one country**. When trips are
+generated for that date, every [timeslot](/terminal-operator/create-timeslot) whose
+**Public Holiday** countries include that country gets an **additional** run — on
+top of the normal weekday schedule, which is unaffected.
+
+Do this **first**. A timeslot cannot be set to run on holidays until the holidays
+themselves are on record, and trips
+[already generated](/terminal-operator/generate-trips) for a date are not rebuilt
+just because you added a holiday afterwards.
+
+> **Public Holiday → Create Public Holiday / Actions (Edit · Delete)**
+
+:::note
+You need permission to manage public holidays. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The holiday's country exists in [Countries](/terminal-staff/countries).
+- You know **which countries** matter for your terminal. A Singapore–Batam service
+  usually needs both **SG** and **ID** entries — they are separate records even when
+  the date and the name are identical.
+
+## Step 1 — Open the Public Holiday list
+
+In the sidebar, open **Management → Public Holidays** (route: `/public-holidays`).
+Each row shows the holiday's
+**Date**, its **Country** (as a country-code badge), and **Description**, plus an
+**Actions** (**⋯**) menu.
+
+- **Search** — type in the **search** box to find a holiday by its description.
+- **Filter by year** — narrow the list to a single **Year**.
+- **Filter by country** — show only one country's holidays.
+
+The **Year** and **Country** filters sit behind **Show Filters**.
+
+![The Public Holiday list view showing Date, Country, and Description columns](/img/terminal-staff/public-holiday/01-list.png)
+_The Public Holiday list — Date, **Country** (as a code badge), and Description. Here the same holiday name is recorded separately for **SG** and **ID**._
+
+## Step 2 — Create a public holiday
+
+Click **Create Public Holiday** (top right) and fill in the **New Public Holiday**
+form:
+
+| Field | Notes |
+| --- | --- |
+| **Country** | The country observing the holiday — required. |
+| **Date** | The holiday date. |
+| **Description** | A label for the holiday, e.g. `New Year's Day`. |
+
+Then click **Create Public Holiday**.
+
+![The New Public Holiday form, with Country, Date, and Description fields](/img/terminal-staff/public-holiday/02-create.png)
+_Creating a public holiday — pick the **Country** first, then the date and a description._
+
+:::warning[One holiday per date and country]
+Each **date + country** pair can have only **one** public holiday — the system
+rejects a duplicate for the same date and country. The same date **can** be entered
+again for a **different** country (e.g. New Year's Day for both Singapore and
+Indonesia).
+:::
+
+## Step 3 — Edit or delete a holiday
+
+From the row **⋯ Actions** menu you can **Edit** a holiday's country, date or
+description, or **Delete** it (confirmation required).
+
+:::warning[Changing a holiday does not rebuild existing trips]
+Adding, editing or deleting a holiday only affects **future trip generation**. Trips
+that have already been generated for that date stay exactly as they are.
+
+If the date has already been generated — and because the daily automatic sync runs
+**60 to 90 days ahead**, it usually has — you must
+[run a Trip Sync Job](/terminal-operator/generate-trips) for that period to pick the
+change up. A **deleted** holiday will show the affected trips under **To Delete**
+(or as a **Conflict** if passengers are already booked on them).
+:::
+
+## What a holiday actually does to the schedule
+
+The rule is **additive**. A public holiday **adds** sailings; it never removes the
+normal weekday ones.
+
+On a **Singapore** holiday falling on a Monday:
+
+- every timeslot with **Monday** ticked runs as normal;
+- a **Public Holiday (SG)** timeslot runs **as well** — an extra sailing that day;
+- a **Public Holiday (ID)**-only timeslot does **not**, because the date is not an
+  Indonesian holiday;
+- a timeslot with **both** Monday and Public Holiday (SG) ticked still generates
+  only **one** trip that day.
+
+This is why the **country** on each entry matters as much as the date: it is what
+decides which timeslots the holiday reaches.
+
+## Next
+
+- [Create a Timeslot](/terminal-operator/create-timeslot) — tick **Public Holiday**
+  and pick the countries whose holidays a sailing should run on.
+- [Generate Trips from Timeslots](/terminal-operator/generate-trips) — make the
+  holiday sailings real.

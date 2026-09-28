@@ -1,0 +1,157 @@
+---
+id: operator-export-manifest-report
+title: Export the Passenger Manifest Report
+sidebar_label: Export Passenger Manifest report
+sidebar_position: 12
+slug: /ferry-operator/export-manifest-report
+description: Generate the Passenger Manifest report with a choice of format, language and passenger status, and optionally password-protect the PDF.
+keywords:
+  - reports
+  - passenger manifest
+  - pdf
+  - xlsx
+  - password
+  - passenger status
+---
+
+The **Passenger Manifest** report is the full-options version of the manifest. Where
+the trip page's
+[Download Manifest](/ferry-operator/download-manifest) button always gives you an
+Excel file of boarded passengers, this form lets you choose the **format**, the
+**language**, **which passengers** to include, and whether to **password-protect**
+the result.
+
+> **Reports → Passenger Manifest → choose the trip and options → Download Report**
+
+:::note
+You need the manifest-report permission; without it the **Reports** item does not
+appear in the sidebar. The screenshots below use
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+- You know which **trip** you want. The picker lists your own trips only.
+
+## Step 1 — Open the report
+
+In the sidebar, open **Reports** (route: `/reports`). The page lists the reports you
+have access to; click **Passenger Manifest** — _"Boarding / passenger list for a
+departure trip."_
+
+If the list reads _"You don't have access to any reports,"_ ask your administrator.
+
+## Step 2 — Fill in the form
+
+| Field | Options | Default |
+| --- | --- | --- |
+| **Departure Trip** | Click **Select trip** and pick from your operator's trips. Required. | — |
+| **Format** | **Excel (.xlsx)** or **PDF (.pdf)** | Excel |
+| **Language** | **English** or **Indonesian** | English |
+| **Passenger Status** | **All passengers**, or one of **CheckedIn**, **PreImmigration**, **Boarded**, **Cancelled** | **Boarded** |
+| **Password (optional)** | Protects the generated file. **Only shown when Format = PDF.** | blank |
+
+Then click **Download Report**. The button reads **Generating…** while it works.
+
+## Choosing the passenger status
+
+This is the setting that makes the report worth using:
+
+| Status | What you get | Typical use |
+| --- | --- | --- |
+| **Boarded** _(default)_ | Only passengers scanned aboard. | The official manifest of who sailed. |
+| **All passengers** | Everyone on the trip, whatever their status. | Reconciling bookings against who actually travelled. |
+| **CheckedIn** | Checked in but not boarded. | Chasing no-shows after departure. |
+| **PreImmigration** | Cleared pre-immigration but never boarded. | Investigating passengers left behind. |
+| **Cancelled** | Cancelled bookings only. | Refunds and cancellation records. |
+
+:::warning[The default is Boarded, not everyone]
+Leave the form untouched and you get **Boarded passengers only** — the same as the
+trip page's Download Manifest button. If you need the full list, you must change
+**Passenger Status** to **All passengers**.
+:::
+
+## Password protection
+
+:::info[Password applies to PDF only]
+The **Password (optional)** field **only appears when Format = PDF**. Switch the
+format to Excel and it disappears — Excel output cannot be password-protected here,
+and the export service rejects the attempt.
+
+The field's own hint says so: _"Protects the generated PDF. Only available for the
+PDF format."_
+:::
+
+To protect a report:
+
+1. Set **Format** to **PDF (.pdf)**.
+2. Type a password into **Password (optional)** — it is masked as you type.
+3. **Download Report.** Opening the file then asks for that password.
+
+Leave it blank and the PDF opens normally.
+
+:::warning[The password is not stored anywhere]
+Nothing records what you typed. If you are sending a protected manifest on, pass the
+password to the recipient through a separate channel — and keep your own note of it.
+Regenerating the report with the same password is the only way back in.
+:::
+
+## What you get
+
+A file named:
+
+```
+passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.pdf   (or .xlsx)
+```
+
+The extension follows the **Format** you chose. The content is the same manifest
+data in either case — the trip's details plus a row per passenger matching your
+status filter.
+
+## This report vs. the trip's Download Manifest button
+
+| | **Download Manifest** (on the trip) | **Passenger Manifest report** |
+| --- | --- | --- |
+| Where | Departure Trips grid or trip detail | Reports → Passenger Manifest |
+| Format | Excel only | **Excel or PDF** |
+| Language | English / Indonesian | English / Indonesian |
+| Passengers | Boarded only | **Any status, or all** |
+| Password | No | **Yes, on PDF** |
+| Trip must be | Closed or Departed | Selected from the picker |
+| Speed | Two clicks | A short form |
+
+Use the button for the everyday manifest; use the report when you need a different
+format, a different set of passengers, or protection.
+
+## Only your own operator's data
+
+The **Departure Trip** picker lists **your operator's trips only**, and the generated
+file contains only your own passengers. The totals should reconcile exactly against
+the trip's passenger table.
+
+Another operator's trip or passenger appearing anywhere here is a serious problem —
+stop and report it to your administrator.
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --- | --- | --- |
+| **Reports** missing from the sidebar | No report permissions | Ask your administrator |
+| _"You don't have access to any reports."_ | Signed in, but no report permission | Ask your administrator |
+| The **Password** field vanished | You switched Format to Excel | Password is PDF-only; switch back to PDF |
+| Fewer rows than expected | **Passenger Status** is still the **Boarded** default | Set it to **All passengers** |
+| The trip you want is not in the picker | It belongs to another operator, or does not exist | Check the workspace at the top left; [switch operator](/ferry-operator/switch-operator) if needed |
+| The file will not open | It is a password-protected PDF | Use the password you set when generating it |
+
+## Next
+
+- [Download the Manifest](/ferry-operator/download-manifest) — the two-click version.
+- [Look Up a Trip](/ferry-operator/look-up-trip)
+
+:::note[Screenshot needed]
+No screenshots exist of the **Reports** list page, the **Passenger Manifest** form
+(Departure Trip, Format, Language, Passenger Status), or the **Password (optional)**
+field appearing once Format is switched to PDF.
+:::

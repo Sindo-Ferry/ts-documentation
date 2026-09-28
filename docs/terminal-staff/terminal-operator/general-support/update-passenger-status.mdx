@@ -1,0 +1,122 @@
+---
+id: update-passenger-status
+title: Update a Passenger's Status
+sidebar_label: Update a passenger status
+sidebar_position: 5
+slug: /terminal-operator/update-passenger-status
+description: Move a passenger directly between Checked-In, Pre-Immigration and Boarded when the scan record does not match reality.
+keywords:
+  - update status
+  - passenger status
+  - checked-in
+  - pre-immigration
+  - boarded
+  - correction
+---
+
+**Update Status** sets a passenger's stage directly, without a scan. It is the
+manual override for when the record and reality have come apart — a scanner failed,
+a passenger was waved through during a rush, a revert was missed.
+
+> **Current Trips → open the trip → passenger's ⋯ menu → Update Status → pick → Update Status**
+
+:::warning[Reach for the scan first]
+Scanning is the normal way a passenger changes stage, and it is the one that leaves
+a proper trail. Use **Update Status** when a scan is not possible or would be wrong
+— not as a shortcut past the gate.
+:::
+
+## Step 1 — Find the passenger
+
+From within their trip:
+
+- **Today's trip:** **Operational → Current Trips** → click the trip → the
+  **Passengers** table at the bottom.
+- **An older trip:** **Management → Departure Trips** → find the trip → open its
+  detail page.
+- **Not sure which trip?** [Look Up a Passenger](/terminal-operator/look-up-passenger)
+  first — it searches every trip and tells you which one they are on.
+
+## Step 2 — Open Update Status
+
+On the passenger's row, click **⋯** and choose **Update Status**.
+
+If it is not in the menu, the passenger is **Cancelled** — see
+[Cancelled passengers](#update-status-cannot-cancel) below.
+
+## Step 3 — Pick the new status and confirm
+
+The dialog reads **Update Status** — _"Change the status of **[name]** ([No])."_
+
+Open the **New Status** picker. It offers exactly three:
+
+| Status | Meaning |
+| --- | --- |
+| **CheckedIn** | Has a boarding pass; has not cleared pre-immigration. |
+| **PreImmigration** | Has cleared pre-immigration; waiting to board. |
+| **Boarded** | Is on the vessel. |
+
+Choose one and click **Update Status**. The button stays **disabled while the
+selected status is the one they already have**, so you cannot submit a no-op.
+
+## Outcome
+
+- The passenger's status changes immediately.
+- The trip's counts adjust — one count down, another up.
+- A **timestamp is stamped for the new status**: setting **CheckedIn** records a new
+  checked-in time, **PreImmigration** a pre-immigration time, **Boarded** a boarded
+  time. Each is set to **now**, not to when the passenger actually passed that point.
+- The change takes effect **whatever the trip's status is** — unlike the scan-page
+  reverts, this is not blocked once the trip is Closed or Departed. That is
+  precisely why it exists.
+
+:::info[It moves in any direction]
+Unlike scanning, this is not a one-way street. You can set a Boarded passenger back
+to CheckedIn in a single step, or jump CheckedIn straight to Boarded. There is no
+ordering rule.
+:::
+
+## Update Status cannot cancel
+
+Two hard rules:
+
+1. **Cancelled is not in the picker.** The list is CheckedIn, PreImmigration and
+   Boarded only. To cancel someone, use
+   [Cancel a Passenger](/terminal-operator/cancel-passenger) — the action that also
+   releases the seat. Force a Cancelled value through and the answer is _"Direct
+   status update does not support Cancelled. Use cancel action instead."_
+2. **A cancelled passenger cannot be updated.** **Update Status** is **not shown at
+   all** on a Cancelled row. Force it and the answer is _"Cancelled passenger status
+   cannot be updated directly."_ There is no route from Cancelled back to
+   CheckedIn — [check them in again](/terminal-operator/check-in-ntl-lm) instead.
+
+## Update Status vs. the scan reverts
+
+Both move a passenger backwards. They are not interchangeable:
+
+| | **Revert on the scan page** | **Update Status** |
+| --- | --- | --- |
+| Where | [Pre-Immigration Scan](/terminal-operator/revert-pre-immigration) / [Boarding Scan](/terminal-operator/revert-boarding) | The trip's passenger table |
+| Needs the trip to be | Scheduled or Boarding | **Any status** |
+| Moves | One step back | **Any** of the three, in any direction |
+| Best for | Fixing a scan you just made, at the gate | Fixing a record after the fact |
+
+At the gate, revert. At the counter, update.
+
+## If the update is refused
+
+| Message | What it means |
+| --- | --- |
+| _"Trip CheckInCount is inconsistent for this status transition."_ (or PreImmigrationCount / BoardedCount) | The trip's counters do not line up with the change — usually two people editing the same trip at once. Refresh the page and try again; if it persists, report it. |
+| _"Cancelled passenger status cannot be updated directly."_ | The passenger is cancelled. |
+| _"Direct status update does not support Cancelled."_ | Use [Cancel a Passenger](/terminal-operator/cancel-passenger). |
+
+## Next
+
+- [Cancel a Passenger](/terminal-operator/cancel-passenger)
+- [Revert Boarding](/terminal-operator/revert-boarding) ·
+  [Revert Pre-Immigration](/terminal-operator/revert-pre-immigration)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Update Status** dialog with its New Status picker.
+:::

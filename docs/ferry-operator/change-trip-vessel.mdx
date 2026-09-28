@@ -1,0 +1,157 @@
+---
+id: change-trip-vessel
+title: Change a Trip's Vessel
+sidebar_label: Change trip vessel
+sidebar_position: 7
+slug: /ferry-operator/change-trip-vessel
+description: Swap the vessel on one trip or many at once from the Departure Trips grid, with the selection shortcuts and the rules that decide whether the change is accepted.
+keywords:
+  - assign vessel
+  - change vessel
+  - swap vessel
+  - bulk assign
+  - capacity
+  - breakdown
+---
+
+When a vessel breaks down, comes off service, or is swapped at the last minute, you
+reassign the affected trips here. You can do **one trip or a whole day** in a single
+action.
+
+> **Departure Trips → select the trips → Assign Vessel → choose a vessel → Confirm Assign**
+
+:::note
+You need the assign-vessel permission. Without it you can still select trips, but
+the **Assign Vessel** button never appears. The screenshots below use
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+- You know the **replacement vessel** is **Active** and has **enough capacity** —
+  check it on [Look Up a Vessel](/ferry-operator/look-up-vessel). This is the single
+  most common reason a swap is refused.
+
+## Step 1 — Find the trips
+
+Open **Departure Trips** and filter down to what you need — by date range, route,
+vessel or status. Filtering by the **outgoing vessel** is the quickest way to find
+every trip a broken-down boat was due to run.
+
+Note the current vessel and seat load before you change anything.
+
+## Step 2 — Select the trips
+
+Click a trip's cell to select it. It highlights, and a **dark bar appears at the
+bottom** of the screen reading **"1 trip selected"** with a one-line summary of the
+date, time and route.
+
+To select more:
+
+| Action | Result |
+| --- | --- |
+| **Click** | Select just that trip (replacing any existing selection) |
+| **Ctrl + click** (**⌘ + click** on a Mac) | Add or remove one trip at a time |
+| **Shift + click** | Select the whole run between the first selection and this one |
+| **Click a date heading** (along the top) | Select every selectable trip on that date |
+| **Click a departure-time heading** (down the left) | Select every selectable trip at that time, across all days shown |
+| **Click the only selected trip again** | Deselect it; the bar disappears |
+| **Clear** in the bottom bar | Empty the whole selection |
+
+![Selected trips with the Assign Vessel bar, and the Assign Vessel dialog](/img/ferry-operator/departure-trips/03-assign.png)
+_Select trips → Assign Vessel → choose a vessel → Confirm Assign._
+
+:::info[Departed and cancelled trips cannot be selected]
+Their cells are **not clickable** and never join a selection. Click a **date
+heading** on a day that mixes statuses and only the **Scheduled, Boarding and
+Closed** trips are selected — the count in the bar reflects that, so it may be lower
+than the number of cells you can see.
+
+This is the system protecting you: a sailing that has already gone cannot have its
+vessel rewritten.
+:::
+
+## Step 3 — Assign the vessel
+
+Click **Assign Vessel** in the bottom bar. The **Assign Vessel to Selected Trips**
+dialog opens, stating: _"This will assign one vessel to **N** selected trip(s)."_
+
+:::warning[Check N before you confirm]
+**N** is the number of trips that will change. A stray Shift+click can select a
+whole week. If N is not the number you intended, **Cancel** and re-select.
+:::
+
+Click **Select Vessel**, pick from the list, then click **Confirm Assign**.
+
+The dialog closes, the grid refreshes, and the trips show the new vessel.
+
+:::tip[The picker only offers your own active vessels]
+Another operator's vessel never appears, and neither does an inactive one.
+:::
+
+## Step 4 — Verify
+
+Open one of the trips (**View**) and check:
+
+- **Vessel** is the new one, with its `Cap.` value.
+- **Load** and **Available** have been recalculated: available seats are the **new
+  vessel's capacity minus the passengers already checked in**.
+
+## When a swap is refused
+
+Nothing is saved when a swap fails. The message tells you which rule bit:
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Vessel **X** (Capacity: 100) is too small for trip **SSFWH0930** which already has 120 occupied seats."_ | The replacement cannot carry the passengers already checked in on that trip. The message names the vessel, its capacity, the trip and the seats taken. | Pick a bigger vessel, or move those passengers first. |
+| _"The selected vessel is inactive. Reactivate it before assigning it to trips."_ | The vessel is not active. | Ask the terminal to reactivate it, or pick another. |
+| _"Only Scheduled, Boarding, or Closed trips can change vessel. Invalid: **CODE1, CODE2**."_ | A departed or cancelled trip got into the selection. | Deselect those trips — the named codes tell you which. |
+| _"One or more Departure Trip IDs are invalid."_ | The selection is stale — a trip changed underneath you. | **Refresh** the grid and re-select. |
+
+:::danger[A batch is all-or-nothing]
+If **one** trip in the selection fails, **none** of them change — not even the ones
+that would have been fine. The whole assignment is saved together or not at all.
+
+So after a refusal, check **every** trip you selected: they all still have their
+original vessel. Fix the problem the message names, then run the whole batch again.
+:::
+
+## What a vessel change does not touch
+
+Only the **vessel** and the resulting **seat capacity** change. Everything else
+stays exactly as it was:
+
+- trip **status**, and boarding continues uninterrupted on a Boarding trip;
+- **departure and gate times**, including any recorded delay;
+- the **gate and berth** assigned by the terminal;
+- every **passenger**, their **status**, and their **boarding pass number** — passes
+  do not need reissuing.
+
+:::tip[Trips already on that vessel are left alone]
+Selecting a mix where some trips already use vessel A and then assigning vessel A
+succeeds — the ones already on it are untouched, the rest move across. No need to
+pick your selection apart first.
+:::
+
+## This change is per trip, not permanent
+
+Reassigning affects **only the trips you selected**. The
+[timeslot's](/ferry-operator/look-up-timeslot) **Default Vessel** is unchanged, so
+newly generated trips go back to the original vessel.
+
+For a permanent change, ask the terminal to update the timeslot — otherwise you will
+be repeating this every day.
+
+## Next
+
+- [Look Up a Vessel](/ferry-operator/look-up-vessel) — check capacity and status
+  before swapping.
+- [Look Up a Trip](/ferry-operator/look-up-trip)
+
+:::note[Screenshot needed]
+The existing screenshot shows the selection bar and dialog together. Still missing:
+the bar reading **"3 trips selected"** with its summary line, and a **refusal
+message** for an over-capacity vessel.
+:::

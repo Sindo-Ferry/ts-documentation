@@ -1,0 +1,107 @@
+---
+id: activate-deactivate-user
+title: Activate or Deactivate a User
+sidebar_label: Activate / deactivate a user
+sidebar_position: 5
+slug: /terminal-administrator/activate-deactivate-user
+description: Switch a portal user between Active and Inactive — the on/off switch for portal access.
+keywords:
+  - activate user
+  - deactivate user
+  - active
+  - inactive
+  - access
+---
+
+**Active / Inactive** is the on/off switch for someone's access. It is the fastest
+way to stop access, and the last step in setting someone up.
+
+> **Users → ⋯ → Activate / Deactivate**
+
+**Permission needed:** `terminal.users.write`
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The [portal user exists](/terminal-administrator/add-user).
+- You hold `terminal.users.write`.
+
+## Step 1 — Find the user
+
+Open **Security → Users**. The **Status** column shows an **Active** (green) or
+**Inactive** (red) badge on every row.
+
+Use **Show Filters** to list only active or only inactive users — the quickest way
+to find people waiting to be switched on.
+
+## Step 2 — Toggle the status
+
+Open the row's **⋯** menu. Under **Security Flags** there is a single item that
+reflects the current state:
+
+- **Activate** — on an inactive user.
+- **Deactivate** — on an active user.
+
+:::warning[This takes effect immediately, with no confirmation]
+In the Terminal Portal there is **no confirmation dialog**. The moment you click, the
+change is applied and the list refreshes.
+
+Deactivating the wrong person cuts their access instantly. Check the username and
+email on the row — the email sits beneath the username — **before** you click.
+:::
+
+The badge on the row updates.
+
+## What each status means
+
+| Status | Effect |
+| --- | --- |
+| **Active** | The person can sign in, subject to their roles and permissions. |
+| **Inactive** | Sign-in is refused with _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ Their roles, permissions and history are all kept. |
+
+:::info[Deactivating is not deleting]
+An inactive user keeps everything — roles, direct permissions, audit trail. Flip
+them back to Active and they carry on exactly as before.
+
+It is also a **prerequisite** for deletion: a user must be inactive before they can
+be [deleted](/terminal-administrator/delete-user).
+:::
+
+## The Super Admin cannot be deactivated
+
+Attempting it is refused with _"The system super admin account can not be set to inactive"_.
+
+This is deliberate — it stops the system being locked out of its own
+administration. If the Super Admin account needs to change hands, that is a
+job for the development team.
+
+## When to use which
+
+| Situation | Do this |
+| --- | --- |
+| New user, everything else is ready | **Activate** |
+| Someone leaves, or is suspended | **Deactivate** — immediate, and reversible |
+| Seasonal staff between seasons | **Deactivate**, then **Activate** when they return |
+| Someone changes role | Leave them active; change their [roles](/terminal-administrator/assign-role) instead |
+| Account created in error, never used | **Deactivate**, then [delete](/terminal-administrator/delete-user) |
+
+:::tip[Deactivate first, ask questions later]
+When you suspect an account is compromised or misused, **deactivate it**. It is
+instant, it is reversible, and it buys time to investigate. Deleting destroys the
+evidence.
+:::
+
+## Next
+
+- [Assign a Role to a User](/terminal-administrator/assign-role)
+- [Delete a User](/terminal-administrator/delete-user)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Users** row **⋯** menu showing **Activate** /
+**Deactivate** under **Security Flags**.
+:::

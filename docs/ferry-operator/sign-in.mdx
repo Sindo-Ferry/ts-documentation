@@ -3,80 +3,99 @@ id: operator-sign-in
 title: Sign In to the Operator Portal
 sidebar_label: Sign In
 sidebar_position: 1
-description: How ferry operators sign in to the Operator Portal and select their operator workspace with an Operator Code.
+slug: /ferry-operator/sign-in
+description: Sign in to the Operator Portal and select your operator workspace with an Operator Code.
 keywords:
   - sign in
   - login
   - operator code
   - operator portal
+  - workspace
 ---
 
-Signing in to the Operator Portal has two parts: authenticate with your account,
-then choose your **operator workspace** using an **Operator Code**. Other
-Operator guides link here instead of repeating this step.
+Signing in has **two parts**: authenticate with your account, then choose the
+**operator workspace** you are working in. Everything else in the portal — trips,
+passengers, manifests — is scoped to that workspace, so getting it right matters.
 
-> **Login → Sign In → Select Operator (enter Operator Code) → Dashboard**
+> **Login → Sign In → Select Operator (Operator Code) → Dashboard**
 
 :::note
-Your **Operator Code** is provided by your administrator — enter the one for your
-operator. The screenshots below use an example code and
-`https://ts-operator.sindoferry.com.sg/`.
+Your **Operator Code** comes from your administrator. The screenshots below use an
+example code and `https://ts-operator.sindoferry.com.sg/`.
 :::
 
-## Prerequisites
+## Before you start
 
 - A registered account with a **confirmed email**, **activated** by an
   administrator — see [Register an Account](/register-account).
-- Your **Operator Code** (from your administrator).
+- Your **Operator Code**.
 
 ## Step 1 — Sign in with your account
 
-Open the Operator Portal and go to the login page. Enter your registered
-**Email** and **Password**, then click **Sign In**.
+Open the Operator Portal and go to the login page. Enter your registered **Email**
+and **Password**, then click **Sign In**.
 
 ![Operator Portal sign-in page](/img/ferry-operator/sign-in/01-login.png)
 _The Operator Portal sign-in page._
 
 ## Step 2 — Select your operator
 
-After signing in, the **Select Operator** screen asks you to choose a workspace:
+The **Select Operator** screen asks which workspace you are entering:
 
-- **First time:** type your **Operator Code** (provided by your administrator)
-  into the **Enter operator code…** field and click the **+** button to verify and
-  add it.
-- **Returning:** your verified operators are saved below — just click the
-  workspace card (or search for it) to continue.
+- **First time:** type your **Operator Code** into the **Enter operator code…**
+  field and click the **+** button. The code is verified and the workspace is added
+  to your list.
+- **Returning:** your verified operators are saved below. Click the workspace card —
+  or use the **search** box if you have several — to continue.
 
 ![Select Operator screen with the Operator Code entered](/img/ferry-operator/sign-in/02-select-operator.png)
 _Enter the Operator Code and add it, or pick a saved workspace._
 
-## Step 3 — You're authenticated
+:::tip[Saved workspaces stay on this device]
+Once verified, an operator stays in your list so you do not need the code again.
+Each card has a **bin** icon to remove it — useful if you no longer work for that
+operator. Removing it does not affect your account; you can add it back with the
+code.
+:::
 
-Once the operator is selected, you land on the **Dashboard** for that workspace
-(here, **Sindo Ferry Pte Ltd**), showing today's trips, boarding activity, and
-passenger totals. Use the sidebar to reach **Departure Trips**, **Passengers**,
-and the other modules.
+## Step 3 — You're in
+
+You land on the **Dashboard** for that workspace, showing today's trips, boarding
+activity and passenger totals. The **operator's name and logo** appear at the top
+left — always check this matches who you are working for.
 
 ![Operator Portal dashboard](/img/ferry-operator/sign-in/03-dashboard.png)
 _The Operator Portal dashboard after selecting the operator._
 
-:::tip
-Use **Switch** (top right) at any time to change to a different operator
-workspace, or **Sign out of account** on the Select Operator screen to log out
-completely.
+The sidebar gives you the modules you have permission for:
+
+| Menu | What it is for |
+| --- | --- |
+| **Overview** | The dashboard |
+| **Vessels** | [Look up a vessel](/ferry-operator/look-up-vessel) — read-only |
+| **Timeslots** | [Look up a timeslot](/ferry-operator/look-up-timeslot) — read-only |
+| **Departure Trips** | [Look up a trip](/ferry-operator/look-up-trip), [change a vessel](/ferry-operator/change-trip-vessel), [check passengers in](/ferry-operator/check-in-passenger) |
+| **Passengers** | [Look up a passenger](/ferry-operator/look-up-passenger) — read-only |
+| **Operator** | Your operator's own details |
+| **Reports** | [Export the Passenger Manifest report](/ferry-operator/export-manifest-report) |
+
+:::info[You only ever see your own operator's data]
+Every list in the portal is scoped to the workspace you selected — trips,
+passengers, vessels, timeslots, and the trip pickers inside filters and reports.
+Another ferry operator's records never appear. If you ever see one, stop and report
+it to your administrator immediately.
 :::
 
 ## Troubleshooting
 
-- **"Email not confirmed. Please check your inbox."** — confirm your email
-  first; use the **Resend confirmation email** button if the link expired. See
-  [Register an Account](/register-account#step-2--confirm-your-email).
-- **"Login succeeded, but your account is not provisioned for Opusbay access.
-  Please contact your administrator."** — your account has not been activated
-  yet. Ask your administrator to activate it — see
-  [Register an Account](/register-account#step-3--get-activated-by-an-administrator).
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Email not confirmed. Please check your inbox."_ | Your email address has not been confirmed. | Use the confirmation link, or **Resend confirmation email** if it expired — see [Register an Account](/register-account#step-2--confirm-your-email). |
+| _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ | Your account exists but has not been activated. | Ask your administrator to activate it — see [Register an Account](/register-account#step-3--get-activated-by-an-administrator). |
+| The Operator Code is not accepted | Wrong code, or it does not belong to you. | Check it with your administrator — codes are per operator. |
+| A sidebar item you expect is missing | You do not hold the permission for that module. | Ask your administrator. |
 
-## Next steps
+## Next
 
-- [Timeslots](/ferry-operator/operator-timeslots)
-- [Departure Trips](/ferry-operator/operator-departure-trips)
+- [Switch Operator](/ferry-operator/switch-operator) — move to another workspace.
+- [Look Up a Trip](/ferry-operator/look-up-trip)

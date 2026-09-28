@@ -1,0 +1,112 @@
+---
+id: operator-passengers
+title: Look Up a Passenger
+sidebar_label: Look up a passenger
+sidebar_position: 10
+slug: /ferry-operator/look-up-passenger
+description: Search your operator's passengers on upcoming scheduled trips, open a read-only detail page, and know where to look once a trip has sailed.
+keywords:
+  - passengers
+  - passenger search
+  - read only
+  - view passenger
+  - scheduled trips
+---
+
+The **Passengers** page is a quick way to find a passenger on an **upcoming**
+sailing without knowing which trip they are on.
+
+> **Passengers → search / filter → ⋯ → View Passenger**
+
+:::warning[Read-only]
+You can search, filter and open a passenger's record. You **cannot** check in, edit,
+cancel or print from here — the row **⋯** menu offers only **View Passenger**.
+
+Those actions live on the trip's own detail page — see
+[Check In a Passenger](/ferry-operator/check-in-passenger).
+:::
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+
+## Step 1 — Open Passengers
+
+In the sidebar, open **Passengers** (route: `/passengers`).
+
+Each row shows the passenger's **Trip** (code, with trip date and departure
+beneath), **No** (passport / ID), **Name**, **Type**, **Status** and
+**Nationality**.
+
+![The operator's read-only Passengers list, filtered to a trip date](/img/ferry-operator/passengers/01-list.png)
+_The Passengers list — Trip, No, Name, Type, Status, and Nationality._
+
+## Step 2 — Know what this page covers
+
+:::danger[Scheduled trips only, and today by default — the two things that catch people out]
+This page has **two** filters applied before you type anything:
+
+1. **Trip date = today.** Widen **Show Filters → trip date** to reach other days.
+2. **Trip status = Scheduled.** Passengers whose trip has moved on to
+   **Boarding**, **Closed**, **Departed** or **Cancelled** **stop appearing here** —
+   and widening the date range will **not** bring them back.
+
+So a passenger who sailed this morning is genuinely not findable on this page. That
+is by design: it is a view of sailings that have not yet gone.
+:::
+
+To find someone on a trip that has already started or sailed, go through the trip
+instead: **Departure Trips → find the trip → View**. The
+[trip detail page](/ferry-operator/look-up-trip) lists every passenger with their
+final status, whatever the trip's status.
+
+## Step 3 — Search and filter
+
+- **Search box** — a partial match on the passenger's **No** or **Name**.
+- **Show Filters** — narrow by **trip date**, **No**, **Name**, **Date of Birth**,
+  **Passenger Status**, **Route** and **Nationality**.
+- Applied filters show as **chips** below the search box; remove one, or **Reset**
+  to clear them all.
+
+:::tip[Empty result? Read the chips first]
+Between the date default and the Scheduled-only rule, an empty list usually means
+the passenger is outside the window rather than absent. Check the chips before
+concluding the record does not exist.
+:::
+
+## Step 4 — View the full record
+
+The row **⋯ Actions** menu offers one action — **View Passenger** — which opens a
+**read-only** page in three sections:
+
+| Section | What it contains |
+| --- | --- |
+| **Trips Informations** | Trip Code, Trip Date / Departure, Trip Status, Trip Type, Route, Vessel |
+| **Passport Informations** | No, Name, Gender, Date of Birth, Issuance Date, Nationality, Issuance Country, Passport Expiry Date |
+| **Check In Informations** | Boarding Pass No, Type, Status, Checked-in At, Pre-Immigration At, Boarded At, and whether the passenger was Cancelled |
+
+![The read-only View Passenger detail page](/img/ferry-operator/passengers/02-view.png)
+_The View Passenger page — trip, passport, and check-in details._
+
+The **Check In Informations** timestamps show how far the passenger got: a
+**Boarded At** time means they were scanned aboard.
+
+## Which page to use
+
+| You want to… | Go to |
+| --- | --- |
+| Find a passenger on an **upcoming** trip, trip unknown | **This page** |
+| See everyone on a **specific** trip, any status | [Look Up a Trip](/ferry-operator/look-up-trip) → View |
+| Check in, edit or cancel | [Check In a Passenger](/ferry-operator/check-in-passenger) |
+| Print or download a pass | [Reprint / Download](/ferry-operator/reprint-boarding-pass) |
+| The official list of who sailed | [Download the Manifest](/ferry-operator/download-manifest) |
+
+## Next
+
+- [Check In a Passenger](/ferry-operator/check-in-passenger)
+- [Look Up a Trip](/ferry-operator/look-up-trip)

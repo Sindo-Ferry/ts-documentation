@@ -1,0 +1,136 @@
+---
+id: operator-departure-trips
+title: Look Up a Trip
+sidebar_label: Look up a trip
+sidebar_position: 6
+slug: /ferry-operator/look-up-trip
+description: Find your operator's departure trips in the weekly grid, switch to compact view, and open a trip's detail page to see its vessel, timings, load and passengers.
+keywords:
+  - departure trips
+  - weekly grid
+  - compact view
+  - trip detail
+  - load
+  - trip status
+---
+
+**Departure Trips** is the hub of the Operator Portal. Everything else — checking
+passengers in, swapping a vessel, pulling a manifest — starts by finding the trip
+here.
+
+> **Departure Trips → filter → View → the trip's detail page**
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+
+## Step 1 — Open Departure Trips
+
+In the sidebar, open **Departure Trips** (route: `/departure-trips`).
+
+The page shows a **grid**: **departure times** down the left, **dates** across the
+top, and a cell for each trip. By default it covers **one week** — today plus the
+next six days.
+
+Each cell shows the trip's **code**, **route**, assigned **vessel**, the **seat
+load**, and its **status**.
+
+![The operator Departure Trips weekly calendar](/img/ferry-operator/departure-trips/01-calendar.png)
+_The weekly grid of departure trips._
+
+## Step 2 — Narrow it down
+
+Use **Show Filters** at the top:
+
+| Filter | Notes |
+| --- | --- |
+| **Date** / **From Date** / **To Date** | The window the grid covers. Set both to the same day for a single date. |
+| **Route** | One of your routes. |
+| **Vessel** | Useful for "where is this boat today?" |
+| **Departure** | A specific departure time. |
+| **Status** | **All Statuses**, or one of Scheduled / Boarding / Closed / Departed / Cancelled. |
+
+The **search** box matches trips directly, and **Refresh** reloads the grid.
+
+### Compact view
+
+A full week can overflow the screen. Click **Compact view** (top right) to shrink
+the cells and fit more in; the button then reads **Normal view** to switch back.
+
+![The Departure Trips calendar in compact view](/img/ferry-operator/departure-trips/02-compact.png)
+_Compact view fits more of the week on screen._
+
+## Step 3 — Open a trip
+
+Click **View** on a trip's cell to open its **Departure Trip Detail** page.
+
+Cells also offer **Manifest** directly, once the trip is Closed or Departed — see
+[Download the Manifest](/ferry-operator/download-manifest).
+
+## What the trip detail page shows
+
+The header carries the trip **code**, its **status** badge, and a **Load** badge
+reading _occupied / total_ seats.
+
+| Section | Fields |
+| --- | --- |
+| **Trip** | **Vessel** (with `Cap.` = its capacity), **Route**, **Type** (Scheduled or AdHoc) |
+| **Schedule** | **Trip Date**, **Departure**, **Delayed To** (in amber, only when the trip is delayed), **Gate** open–close window |
+
+Below that, the **Passengers** section shows four live counts — **Checked-In**,
+**Pre-Immigration**, **Boarded**, **Available** — and the passenger table.
+
+![Departure Trip Detail with the Check In Passenger button](/img/ferry-operator/check-in-passenger/02-trip-detail.png)
+_The trip detail page — trip info, counts, and the passenger table._
+
+From this page you can:
+
+- [Check a passenger in](/ferry-operator/check-in-passenger) — while the trip is
+  Scheduled and the gate is still open.
+- [Reprint or download a boarding pass](/ferry-operator/reprint-boarding-pass).
+- [Download the manifest](/ferry-operator/download-manifest) — once Closed or
+  Departed.
+
+## Reading trip status
+
+| Status | What it means for you |
+| --- | --- |
+| **Scheduled** | Not yet open for boarding. **The only status in which you can check passengers in** — and only while the gate is still open. |
+| **Boarding** | The terminal has opened the gate and is scanning passengers aboard. Check-in is closed; the vessel can still be changed. |
+| **Closed** | Boarding is over. The **manifest becomes available**. The vessel can still be changed. |
+| **Departed** | The vessel has sailed. Read-only — no vessel change, no check-in. |
+| **Cancelled** | The sailing will not run. Read-only. |
+
+Status is driven by **terminal staff**, not by you. A trip that is not moving is a
+question for the terminal.
+
+:::info[Delayed To vs. Departure]
+When the terminal records a delay, the **Departure** field keeps the **original
+scheduled** time and a separate **Delayed To** appears in amber. The delayed time is
+the one passengers should be told.
+:::
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| A trip you expect is missing | The date window is the default week, or a filter is applied | Widen the date range; check the filter chips |
+| No trips at all on a date | None have been generated for it | Ask the terminal to generate trips for that period |
+| The trip is there but on the wrong date row | You are reading the grid by departure time, not date | Times run down the left, dates across the top |
+| Another operator's trip appears | Should never happen | Stop and report it to your administrator |
+
+## Next
+
+- [Change a Trip's Vessel](/ferry-operator/change-trip-vessel)
+- [Check In a Passenger](/ferry-operator/check-in-passenger)
+- [Download the Manifest](/ferry-operator/download-manifest)
+
+:::note[Screenshot needed]
+No screenshot exists of the operator **Show Filters** panel on Departure Trips, nor
+of a trip cell's **View / Manifest** buttons close up.
+:::

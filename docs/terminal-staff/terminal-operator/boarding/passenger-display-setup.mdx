@@ -1,0 +1,105 @@
+---
+id: boarding-display
+title: Passenger Display Setup (Boarding)
+sidebar_label: Passenger display setup
+sidebar_position: 6
+slug: /terminal-operator/boarding-display
+description: Set up the passenger-facing screen at the boarding gate — open it on a second monitor, full-screen it, and understand what passengers see.
+keywords:
+  - passenger display
+  - second screen
+  - boarding gate
+  - berth
+  - full screen
+---
+
+The **Passenger Display** at the boarding gate does one job well: it tells the
+passenger, in letters readable from several metres away, **which berth to walk to**.
+
+> **Boarding Scan → Open Passenger Display → drag to the second screen → F11**
+
+## Step 1 — Open the display
+
+On the **Boarding Scan** page, click **Open Passenger Display** at the top right.
+It opens in a **new browser tab**.
+
+## Step 2 — Move it to the second screen
+
+Drag the tab out into its own window and move that window onto the monitor facing
+the passengers.
+
+## Step 3 — Full-screen it
+
+Press **F11**. Press it again to leave full-screen.
+
+:::warning[Keep both tabs open in the same browser]
+The display is driven by the Boarding Scan page **in the same browser on the same
+machine**. Close the scan tab, or open the display elsewhere, and it will sit on its
+idle screen and never update.
+:::
+
+## Step 4 — Back to the scan tab
+
+Click back onto the scan tab. Clicking **Open Passenger Display** already returns
+focus to the **Boarding Pass Number** field for you, and focus returns there
+automatically after each scan — so once you start, you can work without touching
+the mouse.
+
+## What passengers see
+
+### Idle — between scans
+
+A dark screen reading **Ready For Boarding** / _"Waiting for next scanned
+passenger..."_
+
+![The Passenger Display in its ready-for-scan state at the boarding gate](/img/terminal-staff/boarding-scan/01-passenger-display-ready.png)
+_The idle display at the boarding gate._
+
+### Success — proceed to the berth
+
+A **green** screen with a tick, the word **Success**, then in the largest type on
+the screen: **Proceed to Berth #_[berth code]_**. Below that, the operator's logo
+(or the operator's name if no logo is set) and the **destination port**.
+
+![The Passenger Display showing a successful boarding scan](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
+_A successful scan — the berth number is what the passenger acts on._
+
+:::tip[The berth comes from the trip]
+The berth shown is the one assigned when the trip was
+[set to Boarding](/terminal-operator/set-trip-as-boarding). If passengers are being
+sent to the wrong berth, that assignment is what to check.
+:::
+
+### Rejected — stop and speak to staff
+
+A **red** screen with a cross, the word **Rejected.**, the passenger's name, and a
+short message.
+
+![The Passenger Display showing a rejected boarding scan](/img/terminal-staff/boarding-scan/03-passenger-display-error.png)
+_A rejected scan — the passenger is not boarded._
+
+:::info[The display never shows internal detail]
+Only **"Invalid boarding pass number."** is passed through to the public screen.
+Every other rejection — wrong port, wrong trip status, a cancelled booking —
+appears as **"Please Check with our terminal staff"**. The real reason is on your
+screen only.
+:::
+
+### Back to idle
+
+About **10 seconds** after each scan the result clears and the display returns to
+**Ready For Boarding**.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| Display stays on **Ready For Boarding** while you scan | Scan tab closed, or display opened from another browser / machine | Re-open it from **Open Passenger Display** and leave both tabs open |
+| Wrong berth shown | Wrong berth assigned to the trip | Check the trip card's **Gate / Berth**; it was set at [Set As Boarding](/terminal-operator/set-trip-as-boarding) |
+| Operator name instead of a logo | No logo configured for that operator | Cosmetic only — ask an administrator to upload one under [Operators](/terminal-staff/operators) |
+| Browser chrome visible to passengers | Not in full-screen | Click the display window, press **F11** |
+
+## Next
+
+- [Scan a Boarding Pass at the Gate](/terminal-operator/boarding-scan)
+- [Passenger Display Setup (Pre-Immigration)](/terminal-operator/pre-immigration-display)

@@ -1,0 +1,160 @@
+---
+id: boarding-scan
+title: Scan a Boarding Pass at the Gate
+sidebar_label: Scan boarding pass
+sidebar_position: 1
+slug: /terminal-operator/boarding-scan
+description: Board passengers at the gate — one scan field covers every boarding trip at your port, with live counts and a passenger-facing display.
+keywords:
+  - boarding scan
+  - boarding
+  - gate
+  - berth
+  - boarding pass
+  - boarding trips
+---
+
+The boarding gate is the last scan point. A passenger presents their boarding pass,
+you scan it, and the display tells them which **berth** to walk to.
+
+> **Boarding Scan → scan the boarding pass → passenger is Boarded → "Proceed to Berth #…"**
+
+What the scan does: it moves the passenger to **Boarded** and raises that trip's
+**Boarded** count.
+
+:::warning[Restricted access]
+This page is only available to staff who hold the boarding scan permission.
+:::
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context). The **Scan**
+  button stays disabled until you do, with the hint _"Choose the port context from
+  Settings before scanning."_
+- The trip has been [set to Boarding](/terminal-operator/set-trip-as-boarding) with
+  a gate and a berth assigned.
+- The passenger display is running on the second screen — see
+  [Passenger Display Setup](/terminal-operator/boarding-display).
+
+## Step 1 — Open Boarding Scan
+
+In the sidebar, open **Operational → Boarding Scan**
+(route: `/current-departure-trips/scan-boarding`). The header shows your **Active
+Port**.
+
+![The Boarding Scan page — scan field on the left, Boarding Trips on the right](/img/terminal-staff/boarding-scan/04-operator-display-ready.png)
+_The Boarding Scan page — the scan field on the left, and every boarding trip at your port on the right._
+
+:::info[One page covers every boarding trip]
+You do **not** pick a trip before scanning. There is a single scan field, and the
+system works out which trip each boarding pass belongs to and updates that trip's
+count. When three vessels are boarding at once, one officer at one screen handles
+all three.
+:::
+
+## Step 2 — Check the Boarding Trips panel
+
+The right-hand panel lists every trip at your active port that is currently
+**Boarding** or **Closed**. Each card shows:
+
+- The trip **code** and its **status** badge (**Boarding** / **Closed**).
+- **Operator**, **Vessel**, **Departure Time**, **Gate / Berth** and **Destination
+  Port**.
+- Live counts — **Check In**, **Pre-Imm** and **Boarded**.
+- **View PreImm Passengers** (on a Boarding trip) — opens a searchable table of the
+  passengers who have cleared pre-immigration and are waiting to board.
+- **Set As Close** (on a **Boarding** trip) or **Set As Departed** (on a **Closed**
+  trip).
+- A **Last Call Recommended** banner when departure is close and passengers are
+  still waiting — see [Last Call](/terminal-operator/last-call).
+
+The panel **refreshes itself every 10 seconds** while you are idle, and refreshes
+immediately after every scan. There is a manual **refresh** button too.
+
+If it reads _"No boarding or closed trips for now."_, no trip at your port has been
+opened for boarding yet. Go and
+[set the trip to Boarding](/terminal-operator/set-trip-as-boarding) first.
+
+## Step 3 — Scan
+
+Click into the **Boarding Pass Number** field, then either **scan the barcode** or
+**type the 16-character number and press Enter**. You can also click **Scan**.
+
+After every scan the field clears itself and focus returns to it automatically, so
+you can work continuously without touching the mouse.
+
+## Step 4 — Read the result
+
+### Accepted
+
+A **green card** appears with the passenger's document details — **No**, **Name**,
+**Gender**, **Date Of Birth**, **Nationality**, **Issuance Country**, **Issue
+Date**, **Expiry Date** — and the matching trip's **Boarded** count goes up in the
+Boarding Trips panel.
+
+The passenger display turns green: **Success — Proceed to Berth #_[berth]_**, with
+the operator's logo and the destination port.
+
+![The operator screen after a successful boarding scan](/img/terminal-staff/boarding-scan/05-scan-result.png)
+_A successful scan — passenger details, a **Revert To Pre-Immigration** button, and the trip's Boarded count updated._
+
+![The Passenger Display showing a successful boarding scan](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
+_The passenger-facing display — the berth number is the thing the passenger needs._
+
+### Rejected
+
+A red **Invalid BP** box appears on your screen with the reason, and the display
+turns red.
+
+![The Passenger Display showing a rejected boarding scan](/img/terminal-staff/boarding-scan/03-passenger-display-error.png)
+_A rejected scan — the passenger is not boarded._
+
+## A passenger may board straight from Checked-In
+
+Skipping pre-immigration is **allowed**. A passenger whose status is **CheckedIn**
+can be scanned at the gate and goes straight to **Boarded** — no error, no warning.
+The trip's **Check In** count drops instead of its **Pre-Imm** count.
+
+This is intentional: some terminals do not operate a pre-immigration desk on every
+sailing, and a passenger who slipped past it should not be stopped at the gate.
+
+## Rejection messages and what to do
+
+| What you see | What it means | What to do |
+| --- | --- | --- |
+| **"Please enter boarding pass number."** | You clicked Scan with an empty field. | Scan or type the number. |
+| **"Invalid boarding pass number."** | Not 16 characters, or no passenger has that number. | Re-scan. If the barcode is damaged, find the passenger in **View PreImm Passengers** and read their BP number. |
+| **"Passenger boarding pass is not valid for the currently selected port."** | The pass belongs to a trip from a **different origin port**. | Check your **Active Port**. This check runs **before** the passenger's status is looked at, so you will see it even for a passenger who is already Boarded. |
+| **"Trip must be in Boarding status to mark passenger as Boarded. Current status: Scheduled."** | The trip has not been opened for boarding yet. | [Set it to Boarding](/terminal-operator/set-trip-as-boarding). |
+| **"Trip must be in Boarding status to mark passenger as Boarded. Current status: Closed."** (or Departed) | Boarding for that trip is over. | They have missed it. Send them to the counter. |
+| **"Passenger must be CheckedIn or PreImmigration to move to Boarding. Current status: Cancelled."** | The booking was cancelled. | Send them to the counter. |
+| **"Port context is required. Please select an active port in terminal portal."** | No active port is set. | [Set your port context](/terminal-staff/set-port-context). |
+
+:::info[What the passenger sees when a scan fails]
+Only **"Invalid boarding pass number."** is passed through to the public display.
+Everything else shows as **"Please Check with our terminal staff"**. The real reason
+stays on your screen.
+:::
+
+## Scanning the same pass twice is safe
+
+Scan someone who is already **Boarded** and nothing happens — no error, and the
+count does not move. They are not double-counted. When in doubt, scan again.
+
+## Made a mistake?
+
+Use [Revert Boarding](/terminal-operator/revert-boarding) — the **Revert To
+Pre-Immigration** button is on the result card.
+
+## Next
+
+- [Revert Boarding](/terminal-operator/revert-boarding)
+- [Last Call](/terminal-operator/last-call)
+- [Set a Trip as Close](/terminal-operator/set-trip-as-close) — when boarding is
+  finished.

@@ -15,10 +15,10 @@ keywords:
 
 The **Countries** list is the master data behind a passenger's **nationality** and
 **issuing country**, and behind **public-holiday scoping**: every
-[public holiday](/terminal-staff/public-holiday) belongs to a country, and
-holiday-running [timeslots](/terminal-staff/timeslots) pick which countries'
-holidays they follow. When a passenger is [checked in](/ferry-operator/operator-check-in-passenger)
-or [added as NTL / LM](/terminal-staff/check-in-ntl-lm-passenger), their nationality
+[public holiday](/terminal-operator/configure-public-holiday) belongs to a country, and
+holiday-running [timeslots](/terminal-operator/create-timeslot) pick which countries'
+holidays they follow. When a passenger is [checked in](/ferry-operator/check-in-passenger)
+or [added as NTL / LM](/terminal-operator/check-in-ntl-lm), their nationality
 is chosen from this list. Frequently-used countries can be flagged as **Popular** so
 they surface at the top of the selector for faster check-in.
 
@@ -84,11 +84,11 @@ A country that is still referenced cannot be deleted — the portal shows:
   holidays first."_
 - _"Cannot delete Country because departure timeslots run on its public holidays."_
 
-Remove the country's [public holidays](/terminal-staff/public-holiday) and take it
+Remove the country's [public holidays](/terminal-operator/configure-public-holiday) and take it
 out of any timeslot's **Public Holiday** countries first.
 :::
 
 ## Next steps
 
-- [Public Holiday](/terminal-staff/public-holiday)
+- [Public Holiday](/terminal-operator/configure-public-holiday)
 - [Routes](/terminal-staff/routes)

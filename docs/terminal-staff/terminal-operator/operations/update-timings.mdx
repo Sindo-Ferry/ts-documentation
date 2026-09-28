@@ -1,0 +1,119 @@
+---
+id: update-timings
+title: Update Timings
+sidebar_label: Update Timings
+sidebar_position: 7
+slug: /terminal-operator/update-timings
+description: Change a trip's gate open and gate close times, and record a departure delay, while the trip is still Scheduled or Boarding.
+keywords:
+  - update timings
+  - gate open
+  - gate close
+  - delay
+  - mark as delayed
+  - delayed to
+---
+
+Gate times move and departures run late. **Update Timings** is where you record
+both, so the gate window used for
+[pre-immigration scanning](/terminal-operator/pre-immigration-scan) and the time
+shown to passengers stay truthful.
+
+> **Current Trips → open the trip → Update Timings → Save Timings**
+
+:::warning[Only while the trip is Scheduled or Boarding]
+Once a trip is **Closed**, **Departed** or **Cancelled**, its timings are locked and
+the **Update Timings** action disappears. The system rejects a late attempt with
+_"Cannot update timings for a trip that is already …"_
+:::
+
+:::note
+You need permission to view Current Trips and update trip timings. The screenshots
+below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context).
+- The trip is in **Current Trips** and is still **Scheduled** or **Boarding**.
+
+## Step 1 — Open the trip
+
+Open **Operational → Current Trips** (route: `/current-departure-trips`) and click
+a **Scheduled** or **Boarding** trip to open its detail page.
+
+## Step 2 — Click Update Timings
+
+On the detail page, the **Timings** card shows **Gate Open / Close**, **Departure**
+and — if one is set — **Delayed To**. Click **Update Timings** inside that card.
+
+:::tip
+The trip row's **⋯** menu in the Current Trips list also offers **Update Timings**,
+if you would rather not open the trip.
+:::
+
+## Step 3 — Enter the new timings
+
+| Field | Notes |
+| --- | --- |
+| **Gate Open** | When the gate opens for this trip. |
+| **Gate Close** | When the gate closes. Must be **after** Gate Open. |
+| **Departure Time** | The trip's **original scheduled** departure. This **cannot be changed** — it stays as the reference everyone booked against. |
+| **Mark as Delayed** | Tick only when the departure is actually running late. |
+| **Delayed To** | The **new expected** departure time. Appears — and becomes required — once **Mark as Delayed** is ticked. Must be **after** the scheduled departure. |
+
+![The Update Timings dialog with Gate Open, Gate Close, and Mark as Delayed](/img/terminal-staff/update-current-trip-timings/01-update-timings.png)
+_The Update Timings dialog. Tick **Mark as Delayed** to reveal and set **Delayed To**._
+
+:::info[A delay never rewrites the scheduled departure]
+Ticking **Mark as Delayed** does not change **Departure Time**. The original stays
+put as the scheduled reference, and **Delayed To** becomes the effective departure
+that staff and passengers work to. This is deliberate — it keeps a record of how
+late the sailing actually was.
+:::
+
+## Step 4 — Save
+
+Click **Save Timings**.
+
+If something is wrong, you will see one of these:
+
+| Message | What to fix |
+| --- | --- |
+| _"Gate close time must be after gate open time."_ | Gate Close is at or before Gate Open. |
+| _"Delayed time is required when marking as delayed."_ | You ticked **Mark as Delayed** but left **Delayed To** empty. |
+| _"Delayed time must be after the scheduled departure."_ | **Delayed To** is at or before the original departure time. A delay has to be later than the time it is delaying. |
+
+## Outcome
+
+The detail page reloads with the new timings. If you marked the trip delayed, the
+**Delayed To** time is shown in amber next to the original departure, so anyone
+looking at the trip sees both the scheduled and the expected time.
+
+![The trip detail page showing the updated, delayed timings](/img/terminal-staff/update-current-trip-timings/02-delayed-trip.png)
+_The trip after saving — the delayed departure time is now shown alongside the scheduled one._
+
+:::tip[Update as often as you need]
+There is no limit. As long as the trip is still **Scheduled** or **Boarding**, you
+can adjust the gate times or push **Delayed To** again each time the situation
+changes.
+:::
+
+## What else the timings affect
+
+- **Pre-immigration scanning on a Scheduled trip** is only allowed **inside the
+  gate window**. Widening the window here is how you let a late passenger through —
+  see [Scan a Boarding Pass (Pre-Immigration)](/terminal-operator/pre-immigration-scan).
+  Once the trip is **Boarding**, the window no longer applies.
+- **The last-call alert** on the Boarding Scan page counts down to the **effective**
+  departure — the **Delayed To** time when the trip is delayed, otherwise the
+  scheduled departure. See [Last Call](/terminal-operator/last-call).
+- **Ferry operator check-in** closes when the **gate closes**, not when boarding
+  starts. Extending **Gate Close** reopens their check-in window.
+
+## Next
+
+- [Set a Trip as Boarding](/terminal-operator/set-trip-as-boarding)
+- [Last Call](/terminal-operator/last-call)

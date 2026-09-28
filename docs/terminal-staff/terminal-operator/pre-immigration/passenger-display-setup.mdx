@@ -1,0 +1,112 @@
+---
+id: pre-immigration-display
+title: Passenger Display Setup (Pre-Immigration)
+sidebar_label: Passenger display setup
+sidebar_position: 3
+slug: /terminal-operator/pre-immigration-display
+description: Set up the passenger-facing screen at the pre-immigration desk — open it on a second monitor, full-screen it, and understand what passengers see.
+keywords:
+  - passenger display
+  - second screen
+  - public display
+  - pre-immigration
+  - full screen
+---
+
+The **Passenger Display** is the screen that **faces the passenger** at the
+pre-immigration desk. It shows a large green **Success** or red **Rejected.** after
+every scan, so the passenger knows immediately whether to walk on or stop and talk
+to you.
+
+Set it up once at the start of your shift and leave it running.
+
+> **Pre-Immigration Scan → Open Passenger Display → drag to the second screen → F11**
+
+## Step 1 — Open the display
+
+On the **Pre-Immigration Scan** page, the right-hand panel is headed **Passenger
+Display Preview**. Click **Open Passenger Display** in its header.
+
+The display opens in a **new browser tab**.
+
+## Step 2 — Move it to the second screen
+
+Drag that tab out into its own window, then drag the window onto the **monitor
+facing the passengers**.
+
+## Step 3 — Full-screen it
+
+With the display window focused, press **F11**. The browser chrome — address bar,
+tabs, bookmarks — disappears and the display fills the monitor.
+
+Press **F11** again at any time to come back out.
+
+:::warning[Keep the scan tab and the display tab both open]
+The display is driven by the scan page **in the same browser**. If you close the
+scan tab, or open the display in a different browser or on a different computer,
+it will sit there showing the idle screen and never update.
+:::
+
+## Step 4 — Go back to the scan tab and work
+
+Click back onto your operator screen. The **Boarding Pass Number** field needs
+focus for the hardware scanner to work, so click into it before the first
+passenger.
+
+You do **not** need to look at the second monitor while you work — the **Passenger
+Display Preview** panel on your own screen shows exactly the same thing, live.
+
+## What passengers see
+
+### Idle — between scans
+
+A dark screen reading **Ready For Pre-Immigration** / _"Waiting for next scanned
+passenger..."_ This is also what it shows when the display has just been opened.
+
+![The Passenger Display in its ready state](/img/terminal-staff/pre-imm-scan/01-display.png)
+_The idle display — the public-facing monitor before the first scan._
+
+### Success — the passenger may proceed
+
+A **green** screen with a large tick, the word **Success**, the **passenger's
+name**, and their operator and departure time.
+
+![The Passenger Display showing a successful pre-immigration scan](/img/terminal-staff/pre-imm-scan/02-success.png)
+_A successful scan — the passenger is cleared to Pre-Immigration._
+
+### Rejected — the passenger must stop
+
+A **red** screen with a cross, the word **Rejected.**, and a short message.
+
+![The Passenger Display showing a rejected scan](/img/terminal-staff/pre-imm-scan/03-error.png)
+_A rejected scan — the passenger is not cleared._
+
+:::info[The display never shows internal detail]
+Passengers see only two kinds of real reason — **gate window** messages
+(_"Pre-immigration gate is not open yet…"_) and **"Invalid boarding pass number."**
+
+Every other rejection — wrong status, wrong port, a configuration problem — appears
+on the public screen as **"Please Check with our terminal staff"**. The real reason
+is shown on **your** screen only. Nobody's travel status is put on a large public
+monitor.
+:::
+
+### Back to idle
+
+About **10 seconds** after each scan the result fades and the display returns to
+**Ready For Pre-Immigration**.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| The display stays on **Ready For Pre-Immigration** while you scan | The scan tab was closed, or the display was opened from a different browser / machine | Re-open the display from the **Open Passenger Display** button on the scan page, and leave both tabs open |
+| The display is on the wrong monitor | It opened on the operator screen | Drag the window across, then press **F11** |
+| Browser tabs and the address bar are visible to passengers | Not in full-screen | Click the display window, press **F11** |
+| It shows an old passenger's result | Normal — results stay up for about 10 seconds | Wait, or scan the next passenger |
+
+## Next
+
+- [Scan a Boarding Pass at Pre-Immigration](/terminal-operator/pre-immigration-scan)
+- [Passenger Display Setup (Boarding)](/terminal-operator/boarding-display) — the
+  same idea at the boarding gate.

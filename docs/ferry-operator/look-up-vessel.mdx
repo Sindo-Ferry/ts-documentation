@@ -1,0 +1,99 @@
+---
+id: look-up-vessel
+title: Look Up a Vessel
+sidebar_label: Look up a vessel
+sidebar_position: 4
+slug: /ferry-operator/look-up-vessel
+description: Check your operator's vessels — code, name, certification number, seat capacity and active status — in the read-only Vessels list.
+keywords:
+  - vessels
+  - capacity
+  - certification
+  - read only
+  - active
+---
+
+The **Vessels** page lists the ferries belonging to **your operator**, with the one
+number you need most often: **capacity**.
+
+> **Vessels → search / filter → read the capacity and status**
+
+:::warning[Read-only]
+There are **no create, edit or delete actions** here. Vessels are master data,
+maintained by **terminal staff** in the Terminal Portal. If a vessel needs adding,
+renaming, re-certifying or activating, ask the terminal — see the terminal
+[Vessels](/terminal-staff/vessels) guide.
+:::
+
+:::note
+You need the vessels-read permission; without it the **Vessels** item does not
+appear in the sidebar. The screenshots below use
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+
+## Step 1 — Open Vessels
+
+In the sidebar, open **Vessels** (route: `/vessels`).
+
+## Step 2 — Read the list
+
+| Column | What it shows |
+| --- | --- |
+| **Code** | The vessel's short code. |
+| **Vessel** | The vessel's name, with its **certification number** (`Cert: …`) beneath. |
+| **Capacity** | **Total seats.** This is what decides whether the vessel can take a trip's passengers. |
+| **Status** | **Active** (green) or **Inactive** (red). |
+
+Sort by **Code**, **Vessel** or **Capacity** by clicking the column header.
+
+## Step 3 — Search and filter
+
+- **Search box** — find a vessel by typing part of its details.
+- **Show Filters → Status** — choose **All Statuses**, **Active Only** or
+  **Inactive Only**.
+- **Refresh** reloads the list.
+
+## Why capacity and status matter
+
+This page is usually the step **before**
+[changing a trip's vessel](/ferry-operator/change-trip-vessel), because both columns
+decide whether the swap will be accepted:
+
+| What you are checking | Why |
+| --- | --- |
+| **Capacity** | The new vessel must have **at least as many seats as the trip already has passengers**. A smaller vessel is refused with a message naming the vessel, its capacity, the trip code and the occupied seats. |
+| **Status** | Only **Active** vessels can be assigned. Inactive ones are not offered in the picker, and are refused if somehow selected: _"The selected vessel is inactive. Reactivate it before assigning it to trips."_ |
+
+So before a swap: note the **occupied seats** on the trip, come here, and confirm
+the replacement vessel is **Active** with **capacity ≥ that number**.
+
+:::tip[Capacity is total seats, not free seats]
+The **Capacity** column is the vessel's full seat count. A trip's **available**
+seats are that capacity minus the passengers already checked in — which is why a
+vessel with plenty of capacity on paper can still be refused for a busy trip.
+:::
+
+## A vessel is missing or inactive
+
+| Situation | What to do |
+| --- | --- |
+| The vessel is not listed at all | It belongs to another operator, or has not been created. Ask the terminal. |
+| The vessel shows **Inactive** | It cannot be assigned to trips. Ask the terminal to reactivate it. |
+| The capacity looks wrong | Ask the terminal to correct it — you cannot edit it here, and the wrong figure will block or allow the wrong swaps. |
+| The whole **Vessels** menu is missing | You do not hold the vessels-read permission. Ask your administrator. |
+
+## Next
+
+- [Change a Trip's Vessel](/ferry-operator/change-trip-vessel)
+- [Look Up a Timeslot](/ferry-operator/look-up-timeslot) — which vessel each
+  recurring sailing uses by default.
+
+:::note[Screenshot needed]
+No screenshot exists of the operator portal's **Vessels** list (Code, Vessel with
+certification number, Capacity, Status) or of its **Show Filters → Status** panel.
+:::

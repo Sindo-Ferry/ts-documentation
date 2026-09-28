@@ -1,0 +1,129 @@
+---
+id: cancel-passenger
+title: Cancel a Passenger
+sidebar_label: Cancel a passenger
+sidebar_position: 4
+slug: /terminal-operator/cancel-passenger
+description: Cancel a passenger from a trip, releasing their seat — what it does, when it is allowed, and what it cannot undo.
+keywords:
+  - cancel passenger
+  - no-show
+  - release seat
+  - cancelled
+  - passenger table
+---
+
+Cancelling a passenger takes them off the sailing and **releases their seat**. Use
+it for no-shows, duplicated records, and passengers who change their plans at the
+counter.
+
+> **Current Trips → open the trip → passenger's ⋯ menu → Cancel Passenger → Confirm Cancel**
+
+:::warning[This cannot be undone]
+There is no "un-cancel". A cancelled passenger stays cancelled; to put them back on
+the trip you must [check them in again](/terminal-operator/check-in-ntl-lm), which
+issues a **new boarding pass number** and makes their old printed pass useless.
+:::
+
+## Step 1 — Find the passenger
+
+Passengers are cancelled **from within their trip**:
+
+- **Today's trip:** **Operational → Current Trips** → click the trip → the
+  **Passengers** table at the bottom.
+- **An older trip:** **Management → Departure Trips** → find the trip → open its
+  detail page.
+- **Not sure which trip?** [Look Up a Passenger](/terminal-operator/look-up-passenger)
+  first — it searches every trip and tells you which one they are on.
+
+Check the **No** and the **Name** against whoever is standing in front of you before
+you go near the menu.
+
+## Step 2 — Cancel
+
+On the passenger's row, click **⋯** and choose **Cancel Passenger** (in red, at the
+bottom of the menu).
+
+A confirmation appears:
+
+> **Cancel Passenger** — This will cancel passenger **_[name]_** (_[No]_). This
+> cannot be undone.
+
+Click **Confirm Cancel**, or **Keep Passenger** to back out.
+
+## Outcome
+
+- The passenger's status becomes **Cancelled**.
+- **The seat is released** — the trip's **Available** count goes up by one, so
+  someone else can be checked in.
+- Whichever count they were in drops by one: **Checked-In**, **Pre-Immigration** or
+  **Boarded**.
+- **Who cancelled them, and when, is recorded** against the passenger and visible on
+  their View Passenger page.
+- Their **boarding pass icons become disabled**, with the tooltip _"This passenger
+  is cancelled."_
+- They are **left off the manifest**, which lists Boarded passengers only.
+
+## Who can be cancelled
+
+Any passenger who is not **already cancelled** — **CheckedIn**,
+**PreImmigration** or **Boarded**. Cancelling someone who has already boarded is
+allowed; it is how you handle a passenger who comes back off the vessel.
+
+| Situation | Result |
+| --- | --- |
+| Passenger is CheckedIn / PreImmigration / Boarded | Cancelled, seat released |
+| Passenger is already **Cancelled** | **Cancel Passenger** is **not in the menu** at all. Force it through and the answer is _"Passenger is already cancelled."_ |
+
+:::info[The menu hides itself]
+On a Cancelled row, both **Cancel Passenger** and **Update Status** disappear from
+the **⋯** menu. Only **View Passenger** and **Boarding Pass History** remain. So if
+you cannot find the cancel action, the passenger is probably already cancelled —
+check the status badge.
+:::
+
+## Cancelling frees the document number too
+
+The duplicate check — _"A passenger with this No already exists on this trip."_ —
+**ignores cancelled passengers**. So the standard fix for a mis-keyed check-in is:
+
+1. **Cancel** the wrong record.
+2. **Check in** again with the correct details and the same document number.
+
+It works, and it is the intended route when the record is too far gone to
+[edit](/terminal-operator/edit-passenger).
+
+## Cancel vs. Update Status
+
+These are separate actions and it matters which you reach for:
+
+| | **Cancel Passenger** | **Update Status** |
+| --- | --- | --- |
+| What it is for | The passenger is **not travelling** | The passenger **is** travelling, but their recorded stage is wrong |
+| Releases the seat | **Yes** | No |
+| Can set Cancelled | **Yes** — this is the only way | **No** — Cancelled is not in the list |
+| Reversible | No | Yes, by setting the status back |
+
+You **cannot** cancel a passenger through Update Status. The status picker offers
+CheckedIn, PreImmigration and Boarded only, and the system rejects a Cancelled value
+with _"Direct status update does not support Cancelled. Use cancel action instead."_
+See [Update a Passenger's Status](/terminal-operator/update-passenger-status).
+
+## Cancelling a passenger vs. cancelling a trip
+
+Cancelling every passenger one by one is **not** how you cancel a sailing. To take
+the whole trip off, see
+[Cancel and Restore a Trip](/terminal-operator/cancel-restore-trip) — and note that a
+trip **cannot be cancelled once it has checked-in passengers**, so on a trip with
+bookings the passengers do have to be dealt with first.
+
+## Next
+
+- [Update a Passenger's Status](/terminal-operator/update-passenger-status)
+- [Check In an NTL / LM Passenger](/terminal-operator/check-in-ntl-lm) — to put
+  someone back on.
+
+:::note[Screenshot needed]
+No screenshot exists of the **Cancel Passenger** confirmation dialog or of the
+Terminal Portal passenger **⋯ row menu**.
+:::

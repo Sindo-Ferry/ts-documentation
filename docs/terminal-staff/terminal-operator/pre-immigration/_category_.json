@@ -1,0 +1,10 @@
+{
+  "label": "Pre-Immigration",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-operator/pre-immigration",
+    "title": "Pre-Immigration",
+    "description": "The first scan point. Clear checked-in passengers through pre-immigration, undo a scan, and run the passenger-facing display."
+  }
+}

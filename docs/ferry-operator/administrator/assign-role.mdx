@@ -1,0 +1,134 @@
+---
+id: assign-role
+title: Assign a Role to a User
+sidebar_label: Assign role to a user
+sidebar_position: 7
+slug: /operator-administrator/assign-role
+description: Give a user one or more roles, revoke them, and check the resulting effective access.
+keywords:
+  - assign role
+  - revoke role
+  - user roles
+  - effective access
+  - super admin
+---
+
+Assigning a role is how a user actually gets their access. Everything up to this
+point has been preparation.
+
+> **Users → ⋯ → Manage Security → Roles tab → Assign / Revoke**
+
+**Permission needed:** `operator.security.is_super_admin`
+
+:::warning[Only a Super Admin can change a user’s roles]
+The buttons in both panels are gated on **`operator.security.is_super_admin`** — not
+on `operator.roles.write` or `operator.users.write`.
+
+So an ordinary administrator can **open this page and read it**, but the action
+buttons will not appear for them. If you can see the lists but not the buttons, that
+is why.
+:::
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/sign-in).
+- The [user exists](/operator-administrator/add-user) and the
+  [role exists](/operator-administrator/add-role) with
+  [its permissions set](/operator-administrator/manage-role-permissions).
+- You are a **Super Admin**.
+
+## Step 1 — Open the user's security profile
+
+Open **Users**, find the user, and use the row's **⋯** menu → **Manage
+Security** (route: `/users/edit?id=…`).
+
+The **User Security Profile** opens, headed with the user's name, email and any
+**Admin** / **Super Admin** badges. Confirm you have the right person — the email
+is shown under the username.
+
+Three tabs: **Roles**, **Direct Permissions** and **Effective Access**.
+
+## Step 2 — Open the Roles tab
+
+Two panels:
+
+| Panel | What it holds |
+| --- | --- |
+| **Available Roles** (left) | Roles the user does **not** hold. |
+| **Assigned Roles** (right) | Roles they **do** hold. Shown on a tinted background. |
+
+Both panels work the same way:
+
+- **Filter box** — type to narrow the list. With hundreds of permission strings,
+  this is the only practical way to find one.
+- **Tick the rows** you want. The **checkbox in the header** ticks everything
+  currently shown.
+- The action button shows the count — **Assign (3)** — and stays **disabled
+  until at least one row is ticked**.
+- Each panel scrolls independently; the selection clears after every action.
+
+## Step 3 — Assign a role
+
+Tick the roles in **Available Roles** and click **Assign (N)**. They move across
+immediately.
+
+## Step 4 — Revoke a role
+
+Tick the roles in **Assigned Roles** and click **Revoke (N)**.
+
+:::warning[No confirmation, immediate effect]
+Neither panel asks you to confirm. The change applies at once — including to a user
+who is mid-shift with the portal open.
+
+Revoking a scanning role from someone working the boarding gate stops them scanning
+straight away. Time these changes between shifts where you can.
+:::
+
+You must also revoke a role from every holder before the role itself can be
+[deleted](/operator-administrator/edit-delete-role#delete-a-role).
+
+## Step 5 — Check the result
+
+Open the **Effective Access** tab. It lists **every permission the user actually
+has** — the union of all their roles plus any
+[direct permissions](/operator-administrator/manage-user-permissions).
+
+This is the tab that answers _"why can this person do that?"_ and _"why can't
+they?"_ Check it after every change rather than assuming the role was enough.
+
+:::info[More than one role is fine]
+Roles add together. Someone who is both _Check-in Counter_ and _Boarding Gate
+Officer_ gets both sets of permissions. There is no ranking and no conflict —
+permissions only ever accumulate.
+:::
+
+## If a change is rejected
+
+| Message | What it means |
+| --- | --- |
+| _"One or more Role IDs are invalid."_ / _"Invalid Role IDs detected: …"_ | The page's list is stale — a role was deleted or renamed while you had it open. Reload and try again. |
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+| --- | --- |
+| Role assigned, but the user still cannot do the thing | The **role** has no such permission. Check [the role's permissions](/operator-administrator/manage-role-permissions), then the **Effective Access** tab. |
+| The user sees nothing after signing in | They have no roles, or their roles are empty. |
+| The user can do everything regardless of roles | They are an [**Admin**](/operator-administrator/grant-revoke-admin) — the flag bypasses all of this. |
+| No **Assign** / **Revoke** buttons | You are not a Super Admin. |
+| Changes do not appear for the user | Ask them to sign out and back in. |
+
+## Next
+
+- [Manage a User's Direct Permissions](/operator-administrator/manage-user-permissions)
+- [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user)
+
+:::note[Screenshot needed]
+No screenshot exists of the **User Security Profile** with its three tabs, the
+**Roles** tab's two panels, or the **Effective Access** tab's permission grid.
+:::

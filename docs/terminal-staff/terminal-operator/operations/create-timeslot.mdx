@@ -1,0 +1,155 @@
+---
+id: create-timeslot
+title: Create a Timeslot
+sidebar_label: Create timeslot
+sidebar_position: 2
+slug: /terminal-operator/create-timeslot
+description: Create and maintain departure timeslots — the recurring weekly schedule templates that trips are generated from.
+keywords:
+  - timeslot
+  - create timeslot
+  - departure timeslot
+  - recurring schedule
+  - weekday
+  - public holiday
+  - gate open
+  - gate close
+---
+
+A **timeslot** is a line in the recurring weekly schedule. It says: _this operator,
+on this route, with this vessel, departs at this time, on these days._
+
+Timeslots are **templates, not trips**. Nothing sails because a timeslot exists — the
+timeslot is what the system reads when it
+[generates trips for a date](/terminal-operator/generate-trips).
+
+> **Timeslots → Create Timeslot → fill in the form → Create Timeslot**
+
+:::note
+You need permission to manage timeslots. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The **operator**, the **route**, and an **active vessel** belonging to that
+  operator already exist. A timeslot is where those three come together, so if any
+  of them is missing you cannot finish the form.
+- If the sailing runs on holidays, the relevant
+  [public holidays are already configured](/terminal-operator/configure-public-holiday).
+  You pick **countries** here, not dates — so the dates have to exist first.
+
+## Step 1 — Open Timeslots
+
+In the sidebar, open **Management → Timeslots** (route: `/departure-timeslots`).
+
+You land on either the **Calendar** or the **List** view — use the
+**Calendar / List** toggle at the top right to switch. Both views describe the same
+timeslots; see [Check your work](#step-4--check-your-work) below.
+
+## Step 2 — Click Create Timeslot and fill in the form
+
+Click **Create Timeslot** and complete each field:
+
+| Field | What to enter |
+| --- | --- |
+| **Operator** | The ferry operator running the service (e.g. **Waterfront Ferry**). |
+| **Route** | The route it sails (e.g. **WFC - TMFT — Waterfront to Tanah Merah**). |
+| **Default Vessel** | The vessel to assign. This picker stays **disabled until you pick an operator**, and then lists only that operator's vessels. |
+| **Gate Open** / **Gate Close** / **Departure** | The three times for the sailing — e.g. gate open 10:40, gate close 11:10, depart **11:20 AM**. |
+| **Suffix** _(optional)_ | Only needed when two timeslots would otherwise be identical — see the warning below. |
+| **Days** | Tick **Weekday**, **Weekend**, **Public Holiday**, or individual days. **All Days** ticks everything at once. |
+| **Public Holiday countries** | Appears only once **Public Holiday** is ticked. Click **Select countries**, tick the countries whose [public holidays](/terminal-operator/configure-public-holiday) this sailing runs on (the header checkbox ticks the whole page), then **Done**. The countries you picked appear as chips you can remove one by one. |
+| **Active** | Ticked by default. **Only active timeslots generate trips.** |
+
+Then click **Create Timeslot**.
+
+![The Create Timeslot form filled in for Waterfront Ferry on the WFC–TMFT route departing 11:20 AM, running on weekdays and on Indonesian and Singaporean public holidays](/img/terminal-staff/timeslots/01-create-timeslot.png)
+_Creating a Waterfront Ferry timeslot on **WFC - TMFT**, departing **11:20 AM** — running **Monday–Friday** and additionally on **ID** and **SG** public holidays, shown as removable chips._
+
+## Step 3 — If the save is rejected
+
+The system checks four things before it saves. If one fails, fix it and save again:
+
+| Message you may see | What it means |
+| --- | --- |
+| Times are out of order | **Gate Open** must be at or before **Gate Close**, which must be at or before **Departure**. |
+| The vessel is not valid | The **Default Vessel** must **belong to the operator you picked** and must be **active**. |
+| A timeslot with this code already exists | Two timeslots sharing the **same operator, route and departure time** must have a **different Suffix** — otherwise they would generate two trips with the same code. |
+| Public Holiday needs a country | You ticked **Public Holiday** but picked no countries. Pick at least one, or untick the flag. |
+
+## Step 4 — Check your work
+
+The new timeslot appears in both views. Each view has its own **filter** (operator,
+route, status, and — in the list — day).
+
+### Calendar view
+
+The **Departure Timeslot Weekly Grid** lays timeslots out by **departure time**
+(rows) across the **days of the week** (columns), with **PH** as the last column.
+Each card shows the operator, route, vessel and Active/Inactive status; in the
+**PH** column the card also carries a small tag with the holiday **country codes**.
+An empty cell shows **+ Add**, which creates a timeslot for that time and day.
+
+- **Click a card to select the whole timeslot** — every day it runs on lights up
+  together, which is the quickest way to see one schedule as a single thing.
+- **Double-click a card to edit it.**
+
+![The calendar view filtered to the Harbourfront–Waterfront route, with the 07:00 timeslot selected and every day it runs on highlighted](/img/terminal-staff/timeslots/02-calendar-grouping.png)
+_Selecting the **07:00** timeslot highlights every day it runs on as one group — Mon–Sun **and** the **PH** column, whose card carries its **ID** and **SG** tags._
+
+### List view
+
+One row per timeslot, showing the **operator** (with day badges), **route**,
+**vessel**, **departure** (with the gate open–close window), and **status**. A
+timeslot that runs on holidays shows its countries in the badge — e.g.
+**Public Holiday (ID, SG)**. No badge means it does not run on holidays.
+
+![The Timeslots list view filtered to the Harbourfront–Waterfront route](/img/terminal-staff/timeslots/03-timeslots-list.png)
+_The list view, filtered to **Harbourfront to Waterfront** — each row's day badges show **Weekday**, **Weekend**, and where applicable **Public Holiday** with its country codes._
+
+## Step 5 — Change a timeslot later
+
+From the row **⋯ Actions** menu in the list view:
+
+- **Edit** — reopen the form.
+- **Activate / Deactivate** — turn the timeslot on or off for trip generation. A
+  deactivated timeslot stops producing new trips; trips it already produced are
+  unaffected until the next generation run.
+- **Delete** — remove it entirely.
+
+![The Actions menu on a timeslot row, showing Edit, Deactivate, and Delete](/img/terminal-staff/timeslots/04-list-actions.png)
+_The Actions menu — Edit, Deactivate, and Delete._
+
+:::tip[A timeslot can only be activated while its vessel is active]
+If the default vessel has been deactivated, you cannot reactivate the timeslot.
+Reactivate the [vessel](/terminal-staff/vessels) first, or point the timeslot at a
+different one.
+:::
+
+## How days actually work
+
+This trips people up, so it is worth being precise. The day rule is **additive** —
+a public holiday **adds** sailings, it never removes the ordinary weekday ones.
+
+| On a given date… | A timeslot runs when… |
+| --- | --- |
+| any date | its **weekday flag** for that day of the week is ticked |
+| the date is also a [public holiday](/terminal-operator/configure-public-holiday) in country X | _additionally_, its **Public Holiday** countries include **X** |
+
+So with a **Singapore** holiday falling on a Monday:
+
+- every timeslot with **Monday** ticked runs as normal;
+- a **Public Holiday (SG)** timeslot runs **as well** — an extra sailing that day;
+- a **Public Holiday (ID)**-only timeslot does **not**, because the date is not an
+  Indonesian holiday;
+- a timeslot with **both** Monday and Public Holiday (SG) ticked still generates
+  only **one** trip that day.
+
+## Next
+
+- [Generate Trips from Timeslots](/terminal-operator/generate-trips) — turn these
+  templates into real trips.
+- [Vessels](/terminal-staff/vessels) · [Public Holidays](/terminal-operator/configure-public-holiday)

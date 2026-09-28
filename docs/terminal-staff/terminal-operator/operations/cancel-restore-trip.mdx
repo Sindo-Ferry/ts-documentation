@@ -1,0 +1,112 @@
+---
+id: cancel-restore-trip
+title: Cancel and Restore a Trip
+sidebar_label: Cancel and restore trip
+sidebar_position: 5
+slug: /terminal-operator/cancel-restore-trip
+description: Cancel a scheduled departure trip that will not run, and restore a cancelled trip back to Scheduled.
+keywords:
+  - cancel trip
+  - restore trip
+  - cancelled
+  - departure trips
+  - un-cancel
+---
+
+When a sailing will not run, **cancel** the trip so it stops appearing as a live
+service. If the decision is reversed, **restore** it back to **Scheduled**.
+
+> **Departure Trips → ⋯ Actions → Cancel Trip / Restore Trip → Confirm**
+
+:::note
+You need permission to cancel and restore departure trips. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You know which trip you mean. Cancelling is easy to do to the wrong row — check
+  the trip **code**, **date** and **departure time** before you confirm.
+
+## Step 1 — Find the trip
+
+Open **Management → Departure Trips** (route: `/departure-trips`) and locate the
+trip in either the **Calendar** or the **List** view. Use **Show Filters** or the
+**Trip Date** filter to narrow things down — by default you are only seeing the
+coming week.
+
+To read the trip in full before acting, click the card (or its **View** button) in
+the calendar, or use **⋯ Actions → View Detail** in the list. The detail page shows
+the trip info, a **status timeline** (Scheduled → Boarding → Closed → Departed) and
+the passenger list.
+
+![A departure trip's detail page](/img/terminal-staff/departure-trips/07-trip-detail.png)
+_The trip detail page — trip info, status timeline, and passengers._
+
+## Step 2 — Cancel the trip
+
+Open the row **⋯ Actions** menu — available in **both** the calendar and the list —
+and choose **Cancel Trip**.
+
+![The Actions menu on a scheduled trip](/img/terminal-staff/departure-trips/03-actions-menu.png)
+_A **Scheduled** trip's Actions menu — **View Detail** and **Cancel Trip**._
+
+A confirmation appears: **Cancel Trip?** — _"This will cancel the trip and affect
+all passengers. This action cannot be undone."_ Click **Confirm Cancel**.
+
+The trip's status becomes **Cancelled**.
+
+:::warning[Only Scheduled trips can be cancelled]
+**Cancel Trip** is offered on **Scheduled** trips only. Try it on a trip that is
+already Boarding, Closed or Departed and the system rejects it —
+_"Only scheduled trips can be cancelled. Current status is …"_
+
+A trip **cannot be cancelled once it has checked-in passengers** either:
+_"Cannot cancel a trip that already has checked-in passengers."_ Deal with the
+passengers first — see
+[Cancel a Passenger](/terminal-operator/cancel-passenger).
+:::
+
+## Step 3 — Restore a cancelled trip
+
+**Restore Trip** is "un-cancel", so it appears only on **Cancelled** trips. Open
+the row **⋯ Actions** menu and choose **Restore Trip**.
+
+The confirmation reads **Restore Trip?** — _"This returns the trip to Scheduled
+status. Only future trips with no active slot conflict can be restored."_ Click
+**Confirm Restore**.
+
+The trip returns to **Scheduled**.
+
+## When a restore is blocked
+
+A restore only goes through when every one of these is true. If one is not, the
+message tells you which:
+
+| Condition | Message if it fails |
+| --- | --- |
+| The trip is actually cancelled | _"Only cancelled trips can be restored. Current status is …"_ |
+| Its departure time is still in the future | _"Cannot restore a trip whose departure time has already passed."_ |
+| No other active trip uses its code | _"An active trip with code '…' already exists."_ |
+| Its operator is active | _"The trip's operator is inactive. Reactivate it before restoring the trip."_ |
+| Its route is active | _"The trip's route is inactive. Reactivate it before restoring the trip."_ |
+| Its vessel is active | _"The trip's vessel is inactive. Reactivate it before restoring the trip."_ |
+
+Each of these is fixable: reactivate the [vessel](/terminal-staff/vessels),
+[route](/terminal-staff/routes) or [operator](/terminal-staff/operators) and try
+again. A trip whose **departure time has passed** cannot be restored at all — if
+the service is still needed, create an
+[ad hoc trip](/terminal-operator/create-ad-hoc-trip) instead.
+
+:::tip
+A cancelled trip is **not** deleted. It stays in the list with a **Cancelled**
+badge, which is what you want — the record of the cancellation is part of the day's
+history.
+:::
+
+## Next
+
+- [Set a Trip as Boarding](/terminal-operator/set-trip-as-boarding)
+- [Create an Ad Hoc Trip](/terminal-operator/create-ad-hoc-trip)

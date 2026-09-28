@@ -1,0 +1,96 @@
+---
+id: add-role
+title: Add a New Role
+sidebar_label: Add new role
+sidebar_position: 1
+slug: /operator-administrator/add-role
+description: Create a security role in the Operator Portal — the named bundle of permissions you then assign to users.
+keywords:
+  - role
+  - create role
+  - new role
+  - security
+  - permissions
+---
+
+A **role** is a named bundle of permissions — _Boarding Gate Officer_,
+_Check-in Counter_, _Head of Operations_. You create the role here, give it
+permissions, then assign it to people.
+
+> **Roles → Create Role → name it → Create Role**
+
+:::info[Roles are the right way to grant access]
+You *can* give a person permissions directly, but roles are what you should reach
+for. One change to a role updates everyone who holds it; direct permissions have to
+be fixed person by person. See
+[Manage a User's Direct Permissions](/operator-administrator/manage-user-permissions).
+:::
+
+**Permission needed:** `operator.roles.write`
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/sign-in).
+- You hold `operator.roles.write`. Without it the **Create Role** button does not
+  appear.
+- You know roughly which permissions the role will need — though you assign those
+  in the [next step](/operator-administrator/manage-role-permissions), not here.
+
+## Step 1 — Open Roles
+
+In the sidebar, **Roles** and **Users** are top-level items. Open **Roles** (route: `/roles`).
+
+The list shows one row per role, with a **search** box and a **⋯** actions menu on
+each row.
+
+## Step 2 — Click Create Role
+
+**Create Role** is at the top right. The **Add New Role** page opens with a single
+form, headed **New Role** — _"Define the identity of this security role."_
+
+## Step 3 — Name the role
+
+| Field | Rules |
+| --- | --- |
+| **Role Name** | At least **2 characters**. Must be **unique**. Example placeholder: _e.g. Project Manager_. |
+
+Then click **Create Role**. You are returned to the Roles list.
+
+:::tip[Name it after the job, not the person]
+_Boarding Gate Officer_ ages well; _Budi's role_ does not. The name is what the next
+administrator reads when deciding who should hold it, and it is also what you must
+type to [delete the role](/operator-administrator/edit-delete-role#delete-a-role) later.
+:::
+
+## If the save is rejected
+
+| Message | What it means |
+| --- | --- |
+| _"Role name must be at least 2 characters."_ | The form's own check, before anything is sent. |
+| _"Role name is required."_ | The name arrived empty. |
+| _"Role name must be unique."_ | A role with that name already exists. Check the list — you may be about to duplicate one that already does the job. |
+
+## What you have now — and what is missing
+
+The role exists, but it is **empty**. A role with no permissions grants nothing, and
+assigning it to someone changes nothing about what they can do.
+
+Two steps remain:
+
+1. [Give the role its permissions](/operator-administrator/manage-role-permissions).
+2. [Assign the role to a user](/operator-administrator/assign-role).
+
+## Next
+
+- [Manage a Role's Permissions](/operator-administrator/manage-role-permissions)
+- [Edit or Delete a Role](/operator-administrator/edit-delete-role)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Roles** list (with the row **⋯** menu open) or of the
+**Add New Role** form.
+:::

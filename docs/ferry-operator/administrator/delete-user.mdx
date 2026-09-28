@@ -1,0 +1,117 @@
+---
+id: delete-user
+title: Delete a User
+sidebar_label: Delete user
+sidebar_position: 9
+slug: /operator-administrator/delete-user
+description: Permanently remove a portal user — why it requires deactivating them first, and why deactivating is usually the better answer.
+keywords:
+  - delete user
+  - remove user
+  - inactive
+  - permanent
+---
+
+Deleting a user removes them from the portal permanently. It is guarded by two
+things: they must be **inactive** first, and you must **type their username** to
+confirm.
+
+> **Users → ⋯ → Delete User → type the username → Confirm Delete**
+
+**Permission needed:** `operator.users.write`
+
+:::danger[Consider deactivating instead]
+[Deactivating](/operator-administrator/activate-deactivate-user) blocks sign-in **immediately**,
+is **reversible**, and keeps the person's roles, permissions and history intact for
+audit.
+
+Deleting is permanent and cannot be undone from the portal. For someone who has
+left, deactivating is almost always the right answer — you lose nothing by keeping
+the record.
+:::
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/sign-in).
+- The user is already **Inactive** — see
+  [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user). An active
+  user cannot be deleted.
+- You hold `operator.users.write`.
+
+## Step 1 — Deactivate them first
+
+Open **Users**, find the user, and use **⋯ → Set Inactive**. The badge
+changes to **Inactive**.
+
+:::info[You may need a Super Admin for this step]
+In the Operator Portal, deleting needs only `operator.users.write` — but **deactivating
+needs a Super Admin**. If you can delete but not deactivate, ask a Super Admin to
+switch the user off first, then come back and delete.
+:::
+
+Skip this and the delete is refused — see [below](#if-the-delete-is-refused).
+
+:::tip[The two-step order is the safety rail]
+Requiring deactivation first means nobody can delete a working account in a single
+click. It also gives you a pause: once deactivated, their access is already gone, so
+there is rarely any urgency to delete at all.
+:::
+
+## Step 2 — Delete
+
+1. Open the row's **⋯** menu → **Delete User** (in red).
+2. The **Delete User Account?** dialog asks you to type the username: _"Type
+   **"username"** to confirm deletion. This action cannot be reversed."_
+3. **Type the username exactly.** **Confirm Delete** stays **disabled until it
+   matches**, including capitals.
+4. Click **Confirm Delete**.
+
+## If the delete is refused
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Active users cannot be deleted. Please set the user as inactive before deletion."_ | The user is still Active. | [Deactivate them](/operator-administrator/activate-deactivate-user), then delete. |
+| _"The super admin account cannot be deleted."_ | You are trying to delete the system owner account. | Not possible, by design. |
+
+## What deleting does and does not do
+
+| | |
+| --- | --- |
+| **The portal user is removed** | They disappear from the Users list and can no longer be assigned roles or permissions. |
+| **Their sign-in account is untouched** | The email-and-password account created at [registration](/register-account) is separate and still exists. They can sign in and will be told they are not provisioned. |
+| **Audit history** | Actions they took are recorded against their username. Deleting the user does not rewrite that history. |
+| **Other portals are unaffected** | A user record in the other portal is separate and stays. |
+
+:::warning[Deleting does not revoke their sign-in]
+Because the two accounts are separate, deleting the portal user only removes their
+**access to this portal**. If the concern is the person's account itself rather than
+their portal access, raise it with the development team.
+:::
+
+## Choosing between the options
+
+| Situation | Do this |
+| --- | --- |
+| Someone has left | **Deactivate.** Keeps the audit trail. |
+| Someone is suspended or under investigation | **Deactivate.** Instant and reversible. |
+| Someone changed job | Keep them active, change their [roles](/operator-administrator/assign-role). |
+| Duplicate record created by mistake, never used | Deactivate, then **delete**. |
+| A test account | Deactivate, then **delete**. |
+
+The honest summary: **delete is for records that should never have existed.** For
+real people who have moved on, deactivate.
+
+## Next
+
+- [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user)
+- [Add a New User](/operator-administrator/add-user)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Delete User Account?** dialog with its type-the-username
+confirmation box.
+:::

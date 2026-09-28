@@ -1,0 +1,129 @@
+---
+id: set-trip-as-boarding
+title: Set a Trip as Boarding
+sidebar_label: Set Trip as Boarding
+sidebar_position: 6
+slug: /terminal-operator/set-trip-as-boarding
+description: Open a scheduled trip for boarding by assigning its gate and berth, from Current Trips.
+keywords:
+  - set as boarding
+  - gate
+  - berth
+  - current trips
+  - boarding
+  - trip status
+---
+
+Setting a trip to **Boarding** is the moment the day's operation starts for that
+sailing. It does two things at once: it **opens boarding**, and it **assigns the
+gate and the berth** passengers will be sent to.
+
+> **Current Trips → open the trip → Set As Boarding → pick Gate & Berth → confirm**
+
+:::warning[Trip status only moves forward]
+**Scheduled → Boarding → Closed → Departed** (or **Cancelled**). Each action is
+only available at the right status, and none of them can be undone. **Set As
+Boarding** is offered on **Scheduled** trips only.
+:::
+
+:::note
+You need permission to view Current Trips and assign trips to boarding. The
+screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context). **Current
+  Trips only shows today's trips at your active port**, so if the list looks empty
+  or wrong, check the port first.
+- The [gate](/terminal-staff/gates) and [berth](/terminal-staff/berths) you intend
+  to use exist at that port and are marked **Active**.
+
+## Step 1 — Open Current Trips and select the trip
+
+In the sidebar, open **Operational → Current Trips**
+(route: `/current-departure-trips`). This lists **today's** departure trips with
+their vessel, destination, departure time, status and live passenger counts.
+
+Click the trip's row to open its **detail page**.
+
+![Current Departure Trips list](/img/terminal-staff/check-in-ntl-lm-passenger/01-current-trips.png)
+_The Current Departure Trips list — today's trips at your active port._
+
+## Step 2 — Click Set As Boarding
+
+On the trip's detail page, while the **Status** is **Scheduled**, click **Set As
+Boarding** at the top right. Until you assign them, the **Gate / Berth** field
+reads `- / -`.
+
+![Scheduled trip detail with the Set As Boarding button](/img/terminal-staff/manage-departure-trip/01-set-as-boarding.png)
+_A Scheduled trip. The **Set As Boarding** button is at the top right._
+
+:::tip[You can also do this without opening the trip]
+The **⋯** menu on the trip's row in the Current Trips list offers **Set As
+Boarding** directly. The dialog is the same.
+:::
+
+## Step 3 — Choose a gate and a berth
+
+A dialog opens: **Set As Boarding — Assign a gate and berth for _[trip code]_ to
+begin boarding.**
+
+1. Click **Gate** and pick one from the **Select active gate** picker.
+2. Click **Berth** and pick one the same way.
+3. Click **Set As Boarding** to confirm.
+
+![Assign a gate and berth dialog](/img/terminal-staff/manage-departure-trip/02-assign-gate-berth.png)
+_The Set As Boarding dialog — choose a Gate and Berth, then confirm._
+
+![Select Gate picker](/img/terminal-staff/manage-departure-trip/03-select-gate.png)
+_The gate picker lists active gates for the trip's origin port; the berth picker works the same way._
+
+:::warning[Both are required]
+The confirm button stays **disabled until a gate and a berth are both selected**.
+You cannot open boarding without them.
+:::
+
+:::tip[If the gate or berth you want isn't listed]
+The pickers are filtered to gates and berths that are **Active** and **belong to the
+trip's origin port**. If yours is missing, check it under
+[Gates](/terminal-staff/gates) or [Berths](/terminal-staff/berths) — it is probably
+inactive, or registered against a different port.
+:::
+
+## Step 4 — Outcome
+
+The trip's **Status** changes to **Boarding**, the gate and berth are saved onto the
+trip, and a prompt appears:
+
+> **Trip Set As Boarding** — Open the Boarding Scan page now?
+
+Choose **Open Boarding Scan** to launch the
+[Boarding Scan](/terminal-operator/boarding-scan) page in a new tab, or **Not Now**
+if someone else at the gate is already running it.
+
+![The Boarding Scan page shown after a trip is set to Boarding](/img/terminal-staff/manage-departure-trip/04-outcome.png)
+_The Boarding Scan page, with the newly boarding trip in the Boarding Trips list._
+
+From here the trip is live:
+
+- It appears in the **Boarding Trips** panel on
+  [Boarding Scan](/terminal-operator/boarding-scan), where gate staff scan
+  passengers aboard.
+- Passengers can still clear
+  [pre-immigration](/terminal-operator/pre-immigration-scan) — and once the trip is
+  Boarding, the **gate open / close window no longer restricts pre-immigration
+  scanning**.
+- You can still
+  [check in NTL / LM passengers](/terminal-operator/check-in-ntl-lm) onto it and
+  [update its timings](/terminal-operator/update-timings).
+- When boarding is done, [close the trip](/terminal-operator/set-trip-as-close).
+
+## Next
+
+- [Boarding Scan](/terminal-operator/boarding-scan) — board the passengers.
+- [Update Timings](/terminal-operator/update-timings) — adjust gate times or record
+  a delay.
+- [Set a Trip as Close](/terminal-operator/set-trip-as-close)

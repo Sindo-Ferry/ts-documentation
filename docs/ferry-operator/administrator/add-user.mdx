@@ -1,0 +1,142 @@
+---
+id: add-user
+title: Add a New User
+sidebar_label: Add new user
+sidebar_position: 4
+slug: /operator-administrator/add-user
+description: Create a portal user for your ferry operator’s staff, and understand how it connects to their sign-in account.
+keywords:
+  - create user
+  - new user
+  - add user
+  - username
+  - email
+---
+
+Creating a portal user is one half of giving someone access. The other half is
+**their own registration** — and the two are matched by **email address**.
+
+> **Users → Create User → username + email → Create User**
+
+**Permission needed:** `operator.users.write`
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## How the two accounts fit together
+
+:::warning[Read this before you create anyone]
+There are **two separate things** with the same person behind them:
+
+| | Created by | Holds |
+| --- | --- | --- |
+| **Sign-in account** | The person, at [Register an Account](/register-account) | Email + password |
+| **Portal user** | **You**, here | Username, roles, permissions, active flag |
+
+They are linked **by email address, at sign-in time**. If the two emails differ by
+so much as a typo, the person will confirm their email, you will activate their
+user, and they will *still* be told their account is not provisioned — with nothing
+obviously wrong on either side.
+
+**Use the exact email address the person registered with.**
+:::
+
+## Before you start
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/sign-in).
+- You hold `operator.users.write`. Without it the **Create User** button does not
+  appear.
+- You know the **exact email address** the person has registered — or will register
+  — with.
+
+## Step 1 — Open Users
+
+In the sidebar, **Roles** and **Users** are top-level items. Open **Users** (route: `/users`).
+
+Each row shows the **username** with the **email** beneath it, and status badges:
+**Active** / **Inactive**, plus **Admin** and **Super Admin** where they apply.
+
+## Step 2 — Click Create User
+
+**Create User** is at the top right. The **New User** form has exactly two fields.
+
+## Step 3 — Fill in the two fields
+
+| Field | Rules |
+| --- | --- |
+| **Username** | At least **3 characters**. Must be **unique**. This is the display name across the portal and the audit trail. |
+| **Email Address** | Must be a valid email, and **must match the address on their sign-in account**. Must be unique. |
+
+Then click **Create User**.
+
+:::info[There is no Admin tick on this form]
+Administrator status is **not** set at creation — the form is username and email
+only. To make someone an admin, create them first, then use
+[Grant or Revoke the Admin Role](/operator-administrator/grant-revoke-admin).
+:::
+
+## Step 4 — What happens next
+
+On success you see a toast: **"User created — a notification email has been sent to
+_[email]_."**
+
+The person receives a **"You've been added to _[system name]_"** email containing a
+link to the **registration** page, reminding them to register with that same address
+if they have not already.
+
+:::tip[The email is best-effort]
+The user record is saved **first**, and the email is queued afterwards. If the mail
+system is having a bad day, the **user is still created** — you just will not get
+the toast's promise honoured. Tell the person directly rather than assuming the
+email arrived.
+:::
+
+## Step 5 — Activate them
+
+A new user **cannot sign in yet**. Two more things are needed:
+
+1. **They register** (or have already registered) with the matching email and
+   confirm it — see [Register an Account](/register-account).
+2. **You activate them** — see
+   [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user).
+   In the Operator Portal this needs a **Super Admin**, even if you created the user.
+
+Then give them access:
+
+3. [Assign a role](/operator-administrator/assign-role) — otherwise they can sign in and see
+   almost nothing.
+
+## If the save is rejected
+
+| Message | What it means |
+| --- | --- |
+| _"Username is required."_ | The username arrived empty. |
+| _"Username is already taken."_ | Another user has it. Usernames are unique. |
+| _"Email is required."_ | The email arrived empty. |
+| _"Email is already registered."_ | A portal user already exists with that address — search the Users list before creating a second one. |
+| _"Invalid email address."_ | The form's own format check. |
+
+## Troubleshooting: "not provisioned" after everything looks right
+
+The person signs in and still sees _"Login succeeded, but your account is not
+provisioned for Opusbay access. Please contact your administrator."_ Work through
+these in order:
+
+1. **Is the portal user Active?** An inactive user gets exactly this message.
+2. **Do the emails match exactly?** Compare the address on their row here against
+   the one they registered with. This is the most common cause.
+3. **Have they confirmed their email?** Registration is not complete until they do.
+4. **Are they in the right portal?** A Terminal Portal user cannot sign in to the
+   Operator Portal, or vice versa — they need a user record in each.
+
+## Next
+
+- [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user)
+- [Assign a Role to a User](/operator-administrator/assign-role)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Users** list (showing the status badges and the row
+**⋯** menu) or of the **New User** form.
+:::

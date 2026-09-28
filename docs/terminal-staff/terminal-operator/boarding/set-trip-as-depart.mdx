@@ -1,0 +1,96 @@
+---
+id: set-trip-as-depart
+title: Set a Trip as Depart
+sidebar_label: Set trip as Depart
+sidebar_position: 5
+slug: /terminal-operator/set-trip-as-depart
+description: Record that a closed trip has sailed — the final step in a trip's life, which finalizes it and releases the manifest.
+keywords:
+  - set as depart
+  - departed
+  - finalize trip
+  - manifest
+  - trip status
+---
+
+Marking a trip **Departed** records that the vessel has actually left. It is the
+last thing that happens to a trip.
+
+> **Boarding Scan (or Current Trips) → Set As Departed → confirm**
+
+:::warning[Final — cannot be changed]
+Departing a trip **finalizes** it. Nothing further can be done to the trip or its
+passengers afterwards, and the trip leaves the Current Trips working list. Do it
+when the vessel has **actually sailed**, not when you expect it to.
+:::
+
+## Before you depart
+
+- The trip is **Closed**. **Set As Depart** is not offered on a **Boarding** trip —
+  [close it first](/terminal-operator/set-trip-as-close).
+- The vessel has left the berth.
+- Any passenger corrections are done. After departure the trip is read-only.
+
+## Where you can do it
+
+Same three places as closing:
+
+1. **From the Boarding Scan page** — **Set As Departed** on the Closed trip's card
+   in the Boarding Trips panel.
+2. **From the trip's detail page** — **Operational → Current Trips**, open the
+   trip, then **Set As Depart** at the top right.
+3. **From the Current Trips list** — the row's **⋯** menu.
+
+## Confirm
+
+A dialog opens headed **Set As Departed**, with the trip's **code · date ·
+departure time**, and:
+
+> Mark this trip as departed. This finalizes the trip and enables sending the
+> passenger manifest. This cannot be undone.
+
+Click **Set As Departed**.
+
+## Outcome
+
+- The trip's status becomes **Departed**.
+- It **disappears from the Boarding Trips panel** on the Boarding Scan page — that
+  panel only carries Boarding and Closed trips. This is normal, and it is how you
+  know the departure registered.
+- On the trip's detail page, a **Download Manifest** button appears — see
+  [Download the Manifest](/terminal-operator/download-manifest).
+- Every action on the trip is now gone. No boarding, no reverts, no timing changes,
+  no check-ins.
+
+![The trip detail page after departure — Departed status with Download Manifest](/img/terminal-staff/manage-departure-trip/06-departed-outcome.png)
+_The finalized, **Departed** trip with its manifest ready to download._
+
+## Status order cannot be skipped
+
+| On a trip that is… | **Set As Depart** is… |
+| --- | --- |
+| Scheduled | **not offered** |
+| Boarding | **not offered** — [close it first](/terminal-operator/set-trip-as-close) |
+| Closed | offered |
+| Departed / Cancelled | **not offered** |
+
+Force it through and the system answers _"Only closed trips can be departed. Current
+status is …"_
+
+## The full lifecycle, in one place
+
+| Status | What it means | How it got there |
+| --- | --- | --- |
+| **Scheduled** | Planned and listed; passengers can be checked in; not yet open for boarding. | [Generated from a timeslot](/terminal-operator/generate-trips), or [created ad hoc](/terminal-operator/create-ad-hoc-trip) |
+| **Boarding** | Boarding is open; a gate and berth are assigned. | [Set As Boarding](/terminal-operator/set-trip-as-boarding) |
+| **Closed** | Boarding is over; no more passengers can board. | [Set As Close](/terminal-operator/set-trip-as-close) |
+| **Departed** | The vessel has sailed; the trip is finalized. | **Set As Depart** |
+| **Cancelled** | The trip will not run. | [Cancel Trip](/terminal-operator/cancel-restore-trip) — only from Scheduled |
+
+It only ever moves **forward**. The only way back is **Cancelled → Scheduled** via
+[Restore](/terminal-operator/cancel-restore-trip).
+
+## Next
+
+- [Download the Manifest](/terminal-operator/download-manifest) — the official list
+  of who sailed.

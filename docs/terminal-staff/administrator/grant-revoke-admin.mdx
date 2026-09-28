@@ -1,0 +1,130 @@
+---
+id: grant-revoke-admin
+title: Grant or Revoke the Admin Role
+sidebar_label: Grant / revoke admin role
+sidebar_position: 6
+slug: /terminal-administrator/grant-revoke-admin
+description: Give a user administrator status — full access that bypasses roles and permissions — or take it away.
+keywords:
+  - admin
+  - grant admin
+  - revoke admin
+  - super admin
+  - privileges
+---
+
+The **Admin** flag is not a role. It is an override that gives a user **full access
+to everything**, ignoring their roles and permissions entirely.
+
+> **Users → ⋯ → Grant Admin / Revoke Admin → Confirm**
+
+**Permission needed:** `terminal.security.is_super_admin`
+
+:::danger[Admin bypasses every permission check]
+The confirmation says it plainly: granting admin gives the user _"full access to all
+system features, **bypassing standard role restrictions**."_
+
+Nothing you configure with [roles](/terminal-administrator/add-role) or
+[direct permissions](/terminal-administrator/manage-user-permissions) limits an Admin. Grant it
+only where someone genuinely needs to administer the portal — not as a shortcut
+when a role is fiddly to get right.
+:::
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You are a **Super Admin**. Ordinary administrators see the menu item disabled.
+
+## Step 1 — Find the user
+
+Open **Security → Users**. Existing administrators carry an **Admin** badge in the
+**Status** column; the system owner carries an amber **Super Admin** badge.
+
+## Step 2 — Grant or revoke
+
+Two routes, same dialog:
+
+- **From the list** — the row's **⋯** menu → **Grant Admin** or **Revoke Admin**.
+- **From the user's profile** — **⋯ → Manage Security** opens the **User Security
+  Profile**, which shows **Admin Access: Enabled / Disabled** and a matching
+  **Grant Admin** / **Revoke Admin** button. The button is disabled on the Super
+  Admin's own profile.
+
+:::warning[On the profile page, an ordinary Admin sees a button that won't work]
+In the Terminal Portal, the profile page's **Grant Admin** / **Revoke Admin** button is
+shown to any **Admin** — but the change itself is only accepted from a **Super
+Admin**. An Admin who clicks it and confirms gets an error, and nothing changes.
+
+If that happens, you are not a Super Admin. The **⋯** menu on the Users list is the
+more reliable guide: it disables the item for anyone who cannot actually use it.
+:::
+
+
+## Step 3 — Confirm
+
+**Granting:**
+
+> **Grant Administrator Privileges?** — This will grant **[username]** full access to
+> all system features, bypassing standard role restrictions.
+
+**Revoking:**
+
+> **Revoke Administrator Privileges?** — This will remove administrative overrides
+> for **[username]**. They will revert to standard role-based access.
+
+Click **Confirm Grant** / **Confirm Revoke**.
+
+## What changes
+
+| | Granting | Revoking |
+| --- | --- | --- |
+| Access | Everything, immediately | Falls back to their roles and direct permissions |
+| Roles | Untouched — still assigned, just irrelevant while Admin | Become effective again |
+| Badge | **Admin** appears on their row | Disappears |
+
+:::warning[Revoking can strip someone bare]
+A user who was made an Admin **before** anyone assigned them roles has no
+underlying access at all. Revoke the flag and they fall back to nothing — they can
+sign in and see almost nothing.
+
+Before revoking, open their **Roles** tab and check they have something to fall back
+on. See [Assign a Role to a User](/terminal-administrator/assign-role).
+:::
+
+## Admin vs. Super Admin
+
+| | **Admin** | **Super Admin** |
+| --- | --- | --- |
+| What it does | Full access to portal features | Full access **plus** the security controls — role permissions, user roles, direct permissions, and granting admin |
+| How it is set | Granted here by a Super Admin | Not settable from the portal |
+| Can be revoked | Yes | **No** — _"Super Admin's administrator priviledges cannot be revoked."_ |
+| Can be deactivated | Yes | **No** |
+| Can be deleted | Yes, once inactive | **No** |
+
+The Super Admin is the system owner account. It exists so the portal can never lock
+itself out of its own administration, which is why none of the destructive actions
+apply to it.
+
+:::info[Why the security pages need Super Admin]
+[Role permissions](/terminal-administrator/manage-role-permissions),
+[user roles](/terminal-administrator/assign-role) and
+[direct permissions](/terminal-administrator/manage-user-permissions) all gate their action
+buttons on Super Admin — so an ordinary Admin can run the portal but cannot quietly
+widen their own access.
+:::
+
+## Next
+
+- [Assign a Role to a User](/terminal-administrator/assign-role)
+- [Manage a User's Direct Permissions](/terminal-administrator/manage-user-permissions)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Grant Administrator Privileges?** confirmation dialog,
+or of the **User Security Profile** header showing the **Admin Access** panel with
+its Grant/Revoke button.
+:::

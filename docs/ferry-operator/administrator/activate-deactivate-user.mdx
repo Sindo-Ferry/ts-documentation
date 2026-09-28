@@ -1,0 +1,117 @@
+---
+id: activate-deactivate-user
+title: Activate or Deactivate a User
+sidebar_label: Activate / deactivate a user
+sidebar_position: 5
+slug: /operator-administrator/activate-deactivate-user
+description: Switch a portal user between Active and Inactive — the on/off switch for portal access.
+keywords:
+  - activate user
+  - deactivate user
+  - active
+  - inactive
+  - access
+---
+
+**Active / Inactive** is the on/off switch for someone's access. It is the fastest
+way to stop access, and the last step in setting someone up.
+
+> **Users → ⋯ → Set Active / Set Inactive**
+
+**Permission needed:** `operator.security.is_super_admin`
+
+:::warning[In the Operator Portal, only a Super Admin can do this]
+Switching a user on or off here needs **`operator.security.is_super_admin`** — not
+`operator.users.write`. An administrator who can create and delete users still
+**cannot** activate them, and sees the menu item disabled.
+
+In practice this means a new user needs a **Super Admin** to switch them on, even if
+someone else created them.
+:::
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Operator Portal — see
+  [Sign In to the Operator Portal](/ferry-operator/sign-in).
+- The [portal user exists](/operator-administrator/add-user).
+- You hold `operator.security.is_super_admin`.
+
+## Step 1 — Find the user
+
+Open **Users**. The **Status** column shows an **Active** (green) or
+**Inactive** (red) badge on every row.
+
+Use **Show Filters** to list only active or only inactive users — the quickest way
+to find people waiting to be switched on.
+
+## Step 2 — Toggle the status
+
+Open the row's **⋯** menu. Under **Security Flags** there is a single item that
+reflects the current state:
+
+- **Set Active** — on an inactive user.
+- **Set Inactive** — on an active user.
+
+A confirmation appears:
+
+- **Set User as Active?** — _"This will restore **[username]** access to the
+  operator portal."_
+- **Set User as Inactive?** — _"This will prevent **[username]** from accessing the
+  operator portal."_
+
+Click **Confirm Set Active** / **Confirm Set Inactive**, or **Cancel**.
+
+The badge on the row updates.
+
+## What each status means
+
+| Status | Effect |
+| --- | --- |
+| **Active** | The person can sign in, subject to their roles and permissions. |
+| **Inactive** | Sign-in is refused with _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ Their roles, permissions and history are all kept. |
+
+:::info[Deactivating is not deleting]
+An inactive user keeps everything — roles, direct permissions, audit trail. Flip
+them back to Active and they carry on exactly as before.
+
+It is also a **prerequisite** for deletion: a user must be inactive before they can
+be [deleted](/operator-administrator/delete-user).
+:::
+
+## The Super Admin cannot be deactivated
+
+Attempting it is refused with _"Super Admin cannot be set to inactive."_.
+
+This is deliberate — it stops the system being locked out of its own
+administration. If the Super Admin account needs to change hands, that is a
+job for the development team.
+
+## When to use which
+
+| Situation | Do this |
+| --- | --- |
+| New user, everything else is ready | **Set Active** |
+| Someone leaves, or is suspended | **Set Inactive** — immediate, and reversible |
+| Seasonal staff between seasons | **Set Inactive**, then **Set Active** when they return |
+| Someone changes role | Leave them active; change their [roles](/operator-administrator/assign-role) instead |
+| Account created in error, never used | **Set Inactive**, then [delete](/operator-administrator/delete-user) |
+
+:::tip[Deactivate first, ask questions later]
+When you suspect an account is compromised or misused, **deactivate it**. It is
+instant, it is reversible, and it buys time to investigate. Deleting destroys the
+evidence.
+:::
+
+## Next
+
+- [Assign a Role to a User](/operator-administrator/assign-role)
+- [Delete a User](/operator-administrator/delete-user)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Users** row **⋯** menu showing **Set Active** /
+**Set Inactive** under **Security Flags**, nor of the **Set User as Active? / Inactive?** confirmation dialog.
+:::

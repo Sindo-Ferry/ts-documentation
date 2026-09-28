@@ -1,0 +1,126 @@
+---
+id: download-manifest
+title: Download the Manifest
+sidebar_label: Download manifest
+sidebar_position: 7
+slug: /terminal-operator/download-manifest
+description: Download a trip's passenger manifest as an Excel file in English or Indonesian — who appears on it, and where the button lives.
+keywords:
+  - passenger manifest
+  - download manifest
+  - export
+  - xlsx
+  - excel
+  - english
+  - indonesian
+---
+
+The **manifest** is the official list of who actually sailed. It is an Excel file,
+available in **English** or **Indonesian**, and it lists **Boarded passengers
+only**.
+
+> **Open the trip → Download Manifest → English / Indonesian**
+
+## What is on it
+
+Only passengers whose final status is **Boarded**, ordered by check-in time.
+Passengers who were checked in but never boarded, and passengers who were cancelled,
+are **left out**. The number of rows equals the trip's **Boarded** count.
+
+For each passenger the file carries the trip details (code, date, departure, route,
+vessel) plus the passenger's **No**, **name**, **gender**, **date of birth**,
+**nationality**, **issue country**, **issue / expiry dates**, **boarding pass
+number**, **passenger type** and **status**.
+
+:::info[Both languages list the same people]
+Choosing Indonesian changes the **wording of the headings and labels**, not the
+passengers. Download both and the rows match line for line.
+:::
+
+## Where to find the button — and when it works
+
+This catches people out, because the two pages behave differently.
+
+| Where you are | Download Manifest appears when the trip is… |
+| --- | --- |
+| **Operational → Current Trips** → trip detail | **Departed** only |
+| **Management → Departure Trips** → trip detail | **Closed or Departed** |
+| **Management → Departure Trips** → list view, row **⋯** menu | **Closed or Departed** |
+
+So: on **Current Trips** the button is absent on Scheduled, Boarding and Closed
+trips, and appears only once the trip has **Departed**. If you need the manifest for
+a trip that is **Closed but not yet departed**, go to **Departure Trips** instead —
+that page allows it as soon as the trip is closed.
+
+On the **Departure Trips detail page** the button is visible but **greyed out** on a
+Scheduled or Boarding trip, with a tooltip explaining why:
+
+- _"Available once the trip is closed or departed."_ — the trip is still Scheduled
+  or Boarding.
+- _"Select a trip to download its manifest."_ — no trip is loaded.
+
+In the **Departure Trips list**, the **Download Manifest** item simply is not in the
+row menu for a Scheduled or Boarding trip.
+
+## Method 1 — From the trip's detail page
+
+1. Open the trip — **Current Trips** (if Departed) or **Departure Trips** (if Closed
+   or Departed).
+2. Click **Download Manifest** at the top right.
+3. Choose **English** or **Indonesian**.
+
+![The departed trip detail page with the Download Manifest button](/img/terminal-staff/passenger-manifest/01-download-manifest.png)
+_A Departed trip. **Download Manifest** is enabled at the top right._
+
+![The Download Manifest menu showing English and Indonesian options](/img/terminal-staff/passenger-manifest/02-language-options.png)
+_Pick the language — the report is generated in that language._
+
+The button reads **Downloading…** while the file is being generated.
+
+## Method 2 — From the Departure Trips list
+
+Best for an older trip, because you never have to open it.
+
+1. Open **Management → Departure Trips** and switch to the **List** view.
+2. Filter **Trip Date** to the day you want.
+3. On a **Closed** or **Departed** row, open the **⋯** menu → **Download Manifest**
+   → **English** or **Indonesian**.
+
+The menu item reads **Downloading Manifest…** while it works.
+
+## The file
+
+An Excel (`.xlsx`) file named:
+
+```
+passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.xlsx
+```
+
+for example `passenger-manifest-SSFHW202607031300-2026-07-03.xlsx`.
+
+:::tip[Download it as often as you like]
+There is no limit and no state change. As long as the trip stays Closed or Departed
+you can download it again, in either language. Nothing is marked as "already
+downloaded".
+:::
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --- | --- | --- |
+| No **Download Manifest** button on Current Trips | The trip has not departed | [Set it as departed](/terminal-operator/set-trip-as-depart), or use **Departure Trips** if it is merely Closed |
+| The button is greyed out | The trip is Scheduled or Boarding | Hover for the tooltip; close the trip first |
+| No button anywhere, on a departed trip | You lack the export-manifest permission | Ask your administrator |
+| Fewer rows than expected | The manifest lists **Boarded** passengers only | Compare against the trip's **Boarded** count, not **Checked-In** |
+| _"The manifest was generated but could not be saved. Please try again."_ | The browser could not write the file | Check your downloads folder and browser download settings, then retry |
+
+## Next
+
+- [Set a Trip as Depart](/terminal-operator/set-trip-as-depart)
+- [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Departure Trips list row menu** with its **Download
+Manifest → English / Indonesian** submenu, nor of the greyed-out button with its
+tooltip.
+:::

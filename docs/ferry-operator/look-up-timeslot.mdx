@@ -1,0 +1,110 @@
+---
+id: operator-timeslots
+title: Look Up a Timeslot
+sidebar_label: Look up a timeslot
+sidebar_position: 5
+slug: /ferry-operator/look-up-timeslot
+description: Check your operator's recurring weekly schedule — route, default vessel, departure and gate times, days and holiday countries — in the read-only Timeslots list.
+keywords:
+  - timeslots
+  - schedule
+  - recurring
+  - read only
+  - public holiday
+  - gate window
+---
+
+A **timeslot** is one line of the recurring weekly schedule: _this route, this
+vessel, departing at this time, on these days._ The **Timeslots** page shows the
+ones belonging to **your operator**.
+
+Timeslots are the **template**. The actual sailings generated from them are
+[trips](/ferry-operator/look-up-trip).
+
+> **Timeslots → filter by route, status or day → read the schedule**
+
+:::warning[Read-only]
+There are **no create, edit or delete actions** here. Timeslots are maintained by
+**terminal staff**. If a sailing needs adding, retiming or stopping, ask the
+terminal — see the terminal
+[Create a Timeslot](/terminal-operator/create-timeslot) guide.
+:::
+
+:::note
+The screenshots below use `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+
+## Step 1 — Open Timeslots
+
+In the sidebar, open **Timeslots** (route: `/departure-timeslots`).
+
+## Step 2 — Read the list
+
+| Column | What it shows |
+| --- | --- |
+| **Route** | The route this sailing runs. |
+| **Default Vessel** | The vessel that trips generated from this timeslot start with. |
+| **Departure** | The departure time, with the **gate open–close window** beneath it. |
+| **Days** | The days it runs (Mon–Sun), plus **PH** with the country codes whose public holidays it also runs on — e.g. **PH (SG, ID)**. |
+| **Status** | **Active** or **Inactive**. |
+
+![The operator's read-only Timeslots list](/img/ferry-operator/timeslots/01-list.png)
+_The Timeslots list — Route, Default Vessel, Departure, Days, and Status._
+
+Use the filter toolbar to narrow by **route**, **status** or **day**.
+
+## How to read the Days column
+
+The day rule is **additive** — a public holiday **adds** a sailing, it never removes
+the weekday one:
+
+- Days ticked Mon–Sun are the ordinary weekly pattern.
+- A **PH (SG)** badge means the sailing **also** runs on Singapore public holidays,
+  on top of whatever the weekday pattern says.
+- **No PH badge** means it does not run on holidays beyond its normal days.
+- A timeslot with both **Monday** and **PH (SG)** still produces **one** trip when a
+  Singapore holiday falls on a Monday — not two.
+
+## What Active / Inactive actually means
+
+| Status | Effect |
+| --- | --- |
+| **Active** | Trips continue to be generated from it for future dates. |
+| **Inactive** | **No new trips** are generated. Trips already created still exist and still sail — until the terminal re-runs trip generation, at which point empty orphaned trips are removed. |
+
+So an **Inactive** timeslot with trips still showing on your
+[Departure Trips](/ferry-operator/look-up-trip) page is normal, not a fault.
+
+## Default Vessel vs. the vessel on the trip
+
+The **Default Vessel** here is only the **starting point**. Once a trip exists, its
+vessel is the trip's own, and you can
+[change it](/ferry-operator/change-trip-vessel) without touching the timeslot.
+
+That cuts both ways:
+
+- Swapping a vessel on trips **does not** change the timeslot — tomorrow's newly
+  generated trips revert to the default.
+- If a vessel change needs to be **permanent**, ask the terminal to change the
+  timeslot's Default Vessel, otherwise you will be re-doing the swap every day.
+
+## What to ask the terminal for
+
+| Situation | What to request |
+| --- | --- |
+| A sailing is missing from the schedule | A new timeslot for that route, time and days |
+| A departure time has changed | A retimed timeslot — and regenerated trips for dates already created |
+| The gate window is wrong | A change to the timeslot's gate open / close |
+| A sailing should stop running | Deactivate the timeslot (and remove already-generated trips) |
+| A sailing should run on holidays | Tick **Public Holiday** and the right countries |
+| The default vessel is wrong | A change to **Default Vessel** |
+
+## Next
+
+- [Look Up a Trip](/ferry-operator/look-up-trip) — the actual sailings.
+- [Look Up a Vessel](/ferry-operator/look-up-vessel)

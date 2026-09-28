@@ -4,6 +4,7 @@
   "link": {
     "type": "generated-index",
     "slug": "/ferry-operator",
-    "description": "Guides for ferry operators using the Operator Portal (ts-operator.sindoferry.com.sg)."
+    "title": "Ferry Operator Portal",
+    "description": "Guides for ferry operator staff using the Operator Portal (ts-operator.sindoferry.com.sg) — sign in, look up your schedule and trips, swap a vessel, check passengers in, and pull your manifests."
   }
 }

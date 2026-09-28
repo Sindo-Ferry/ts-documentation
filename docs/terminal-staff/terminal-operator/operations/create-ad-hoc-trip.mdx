@@ -1,0 +1,104 @@
+---
+id: create-ad-hoc-trip
+title: Create an Ad Hoc Trip
+sidebar_label: Create ad hoc trip
+sidebar_position: 4
+slug: /terminal-operator/create-ad-hoc-trip
+description: Add a one-off departure trip that no timeslot covers, from the Departure Trips page.
+keywords:
+  - adhoc trip
+  - ad hoc
+  - one-off trip
+  - new trip
+  - departure trips
+  - create trip
+---
+
+An **AdHoc** trip is a one-off sailing — an extra vessel laid on for a surge, a
+charter, a replacement service. It is not produced by a
+[timeslot](/terminal-operator/create-timeslot), so you add it by hand.
+
+> **Departure Trips → New AdHoc Trip → fill in the form → Create Trip**
+
+:::note
+You need permission to manage departure trips. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The **operator**, the **route**, and an **active vessel** for that operator exist.
+
+## Step 1 — Open Departure Trips
+
+In the sidebar, open **Management → Departure Trips** (route: `/departure-trips`).
+
+The page opens on the **Calendar** view and has a **Calendar / List** toggle at the
+top right. By default both views show the **coming week** — today plus the next six
+days — filtered by **Trip Date**, and can be narrowed further with **Show Filters**.
+
+- The **Calendar** (_Departure Trip Calendar_) lays trips out by **departure time**
+  (rows) across the **days** of the window (columns). Each card shows the trip code,
+  operator, route, status and load.
+
+  ![The Departure Trip Calendar showing the coming week](/img/terminal-staff/departure-trips/01-calendar.png)
+  _The calendar view — one week of trips, each card with a **View** button and a **⋯** menu._
+
+- The **List** shows one row per trip with its **Date**, **Code**, **Operator**,
+  **Route**, **Type**, **Departure** (and gate window), **Status**, and passenger
+  counts (**PAX**).
+
+  ![The Departure Trips list view](/img/terminal-staff/departure-trips/02-list.png)
+  _The list view — note the **Type** column, which tells Scheduled and AdHoc apart._
+
+## Step 2 — Click New AdHoc Trip
+
+Click **New AdHoc Trip** (top right of the **List** view) to open the **New AdHoc
+Departure Trip** form (route: `/departure-trips/new`).
+
+## Step 3 — Fill in the form
+
+| Field | What to enter |
+| --- | --- |
+| **Operator** | The operator running this trip. |
+| **Vessel** | Enabled once you pick an operator; lists only that operator's **active** vessels. |
+| **Route** | The route the trip sails. |
+| **Trip Date** | Today or later. |
+| **Code Suffix** _(optional)_ | Needed only if the trip would otherwise share its code with another trip on the same operator, route, date and departure. |
+| **Gate Open** / **Gate Close** / **Departure** | Gate Open must be at or before Gate Close, and Departure must be after Gate Close. |
+
+Then click **Create Trip**.
+
+![The New AdHoc Departure Trip form filled in](/img/terminal-staff/departure-trips/05-adhoc-form.png)
+_Creating an AdHoc trip for Waterfront Ferry on the WFC–HFC route, departing 2:30 PM._
+
+## Outcome
+
+The trip is created with status **Scheduled** and appears in both the **calendar**
+and the **list** alongside the generated trips, distinguished by its
+**Type = AdHoc** badge. From that moment it behaves exactly like any other trip:
+passengers can be checked in against it, and it moves through
+[Boarding](/terminal-operator/set-trip-as-boarding) →
+[Closed](/terminal-operator/set-trip-as-close) →
+[Departed](/terminal-operator/set-trip-as-depart).
+
+![The AdHoc trip in the list with a Type = AdHoc badge](/img/terminal-staff/departure-trips/06-adhoc-in-list.png)
+_The new trip in the list, tagged **AdHoc** (all sync-generated trips are **Scheduled**)._
+
+:::info[Scheduled vs AdHoc — why the Type matters]
+Every trip carries a **Type**. **Scheduled** trips come from a
+[Trip Sync Job](/terminal-operator/generate-trips) run against your timeslots;
+**AdHoc** trips are the one-off trips you create here.
+
+A sync job only ever touches **Scheduled** trips, so your **AdHoc** trips are never
+deleted or reconciled away by it. If you need a recurring sailing rather than a
+one-off, create a [timeslot](/terminal-operator/create-timeslot) instead — otherwise
+you will be adding the same AdHoc trip by hand every day.
+:::
+
+## Next
+
+- [Cancel and Restore a Trip](/terminal-operator/cancel-restore-trip)
+- [Set a Trip as Boarding](/terminal-operator/set-trip-as-boarding)

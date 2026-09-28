@@ -1,0 +1,110 @@
+---
+id: edit-delete-role
+title: Edit or Delete a Role
+sidebar_label: Edit / delete role
+sidebar_position: 3
+slug: /terminal-administrator/edit-delete-role
+description: Rename a role, or delete it permanently with the type-the-name confirmation.
+keywords:
+  - edit role
+  - rename role
+  - delete role
+  - security
+---
+
+Renaming a role is trivial. Deleting one is permanent, and deliberately awkward.
+
+> **Roles → ⋯ → Edit _or_ Delete Role**
+
+**Permission needed:** `terminal.roles.write`
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You hold `terminal.roles.write`.
+
+## Edit a role
+
+1. Open **Security → Roles** and use the role's **⋯** menu → **Edit**.
+2. The **Edit Role Settings** page opens with the form pre-filled.
+3. Change the **Role Name** and click **Update Role**.
+
+The same rules apply as when creating: at least **2 characters**, and the name must
+be **unique**.
+
+Beneath the form, an **audit** panel shows who created and last changed the role,
+and when.
+
+:::info[Renaming only changes the label]
+The role keeps its permissions and its members. Nobody's access changes.
+
+One thing to remember: [deleting a role](#delete-a-role) requires typing its name
+exactly, so a rename changes what you will have to type later.
+:::
+
+To change what the role can *do*, use
+[Manage a Role's Permissions](/terminal-administrator/manage-role-permissions) instead — that is a
+separate menu item and requires Super Admin.
+
+## Delete a role
+
+:::danger[Permanent]
+Deleting a role cannot be undone from the portal. The role and its permission set
+are gone; recreating it means rebuilding the permission list by hand.
+:::
+
+1. Open the role's **⋯** menu → **Delete Role** (in red).
+2. The **Delete System Role?** dialog explains that this permanently deletes the
+   role, and that any users assigned to it must be unassigned first.
+3. **Type the role's name exactly** into the box — _"To confirm, please type
+   **"Role Name"** below"_. The **Confirm Delete** button stays **disabled until
+   what you type matches exactly**, including capitals and spaces.
+4. Click **Confirm Delete**.
+
+:::tip[The typing step is the safety rail]
+It exists so a delete cannot happen on a mis-click. If you find yourself copying and
+pasting the name to get past it, pause and check you have the right role open.
+:::
+
+## If the delete is refused
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Unable to delete Role. Role has user(s) assigned."_ | At least one user still holds this role. | [Revoke it from every user](/terminal-administrator/assign-role#step-4--revoke-a-role) first, then delete. |
+
+:::warning[There is no "which users hold this role?" list]
+The message tells you the role is in use but not by whom. Open **Security → Users** and
+check the **Roles** tab of each user's security profile, or ask a Super Admin to
+check the API.
+
+This is worth knowing before you plan a clean-up — finding the holders is the slow
+part.
+:::
+
+## Retiring a role safely
+
+When a role should stop being used but you are not certain nothing depends on it:
+
+1. **Revoke it from its users** — access changes immediately, so do this between
+   shifts.
+2. **Leave the role in place** for a while. An empty role grants nothing and costs
+   nothing.
+3. **Delete it** once you are confident, using the steps above.
+
+Stopping at step 2 is a perfectly good outcome. An unused role is harmless; a
+deleted one you needed is a rebuild.
+
+## Next
+
+- [Assign a Role to a User](/terminal-administrator/assign-role)
+- [Manage a Role's Permissions](/terminal-administrator/manage-role-permissions)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Edit Role Settings** form or of the **Delete System
+Role?** dialog with its type-the-name confirmation box.
+:::

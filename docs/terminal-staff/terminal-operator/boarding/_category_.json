@@ -1,0 +1,10 @@
+{
+  "label": "Boarding",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-operator/boarding",
+    "title": "Boarding",
+    "description": "The boarding gate. Scan passengers onto the vessel, undo a scan, watch the last-call alert, then close and depart the trip."
+  }
+}

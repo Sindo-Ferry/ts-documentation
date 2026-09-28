@@ -1,0 +1,109 @@
+---
+id: revert-pre-immigration
+title: Revert a Pre-Immigration Scan
+sidebar_label: Revert pre-immigration
+sidebar_position: 2
+slug: /terminal-operator/revert-pre-immigration
+description: Undo a pre-immigration scan and return the passenger to Checked-In, from the Pre-Immigration Scan result card.
+keywords:
+  - revert
+  - undo scan
+  - revert to check-in
+  - pre-immigration
+  - correction
+---
+
+Sometimes a passenger is scanned and then has to step back out — wrong person,
+forgotten luggage, a document problem spotted a second too late. **Revert To
+Check-In** undoes the scan and puts them back to **CheckedIn**.
+
+> **Pre-Immigration Scan → scan the pass → Revert To Check-In → Confirm Revert**
+
+:::warning[Restricted access]
+Reverting needs the **revert pre-immigration** permission, which is separate from
+the scan permission. If you can scan but see no **Revert To Check-In** button, that
+is why — ask your administrator.
+:::
+
+## When you can revert
+
+| Condition | Required |
+| --- | --- |
+| The passenger's status | **PreImmigration** |
+| The trip's status | **Scheduled** or **Boarding** |
+
+If either is wrong, the revert is rejected — see
+[If the revert is refused](#if-the-revert-is-refused) below.
+
+## Step 1 — Bring the passenger up on screen
+
+The **Revert To Check-In** button lives on the **green result card**, so you need
+that passenger's card on screen.
+
+- If you have **just scanned them**, the card is already there — go to Step 2.
+- If the card has been replaced by a later scan, **scan their boarding pass again**.
+  Re-scanning someone who is already PreImmigration is harmless — it returns their
+  details without changing anything — and brings the card back with the button on
+  it.
+
+## Step 2 — Click Revert To Check-In
+
+The red **Revert To Check-In** button sits at the bottom of the Passport Check card,
+next to the note: _"Revert is optional. You can continue scanning the next passenger
+without taking this action."_
+
+## Step 3 — Confirm
+
+A confirmation opens:
+
+> **Revert Pre-Immigration Scan** — This will move **_[passenger name]_** back to
+> CheckedIn status so they can exit through the gate if needed. They can be
+> re-scanned at pre-immigration when they return.
+
+Click **Confirm Revert** (or **Cancel** to back out).
+
+## Outcome
+
+- The passenger's status returns to **CheckedIn**.
+- The trip's **Pre-Imm** count drops by one and its **Check In** count goes back up.
+- The result card clears from your screen, ready for the next passenger.
+- The passenger can be **scanned again later** when they come back. Nothing is lost
+  and no new boarding pass is needed — it is the same pass, the same number.
+
+## If the revert is refused
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Passenger must be PreImmigration to revert back to CheckedIn. Current status: Boarded."_ | They have already been scanned at the **boarding gate**, which moved them past pre-immigration. | Revert the **boarding** scan first — see [Revert Boarding](/terminal-operator/revert-boarding) — which returns them to PreImmigration. Then revert here. |
+| _"Passenger must be PreImmigration to revert back to CheckedIn. Current status: CheckedIn."_ | Already reverted — someone got there first. | Nothing to do. |
+| _"Trip must be in Scheduled or Boarding status to revert at pre-immigration gate. Current status: Closed."_ | The trip has been closed or departed. | Too late to revert through the scan page. Use [Update a Passenger's Status](/terminal-operator/update-passenger-status) if the record genuinely needs correcting. |
+
+## Stepping a passenger all the way back
+
+The two reverts chain. If someone was boarded by mistake and needs to come all the
+way back to **CheckedIn**:
+
+1. On [Boarding Scan](/terminal-operator/boarding-scan), scan their pass →
+   **Revert To Pre-Immigration** → **Confirm Revert**. They are now
+   **PreImmigration**.
+2. Switch to **Pre-Immigration Scan**, scan the same pass → **Revert To Check-In**
+   → **Confirm Revert**. They are now **CheckedIn**.
+
+Each step needs its own permission, and each needs the trip still to be in a status
+that allows it.
+
+:::tip[Revert is a correction tool, not a routine one]
+Every revert is recorded against the passenger. Use it to fix a genuine mistake —
+not as a way to "reset" a passenger you are unsure about. When you are simply not
+certain whether a scan registered, just **scan again**: repeat scans are ignored.
+:::
+
+## Next
+
+- [Scan a Boarding Pass at Pre-Immigration](/terminal-operator/pre-immigration-scan)
+- [Revert Boarding](/terminal-operator/revert-boarding)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Revert Pre-Immigration Scan** confirmation dialog, or
+of the green Passport Check card with the **Revert To Check-In** button visible.
+:::

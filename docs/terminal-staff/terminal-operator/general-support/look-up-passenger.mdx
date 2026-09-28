@@ -1,0 +1,181 @@
+---
+id: look-up-passenger
+title: Look Up a Passenger
+sidebar_label: Look up a passenger
+sidebar_position: 1
+slug: /terminal-operator/look-up-passenger
+description: Find any passenger's record across past, today's and future trips from the read-only Passengers list, and open their full details.
+keywords:
+  - look up passenger
+  - passenger search
+  - find passenger
+  - passengers list
+  - read only
+  - trip date
+---
+
+Someone comes to the counter with a question and no boarding pass. **Passengers** is
+where you find them. It searches **every trip** — yesterday's, today's, next
+month's — which is what makes it different from **Current Trips**, where you only
+ever see today.
+
+> **Passengers → set the Trip Date range → search → View Passenger**
+
+:::warning[This screen is read-only]
+The Passengers list is for **finding and reading** records. You **cannot** check in,
+edit, cancel, change status or print a boarding pass from here. The row **⋯** menu
+offers exactly one item: **View Passenger**.
+
+To *do* something to a passenger, open their **trip** and work from its passenger
+table — see [Acting on what you find](#acting-on-what-you-find).
+:::
+
+:::note
+You need permission to view passengers. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- Have something to search on — a **passport / ID number**, a **name**, or the
+  **trip and date** the passenger travelled on.
+
+## Step 1 — Open Passengers
+
+In the sidebar, open **Management → Passengers** (route: `/passengers`).
+
+Each row shows the passenger's **Trip**, **No** (passport / ID), **Name** (with
+gender beneath), **Operator / Route**, **Type**, **Status** and **Nationality**.
+
+![The Passengers list view, filtered by trip date](/img/terminal-staff/passengers/01-passengers-list.png)
+_The Passengers list — a read-only view of passenger records across trips._
+
+## Step 2 — Set the date range you want
+
+:::danger[The list opens scoped to today — this is the number one gotcha]
+When the page loads, **Trip Date From** and **Trip Date To** are both set to
+**today**. A passenger who travelled yesterday, or who is booked for next week,
+**will not appear** no matter how carefully you spell their name.
+
+If a search comes back empty, check the trip-date chip **first**.
+:::
+
+Click **Show Filters** and set the range to cover what you are looking for:
+
+| You are looking for | Set Trip Date From / To to |
+| --- | --- |
+| Today's passengers | Leave them as they are — both today |
+| A past trip | From = the travel date, To = the travel date |
+| Anything within a period | From = start of the period, To = end of it |
+| A future booking | From = today, To = a date past the trip |
+| "I have no idea when" | Widen both ends generously, then narrow with the other filters |
+
+There is no restriction to recent dates — the range can go as far back or forward as
+you need.
+
+## Step 3 — Search
+
+There are two ways to search and they behave **differently**. This catches people
+out constantly:
+
+### Quick search — partial match
+
+The **search** box at the top of the list does a **"contains"** match on **No**
+_or_ **Name**. Type `budi` and you get everyone whose name contains "budi"; type
+`A123` and you get every document number containing it.
+
+**This is the one to reach for by default.**
+
+### Filter fields — exact match
+
+Inside **Show Filters**, the **No** (Passport No) and **Name** fields want the
+**whole value**:
+
+:::warning[The No and Name filters must match exactly]
+These two fields require an **exact, whole-value match** — the complete passport /
+ID number, or the passenger's **full name**. Matching ignores upper and lower case,
+but a **partial value returns nothing at all**.
+
+Typing `Budi` into the filter's **Name** field when the record reads `Budi Santoso`
+gives **zero results** — and it looks exactly as though the passenger does not
+exist. Use the **quick search** box whenever you only have part of a value.
+:::
+
+### Narrowing further
+
+The **Filter Passengers** dialog also offers **Operator**, **Route**, **Date of
+Birth**, **Passenger Type**, **Passenger Status** and **Nationality**.
+
+Every applied filter appears as a **chip** below the search box. Remove a chip to
+drop that one filter, or click **Reset** to clear them all. **Refresh** reloads the
+current results.
+
+:::tip[Read the chips before concluding "no such passenger"]
+The chips are the complete picture of what you are filtering on — trip date range
+included. When a search returns nothing, read the chips left to right. The answer is
+almost always sitting there.
+:::
+
+## Step 4 — Open the full record
+
+Open the row's **⋯** menu and choose **View Passenger**. A **read-only** details
+page opens with the whole record in three sections — considerably more than the list
+columns show:
+
+| Section | What it contains |
+| --- | --- |
+| **Trips Informations** | Trip Code, Trip Date / Departure, **Trip Status**, **Trip Type** (Scheduled or AdHoc), Operator / Route, **Vessel**, **Boarding Gate / Berth** |
+| **Passport Informations** | No, Name, Gender, **Date of Birth**, **Issuance Date**, Nationality, **Issuance Country**, **Passport Expiry Date** |
+| **Check In Informations** | **Boarding Pass No**, Type, Status, **Checked-in At**, **Pre-Immigration At**, **Boarded At**, and whether they were **Cancelled** — with the time and **who cancelled them** |
+
+The **Check In Informations** timestamps answer most counter questions on their own.
+They show how far the passenger actually got: a **Boarded At** time means they
+sailed; a **Checked-in At** with nothing after it means they never came through
+pre-immigration.
+
+## What you can answer from here
+
+| Question at the counter | Where to look |
+| --- | --- |
+| "Did my colleague get on the boat yesterday?" | Set the date to yesterday, search the name, read **Boarded At** |
+| "What was my boarding pass number?" | **Boarding Pass No** on the details page |
+| "Which vessel and berth was it?" | **Trips Informations** |
+| "Was I cancelled, and by whom?" | **Check In Informations** — the cancelled time and who did it |
+| "Am I booked for next Tuesday?" | Widen **Trip Date To** past that date, then search |
+| "Is my passport expiry recorded correctly?" | **Passport Informations** |
+
+## Acting on what you find
+
+Once you have found the passenger, note their **trip** — then go to that trip to do
+anything:
+
+1. **Today's trip:** **Operational → Current Trips** → click the trip's row.
+   **An older or future trip:** **Management → Departure Trips** → find the trip →
+   open its detail page.
+2. Find the passenger in the table at the bottom of that page.
+3. Act from there:
+   - [Edit their passport details](/terminal-operator/edit-passenger) — CheckedIn only
+   - [Cancel them](/terminal-operator/cancel-passenger)
+   - [Update their status](/terminal-operator/update-passenger-status)
+   - [Reprint or download their boarding pass](/terminal-operator/reprint-boarding-pass)
+
+:::info[Why the actions live inside the trip]
+Tying every action to a specific voyage protects **data integrity**. A passenger who
+travels weekly has one record per sailing; acting from a cross-trip list would make
+it far too easy to edit or cancel the wrong one. The trip's own passenger table
+leaves no doubt about which sailing you are changing.
+:::
+
+## Next
+
+- [Check In an NTL / LM Passenger](/terminal-operator/check-in-ntl-lm)
+- [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
+- [Download the Manifest](/terminal-operator/download-manifest) — the official list
+  for a whole trip, rather than one passenger.
+
+:::note[Screenshot needed]
+No screenshot exists of the **Filter Passengers** dialog (showing Trip Date From /
+To) or of the **View Passenger** read-only details page with its three sections.
+:::

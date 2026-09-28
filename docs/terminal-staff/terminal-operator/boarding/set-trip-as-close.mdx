@@ -1,0 +1,114 @@
+---
+id: set-trip-as-close
+title: Set a Trip as Close
+sidebar_label: Set trip as Close
+sidebar_position: 4
+slug: /terminal-operator/set-trip-as-close
+description: Close boarding on a trip once everyone is aboard, from either the Boarding Scan page or the trip's detail page.
+keywords:
+  - set as close
+  - close trip
+  - closed
+  - boarding
+  - trip status
+---
+
+Closing a trip ends boarding. After it, no more passengers can be scanned aboard,
+and the trip is ready to be recorded as departed.
+
+> **Boarding Scan (or Current Trips) → Set As Close → confirm**
+
+:::warning[This cannot be undone]
+Closing is **final**. Boarding cannot be reopened, and the
+[boarding revert](/terminal-operator/revert-boarding) stops working. Make your
+corrections **before** you close.
+:::
+
+## Before you close
+
+- The trip is in **Boarding** status. **Set As Close** is not offered on a
+  **Scheduled** trip — it has to be opened for boarding first.
+- Everyone who is going is aboard. Check the trip card's **Pre-Imm** count: anything
+  above zero is a passenger inside the terminal who has not boarded.
+- Any [last call](/terminal-operator/last-call) has been made.
+- Any wrong scans have been
+  [reverted](/terminal-operator/revert-boarding).
+
+## Where you can close a trip
+
+Three places, same dialog:
+
+1. **From the Boarding Scan page** — click **Set As Close** at the top of that
+   trip's card in the Boarding Trips panel. This is the usual one, because it is
+   where the gate officer already is.
+2. **From the trip's detail page** — open **Operational → Current Trips**, click the
+   trip, then **Set As Close** at the top right.
+3. **From the Current Trips list** — the row's **⋯** menu offers **Set As Close**
+   directly.
+
+## Confirm
+
+A dialog opens headed **Set As Close**, with the trip's **code · date · departure
+time** beneath it, and the text:
+
+> Close boarding for this trip. No further passengers can board afterwards, and the
+> trip can then be departed. This moves the trip forward and cannot be undone.
+
+Click **Set As Close** to commit, or **Cancel** to back out.
+
+### If passengers are still in Pre-Immigration
+
+An amber warning appears above that text:
+
+> ⚠ **_N_ passenger(s) still in Pre-Immigration**
+> They have not boarded yet. Closing this trip will prevent them from boarding.
+
+![The Set As Close dialog warning that a passenger is still in Pre-Immigration](/img/terminal-staff/manage-departure-trip/07-close-preimm-warning.png)
+_Closing a trip that still has a passenger in Pre-Immigration — the amber warning appears above the usual confirmation text._
+
+The warning does **not** block you. It is there so the closure is a deliberate
+decision rather than an accident. If those passengers are still expected:
+
+1. Click **Cancel**.
+2. Make a [last call](/terminal-operator/last-call) and board them from
+   [Boarding Scan](/terminal-operator/boarding-scan).
+3. Close the trip afterwards.
+
+Otherwise go ahead and close — they will be left behind.
+
+:::tip[The count in the dialog is fresh]
+The pre-immigration number is **re-read when the dialog opens**, not taken from the
+page you were looking at. So it reflects scans made seconds ago at another desk,
+not a stale figure.
+:::
+
+## Outcome
+
+- The trip's status becomes **Closed**.
+- **Set As Departed** becomes available, in the same places.
+- On the Boarding Scan page the trip **stays visible** in the Boarding Trips panel
+  with a **Closed** badge, so you can depart it without going anywhere else.
+- Any boarding scan against it is now rejected with _"Trip must be in Boarding
+  status to mark passenger as Boarded. Current status: Closed."_
+- The **manifest** becomes downloadable from the trip's detail page under
+  **Departure Trips** — see
+  [Download the Manifest](/terminal-operator/download-manifest).
+
+![The page after closing a trip, with Set As Departed available](/img/terminal-staff/manage-departure-trip/05-close-outcome.png)
+_After closing, the trip is **Closed** and **Set As Departed** is available._
+
+## Status order cannot be skipped
+
+| On a trip that is… | **Set As Close** is… |
+| --- | --- |
+| Scheduled | **not offered** — set it to [Boarding](/terminal-operator/set-trip-as-boarding) first |
+| Boarding | offered |
+| Closed / Departed / Cancelled | **not offered** |
+
+Force it through and the system answers _"Only boarding trips can be closed.
+Current status is …"_
+
+## Next
+
+- [Set a Trip as Depart](/terminal-operator/set-trip-as-depart)
+- [Download the Manifest](/terminal-operator/download-manifest)

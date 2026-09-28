@@ -1,0 +1,207 @@
+---
+id: generate-trips
+title: Generate Trips from Timeslots
+sidebar_label: Generate trips from timeslots
+sidebar_position: 3
+slug: /terminal-operator/generate-trips
+description: Run a Trip Sync Job to turn the recurring timeslots into real departure trips for a date range, and read the preview before you commit.
+keywords:
+  - trip sync job
+  - generate trips
+  - departure trips
+  - synchronization
+  - preview
+  - conflicts
+---
+
+Timeslots are templates. A **Trip Sync Job** is what turns them into the actual
+**departure trips** that passengers get checked in to.
+
+> **Trip Sync Jobs → New Sync Job → review the preview → Execute Job**
+
+A sync job compares, for every date in a range, the **active timeslots** that apply
+to that date against the **trips that already exist**, and then creates what is
+missing and removes what no longer belongs.
+
+:::note
+You need permission to manage trip synchronizations. The screenshots below use
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The [timeslots](/terminal-operator/create-timeslot) you want trips for exist and
+  are **Active**.
+
+:::info[Most of the time the system has already done this for you]
+Alongside the jobs you run by hand, the system runs **its own sync once a day**. It
+shows up in the list as **Requested By: System (Daily Auto-Sync)** with a remark
+like _"Automated daily rolling sync from 29-Sep-2026 to 29-Oct-2026"_.
+
+That automatic job covers a **rolling window 60 to 90 days ahead**, across **all
+operators, all routes and all days** (public holidays included), and it executes
+itself immediately — there is no preview to approve.
+
+This is why trips usually **already exist** for dates a couple of months out, and
+why a manual job for a near date often previews **0 to create**. Run one by hand
+when you need trips **sooner than the automatic window reaches**, or when you have
+just changed a timeslot and want the trips rebuilt **now**.
+:::
+
+## Step 1 — Open Trip Sync Jobs
+
+In the sidebar, open **Management → Trip Sync Jobs**
+(route: `/departure-trip-synchronizations`). The page is headed **Trip
+Synchronizations** and lists previous jobs, one row each:
+
+| Column | Shows |
+| --- | --- |
+| **Date Range** | The period the job covers, with the job's remark beneath it |
+| **Operator** / **Route** | The job's scope — **All** when left blank |
+| **Results** | **+N created** and **−N deleted** |
+| **Status** | **Pending**, **Enqueued**, or **Completed** |
+| **Requested By** | Who created it, and when |
+
+**Show Filters** narrows the list; **New Sync Job** (top right) starts one.
+
+![Trip Synchronizations list](/img/terminal-staff/generate-departure-trips/01-trip-sync-list.png)
+_The Trip Synchronizations list — past jobs with their scope, results and status, and the **New Sync Job** button._
+
+## Step 2 — Create the job
+
+Click **New Sync Job** and fill in:
+
+- **Start Date / End Date** — the period to generate trips for. Use the **same day
+  twice** for a single date.
+- **Operator** _(optional — blank means all)_ — opens a **Select Operator** picker;
+  search the table, then **Select** the row. Only **active** operators are listed.
+- **Route** _(optional — blank means all)_ — leave as **All Routes** to include
+  every route.
+- **Day Filter** _(optional — nothing ticked means all)_ — **Weekdays** and
+  **Weekends** tick their days in one click; **Clear All** resets. Ticking weekdays
+  includes those days; **P.H.** _additionally_ includes every date that is a public
+  holiday in any country.
+- **Remarks** _(optional)_ — a note saying why you ran it. Worth filling in; it is
+  what the next person sees in the list.
+
+Then click **Create Sync Job**.
+
+:::note[Date rules]
+The **Start Date** cannot be in the past, and the **End Date** must be on or after
+the Start Date.
+:::
+
+![New Sync Job form](/img/terminal-staff/generate-departure-trips/02-new-sync-job.png)
+_The New Sync Job form — a date range, an optional operator/route scope, and the day filter._
+
+## Step 3 — Read the preview
+
+Creating the job opens its detail page, headed **Sync Job — _start_ → _end_**, with
+its status badge and who created it. Three sections:
+
+**1. Job Configuration** — the fields you just filled in, still editable while the
+job is **Pending**. Correct anything with **Save Changes**, or scrap it with
+**Delete Job**.
+
+**2. Preview** — three counts: **To Create**, **To Delete** and **Conflicts**.
+Below them, **Trips to Create** lists every trip the job will generate, grouped
+**by date**, then **by route**, with each departure showing its **time** and
+**operator**. Expand a date or a route to check the detail before you commit.
+**Refresh Preview** (top right) re-runs the comparison if timeslots or trips have
+changed since the job was created.
+
+**3. Execute** — see the next step.
+
+:::tip[What the three numbers mean]
+- **To Create** — an active timeslot has no matching trip yet on that date.
+- **To Delete** — a scheduled trip no longer matches any active timeslot **and has
+  no check-ins or boarded passengers**, so it is safe to remove.
+- **Conflicts** — an orphaned trip **already has passengers**. It is **skipped,
+  never deleted**, and flagged for you to sort out by hand.
+
+**0 to create / 0 to delete / 0 conflicts** means everything is already in sync.
+Re-running a job is always safe — it is idempotent.
+:::
+
+## Step 4 — Execute
+
+When the preview looks right, click **Execute Job**. A confirmation asks
+_"Execute synchronization job?"_ and repeats that trips will be created and deleted
+as previewed and that conflicts will be skipped. Click **Execute**.
+
+The job is queued and processed in the background; its status moves **Pending →
+Enqueued → Completed**. Reload the page to see the final counts.
+
+![Sync job preview grouped by date and route, with the Execute Job button](/img/terminal-staff/generate-departure-trips/03-execute-job.png)
+_The preview — **To Create / To Delete / Conflicts**, with the trip list expanded by date and route, and **Execute Job** below._
+
+:::note[Only pending jobs can be changed]
+**Edit**, **Delete** and **Execute** apply only while a job is **Pending**. Once it
+is Enqueued or Completed the actions disappear — a completed job is a record of
+what ran. To sync the same period again, create a **new** job.
+:::
+
+## Step 5 — Verify the trips
+
+Open **Management → Departure Trips** and filter **Trip Date** to the period you
+just synced. The generated trips appear with their code, operator, route,
+departure time, status and passenger counts.
+
+:::note[Type = Scheduled]
+Every trip a sync job generates has **Type = Scheduled**. One-off trips you add by
+hand are **AdHoc** — see
+[Create an Ad Hoc Trip](/terminal-operator/create-ad-hoc-trip).
+:::
+
+![Departure Trips list for the synced date](/img/terminal-staff/generate-departure-trips/04-departure-trips.png)
+_The generated trips for the synced period, each with **Type = Scheduled**._
+
+## Running the same job twice
+
+Re-running generation for a date you have already generated does **not** duplicate
+anything. The job reconciles rather than re-inserts: a trip that already matches an
+active timeslot is left exactly as it is.
+
+## What a sync job does and does not touch
+
+A sync job only ever affects **Scheduled** trips. **AdHoc** trips are never touched
+by it.
+
+### Which timeslots run on a date
+
+The day rule is **additive** — a public holiday adds sailings and never removes the
+weekday ones:
+
+| The date is… | A timeslot runs when… |
+| --- | --- |
+| any date | its **weekday flag** for that day of the week is ticked |
+| also a [public holiday](/terminal-operator/configure-public-holiday) in country X | _additionally_, its **Public Holiday** countries include **X** |
+
+### How trips are reconciled
+
+For each date in the range (subject to the **Day Filter**), the job looks at the
+timeslots that run on that date — counting only **active timeslots whose operator
+is also active** — and matches them against existing scheduled trips by **trip
+code** (operator + route + date + departure + suffix):
+
+| Result | When it happens | What execution does |
+| --- | --- | --- |
+| **Created** | An active timeslot applies to that date but has **no matching trip** yet. | A new **Scheduled** trip is created from the timeslot, with its vessel and gate times. |
+| **Deleted** | A scheduled trip **no longer matches any active timeslot** and has **no check-ins or boarded passengers**. | The orphaned, empty trip is **removed**. |
+| **Conflicts** | An orphaned scheduled trip **has check-ins or boarded passengers**. | It is **kept and skipped**, and logged for manual review — move or clear the passengers, then re-run. |
+
+:::info[What makes a trip "orphaned"]
+A trip becomes orphaned when nothing generates it any more — its timeslot was
+**deleted or deactivated**, its **operator was deactivated**, or a holiday-added
+trip's **public holiday entry was deleted** (or the timeslot's holiday **countries**
+no longer include it). Orphaned trips are then **deleted** if empty, or raised as a
+**conflict** if they already carry passengers.
+:::
+
+## Next
+
+- [Create an Ad Hoc Trip](/terminal-operator/create-ad-hoc-trip) — for the one-off
+  sailing that no timeslot covers.
+- [Cancel and Restore a Trip](/terminal-operator/cancel-restore-trip)

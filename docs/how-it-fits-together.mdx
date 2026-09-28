@@ -97,9 +97,9 @@ Work down this list. Each step only needs the steps above it.
 | 4 | **Operators** | — | [Operators](/terminal-staff/operators) |
 | 5 | **Vessels** | An operator | [Vessels](/terminal-staff/vessels) |
 | 6 | **Countries** | — | [Countries](/terminal-staff/countries) |
-| 7 | **Public Holidays** | **A country** | [Public Holiday](/terminal-staff/public-holiday) |
-| 8 | **Timeslots** | Operator + route + **active** vessel, and **countries** if it runs on holidays | [Timeslots](/terminal-staff/timeslots) |
-| 9 | **Departure Trips** | Timeslots (via a sync job) | [Trip Sync Job](/trip-sync-job) |
+| 7 | **Public Holidays** | **A country** | [Public Holiday](/terminal-operator/configure-public-holiday) |
+| 8 | **Timeslots** | Operator + route + **active** vessel, and **countries** if it runs on holidays | [Timeslots](/terminal-operator/create-timeslot) |
+| 9 | **Departure Trips** | Timeslots (via a sync job) | [Trip Sync Job](/terminal-operator/generate-trips) |
 
 Steps 1–3, 4–5, and 6–7 are three independent chains — you can do them in any order.
 They only have to meet before step 8.
@@ -126,7 +126,7 @@ a route do not share a holiday calendar.
 
 ### How a holiday changes the schedule
 
-The rule the [Trip Sync Job](/trip-sync-job) applies is **additive**:
+The rule the [Trip Sync Job](/terminal-operator/generate-trips) applies is **additive**:
 
 > A timeslot runs on its **ticked weekdays**, **and additionally** on any date that
 > **one of its selected countries** observes as a public holiday.
@@ -175,10 +175,10 @@ Two consequences worth knowing:
 | **[Operator](/terminal-staff/operators)** | A ferry company | — | it has vessels, timeslots, or trips |
 | **[Vessel](/terminal-staff/vessels)** | A ferry, carrying a **capacity** | An operator | it is assigned to scheduled trips |
 | **[Country](/terminal-staff/countries)** | Passenger **nationality** and document issuing country — **and** the owner of public holidays | — | it has public holidays, or timeslots run on its holidays |
-| **[Public Holiday](/terminal-staff/public-holiday)** | A date **one country** observes | **A country** | — |
-| **[Timeslot](/terminal-staff/timeslots)** | The *recurring pattern* — "this operator, this route, departs 11:20 on these days" | Operator + route + active vessel (+ countries if it runs on holidays) | — |
-| **[Departure Trip](/terminal-staff/departure-trips)** | One real sailing on one date | A timeslot (or created directly as AdHoc) | — |
-| **[Passenger](/terminal-staff/passengers)** | One person on one trip | A trip with a free seat, and a nationality | — |
+| **[Public Holiday](/terminal-operator/configure-public-holiday)** | A date **one country** observes | **A country** | — |
+| **[Timeslot](/terminal-operator/create-timeslot)** | The *recurring pattern* — "this operator, this route, departs 11:20 on these days" | Operator + route + active vessel (+ countries if it runs on holidays) | — |
+| **[Departure Trip](/terminal-operator/create-ad-hoc-trip)** | One real sailing on one date | A timeslot (or created directly as AdHoc) | — |
+| **[Passenger](/terminal-operator/look-up-passenger)** | One person on one trip | A trip with a free seat, and a nationality | — |
 
 :::info[Deactivate rather than delete]
 Where history matters, the system steers you toward **Inactive** instead of **Delete** —
@@ -210,16 +210,16 @@ flowchart LR
 A few things worth knowing about that path:
 
 - **A timeslot is not a trip.** The timeslot is the rule; the
-  [Trip Sync Job](/trip-sync-job) turns it into dated, bookable trips. Running the same
+  [Trip Sync Job](/terminal-operator/generate-trips) turns it into dated, bookable trips. Running the same
   job twice changes nothing.
 - **A trip's code describes it** — operator trip code, route trip code, date, departure
   time, and the timeslot's suffix.
 - **The boarding pass is the key to everything operational.** It is 16 characters,
   issued per passenger at check-in, and it is the only thing the gate needs — both the
-  [pre-immigration](/terminal-staff/pre-immigration-scan) and
-  [boarding](/terminal-staff/boarding-scan) scans work from it alone.
+  [pre-immigration](/terminal-operator/pre-immigration-scan) and
+  [boarding](/terminal-operator/boarding-scan) scans work from it alone.
 - **A trip needs a gate and a berth before it can board** — they are assigned when the
-  trip is [set to Boarding](/terminal-staff/manage-departure-trip#1-set-as-boarding),
+  trip is [set to Boarding](/terminal-operator/set-trip-as-boarding),
   not when it is created.
 - **Capacity comes from the vessel.** Check-in is refused once the seats are gone, and
   a vessel cannot be swapped onto a trip that already carries more passengers than the
@@ -241,15 +241,15 @@ Two rules follow from this table:
   the operator you are signed in as — there is no view across operators.
 - **The terminal sees every operator at its port**, because the terminal runs the port.
 
-Master data an operator can see — such as their [timeslots](/ferry-operator/operator-timeslots)
-and [passengers](/ferry-operator/operator-passengers) — is **read-only** to them.
+Master data an operator can see — such as their [timeslots](/ferry-operator/look-up-timeslot)
+and [passengers](/ferry-operator/look-up-passenger) — is **read-only** to them.
 Changes are made by terminal staff.
 
 ## Where to go next
 
 - Setting up for the first time → start at [Ports](/terminal-staff/ports) and follow the
   order above.
-- Already set up, need trips → [Timeslots](/terminal-staff/timeslots) then
-  [Trip Sync Job](/trip-sync-job).
-- Running trips today → [Manage Current Trip Status](/terminal-staff/manage-departure-trip).
-- A ferry operator → [Sign In to the Operator Portal](/ferry-operator/operator-sign-in).
+- Already set up, need trips → [Timeslots](/terminal-operator/create-timeslot) then
+  [Trip Sync Job](/terminal-operator/generate-trips).
+- Running trips today → [Manage Current Trip Status](/terminal-operator/set-trip-as-boarding).
+- A ferry operator → [Sign In to the Operator Portal](/ferry-operator/sign-in).

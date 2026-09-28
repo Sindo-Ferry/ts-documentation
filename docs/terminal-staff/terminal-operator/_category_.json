@@ -1,0 +1,10 @@
+{
+  "label": "Terminal Operator",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "slug": "/terminal-operator",
+    "title": "Terminal Operator",
+    "description": "Everything a terminal operator does on the day — set up the schedule and the trips, clear passengers through pre-immigration, board them at the gate, and handle the exceptions in between."
+  }
+}

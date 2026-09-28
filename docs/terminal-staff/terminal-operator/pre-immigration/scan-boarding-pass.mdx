@@ -1,0 +1,157 @@
+---
+id: pre-immigration-scan
+title: Scan a Boarding Pass at Pre-Immigration
+sidebar_label: Scan boarding pass
+sidebar_position: 1
+slug: /terminal-operator/pre-immigration-scan
+description: Clear passengers through pre-immigration — scan the boarding pass to move them from Checked-In to Pre-Immigration, and read the rejection messages.
+keywords:
+  - pre-immigration
+  - scan
+  - boarding pass
+  - checked-in
+  - passport check
+  - gate window
+---
+
+Pre-immigration is the **first scan point**. A passenger arrives holding a boarding
+pass; you scan it, check their passport against what the screen shows, and let them
+through to immigration.
+
+> **Pre-Immigration Scan → scan the boarding pass → Passport Check card → wave them through**
+
+What the scan does: it moves the passenger from **CheckedIn** to
+**PreImmigration**, and drops the trip's Check-In count by one while raising its
+Pre-Imm count by one.
+
+:::warning[Restricted access]
+This page is only available to staff who hold the pre-immigration scan permission.
+:::
+
+:::note
+The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- You have [set your active port](/terminal-staff/set-port-context). **This is not
+  optional** — the **Scan Pre-Immigration** button stays disabled until a port is
+  selected, and the page shows an amber banner: _"No port selected. Choose a port
+  context in Settings before scanning."_ with a **Go to Settings** shortcut.
+- The passenger is **CheckedIn** on a trip that is **Scheduled** (and inside its
+  gate window) or **Boarding**.
+- The passenger display is set up on the second screen — see
+  [Passenger Display Setup](/terminal-operator/pre-immigration-display).
+
+## Step 1 — Open Pre-Immigration Scan
+
+In the sidebar, open **Operational → Pre-Immigration Scan**
+(route: `/pre-immigration-scan`). The header shows your **Active Port** — for
+example, _Active Port: WFC - Waterfront Terminal_. Check it matches where you are
+standing.
+
+The page is in two halves: the **scan controls** on the left, and the **Passenger
+Display Preview** on the right, which mirrors exactly what the passenger-facing
+screen is showing.
+
+## Step 2 — Scan the boarding pass
+
+Click into the **Boarding Pass Number** field. Then either:
+
+- **scan the barcode** with the hardware scanner — the number types itself and
+  submits, or
+- **type the number and press Enter**, or type it and click
+  **Scan Pre-Immigration**.
+
+A boarding pass number is always **16 characters**. The field is cleared
+automatically after every scan, so you can go straight into the next passenger.
+
+## Step 3 — Read the result
+
+### Accepted
+
+A green **Passport Check #_[BP number]_** card appears with the passenger's
+document details — **No**, **Name**, **Gender**, **Date Of Birth**,
+**Nationality**, **Issuance Country**, **Issue Date** and **Expiry Date** — and
+below it a second green card with the **trip**: code, operator, route, gate window
+and departure time.
+
+Compare the passport in your hand against the card. If it matches, the passenger
+goes through.
+
+At the same moment the passenger display turns **green** and shows **Success** with
+the passenger's name, their operator and the departure time.
+
+![The Passenger Display showing a successful pre-immigration scan](/img/terminal-staff/pre-imm-scan/02-success.png)
+_A successful scan on the passenger-facing display._
+
+### Rejected
+
+A red **Invalid BP** box appears on your screen with the reason. The passenger
+display turns **red** and shows **Rejected.**
+
+![The Passenger Display showing a rejected scan](/img/terminal-staff/pre-imm-scan/03-error.png)
+_A rejected scan — the passenger is not cleared._
+
+:::info[The passenger never sees the real reason]
+Only two kinds of message are passed through to the public display: **gate window**
+messages and **"Invalid boarding pass number."** Everything else — wrong status,
+wrong port, configuration problems — collapses to the generic
+**"Please Check with our terminal staff"**.
+
+This is deliberate. The passenger standing at the desk should not be told, on a
+large screen, that they are already recorded as Boarded. **You** see the real
+reason on the operator screen; they see a polite instruction to talk to you.
+:::
+
+## Step 4 — Repeat
+
+The field is already cleared and ready. Keep scanning. The result card stays on
+screen until the next scan replaces it, and the passenger display returns to its
+idle **"Ready For Pre-Immigration"** state about **10 seconds** after each scan.
+
+## Rejection messages and what to do
+
+| What you see on the operator screen | What it means | What to do |
+| --- | --- | --- |
+| **"Please enter boarding pass number."** | You clicked Scan with an empty field. | Scan or type the number. |
+| **"Invalid boarding pass number."** | The number is not exactly 16 characters, or no passenger anywhere has it. | Re-scan. If the barcode is damaged, look the passenger up by name on the trip and read the BP number off their row. |
+| **"Passenger boarding pass is not valid for the currently selected port."** | The pass belongs to a trip departing from a **different port**. | Check your **Active Port** in Settings. If the port is right, the passenger is at the wrong terminal. |
+| **"Passenger must be CheckedIn to move to PreImmigration. Current status: Boarded."** (or PreImmigration, or Cancelled) | The passenger is not at the stage this scan expects. **Boarded** usually means they already went through; **Cancelled** means their booking was cancelled. | For Boarded, see [Revert Boarding](/terminal-operator/revert-boarding). For Cancelled, send them to the counter. |
+| **"Trip must be in Scheduled or Boarding status to scan at pre-immigration gate. Current status: Closed."** (or Departed, or Cancelled) | The trip has moved past the point where pre-immigration makes sense. | They have missed the sailing. Send them to the counter. |
+| **"Pre-immigration gate is not open yet. Gate opens at HH:mm (PORT time)."** | The trip is still **Scheduled** and you are scanning **before** gate open. | Wait, or widen the window with [Update Timings](/terminal-operator/update-timings). |
+| **"Pre-immigration gate is already closed. Gate closed at HH:mm (PORT time)."** | The trip is still **Scheduled** and you are scanning **after** gate close. | Extend **Gate Close** with [Update Timings](/terminal-operator/update-timings), or set the trip to [Boarding](/terminal-operator/set-trip-as-boarding) — the window stops applying once it is. |
+| **"Port context is required. Please select an active port in terminal portal."** | No active port is set. | [Set your port context](/terminal-staff/set-port-context). |
+
+:::tip[The gate window only applies while the trip is Scheduled]
+Once the trip is **Boarding**, gate open and gate close no longer block a
+pre-immigration scan — from that point the rule is status alone. This matches the
+boarding scan, which never checks gate times.
+:::
+
+## Scanning the same pass twice is safe
+
+If you scan a passenger who is **already PreImmigration**, nothing bad happens: no
+error, and their status stays **PreImmigration**. They are not counted twice. Scan
+freely when you are not sure whether a scan registered.
+
+## Made a mistake?
+
+If you scanned someone who should not have gone through, use
+[Revert Pre-Immigration](/terminal-operator/revert-pre-immigration) — the **Revert
+To Check-In** button is right there on the result card.
+
+## Next
+
+- [Revert Pre-Immigration](/terminal-operator/revert-pre-immigration)
+- [Passenger Display Setup](/terminal-operator/pre-immigration-display)
+- [Scan a Boarding Pass at the Gate](/terminal-operator/boarding-scan) — the next
+  stage.
+
+:::note[Screenshot needed]
+There is no screenshot yet of the **operator-side** Pre-Immigration Scan page —
+the scan field, the green Passport Check card, and the Passenger Display Preview
+panel side by side. One would help Steps 1–3 considerably.
+:::

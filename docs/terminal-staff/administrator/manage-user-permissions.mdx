@@ -1,0 +1,140 @@
+---
+id: manage-user-permissions
+title: Manage a User's Direct Permissions
+sidebar_label: Manage user's direct permissions
+sidebar_position: 8
+slug: /terminal-administrator/manage-user-permissions
+description: Grant or revoke individual permissions on one user, on top of whatever their roles give them.
+keywords:
+  - direct permissions
+  - user permissions
+  - grant permission
+  - effective access
+---
+
+A **direct permission** is granted to one person, on top of their roles. Use it
+sparingly — it is the exception, not the tool.
+
+> **Users → ⋯ → Manage Security → Direct Permissions tab → Grant / Revoke**
+
+**Permission needed:** `terminal.security.is_super_admin`
+
+:::warning[Prefer roles almost every time]
+Direct permissions are **invisible in the Roles list**. Six months on, nobody can
+tell why one person can do something their colleagues cannot — and the only way to
+find out is to open their profile.
+
+Reach for a [role](/terminal-administrator/add-role) first. Use a direct permission only for a
+genuine one-off that no role should carry.
+:::
+
+:::warning[Only a Super Admin can change a user’s direct permissions]
+The buttons in both panels are gated on **`terminal.security.is_super_admin`** — not
+on `terminal.roles.write` or `terminal.users.write`.
+
+So an ordinary administrator can **open this page and read it**, but the action
+buttons will not appear for them. If you can see the lists but not the buttons, that
+is why.
+:::
+
+:::note
+You need the permissions named above. The screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- The [user exists](/terminal-administrator/add-user).
+- You are a **Super Admin**.
+
+## Step 1 — Open the Direct Permissions tab
+
+Open **Security → Users** → the user's **⋯** menu → **Manage Security**, then the
+**Direct Permissions** tab.
+
+| Panel | What it holds |
+| --- | --- |
+| **Available Direct Permissions** (left) | Permissions not currently granted to them directly. |
+| **Directly Assigned** (right) | Permissions granted to them **individually**. Shown on a tinted background. |
+
+Permissions appear as **raw strings** in monospace — `terminal.passenger.cancel`,
+`terminal.scan.boarding`, and so on.
+
+Both panels work the same way:
+
+- **Filter box** — type to narrow the list. With hundreds of permission strings,
+  this is the only practical way to find one.
+- **Tick the rows** you want. The **checkbox in the header** ticks everything
+  currently shown.
+- The action button shows the count — **Grant (3)** — and stays **disabled
+  until at least one row is ticked**.
+- Each panel scrolls independently; the selection clears after every action.
+
+## Step 2 — Grant
+
+Filter, tick, then click **Grant (N)**. Effective immediately.
+
+## Step 3 — Revoke
+
+Tick rows in **Directly Assigned** and click **Revoke (N)**.
+
+:::info[Revoking here does not touch their roles]
+**Directly Assigned** lists **only** the permissions granted to this person
+individually. If they also get the same permission from a role, revoking it here
+changes nothing they can do — the role still grants it.
+
+Check the **Effective Access** tab afterwards to see what they actually have.
+:::
+
+## How effective access is worked out
+
+A user's effective permissions are the **union** of:
+
+1. every permission from **every role** they hold, plus
+2. every **direct permission** granted here.
+
+There is no precedence and no subtraction — you **cannot** use a direct permission
+to take something away that a role grants. To remove access that comes from a role,
+either [revoke the role](/terminal-administrator/assign-role#step-4--revoke-a-role) or
+[change the role's permissions](/terminal-administrator/manage-role-permissions).
+
+The **Effective Access** tab shows the final combined list.
+
+:::danger[You cannot subtract]
+This is the single most misunderstood part of the permission model. If someone has
+too much access, look at **where it comes from** — a role, a direct grant, or the
+[Admin flag](/terminal-administrator/grant-revoke-admin) — and remove it at the source. Nothing
+here can override a grant.
+:::
+
+## When a direct permission is justified
+
+| Situation | Better answer |
+| --- | --- |
+| One person covers an extra duty this week | **Direct permission** — genuinely temporary and personal. Remember to revoke it. |
+| A whole shift needs the same extra access | Create or extend a [role](/terminal-administrator/add-role). |
+| One person always does something nobody else does | A role with one member is still clearer than a direct grant. |
+| Debugging why access is missing | Fix the role. A direct permission hides the real problem. |
+
+:::tip[Write down the ones you mean to remove]
+Nothing expires and nothing reminds you. A "just for this week" grant survives until
+somebody notices — keep your own note, and review the **Directly Assigned** panel
+periodically.
+:::
+
+## If a change is rejected
+
+| Message | What it means |
+| --- | --- |
+| _"Invalid permissions: …"_ | An unrecognised permission string was submitted. This should not happen from the UI; report it. |
+
+## Next
+
+- [Assign a Role to a User](/terminal-administrator/assign-role)
+- [Grant or Revoke the Admin Role](/terminal-administrator/grant-revoke-admin)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Direct Permissions** tab's two panels, or of the
+**Effective Access** tab showing the combined permission grid.
+:::

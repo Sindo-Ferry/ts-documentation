@@ -1,0 +1,127 @@
+---
+id: edit-passenger
+title: Edit a Checked-In Passenger's Details
+sidebar_label: Edit CheckedIn passenger detail
+sidebar_position: 3
+slug: /terminal-operator/edit-passenger
+description: Correct a passenger's passport details from the trip's passenger table — only while they are still Checked-In.
+keywords:
+  - edit passenger
+  - passport details
+  - correct details
+  - checked-in
+  - passenger table
+---
+
+Names get mis-keyed, nationalities get picked from the wrong row. **Edit Passenger**
+fixes a passenger's document details — but only while they are still
+**CheckedIn**.
+
+> **Current Trips → open the trip → passenger's ⋯ menu → Edit Passenger → save**
+
+:::warning[Only CheckedIn passengers can be edited]
+The moment a passenger is scanned through pre-immigration, their details are locked.
+The **Edit Passenger** menu item is **not shown at all** on a **PreImmigration**,
+**Boarded** or **Cancelled** row — it is not greyed out, it simply is not there.
+
+The reasoning: once the passenger has been physically checked against their passport
+at a scan point, the record has been verified. Changing it afterwards would
+undermine that check.
+:::
+
+## Step 1 — Find the passenger
+
+Passengers are edited **from within their trip**, never from the top-level
+Passengers list. That list is search-only and its row menu offers only **View
+Passenger**.
+
+- **Today's trip:** **Operational → Current Trips** → click the trip's row → scroll
+  to the **Passengers** table at the bottom of the detail page.
+- **An older trip:** **Management → Departure Trips** → find the trip → open its
+  detail page.
+- **Not sure which trip?** [Look Up a Passenger](/terminal-operator/look-up-passenger)
+  first — it searches every trip and tells you which one they are on.
+
+Use the filter toolbar above the table — search by **No** or **Name**, or narrow by
+**Passenger Status** — if the list is long.
+
+:::info[Why editing lives inside the trip]
+Tying every passenger action to a specific voyage prevents cross-trip mistakes: you
+cannot accidentally edit the same person's record on a different sailing.
+:::
+
+## Step 2 — Open the row menu
+
+On the passenger's row, click **⋯** at the right-hand end and choose **Edit
+Passenger**.
+
+If **Edit Passenger** is not in the menu, check the row's **Status** badge. Anything
+other than **CheckedIn** explains it.
+
+## Step 3 — Change what needs changing and save
+
+The edit form carries the same fields as check-in:
+
+| Field | Notes |
+| --- | --- |
+| **No** | Letters and digits only. |
+| **Name** | Letters, digits and spaces only. |
+| **Gender** | Male / Female / Unspecified. |
+| **Nationality** | Changing it does **not** re-fill Issue Country on the edit form — set Issue Country yourself if it also needs changing. |
+| **Date of Birth** | Must be in the past. |
+| **Issue Date** _(optional)_ / **Expiry Date** / **Issue Country** | Document details. |
+
+Save the form.
+
+:::note[The same validation applies]
+Editing runs **exactly the same checks** as check-in — the character rules on **No**
+and **Name**, the date ordering rules, and the **duplicate No on the same trip**
+check. See
+[Check In an NTL / LM Passenger](/terminal-operator/check-in-ntl-lm#if-the-check-in-is-rejected)
+for the full list of messages.
+:::
+
+## What editing does not change
+
+- **The boarding pass number stays the same.** Correcting a name does not reissue
+  the pass, and the passenger's printed pass remains valid. You may still want to
+  [reprint it](/terminal-operator/reprint-boarding-pass) so the printed name matches.
+- **The status stays CheckedIn.**
+- **The passenger stays on the same trip.** There is no "move to another trip"
+  action — cancel them and check them in again on the right sailing.
+- **The seat count does not move.**
+
+## If the edit is refused
+
+| Message | What it means |
+| --- | --- |
+| _"Only CheckedIn passengers can have their passport information updated."_ | The status changed between opening the menu and saving — someone scanned them at pre-immigration while you were typing. Refresh the table. |
+| _"A passenger with this No already exists on this trip."_ | The new document number clashes with another live passenger on this trip. Cancelled passengers are ignored. |
+
+## When you cannot edit but the record is wrong
+
+A passenger is already **Boarded** and you notice the passport number is wrong.
+Options, in order of preference:
+
+1. **Leave it and note it.** If the vessel has sailed, the manifest is already
+   generated from what is recorded. Raise it through your terminal's own correction
+   process.
+2. **Revert them back to CheckedIn**, edit, then re-scan. This only works while the
+   trip is still **Boarding** — see
+   [Revert Boarding](/terminal-operator/revert-boarding), then
+   [Revert Pre-Immigration](/terminal-operator/revert-pre-immigration). Two reverts
+   get you back to CheckedIn, where the edit unlocks.
+3. **Cancel and re-check-in.** A last resort — it issues a **new boarding pass
+   number**, so the passenger needs a reprint.
+
+## Next
+
+- [Cancel a Passenger](/terminal-operator/cancel-passenger)
+- [Update a Passenger's Status](/terminal-operator/update-passenger-status)
+- [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
+
+:::note[Screenshot needed]
+No screenshots exist of the Terminal Portal's passenger **⋯ row menu** or its **Edit
+Passenger** dialog. (The Ferry Operator portal has equivalents, but the terminal
+menu carries different items — Update Status and Boarding Pass History.)
+:::

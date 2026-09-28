@@ -1,0 +1,123 @@
+---
+id: operator-download-manifest
+title: Download the Manifest
+sidebar_label: Download manifest
+sidebar_position: 11
+slug: /ferry-operator/download-manifest
+description: Download a trip's passenger manifest as an Excel file in English or Indonesian, straight from the trip grid or its detail page.
+keywords:
+  - manifest
+  - download manifest
+  - xlsx
+  - excel
+  - english
+  - indonesian
+---
+
+The **manifest** is the official passenger list for a trip. This is the quick route
+to it: two clicks from the trip, as an Excel file in English or Indonesian.
+
+> **Departure Trips → the trip → Download Manifest → English / Indonesian**
+
+:::tip[Need PDF, a different passenger status, or a password?]
+This button always produces an **Excel file of boarded passengers**. For anything
+else — PDF, all passengers, cancelled only, or password protection — use
+[Export the Passenger Manifest Report](/ferry-operator/export-manifest-report).
+:::
+
+## Before you start
+
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+- You hold the export-manifest permission; without it the button does not appear.
+- The trip is **Closed** or **Departed**.
+
+## When the button works
+
+:::info[Closed is enough — you don't have to wait for departure]
+On the **operator portal** the manifest unlocks as soon as the trip is **Closed**.
+The terminal's own Current Trips page waits for **Departed**, so you may be able to
+pull the list before the terminal can.
+:::
+
+| Trip status | Download Manifest |
+| --- | --- |
+| Scheduled | **Disabled**, tooltip: _"Available once the trip is closed or departed."_ |
+| Boarding | **Disabled**, same tooltip |
+| **Closed** | **Enabled** |
+| **Departed** | **Enabled** |
+| Cancelled | Disabled |
+
+The button is **disabled, not hidden** — so if you cannot see it at all, it is a
+permission problem, not a status one.
+
+## Method 1 — From the trip grid
+
+Open **Departure Trips** and find the trip. Its cell carries a **Manifest** action
+alongside **View**. Click it and choose the language.
+
+Best when you are pulling manifests for several trips in a row.
+
+## Method 2 — From the trip's detail page
+
+Click **View** on the trip, then **Download Manifest** at the top right of the
+detail page, and choose:
+
+- **English**
+- **Indonesian**
+
+The button reads **Downloading…** while the file is generated.
+
+Best when you want to check the trip's details and counts before pulling the list.
+
+## What you get
+
+An Excel (`.xlsx`) file named:
+
+```
+passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.xlsx
+```
+
+for example `passenger-manifest-SSFHW202607031300-2026-07-03.xlsx`.
+
+It contains **only Boarded passengers**, ordered by check-in time, with the trip
+details and each passenger's **No**, **name**, **gender**, **date of birth**,
+**nationality**, **issue country**, **issue / expiry dates**, **boarding pass
+number**, **passenger type** and **status**.
+
+:::info[Both languages list the same people]
+Indonesian changes the **wording of headings and labels**, not the passengers.
+Download both and the rows match line for line.
+:::
+
+## Checking the file is right
+
+The manifest lists **Boarded** passengers only. Passengers who were checked in but
+never boarded, and cancelled passengers, are left out — so:
+
+> **rows in the file = the trip's Boarded count**
+
+Compare against the **Boarded** figure on the trip detail page, not **Checked-In**.
+A file that looks short is usually correct.
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --- | --- | --- |
+| The button is greyed out | The trip is Scheduled or Boarding | Hover for the tooltip; wait for the terminal to close the trip |
+| No button anywhere | You lack the export-manifest permission | Ask your administrator |
+| Fewer rows than expected | It lists **Boarded** passengers only | Compare against the Boarded count |
+| _"The manifest was generated but could not be saved. Please try again."_ | The browser could not write the file | Check your downloads folder and browser settings, then retry |
+| You need a PDF or a different status | This button is Excel + Boarded only | Use the [Passenger Manifest report](/ferry-operator/export-manifest-report) |
+
+## Next
+
+- [Export the Passenger Manifest Report](/ferry-operator/export-manifest-report) —
+  the full-options version.
+- [Look Up a Trip](/ferry-operator/look-up-trip)
+
+:::note[Screenshot needed]
+No screenshot exists of the operator **Download Manifest** button with its
+**English / Indonesian** menu open, nor of the greyed-out state with its tooltip.
+(The terminal-portal equivalents exist but show a different page.)
+:::

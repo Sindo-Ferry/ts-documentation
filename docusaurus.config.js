@@ -38,9 +38,16 @@ const config = {
   // Renders ```mermaid fences as diagrams (used by /how-it-fits-together).
   themes: ['@docusaurus/theme-mermaid'],
 
+  // English is the source language. Indonesian pages live under i18n/id/ and are
+  // served at /ts-documentation/id/; any page without a translation falls back to
+  // the English original, so the site stays complete while translation is partial.
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'id'],
+    localeConfigs: {
+      en: {label: 'English', htmlLang: 'en'},
+      id: {label: 'Bahasa Indonesia', htmlLang: 'id'},
+    },
   },
 
   presets: [
@@ -81,6 +88,10 @@ const config = {
             label: 'Docs',
           },
           {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/Sindo-Ferry/terminal-solution',
             label: 'GitHub',
             position: 'right',
@@ -95,8 +106,8 @@ const config = {
             items: [
               {label: 'Overview', to: '/'},
               {
-                label: 'Trip Sync Job',
-                to: '/trip-sync-job',
+                label: 'Terminal Operator',
+                to: '/terminal-operator',
               },
             ],
           },

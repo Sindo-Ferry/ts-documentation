@@ -1,0 +1,105 @@
+---
+id: operator-reprint-boarding-pass
+title: Reprint or Download a Boarding Pass
+sidebar_label: Reprint / download boarding pass
+sidebar_position: 9
+slug: /ferry-operator/reprint-boarding-pass
+description: Reprint a lost boarding pass or save it as a PDF from the trip's passenger table, and check its issue history.
+keywords:
+  - reprint boarding pass
+  - print
+  - download
+  - PDF
+  - boarding pass history
+  - lost pass
+---
+
+Passes get lost, smudged and left behind. Reprinting one **reissues the same
+boarding pass number** — the old pass and the new one are the same pass.
+
+> **Departure Trips → View the trip → printer or download icon on the passenger's row**
+
+## Step 1 — Open the trip
+
+Open **Departure Trips**, find the trip and click **View**. Scroll to the
+**Passengers** table.
+
+Not sure which trip? [Look Up a Passenger](/ferry-operator/look-up-passenger) finds
+them and tells you.
+
+## Step 2 — Use the printer or download icon
+
+At the right-hand end of the passenger's row, **before** the **⋯** menu, are two
+small icon buttons:
+
+| Icon | What it does |
+| --- | --- |
+| 🖨 **Printer** | Opens the boarding pass and sends it to print. |
+| ⬇ **Download** | Saves it as a PDF named `boarding-pass-<number>.pdf`. |
+
+:::warning[They are not inside the ⋯ menu]
+These are **separate icon buttons next to** the **⋯** menu, not items in it. People
+search the dropdown and conclude the feature is missing. Look to the left of the
+three dots.
+:::
+
+Both show a spinner while the pass is generated.
+
+## The number never changes
+
+A reprint carries the **same boarding pass number as before**. A passenger holding
+an old printout and a new one has two copies of the same pass; either scans.
+
+The only thing that produces a **new** number is checking the passenger in again
+from scratch, which means
+[cancelling them first](/ferry-operator/check-in-passenger#cancel-the-check-in).
+
+## When the icons are greyed out
+
+Hover for the tooltip, which names the reason:
+
+| Tooltip | What it means | What to do |
+| --- | --- | --- |
+| **"This passenger has no boarding pass number."** | No pass was ever issued for this record. | Rare. The record may need cancelling and re-checking-in. |
+| **"Only checked-in or pre-immigration passengers have a boarding pass."** | The passenger is **Boarded** or **Cancelled**. A boarded passenger is already aboard; a cancelled one has no valid pass. | For a cancelled passenger who is travelling after all, [check them in again](/ferry-operator/check-in-passenger). |
+| **"Only available while the trip is scheduled or boarding."** | The trip is **Closed**, **Departed** or **Cancelled**. | Too late to issue a pass. For the record of who sailed, use the [manifest](/ferry-operator/download-manifest) instead. |
+
+No icons at all means you do not hold the boarding-pass permission — ask your
+administrator.
+
+## Step 3 — Check the issue history (optional)
+
+Open the row's **⋯** menu and choose **Boarding Pass History** to see every time the
+pass has been issued:
+
+- **who** issued it,
+- **when**, and
+- a badge reading **Terminal** or **Operator**, so you can tell your own counter's
+  reprint from one done at the terminal.
+
+If nothing has been issued, it reads _"No boarding pass issued yet."_
+
+This is the quickest way to answer "has this passenger already been given a pass?"
+before you print another.
+
+## Common situations
+
+| Situation | What to do |
+| --- | --- |
+| Passenger lost their pass | Reprint. Same number; their scan will work. |
+| The barcode will not scan | Reprint. Failing that, read the number off the **BP No** column so the terminal can key it in. |
+| Passenger wants it on their phone | Use the **download** icon and send them the PDF. |
+| The printed name is wrong | [Edit the passenger](/ferry-operator/check-in-passenger#edit-the-details) first — CheckedIn only — **then** reprint. |
+| Passenger says they never got one | Check **Boarding Pass History** before printing again. |
+| The trip has already closed | The icons are disabled. Nothing can be issued now. |
+
+## Next
+
+- [Check In a Passenger](/ferry-operator/check-in-passenger)
+- [Look Up a Passenger](/ferry-operator/look-up-passenger)
+
+:::note[Screenshot needed]
+No screenshot exists of the operator passenger row's **printer / download icons**
+(including a greyed-out state with its tooltip) or of the **Boarding Pass History**
+dialog.
+:::

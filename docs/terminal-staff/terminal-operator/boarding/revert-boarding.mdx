@@ -1,0 +1,106 @@
+---
+id: revert-boarding
+title: Revert a Boarding Scan
+sidebar_label: Revert boarding
+sidebar_position: 2
+slug: /terminal-operator/revert-boarding
+description: Undo a boarding scan and return the passenger to Pre-Immigration, from the Boarding Scan result card.
+keywords:
+  - revert boarding
+  - undo scan
+  - revert to pre-immigration
+  - correction
+  - boarding
+---
+
+Board the wrong person, or board someone who then has to come back off the vessel?
+**Revert To Pre-Immigration** undoes the boarding scan and returns them to
+**PreImmigration**, freeing the count.
+
+> **Boarding Scan → scan the pass → Revert To Pre-Immigration → Confirm Revert**
+
+:::warning[Restricted access]
+Reverting needs the **revert boarding** permission, which is separate from the scan
+permission. If you can scan but see no **Revert To Pre-Immigration** button, that is
+why.
+:::
+
+## When you can revert
+
+| Condition | Required |
+| --- | --- |
+| The passenger's status | **Boarded** |
+| The trip's status | **Boarding** |
+
+The trip condition is the one that catches people out: **once the trip is Closed,
+you can no longer revert a boarding**. Reverting is a gate-side correction, and the
+gate is shut.
+
+## Step 1 — Bring the passenger up on screen
+
+The **Revert To Pre-Immigration** button lives on the **green result card**.
+
+- Just scanned them? The card is already there — go to Step 2.
+- Card gone? **Scan their boarding pass again.** Re-scanning someone already
+  Boarded is harmless — it changes nothing and returns their details — and brings
+  the card back with the button on it.
+
+## Step 2 — Click Revert To Pre-Immigration
+
+The red button sits at the bottom of the result card.
+
+## Step 3 — Confirm
+
+> **Revert Boarding** — This will move **_[passenger name]_** back to
+> Pre-Immigration status. They can be re-scanned for boarding when ready.
+
+Click **Confirm Revert**.
+
+## Outcome
+
+- The passenger's status returns to **PreImmigration**.
+- The trip's **Boarded** count drops by one and its **Pre-Imm** count goes back up,
+  in the Boarding Trips panel.
+- The result card clears.
+- They can be **scanned aboard again** whenever they are ready — same pass, same
+  number.
+
+## If the revert is refused
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Trip must be in Boarding status to revert boarding. Current status: Closed."_ | The trip has been closed. | Too late here. If the record genuinely needs correcting, use [Update a Passenger's Status](/terminal-operator/update-passenger-status) from the trip's passenger table. |
+| _"Passenger must be Boarded to revert boarding. Current status: PreImmigration."_ | Already reverted. | Nothing to do. |
+
+## Correcting a wrong boarding, step by step
+
+The classic case: two passengers hand over passes together, you scan the wrong one.
+
+1. On **Boarding Scan**, scan the pass you scanned by mistake → the green card
+   appears (re-scanning is harmless).
+2. Click **Revert To Pre-Immigration** → **Confirm Revert**. They are back to
+   **PreImmigration**.
+3. Scan the **correct** passenger's pass. They board normally.
+4. If the first passenger also needs to go all the way back to **CheckedIn** — say
+   they are leaving the terminal — switch to **Pre-Immigration Scan**, scan the same
+   pass, and use
+   [Revert To Check-In](/terminal-operator/revert-pre-immigration).
+
+:::tip[Do this before the trip closes]
+Both reverts stop working once the trip is **Closed**. If you notice a mistake as
+the vessel is about to sail, fix it **before** you
+[set the trip as Close](/terminal-operator/set-trip-as-close) — afterwards the
+correction is a records job rather than a gate job.
+:::
+
+## Next
+
+- [Scan a Boarding Pass at the Gate](/terminal-operator/boarding-scan)
+- [Revert Pre-Immigration](/terminal-operator/revert-pre-immigration)
+- [Set a Trip as Close](/terminal-operator/set-trip-as-close)
+
+:::note[Screenshot needed]
+No screenshot exists of the **Revert Boarding** confirmation dialog. The existing
+[scan result screenshot](/img/terminal-staff/boarding-scan/05-scan-result.png) does
+show the **Revert To Pre-Immigration** button, so only the dialog is missing.
+:::

@@ -1,111 +1,165 @@
 ---
 id: operator-check-in-passenger
 title: Check In a Passenger
-sidebar_label: Check In Passenger
-sidebar_position: 5
-description: Add a passenger directly to a departure trip from the Operator Portal so they appear in the passenger list as CheckedIn.
+sidebar_label: Check in a passenger
+sidebar_position: 8
+slug: /ferry-operator/check-in-passenger
+description: Check a passenger onto one of your trips from the trip detail page, issue their boarding pass, and correct or cancel the check-in afterwards.
 keywords:
   - check in
   - passenger
-  - departure trip
-  - operator portal
-  - checkedin
+  - boarding pass
+  - edit passenger
+  - cancel passenger
+  - validation
 ---
 
-Ferry operators can add a passenger directly onto a departure trip. The passenger
-is recorded against the trip, issued a boarding pass, and shown in the trip's
-passenger list with status **CheckedIn**.
+Checking a passenger in records them against a trip and issues their **boarding
+pass** — the 16-character number that gets scanned at pre-immigration and the
+boarding gate.
 
-> **Departure Trips → Filter the trip → View → Check In Passenger → CheckedIn**
+> **Departure Trips → find the trip → View → Check In Passenger → fill in → Check In Passenger**
 
-:::info[What operators can check in]
-Through the Operator Portal, ferry operators check in **Ordinary** passengers
-only. Check-in is available **only on upcoming trips that are still in
-`Scheduled` status** — once a trip starts boarding (or is closed, departed, or
-cancelled) it no longer accepts check-ins here — and the trip must have available
-seats.
+:::info[Operators check in ordinary passengers only]
+There is **no Passenger Type field** on this form, and that is correct. **NTL**
+(Not To Land) and **LM** (Last Minute) passengers are a terminal-side concern — see
+the terminal
+[Check In an NTL / LM Passenger](/terminal-operator/check-in-ntl-lm) guide.
 :::
 
-:::note
-You must be signed in and have an operator workspace selected — see
-[Sign In to the Operator Portal](/ferry-operator/operator-sign-in). The
-screenshots below use `https://ts-operator.sindoferry.com.sg/`.
-:::
+## Before you start
 
-## Prerequisites
+- You are signed in with the right operator selected — see
+  [Sign In](/ferry-operator/sign-in).
+- The trip is **Scheduled** and its **gate has not yet closed**.
+- The trip has a **free seat**.
+- You have the passenger's **travel document** in hand.
 
-- You are signed in and have selected your operator.
-- The departure trip exists for the date you want.
+## Step 1 — Open the trip
 
-## Step 1 — Open Departure Trips and filter to the trip
-
-From the sidebar, open **Departure Trips**. The trips are shown as a grid of
-days × departure times. Use **Show Filters** to narrow the results — for this
-guide, set both **From Date** and **To Date** to **today** so only today's trips
-remain.
+Open **Departure Trips**, filter to the day (set **From Date** and **To Date** to
+the same date for a single day), find the trip and click **View**.
 
 ![Departure Trips filtered to today](/img/ferry-operator/check-in-passenger/01-departure-trips.png)
-_Departure Trips filtered to a single day. Each trip card has a **View** button._
+_Departure Trips filtered to a single day. Each trip cell has a **View** button._
 
-## Step 2 — View the target trip
+## Step 2 — Click Check In Passenger
 
-Find the trip you need (for this guide, the **last trip of the day**) and click
-**View** on its card. The **Departure Trip Detail** page opens, showing the trip
-info and a **Passengers** section with the **Check In Passenger** button.
+The button sits above the **Passengers** table on the trip detail page. Check
+**Available** in the counts first — zero means the vessel is full.
 
 ![Departure Trip Detail with the Check In Passenger button](/img/ferry-operator/check-in-passenger/02-trip-detail.png)
 _The trip detail page. Checked-in passengers appear in the Passengers table._
 
-## Step 3 — Check in the passenger
+:::warning[The button is greyed out?]
+**Check In Passenger** is enabled **only while the trip is Scheduled and the gate is
+still open**. It is disabled when:
 
-Click **Check In Passenger** and complete the form:
+- the trip is **Boarding**, **Closed**, **Departed** or **Cancelled**; or
+- the trip is still Scheduled but its **gate close time has already passed**.
+
+That second case surprises people: check-in closes when the **gate closes**, not
+when boarding starts. If the gate window needs extending, ask the terminal to
+[update the trip's timings](/terminal-operator/update-timings).
+:::
+
+## Step 3 — Fill in the form
 
 | Field | Notes |
 | --- | --- |
-| **No** | Passport / ID number. |
-| **Name** | Passenger's full name. |
-| **Gender** | Optional; defaults to _Unspecified_. |
-| **Nationality** | Required — pick from the country list. |
-| **Date of Birth** | **Required** (`YYYY-MM-DD`). |
-| **Expiry Date** | **Required** — travel-document expiry. |
-| **Issue Date** / **Issue Country** | Optional travel-document details. |
+| **No** | Passport / ID number. **Letters and digits only** — no dashes, slashes or spaces. At least 3 characters. |
+| **Name** | Full name. **Letters, digits and spaces only.** At least 2 characters. |
+| **Gender** | Male, Female or Unspecified. |
+| **Nationality** | Required. Pick from the country list. |
+| **Date of Birth** | Required. Must be in the past. |
+| **Issue Date** _(optional)_ | The **only** optional field. Cannot be in the future. |
+| **Expiry Date** | Required. Cannot be in the past — the earliest selectable date is today. |
+| **Issue Country** | Required. |
 
 Then click **Check In Passenger**.
 
 ![Check In Passenger dialog, completed](/img/ferry-operator/check-in-passenger/03-check-in-dialog.png)
-_The Check In Passenger form. Date of Birth and Expiry Date are required._
+_The Check In Passenger form._
 
-:::warning[No duplicate passengers]
-Each passenger can be checked in **once per trip**. If the **No** (passport / ID
-number) you enter is already checked in on the same trip, a **Validation Failed**
-message appears — _"A passenger with this No already exists on this trip"_ — and
-the passenger is **not** added. Correct the number, or find the existing entry in
-the Passengers list, then try again.
-:::
+## Step 4 — Print the boarding pass
+
+If you hold the boarding-pass permission, a prompt appears immediately:
+
+> **Passenger Checked In** — Print the boarding pass now?
+
+Click **Print Boarding Pass**, or dismiss it and print later from the passenger's
+row — see
+[Reprint or Download a Boarding Pass](/ferry-operator/reprint-boarding-pass).
+
+## Outcome
+
+- The passenger appears in the trip's table with status **CheckedIn**.
+- A unique **16-character boarding pass number** is issued.
+- The trip's **Checked-In** count and **Load** go up; **Available** goes down.
+
+## If the check-in is rejected
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"No must contain only letters and digits. Invalid character(s): '-', '/'"_ | The document number contains symbols. The message **names them**. | Strip them — `A-12/3` becomes `A123`. |
+| _"Name must contain only letters, digits, and spaces. Invalid character(s): …"_ | The name contains punctuation. | Remove apostrophes, hyphens and accents. |
+| _"A passenger with this No already exists on this trip."_ | That document number is already checked in on this sailing. | Check the passenger table — it may be a genuine duplicate. **Cancelled passengers are ignored**, so a cancelled record does not block re-use. |
+| _"No available seats on this trip."_ | The vessel is full. | Another sailing, or cancel a no-show to free a seat. |
+| _"Issue date must be before the expiry date."_ | Issue Date is on or after Expiry Date. | Re-read the document. |
+| _"Date of birth must be before the issue date."_ | Date of Birth is on or after Issue Date. | Re-read the document. |
+| A field is flagged individually | A required field is empty. | Everything except **Issue Date** is required. |
 
 ![Validation error shown when the passenger's No already exists on the trip](/img/ferry-operator/check-in-passenger/04-duplicate-passenger.png)
 _Checking in a passenger whose No is already on the trip is rejected._
 
-## Outcome
+## Correcting or cancelling a check-in
 
-The passenger is added to the trip as an **Ordinary** passenger and appears in
-the **Passengers** table with:
+Both are done from the **⋯ Actions** menu at the end of the passenger's row in the
+trip's table.
 
-- **Status: `Checked-In`** — from here the passenger progresses through
-  **Pre-Immigration** and **Boarded** as they are scanned (or can be
-  **Cancelled**).
-- A unique **boarding pass number** — the passenger's reference for the rest of
-  the boarding process, so make sure it's captured.
+![Passenger row Actions menu](/img/ferry-operator/edit-remove-passenger/01-action-menu.png)
+_The row Actions menu: View, Edit, and Cancel Passenger._
 
-The trip's **Checked-In** count and **Load** increase accordingly.
+### Edit the details
 
-:::tip
-Use the **Passengers** search or **Show Filters** on the trip detail page to find
-a specific passenger, and **Download Manifest** to export the full list.
+Choose **Edit Passenger**. The dialog opens pre-filled with the current details —
+No, Full Name, Gender, Date of Birth, Expiry Date, Nationality, Issue Country, Issue
+Date. Correct what you need and click **Save Changes**.
+
+![Edit Passenger dialog](/img/ferry-operator/edit-remove-passenger/02-edit-dialog.png)
+_The Edit Passenger dialog, pre-filled with the passenger's details._
+
+The same validation applies, including the duplicate-**No** check. Editing does
+**not** change the boarding pass number — but reprint the pass if the printed name
+has changed.
+
+:::warning[Editing stops once the passenger is scanned]
+Only a **CheckedIn** passenger can be edited. Once the terminal scans them through
+pre-immigration, their details are locked — the record has been checked against
+their passport at that point. Ask the terminal if a correction is genuinely needed.
 :::
 
-## Related
+### Cancel the check-in
 
-- [Edit & Remove a Checked-In Passenger](/ferry-operator/operator-edit-remove-passenger)
-- [Passengers](/ferry-operator/operator-passengers)
-- [Sign In to the Operator Portal](/ferry-operator/operator-sign-in)
+Choose **Cancel Passenger** (the red option) and confirm with **Confirm Cancel**.
+
+![Cancel Passenger confirmation](/img/ferry-operator/edit-remove-passenger/03-cancel-confirm.png)
+_Confirm before cancelling the passenger's check-in._
+
+The passenger's status becomes **Cancelled**, **the seat is released**, and the row
+stays in the table for reference. The record is not deleted.
+
+![Passenger shown as Cancelled after removal](/img/ferry-operator/edit-remove-passenger/04-cancelled-result.png)
+_After confirming, the passenger's status shows **Cancelled** and the seat is freed._
+
+:::tip[Cancel then re-check-in is the fix for a badly wrong record]
+The duplicate-**No** check ignores cancelled passengers, so cancelling a mis-keyed
+record and checking in again with the same document number works. Note that this
+issues a **new boarding pass number** — the old printout is no longer valid.
+:::
+
+## Next
+
+- [Reprint or Download a Boarding Pass](/ferry-operator/reprint-boarding-pass)
+- [Look Up a Passenger](/ferry-operator/look-up-passenger)
+- [Download the Manifest](/ferry-operator/download-manifest)

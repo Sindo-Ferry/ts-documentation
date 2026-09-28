@@ -1,0 +1,110 @@
+---
+id: last-call
+title: Last Call
+sidebar_label: Last call
+sidebar_position: 3
+slug: /terminal-operator/last-call
+description: Understand the Last Call Recommended alert on the Boarding Scan page — when it appears, what it counts, and what to do about it.
+keywords:
+  - last call
+  - final call
+  - boarding
+  - pre-immigration
+  - departure
+  - alert
+---
+
+**Last Call Recommended** is an amber banner that appears on a trip's card on the
+[Boarding Scan](/terminal-operator/boarding-scan) page. It is the system telling you:
+_departure is close and there are still passengers waiting who have not boarded._
+
+It is a **prompt to make an announcement**. It does not change the trip, it does not
+stop anything, and it does not need to be dismissed.
+
+## What it looks like
+
+An amber box at the top of the trip card, with a warning triangle:
+
+> ⚠ **Last Call Recommended**
+> _3 passenger(s) are still in pre-immigration and departure is in 12 minute(s)._
+
+If the trip has been marked delayed, the message says so too:
+
+> _3 passenger(s) are still in pre-immigration and departure is in 12 minute(s)
+> (delayed to 15:45)._
+
+## When it appears
+
+All four of these must be true at once:
+
+| Condition | Detail |
+| --- | --- |
+| The trip is **Boarding** | Not Scheduled, not Closed, not Departed. |
+| Passengers are still in **Pre-Immigration** | The trip's **Pre-Imm** count is above zero. |
+| Departure is **20 minutes away or less** | Counted to the **effective** departure. |
+| Departure was **no more than 30 minutes ago** | After that the banner stops showing — at that point you are well past a last call. |
+
+So the banner is live in a window running from **20 minutes before** the effective
+departure to **30 minutes after** it.
+
+:::info[It counts pre-immigration only, not check-in]
+The number in the banner is the **Pre-Imm** count — passengers who have physically
+cleared pre-immigration and are inside the terminal waiting to board. They are the
+ones an announcement can actually reach.
+
+Passengers still at **Checked-In** are not counted. They have a boarding pass but
+have not presented themselves at pre-immigration, so many of them are not in the
+building at all.
+:::
+
+:::info[Delays are taken into account]
+The countdown uses the **effective** departure time: **Delayed To** when the trip is
+marked delayed, otherwise the scheduled departure. Record a delay with
+[Update Timings](/terminal-operator/update-timings) and the banner recalculates
+itself — it will not nag you about a departure that has been pushed back.
+
+The clock is the **server's clock in the port's timezone**, not your computer's. A
+workstation with the wrong time or timezone cannot make the alert fire early or
+late.
+:::
+
+## What to do when it appears
+
+1. **Read the number.** Three passengers is an announcement; one passenger might be
+   a quiet word with the gate.
+2. **Make the last call** over the terminal PA for that trip — code, operator,
+   destination and berth are all on the card in front of you.
+3. **Check who is actually missing.** Click **View PreImm Passengers** on the trip
+   card to see exactly who has cleared pre-immigration but not boarded — names and
+   document numbers, so the announcement can be specific.
+4. **Keep scanning.** As the stragglers arrive and you scan them, the Pre-Imm count
+   falls; when it reaches zero the banner disappears on its own.
+5. **Decide.** If passengers still have not appeared,
+   [close the trip](/terminal-operator/set-trip-as-close). The close dialog warns
+   you again, with a fresh count, before it commits.
+
+## Things worth knowing
+
+- **The banner appears and disappears by itself.** The trip list refreshes every 10
+  seconds and after every scan, so the countdown stays current without you doing
+  anything.
+- **It is advisory.** Nothing is blocked while it is showing, and nothing happens if
+  you ignore it.
+- **One banner per trip.** With several trips boarding at once, each card carries
+  its own banner and its own count.
+- **It is not a record.** Nothing is written down about whether a last call was
+  made. If your terminal needs that recorded, note it in your own log.
+
+## Next
+
+- [Scan a Boarding Pass at the Gate](/terminal-operator/boarding-scan)
+- [Set a Trip as Close](/terminal-operator/set-trip-as-close) — the close dialog
+  repeats the pre-immigration warning.
+- [Update Timings](/terminal-operator/update-timings) — record a delay and the
+  countdown adjusts.
+
+:::note[Screenshot needed]
+No screenshot exists of the amber **Last Call Recommended** banner on a boarding
+trip card. It needs a Boarding trip with at least one passenger in Pre-Immigration,
+captured within 20 minutes of departure.
+:::

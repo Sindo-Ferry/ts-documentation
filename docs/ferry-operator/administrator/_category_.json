@@ -1,0 +1,11 @@
+{
+  "label": "Administrator",
+  "key": "operator-administrator",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "/operator-administrator",
+    "title": "Administrator",
+    "description": "Security administration for the Operator Portal — build roles, give them permissions, create users, and control who can do what."
+  }
+}
