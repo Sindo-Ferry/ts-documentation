@@ -1,7 +1,7 @@
 ---
 id: edit-passenger
 title: Edit a Checked-In Passenger's Details
-sidebar_label: Edit CheckedIn passenger detail
+sidebar_label: Edit CheckedIn Passenger Detail
 sidebar_position: 3
 slug: /terminal-operator/edit-passenger
 description: Correct a passenger's passport details from the trip's passenger table — only while they are still Checked-In.
@@ -45,6 +45,10 @@ Passenger**.
 Use the filter toolbar above the table — search by **No** or **Name**, or narrow by
 **Passenger Status** — if the list is long.
 
+![The passenger table on a Departure Trip Detail page](/img/terminal-staff/edit-passenger/01-edit-from-departure-trip.png)
+_The **Passengers** table at the bottom of a trip's detail page — here reached from
+**Management → Departure Trips**._
+
 :::info[Why editing lives inside the trip]
 Tying every passenger action to a specific voyage prevents cross-trip mistakes: you
 cannot accidentally edit the same person's record on a different sailing.
@@ -54,6 +58,11 @@ cannot accidentally edit the same person's record on a different sailing.
 
 On the passenger's row, click **⋯** at the right-hand end and choose **Edit
 Passenger**.
+
+![The passenger row menu with Edit Passenger](/img/terminal-staff/edit-passenger/02-edit-from-current-trip.png)
+_A CheckedIn passenger's **⋯** menu, opened from **Current Trips** — **View
+Passenger**, **Boarding Pass History**, **Edit Passenger**, **Update Status** and
+**Cancel Passenger**._
 
 If **Edit Passenger** is not in the menu, check the row's **Status** badge. Anything
 other than **CheckedIn** explains it.
@@ -65,13 +74,16 @@ The edit form carries the same fields as check-in:
 | Field | Notes |
 | --- | --- |
 | **No** | Letters and digits only. |
-| **Name** | Letters, digits and spaces only. |
+| **Full Name** | Letters, digits and spaces only. |
 | **Gender** | Male / Female / Unspecified. |
 | **Nationality** | Changing it does **not** re-fill Issue Country on the edit form — set Issue Country yourself if it also needs changing. |
 | **Date of Birth** | Must be in the past. |
 | **Issue Date** _(optional)_ / **Expiry Date** / **Issue Country** | Document details. |
 
-Save the form.
+![The Edit Passenger form](/img/terminal-staff/edit-passenger/03-edit-form.png)
+_The Edit Passenger form, filled in with the passenger's current details._
+
+Click **Save Changes** (or **Cancel** to back out).
 
 :::note[The same validation applies]
 Editing runs **exactly the same checks** as check-in — the character rules on **No**
@@ -119,9 +131,3 @@ Options, in order of preference:
 - [Cancel a Passenger](/terminal-operator/cancel-passenger)
 - [Update a Passenger's Status](/terminal-operator/update-passenger-status)
 - [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
-
-:::note[Screenshot needed]
-No screenshots exist of the Terminal Portal's passenger **⋯ row menu** or its **Edit
-Passenger** dialog. (The Ferry Operator portal has equivalents, but the terminal
-menu carries different items — Update Status and Boarding Pass History.)
-:::

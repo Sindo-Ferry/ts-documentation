@@ -1,7 +1,7 @@
 ---
 id: update-passenger-status
 title: Update a Passenger's Status
-sidebar_label: Update a passenger status
+sidebar_label: Update a Passenger Status
 sidebar_position: 5
 slug: /terminal-operator/update-passenger-status
 description: Move a passenger directly between Checked-In, Pre-Immigration and Boarded when the scan record does not match reality.
@@ -37,6 +37,10 @@ From within their trip:
 - **Not sure which trip?** [Look Up a Passenger](/terminal-operator/look-up-passenger)
   first — it searches every trip and tells you which one they are on.
 
+![The passenger row menu with Update Status](/img/terminal-staff/edit-passenger/02-edit-from-current-trip.png)
+_A passenger's **⋯** menu on a trip opened from **Current Trips** — **Update Status**
+is the fourth item._
+
 ## Step 2 — Open Update Status
 
 On the passenger's row, click **⋯** and choose **Update Status**.
@@ -56,8 +60,12 @@ Open the **New Status** picker. It offers exactly three:
 | **PreImmigration** | Has cleared pre-immigration; waiting to board. |
 | **Boarded** | Is on the vessel. |
 
-Choose one and click **Update Status**. The button stays **disabled while the
-selected status is the one they already have**, so you cannot submit a no-op.
+![The Update Status dialog](/img/terminal-staff/edit-passenger/05-update-status.png)
+_The Update Status dialog, with **PreImmigration** picked for a CheckedIn passenger._
+
+Choose one and click **Update Status** (or **Cancel** to back out). The button stays
+**disabled while the selected status is the one they already have**, so you cannot
+submit a no-op.
 
 ## Outcome
 
@@ -116,7 +124,3 @@ At the gate, revert. At the counter, update.
 - [Cancel a Passenger](/terminal-operator/cancel-passenger)
 - [Revert Boarding](/terminal-operator/revert-boarding) ·
   [Revert Pre-Immigration](/terminal-operator/revert-pre-immigration)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Update Status** dialog with its New Status picker.
-:::

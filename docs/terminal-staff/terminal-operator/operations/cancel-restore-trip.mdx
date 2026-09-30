@@ -1,7 +1,7 @@
 ---
 id: cancel-restore-trip
 title: Cancel and Restore a Trip
-sidebar_label: Cancel and restore trip
+sidebar_label: Cancel and Restore Trip
 sidebar_position: 5
 slug: /terminal-operator/cancel-restore-trip
 description: Cancel a scheduled departure trip that will not run, and restore a cancelled trip back to Scheduled.
@@ -16,7 +16,7 @@ keywords:
 When a sailing will not run, **cancel** the trip so it stops appearing as a live
 service. If the decision is reversed, **restore** it back to **Scheduled**.
 
-> **Departure Trips → ⋯ Actions → Cancel Trip / Restore Trip → Confirm**
+> **Departure Trips → ⋯ Actions (or open the trip) → Cancel Trip / Restore Trip → Confirm**
 
 :::note
 You need permission to cancel and restore departure trips. The screenshots below use
@@ -37,24 +37,36 @@ trip in either the **Calendar** or the **List** view. Use **Show Filters** or th
 **Trip Date** filter to narrow things down — by default you are only seeing the
 coming week.
 
-To read the trip in full before acting, click the card (or its **View** button) in
-the calendar, or use **⋯ Actions → View Detail** in the list. The detail page shows
-the trip info, a **status timeline** (Scheduled → Boarding → Closed → Departed) and
-the passenger list.
-
-![A departure trip's detail page](/img/terminal-staff/departure-trips/07-trip-detail.png)
-_The trip detail page — trip info, status timeline, and passengers._
+![The Departure Trip Calendar](/img/terminal-staff/cancel-restore-trip/01-calendar-view.png)
+_The Departure Trip Calendar — one card per trip, with its **⋯** menu at the top
+right of the card._
 
 ## Step 2 — Cancel the trip
 
-Open the row **⋯ Actions** menu — available in **both** the calendar and the list —
-and choose **Cancel Trip**.
+You can cancel from either of two places — use whichever suits you.
 
-![The Actions menu on a scheduled trip](/img/terminal-staff/departure-trips/03-actions-menu.png)
+**Option A — from the ⋯ menu.** Click the **⋯** at the top right of the trip's card
+(or at the end of its row in the **List** view) and choose **Cancel Trip**.
+
+![The Actions menu on a scheduled trip](/img/terminal-staff/cancel-restore-trip/02-action-ellipsis.png)
 _A **Scheduled** trip's Actions menu — **View Detail** and **Cancel Trip**._
 
-A confirmation appears: **Cancel Trip?** — _"This will cancel the trip and affect
-all passengers. This action cannot be undone."_ Click **Confirm Cancel**.
+**Option B — from the trip's detail page.** Click the trip's card (or its **View**
+button, or **⋯ → View Detail**) to open **Departure Trip Detail**. It shows the trip
+info, a **status timeline** (Scheduled → Boarding → Closed → Departed) and the
+passenger list — a good place to double-check you have the right trip. Then click
+the red **Cancel Trip** button at the top right.
+
+![A scheduled trip's detail page with the Cancel Trip button](/img/terminal-staff/cancel-restore-trip/03-trip-detail.png)
+_Departure Trip Detail for a **Scheduled** trip — **Cancel Trip** at the top right._
+
+Either way, a confirmation appears: **Cancel Trip?** — _"This will cancel the trip
+and affect all passengers. This action cannot be undone."_
+
+![The Cancel Trip confirmation dialog](/img/terminal-staff/cancel-restore-trip/04-confirm-cancel.png)
+_The Cancel Trip confirmation._
+
+Click **Confirm Cancel** (or **Close** to back out).
 
 The trip's status becomes **Cancelled**.
 
@@ -71,12 +83,21 @@ passengers first — see
 
 ## Step 3 — Restore a cancelled trip
 
-**Restore Trip** is "un-cancel", so it appears only on **Cancelled** trips. Open
-the row **⋯ Actions** menu and choose **Restore Trip**.
+**Restore Trip** is "un-cancel", so it appears only on **Cancelled** trips — in the
+same two places as **Cancel Trip**: the trip's **⋯** menu, or the top right of its
+detail page.
+
+![A cancelled trip's detail page with the Restore Trip button](/img/terminal-staff/cancel-restore-trip/05-restore.png)
+_A **Cancelled** trip — the red **Cancelled** badge next to the code, and **Restore
+Trip** where **Cancel Trip** used to be._
 
 The confirmation reads **Restore Trip?** — _"This returns the trip to Scheduled
-status. Only future trips with no active slot conflict can be restored."_ Click
-**Confirm Restore**.
+status. Only future trips with no active slot conflict can be restored."_
+
+![The Restore Trip confirmation dialog](/img/terminal-staff/cancel-restore-trip/06-confirm-restore.png)
+_The Restore Trip confirmation._
+
+Click **Confirm Restore** (or **Close** to back out).
 
 The trip returns to **Scheduled**.
 

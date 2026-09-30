@@ -1,0 +1,217 @@
+---
+id: export-other-reports
+title: Export Other Reports
+sidebar_label: Export Other Reports
+sidebar_position: 8
+slug: /terminal-operator/export-other-reports
+description: Generate the Terminal Portal's reports — the Passenger Manifest report, the Passenger Summary for a port, and the Daily Passenger Report for an operator — as PDF or Excel.
+keywords:
+  - reports
+  - passenger manifest
+  - passenger summary
+  - daily passenger report
+  - pdf
+  - xlsx
+  - password
+  - sign-off
+---
+
+The trip page's [Download Manifest](/terminal-operator/download-manifest) button
+gives you one thing: an Excel list of one trip's boarded passengers. **Reports** is
+where you go for everything else — a manifest in another format or with other
+passengers, and passenger **totals** across many trips and days.
+
+> **Reports → pick a report → fill in the form → Download Report**
+
+| Report | Covers | Use it for |
+| --- | --- | --- |
+| [**Passenger Manifest**](#passenger-manifest) | **One trip** | A manifest in PDF or Excel, any language, any passenger status, optionally password-protected. |
+| [**Passenger Summary**](#passenger-summary) | **One port**, a date range, one or every operator | How many passengers left this port — per day, operator, destination and departure time. |
+| [**Daily Passenger Report**](#daily-passenger-report) | **One operator**, a date range | Indonesian / foreign passenger counts per trip, with sign-off lines. |
+
+:::note
+Each report has its **own permission**. You only see the reports you hold, and the
+**Reports** item in the sidebar only appears if you hold at least one. The
+screenshots below use `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Before you start
+
+- You are signed in to the Terminal Portal — see
+  [Sign In to the Terminal Portal](/terminal-staff/sign-in).
+- For the **Passenger Summary**, [set your active port](/terminal-staff/set-port-context)
+  — the form starts from it.
+
+## Step 1 — Open Reports
+
+In the sidebar, click **Reports** (route: `/reports`). It sits on its own at the
+bottom of the sidebar, below the **Operational** group.
+
+The page lists a card for each report you have access to. Click the one you want.
+
+![The Reports page with three report cards](/img/terminal-staff/reports/01-report-list.png)
+_The Reports page for someone who holds all three report permissions._
+
+If the page reads _"You don't have access to any reports,"_ ask your administrator.
+
+## Step 2 — Fill in the form and download
+
+Each report has its own form, described below. When it is filled in, click
+**Download Report**. The button reads **Generating…** while the file is prepared,
+then your browser saves it.
+
+---
+
+## Passenger Manifest
+
+_"Boarding / passenger list for a departure trip."_ The same form as the ferry
+operator's — see
+[Export the Passenger Manifest Report](/ferry-operator/export-manifest-report) — with
+one difference: here the trip picker covers **every operator's** trips, not just
+one.
+
+| Field | Options | Default |
+| --- | --- | --- |
+| **Departure Trip** | Click **Select trip**. The **Select Departure Trip** window opens with the same search and filters as **Departure Trips** — find the trip and pick it. Required. | — |
+| **Format** | **Excel (.xlsx)** or **PDF (.pdf)** | Excel |
+| **Language** | **English** or **Indonesian** | English |
+| **Passenger Status** | **All passengers**, or one of **CheckedIn**, **PreImmigration**, **Boarded**, **Cancelled** | **Boarded** |
+| **Password (optional)** | Protects the generated file. **Only shown when Format = PDF.** | blank |
+
+| Passenger Status | What you get | Typical use |
+| --- | --- | --- |
+| **Boarded** _(default)_ | Only passengers scanned aboard. | The official manifest of who sailed. |
+| **All passengers** | Everyone on the trip, whatever their status. | Reconciling bookings against who actually travelled. |
+| **CheckedIn** | Checked in but never cleared pre-immigration. | Chasing no-shows. |
+| **PreImmigration** | Cleared pre-immigration but never boarded. | Investigating passengers left behind. |
+| **Cancelled** | Cancelled passengers only. | Cancellation records. |
+
+:::warning[The default is Boarded, not everyone]
+Leave the form untouched and you get **Boarded passengers only** — the same people
+as the Download Manifest button. For the full list, change **Passenger Status** to
+**All passengers**.
+:::
+
+:::info[The password is PDF-only, and it is not stored]
+Switch **Format** to **PDF (.pdf)** and a **Password (optional)** field appears. Type
+a password and the PDF asks for it when opened; leave it blank for an ordinary PDF.
+Nothing records what you typed — if you send a protected manifest on, pass the
+password separately, and keep your own note of it.
+:::
+
+![The Passenger Manifest report form](/img/terminal-staff/reports/02-manifest-report.png)
+_The form with a trip picked and the defaults — **Excel (.xlsx)**, **English**,
+**Boarded**. There is no **Password** field because the format is Excel._
+
+The file is named `passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.pdf` (or `.xlsx`).
+
+---
+
+## Passenger Summary
+
+_"Boarded passengers leaving one port, per day, by operator, destination and
+departure time."_ Use it for the port's traffic figures — how many people left, on
+which operators' sailings, to where.
+
+| Field | What to enter | Default |
+| --- | --- | --- |
+| **Origin Port** | The port the trips leave from. Required. | Your **active port** |
+| **Operator** | One operator, or leave it on **All operators** to include everyone. | All operators |
+| **Start Date** / **Until Date** | The trip-date range. **Both dates are included.** | 1st of this month → today |
+| **Format** | **PDF (.pdf)** or **Excel (.xlsx)** | PDF |
+
+![The Passenger Summary report form](/img/terminal-staff/reports/03-passenger-report.png)
+_The Origin Port filled in from the active port, **All operators**, and a month's
+date range._
+
+**What you get:** a table of boarded passengers for every trip leaving that port in
+the period, broken down by **trip date**, **operator**, **destination port** and
+**departure time**, with totals.
+
+The file is named `passenger-summary-<PORT>-<OPERATOR or all>-<START>-<UNTIL>.pdf`
+(or `.xlsx`).
+
+---
+
+## Daily Passenger Report
+
+_"Per-trip Indonesian / foreign passenger counts for one operator, with sign-off."_
+Use it for the formal daily return an operator's figures are reported on.
+
+| Field | What to enter | Default |
+| --- | --- | --- |
+| **Operator** | The operator the report is for. Required. | — |
+| **Start Date** / **Until Date** | The trip-date range. **Both dates are included.** | Today → today |
+| **Format** | **PDF (.pdf)** or **Excel (.xlsx)** | PDF |
+| **Prepared by** / **Acknowledged by** / **Received by** _(optional)_ | Names printed under the report's three sign-off lines. Up to 100 characters each. | blank |
+
+![The Daily Passenger Report form](/img/terminal-staff/reports/04-daily-passenger-report.png)
+_An operator picked, a date range, and the three sign-off names filled in._
+
+**What you get:** the operator's trips grouped by **origin port** and **trip date**.
+Each trip shows its departure time, vessel, and **Indonesian**, **foreign** and
+**total** passenger counts, followed by a grand total and the three sign-off lines.
+
+- **Indonesian** means the passenger's **nationality** is Indonesia; every other
+  nationality counts as **foreign**.
+- A sign-off name you leave blank prints as a **dotted line**, ready to be signed by
+  hand.
+
+The file is named `daily-passenger-report-<OPERATOR>-<START>-<UNTIL>.pdf` (or `.xlsx`).
+
+---
+
+## What the summary reports count
+
+:::warning[Departed trips and Boarded passengers only]
+The **Passenger Summary** and the **Daily Passenger Report** count only trips that
+are **Departed**, and only passengers who are **Boarded** on them. The forms say so
+beneath the dates: _"Both dates are inclusive. Only departed trips and their boarded
+passengers are counted."_
+
+So a trip that is still **Scheduled**, **Boarding** or **Closed** contributes
+nothing yet, and neither does a cancelled trip. Today's figures fill in as the day's
+trips are [set as Depart](/terminal-operator/set-trip-as-depart). Run a daily report
+after the last departure, not before.
+:::
+
+This is the main difference from the **Passenger Manifest** report, which works on a
+single trip in **any** status and lets you pick which passengers to include.
+
+:::info[Inactive operators can still be reported on]
+Deactivating an operator does not hide its history. You can still pick it and
+report on its past trips.
+:::
+
+## When the form refuses
+
+The form checks itself before anything is generated, and shows the problem under
+the field:
+
+| Message | What it means | What to do |
+| --- | --- | --- |
+| _"Select a departure trip"_ | Passenger Manifest: no trip picked. | Click **Select trip**. |
+| _"Select an origin port"_ | Passenger Summary: no port. Usually no active port has been set. | Pick a port, or [set your port context](/terminal-staff/set-port-context). |
+| _"Select an operator"_ | Daily Passenger Report: no operator picked. | Pick one — this report is always for a single operator. |
+| _"Until date must be on or after the start date."_ | The range is back to front. | Swap the dates. |
+| _"The period cannot be longer than 366 days."_ | The range is more than a year. | Split it into shorter runs. |
+| _"At most 100 characters"_ | A sign-off name is too long. | Shorten it. |
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --- | --- | --- |
+| **Reports** is missing from the sidebar | You hold no report permission | Ask your administrator |
+| A report card you expected is missing | You do not hold that report's permission | Ask your administrator |
+| A hint under **Operator** mentions `terminal.operators.read`, and no operators can be picked | Listing operators needs a separate permission | Ask your administrator |
+| You cannot change the **Origin Port**, with a hint about `terminal.ports.read` | Picking another port needs a separate permission | Report on your active port, or ask your administrator |
+| A summary report comes out empty, or lower than expected | The trips are not **Departed** yet, or the passengers are not **Boarded** | Depart the trips first; check the dates cover the trips you mean |
+| The manifest report has fewer people than the trip | **Passenger Status** is still on **Boarded** | Set it to **All passengers** |
+| The file will not open | It is a password-protected PDF | Use the password you typed when generating it |
+
+## Next
+
+- [Download the Manifest](/terminal-operator/download-manifest) — the two-click
+  version for a single trip.
+- [Set a Trip as Depart](/terminal-operator/set-trip-as-depart) — what makes a trip
+  count in the summary reports.

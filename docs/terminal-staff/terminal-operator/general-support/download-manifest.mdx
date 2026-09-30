@@ -1,7 +1,7 @@
 ---
 id: download-manifest
 title: Download the Manifest
-sidebar_label: Download manifest
+sidebar_label: Download Manifest
 sidebar_position: 7
 slug: /terminal-operator/download-manifest
 description: Download a trip's passenger manifest as an Excel file in English or Indonesian — who appears on it, and where the button lives.
@@ -111,16 +111,12 @@ downloaded".
 | No **Download Manifest** button on Current Trips | The trip has not departed | [Set it as departed](/terminal-operator/set-trip-as-depart), or use **Departure Trips** if it is merely Closed |
 | The button is greyed out | The trip is Scheduled or Boarding | Hover for the tooltip; close the trip first |
 | No button anywhere, on a departed trip | You lack the export-manifest permission | Ask your administrator |
-| Fewer rows than expected | The manifest lists **Boarded** passengers only | Compare against the trip's **Boarded** count, not **Checked-In** |
+| Fewer rows than expected | The manifest lists **Boarded** passengers only | Compare against the trip's **Boarded** count, not **Checked-In** — or use the [Passenger Manifest report](/terminal-operator/export-other-reports#passenger-manifest) to pick another status |
 | _"The manifest was generated but could not be saved. Please try again."_ | The browser could not write the file | Check your downloads folder and browser download settings, then retry |
 
 ## Next
 
 - [Set a Trip as Depart](/terminal-operator/set-trip-as-depart)
 - [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Departure Trips list row menu** with its **Download
-Manifest → English / Indonesian** submenu, nor of the greyed-out button with its
-tooltip.
-:::
+- [Export Other Reports](/terminal-operator/export-other-reports) — a manifest in PDF,
+  another language or another passenger status, and passenger totals across trips.

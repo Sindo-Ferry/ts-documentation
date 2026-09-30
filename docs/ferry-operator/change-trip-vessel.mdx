@@ -1,7 +1,7 @@
 ---
 id: change-trip-vessel
 title: Change a Trip's Vessel
-sidebar_label: Change trip vessel
+sidebar_label: Change Trip Vessel
 sidebar_position: 7
 slug: /ferry-operator/change-trip-vessel
 description: Swap the vessel on one trip or many at once from the Departure Trips grid, with the selection shortcuts and the rules that decide whether the change is accepted.
@@ -42,6 +42,10 @@ every trip a broken-down boat was due to run.
 
 Note the current vessel and seat load before you change anything.
 
+![The Departure Trips grid with the Assign a vessel hint](/img/ferry-operator/check-in-passenger/01-departure-trips.png)
+_Departure Trips. The hint above the grid — **Assign a vessel to trips** — is the
+reminder of how selection works._
+
 ## Step 2 — Select the trips
 
 Click a trip's cell to select it. It highlights, and a **dark bar appears at the
@@ -60,8 +64,10 @@ To select more:
 | **Click the only selected trip again** | Deselect it; the bar disappears |
 | **Clear** in the bottom bar | Empty the whole selection |
 
-![Selected trips with the Assign Vessel bar, and the Assign Vessel dialog](/img/ferry-operator/departure-trips/03-assign.png)
-_Select trips → Assign Vessel → choose a vessel → Confirm Assign._
+![Six trips selected, with the bar at the bottom of the screen](/img/ferry-operator/departure-trips/04-select-trip.png)
+_Six trips selected (highlighted in green). The bar reads **6 trips selected** with
+a summary — **30 Sep – 5 Oct · 2 times · HFC - WFC** — and offers **Clear** and
+**Assign Vessel**._
 
 :::info[Departed and cancelled trips cannot be selected]
 Their cells are **not clickable** and never join a selection. Click a **date
@@ -83,7 +89,12 @@ dialog opens, stating: _"This will assign one vessel to **N** selected trip(s)."
 whole week. If N is not the number you intended, **Cancel** and re-select.
 :::
 
-Click **Select Vessel**, pick from the list, then click **Confirm Assign**.
+![The Assign Vessel to Selected Trips dialog](/img/ferry-operator/departure-trips/03-assign.png)
+_The dialog confirms how many trips will change. **Confirm Assign** stays greyed out
+until a vessel is picked._
+
+Click **Select Vessel**, pick from the list, then click **Confirm Assign** (or
+**Cancel** to back out).
 
 The dialog closes, the grid refreshes, and the trips show the new vessel.
 
@@ -149,9 +160,3 @@ be repeating this every day.
 - [Look Up a Vessel](/ferry-operator/look-up-vessel) — check capacity and status
   before swapping.
 - [Look Up a Trip](/ferry-operator/look-up-trip)
-
-:::note[Screenshot needed]
-The existing screenshot shows the selection bar and dialog together. Still missing:
-the bar reading **"3 trips selected"** with its summary line, and a **refusal
-message** for an over-capacity vessel.
-:::

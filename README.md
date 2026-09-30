@@ -78,6 +78,53 @@ npm run serve      # serves ./build at http://localhost:3000/ts-documentation/
 Diagrams are written as ```` ```mermaid ```` fences (the `@docusaurus/theme-mermaid`
 theme is enabled).
 
+## Translations (Bahasa Indonesia)
+
+English is the source. The Indonesian site is served at `/ts-documentation/id/`, and
+readers switch with the language dropdown in the navbar.
+
+**Any page without a translation falls back to English**, so adding a new English
+guide never breaks the Indonesian site — it just shows up in English there until
+translated.
+
+| What | Where |
+| --- | --- |
+| A translated page | `i18n/id/docusaurus-plugin-content-docs/current/` — same relative path and filename as under `docs/`. Keep the frontmatter `id` and `slug` identical; translate `title`, `sidebar_label`, `description` and the body. |
+| Sidebar section names and their index-page descriptions | `i18n/id/docusaurus-plugin-content-docs/current.json` |
+| Navbar and footer labels | `i18n/id/docusaurus-theme-classic/navbar.json`, `footer.json` |
+| Docusaurus's own UI text ("Next", "On this page", …) | `i18n/id/code.json` |
+
+**Convention — what stays in English.** Anything a reader must match against the
+portal screen is left untranslated, to avoid misunderstanding:
+
+- **Menu names**, exactly as the portal's sidebar shows them — **Operators**,
+  **Vessels**, **Ports**, **Gates**, **Berths**, **Routes**, **Countries**, and so on.
+  When the same thing is mentioned in running text, use the English term too
+  (_"tetapkan Gate & Berth"_, _"ganti Vessel"_), not _gerbang_, _dermaga_ or _kapal_.
+- **Button and status names** — **Set As Boarding**, **CheckedIn**, **Boarded**.
+- **Pre-Immigration**, **Boarding** and **read-only** — never _pra-imigrasi_,
+  _naik kapal_ or _hanya-baca_.
+- The **Terminal Portal** and **Operator Portal** product names.
+
+Previewing Indonesian locally — `npm start` serves **only one locale**, English by
+default, so the language dropdown does nothing in dev:
+
+```bash
+npm start -- --locale id     # dev server, Indonesian only
+npm run build && npm run serve   # both locales, dropdown works
+```
+
+After adding or renaming a **sidebar category**, regenerate the JSON so the new
+label appears for translation (existing translations are kept):
+
+```bash
+npm run write-translations -- --locale id
+```
+
+Two categories with the same label (e.g. both **Administrator** sections) need a
+unique `"key"` in their `_category_.json`, or this command fails with a
+duplicate-translation-key error.
+
 ## Deployment (automated)
 
 `.github/workflows/deploy.yml` runs on every push to `main`:

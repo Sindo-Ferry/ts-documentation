@@ -1,9 +1,9 @@
 {
-  "label": "Administrative Staff",
+  "label": "Master Data Setup",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "slug": "/terminal-staff/administrative",
+    "slug": "/terminal-staff/master-data",
     "description": "The master data behind everything else — operators, vessels, ports, gates, berths, routes and countries. Set up once, changed rarely."
   }
 }

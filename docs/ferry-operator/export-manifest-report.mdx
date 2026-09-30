@@ -1,7 +1,7 @@
 ---
 id: operator-export-manifest-report
 title: Export the Passenger Manifest Report
-sidebar_label: Export Passenger Manifest report
+sidebar_label: Export Passenger Manifest Report
 sidebar_position: 12
 slug: /ferry-operator/export-manifest-report
 description: Generate the Passenger Manifest report with a choice of format, language and passenger status, and optionally password-protect the PDF.
@@ -41,6 +41,9 @@ In the sidebar, open **Reports** (route: `/reports`). The page lists the reports
 have access to; click **Passenger Manifest** — _"Boarding / passenger list for a
 departure trip."_
 
+![The Reports page](/img/ferry-operator/reports/01-report-list.png)
+_The Reports page, with the **Passenger Manifest** card._
+
 If the list reads _"You don't have access to any reports,"_ ask your administrator.
 
 ## Step 2 — Fill in the form
@@ -52,6 +55,10 @@ If the list reads _"You don't have access to any reports,"_ ask your administrat
 | **Language** | **English** or **Indonesian** | English |
 | **Passenger Status** | **All passengers**, or one of **CheckedIn**, **PreImmigration**, **Boarded**, **Cancelled** | **Boarded** |
 | **Password (optional)** | Protects the generated file. **Only shown when Format = PDF.** | blank |
+
+![The Passenger Manifest report form](/img/ferry-operator/reports/02-report-manifest.png)
+_The form with a trip picked and the defaults — **Excel (.xlsx)**, **English**,
+**Boarded**. The **Password** field is not shown because the format is Excel._
 
 Then click **Download Report**. The button reads **Generating…** while it works.
 
@@ -149,9 +156,3 @@ stop and report it to your administrator.
 
 - [Download the Manifest](/ferry-operator/download-manifest) — the two-click version.
 - [Look Up a Trip](/ferry-operator/look-up-trip)
-
-:::note[Screenshot needed]
-No screenshots exist of the **Reports** list page, the **Passenger Manifest** form
-(Departure Trip, Format, Language, Passenger Status), or the **Password (optional)**
-field appearing once Format is switched to PDF.
-:::

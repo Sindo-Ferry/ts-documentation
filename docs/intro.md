@@ -45,8 +45,7 @@ session lasts.
   [Manage a User's Direct Permissions](/terminal-administrator/manage-user-permissions) ·
   [Grant or Revoke the Admin Role](/terminal-administrator/grant-revoke-admin)
 
-**[Administrative Staff](/terminal-staff/administrative)** — master data, set up once and
-changed rarely
+**[Master Data Setup](/terminal-staff/master-data)** — set up once, changed rarely
 
 - [Operators](/terminal-staff/operators) — ferry operator master data
 - [Vessels](/terminal-staff/vessels) — manage the ferries used for trips
@@ -92,6 +91,7 @@ changed rarely
   [Update a Passenger's Status](/terminal-operator/update-passenger-status)
 - [Reprint or Download a Boarding Pass](/terminal-operator/reprint-boarding-pass)
 - [Download the Manifest](/terminal-operator/download-manifest)
+- [Export Other Reports](/terminal-operator/export-other-reports) — Passenger Manifest, Passenger Summary, Daily Passenger Report
 
 ## Ferry Operator guides
 
@@ -121,7 +121,7 @@ Looking things up (read-only)
 
 Running the day
 
-- [Change a Trip's Vessel](/ferry-operator/change-trip-vessel) — one trip or a whole day
+- [Change a Trip's Vessel](/ferry-operator/change-trip-vessel) — one specific trip or select multiple trips
 - [Check In a Passenger](/ferry-operator/check-in-passenger) — including editing and cancelling
 - [Reprint or Download a Boarding Pass](/ferry-operator/reprint-boarding-pass)
 
