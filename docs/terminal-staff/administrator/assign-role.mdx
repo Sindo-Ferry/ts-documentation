@@ -64,8 +64,7 @@ Two panels:
 
 Both panels work the same way:
 
-- **Filter box** — type to narrow the list. With hundreds of permission strings,
-  this is the only practical way to find one.
+- **Filter box** — type part of a role name to narrow the list.
 - **Tick the rows** you want. The **checkbox in the header** ticks everything
   currently shown.
 - The action button shows the count — **Assign (3)** — and stays **disabled
@@ -77,9 +76,15 @@ Both panels work the same way:
 Tick the roles in **Available Roles** and click **Assign (N)**. They move across
 immediately.
 
+![A role ticked in Available Roles](/img/terminal-staff/security/20-assign-user-role.png)
+_**UAT Boarding Gate Officer** ticked — **Assign (1)** is active._
+
 ## Step 4 — Revoke a role
 
 Tick the roles in **Assigned Roles** and click **Revoke (N)**.
+
+![A role ticked in Assigned Roles](/img/terminal-staff/security/21-revoke-user-role.png)
+_The same role, now assigned and ticked — **Revoke (1)** is active._
 
 :::warning[No confirmation, immediate effect]
 Neither panel asks you to confirm. The change applies at once — including to a user
@@ -127,8 +132,3 @@ permissions only ever accumulate.
 
 - [Manage a User's Direct Permissions](/terminal-administrator/manage-user-permissions)
 - [Activate or Deactivate a User](/terminal-administrator/activate-deactivate-user)
-
-:::note[Screenshot needed]
-No screenshot exists of the **User Security Profile** with its three tabs, the
-**Roles** tab's two panels, or the **Effective Access** tab's permission grid.
-:::

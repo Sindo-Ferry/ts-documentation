@@ -53,6 +53,9 @@ is shown under the username.
 
 Three tabs: **Roles**, **Direct Permissions** and **Effective Access**.
 
+![The User Security Profile on its Roles tab](/img/ferry-operator/security/19-manage-user-role.png)
+_The **User Security Profile** — name, email and **Admin Access** at the top, the three tabs beneath._
+
 ## Step 2 — Open the Roles tab
 
 Two panels:
@@ -64,8 +67,7 @@ Two panels:
 
 Both panels work the same way:
 
-- **Filter box** — type to narrow the list. With hundreds of permission strings,
-  this is the only practical way to find one.
+- **Filter box** — type part of a role name to narrow the list.
 - **Tick the rows** you want. The **checkbox in the header** ticks everything
   currently shown.
 - The action button shows the count — **Assign (3)** — and stays **disabled
@@ -77,9 +79,15 @@ Both panels work the same way:
 Tick the roles in **Available Roles** and click **Assign (N)**. They move across
 immediately.
 
+![A role ticked in Available Roles](/img/ferry-operator/security/20-assign-user-role.png)
+_**UAT Ops Officer** ticked — **Assign (1)** is active._
+
 ## Step 4 — Revoke a role
 
 Tick the roles in **Assigned Roles** and click **Revoke (N)**.
+
+![A role ticked in Assigned Roles](/img/ferry-operator/security/21-revoke-user-role.png)
+_The same role, now assigned and ticked — **Revoke (1)** is active._
 
 :::warning[No confirmation, immediate effect]
 Neither panel asks you to confirm. The change applies at once — including to a user
@@ -97,6 +105,9 @@ You must also revoke a role from every holder before the role itself can be
 Open the **Effective Access** tab. It lists **every permission the user actually
 has** — the union of all their roles plus any
 [direct permissions](/operator-administrator/manage-user-permissions).
+
+![The Effective Access tab](/img/ferry-operator/security/22-user-effective-access.png)
+_**Total Effective Access** — the three permissions this user gets from their role._
 
 This is the tab that answers _"why can this person do that?"_ and _"why can't
 they?"_ Check it after every change rather than assuming the role was enough.
@@ -127,8 +138,3 @@ permissions only ever accumulate.
 
 - [Manage a User's Direct Permissions](/operator-administrator/manage-user-permissions)
 - [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user)
-
-:::note[Screenshot needed]
-No screenshot exists of the **User Security Profile** with its three tabs, the
-**Roles** tab's two panels, or the **Effective Access** tab's permission grid.
-:::

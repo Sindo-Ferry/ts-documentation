@@ -45,6 +45,9 @@ You need the permissions named above. The screenshots below use `https://ts-oper
 Open **Users**. Existing administrators carry an **Admin** badge in the
 **Status** column; the system owner carries an amber **Super Admin** badge.
 
+![Users filtered to administrators](/img/ferry-operator/security/18-user-admin.png)
+_Filtered to **Account Type: Admin** — an **Admin**, and the system owner with **Admin** and **Super Admin**._
+
 ## Step 2 — Grant or revoke
 
 Two routes, same dialog:
@@ -54,6 +57,12 @@ Two routes, same dialog:
   Profile**, which shows **Admin Access: Enabled / Disabled** and a matching
   **Grant Admin** / **Revoke Admin** button. The button is disabled on the Super
   Admin's own profile.
+
+![The row menu offering Grant Admin](/img/ferry-operator/security/16-grant-admin.png)
+_A user who is not an Admin — the menu offers **Grant Admin**._
+
+![The row menu offering Revoke Admin](/img/ferry-operator/security/17-revoke-admin.png)
+_An Admin (note the **Admin** badge) — the same item reads **Revoke Admin**._
 
 
 ## Step 3 — Confirm
@@ -68,7 +77,7 @@ Two routes, same dialog:
 > **Revoke Administrator Privileges?** — This will remove administrative overrides
 > for **[username]**. They will revert to standard role-based access.
 
-Click **Confirm Grant** / **Confirm Revoke**.
+Click **Confirm Grant** / **Confirm Revoke** (or **Cancel** to back out).
 
 ## What changes
 
@@ -113,9 +122,3 @@ widen their own access.
 
 - [Assign a Role to a User](/operator-administrator/assign-role)
 - [Manage a User's Direct Permissions](/operator-administrator/manage-user-permissions)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Grant Administrator Privileges?** confirmation dialog,
-or of the **User Security Profile** header showing the **Admin Access** panel with
-its Grant/Revoke button.
-:::

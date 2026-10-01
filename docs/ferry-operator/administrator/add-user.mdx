@@ -58,9 +58,15 @@ In the sidebar, **Roles** and **Users** are top-level items. Open **Users** (rou
 Each row shows the **username** with the **email** beneath it, and status badges:
 **Active** / **Inactive**, plus **Admin** and **Super Admin** where they apply.
 
+![The Users list](/img/ferry-operator/security/10-user-list.png)
+_The Users list, filtered with the search box. **Create User** is at the top right._
+
 ## Step 2 — Click Create User
 
 **Create User** is at the top right. The **New User** form has exactly two fields.
+
+![The New User form](/img/ferry-operator/security/11-add-user.png)
+_The **New User** form — **Username** and **Email Address**, nothing else._
 
 ## Step 3 — Fill in the two fields
 
@@ -69,7 +75,7 @@ Each row shows the **username** with the **email** beneath it, and status badges
 | **Username** | At least **3 characters**. Must be **unique**. This is the display name across the portal and the audit trail. |
 | **Email Address** | Must be a valid email, and **must match the address on their sign-in account**. Must be unique. |
 
-Then click **Create User**.
+Then click **Create User** (or **Cancel** to back out).
 
 :::info[There is no Admin tick on this form]
 Administrator status is **not** set at creation — the form is username and email
@@ -96,6 +102,9 @@ email arrived.
 ## Step 5 — Activate them
 
 A new user **cannot sign in yet**. Two more things are needed:
+
+![A newly created user shown as Inactive, with Set Active in the menu](/img/ferry-operator/security/12-activate-user.png)
+_The confirmation toast, and the new user listed as **Inactive** — **Set Active** is in their **⋯** menu._
 
 1. **They register** (or have already registered) with the matching email and
    confirm it — see [Register an Account](/register-account).
@@ -135,8 +144,3 @@ these in order:
 
 - [Activate or Deactivate a User](/operator-administrator/activate-deactivate-user)
 - [Assign a Role to a User](/operator-administrator/assign-role)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Users** list (showing the status badges and the row
-**⋯** menu) or of the **New User** form.
-:::

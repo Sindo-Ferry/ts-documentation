@@ -44,6 +44,9 @@ You need the permissions named above. The screenshots below use `https://ts-term
 Open **Security → Roles**, find the role, and use its **⋯** menu → **Manage
 Permissions** (route: `/roles/permissions?id=…`).
 
+![A role's actions menu](/img/terminal-staff/security/03-role-actions.png)
+_A role's **⋯** menu — **Edit**, **Manage Permissions** and **Delete Role**._
+
 The page is headed **Manage Role Permissions** with the role's name beneath it.
 **Check that name before you touch anything** — the two panels look identical
 whichever role you opened.
@@ -69,10 +72,16 @@ Both panels work the same way:
   until at least one row is ticked**.
 - Each panel scrolls independently; the selection clears after every action.
 
+![The Manage Role Permissions page](/img/terminal-staff/security/04-manage-role-permission.png)
+_The two panels for **UAT Boarding Gate Officer**. Nothing is ticked yet, so both buttons read **(0)** and are greyed out._
+
 ## Step 3 — Add permissions
 
 In **Available Permissions**, filter and tick what the role needs, then click
 **Add Selected (N)**.
+
+![Two permissions ticked in Available Permissions](/img/terminal-staff/security/05-assign-role-permission.png)
+_Filtered on `boarding`, two permissions ticked — **Add Selected (2)** is now active._
 
 The row moves to **Assigned to Role** and both panels refresh.
 
@@ -88,6 +97,9 @@ Watch for the action on the end: `.read` is harmless, `.write`, `.cancel` and
 ## Step 4 — Remove permissions
 
 In **Assigned to Role**, tick the rows and click **Remove Selected (N)**.
+
+![Two permissions ticked in Assigned to Role](/img/terminal-staff/security/06-remove-role-permission.png)
+_The same two permissions, now assigned and ticked for removal — **Remove Selected (2)**._
 
 :::warning[Removing takes effect for everyone holding the role]
 There is **no confirmation dialog** on either panel. The change applies the moment
@@ -125,9 +137,3 @@ the role.
 
 - [Assign a Role to a User](/terminal-administrator/assign-role)
 - [Edit or Delete a Role](/terminal-administrator/edit-delete-role)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Manage Role Permissions** page — the two panels side
-by side, with the filter box, ticked rows, and the **Add Selected (N)** button
-active.
-:::

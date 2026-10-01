@@ -47,13 +47,26 @@ Open **Security → Users**. Existing administrators carry an **Admin** badge in
 
 ## Step 2 — Grant or revoke
 
-Two routes, same dialog:
+Two routes, same dialog.
 
-- **From the list** — the row's **⋯** menu → **Grant Admin** or **Revoke Admin**.
-- **From the user's profile** — **⋯ → Manage Security** opens the **User Security
-  Profile**, which shows **Admin Access: Enabled / Disabled** and a matching
-  **Grant Admin** / **Revoke Admin** button. The button is disabled on the Super
-  Admin's own profile.
+**From the list** — the row's **⋯** menu → **Grant Admin** or **Revoke Admin**.
+
+![The row menu offering Grant Admin](/img/terminal-staff/security/14-grant-admin-from-list.png)
+_A user who is not an Admin — the menu offers **Grant Admin**._
+
+![The row menu offering Revoke Admin](/img/terminal-staff/security/17-revoke-admin-from-list.png)
+_An Admin (note the **Admin** badge) — the same item reads **Revoke Admin**._
+
+**From the user's profile** — **⋯ → Manage Security** opens the **User Security
+Profile**, which shows **Admin Access: Enabled / Disabled** and a matching
+**Grant Admin** / **Revoke Admin** button. The button is disabled on the Super
+Admin's own profile.
+
+![The Admin Access panel with Grant Admin](/img/terminal-staff/security/15-grant-admin-from-detail.png)
+_**Admin Access: Disabled**, with **Grant Admin** beside it._
+
+![The Admin Access panel with Revoke Admin](/img/terminal-staff/security/18-revoke-admin-from-detail.png)
+_**Admin Access: Enabled** — an **Admin** badge by the name, and **Revoke Admin** beside it._
 
 :::warning[On the profile page, an ordinary Admin sees a button that won't work]
 In the Terminal Portal, the profile page's **Grant Admin** / **Revoke Admin** button is
@@ -77,7 +90,13 @@ more reliable guide: it disables the item for anyone who cannot actually use it.
 > **Revoke Administrator Privileges?** — This will remove administrative overrides
 > for **[username]**. They will revert to standard role-based access.
 
-Click **Confirm Grant** / **Confirm Revoke**.
+![The Grant Administrator Privileges dialog](/img/terminal-staff/security/16-confirm-grant.png)
+_The grant confirmation._
+
+![The Revoke Administrator Privileges dialog](/img/terminal-staff/security/19-confirm-revoke.png)
+_The revoke confirmation._
+
+Click **Confirm Grant** / **Confirm Revoke** (or **Cancel** to back out).
 
 ## What changes
 
@@ -122,9 +141,3 @@ widen their own access.
 
 - [Assign a Role to a User](/terminal-administrator/assign-role)
 - [Manage a User's Direct Permissions](/terminal-administrator/manage-user-permissions)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Grant Administrator Privileges?** confirmation dialog,
-or of the **User Security Profile** header showing the **Admin Access** panel with
-its Grant/Revoke button.
-:::

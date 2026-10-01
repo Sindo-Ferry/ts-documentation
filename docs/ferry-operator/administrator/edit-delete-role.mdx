@@ -34,6 +34,9 @@ You need the permissions named above. The screenshots below use `https://ts-oper
 2. The **Edit Role Settings** page opens with the form pre-filled.
 3. Change the **Role Name** and click **Update Role**.
 
+![The Edit Role Settings page](/img/ferry-operator/security/07-edit-role.png)
+_**Edit Role Settings**, with who created and last updated the role beneath the form._
+
 The same rules apply as when creating: at least **2 characters**, and the name must
 be **unique**.
 
@@ -66,6 +69,9 @@ are gone; recreating it means rebuilding the permission list by hand.
    what you type matches exactly**, including capitals and spaces.
 4. Click **Confirm Delete**.
 
+![The Delete System Role dialog](/img/ferry-operator/security/08-confirm-delete-role.png)
+_**Delete System Role?** — **Confirm Delete** stays greyed out until the role name is typed exactly._
+
 :::tip[The typing step is the safety rail]
 It exists so a delete cannot happen on a mis-click. If you find yourself copying and
 pasting the name to get past it, pause and check you have the right role open.
@@ -76,6 +82,9 @@ pasting the name to get past it, pause and check you have the right role open.
 | Message | What it means | What to do |
 | --- | --- | --- |
 | _"Unable to delete Role. Role has user(s) assigned."_ | At least one user still holds this role. | [Revoke it from every user](/operator-administrator/assign-role#step-4--revoke-a-role) first, then delete. |
+
+![The error shown when deleting a role that is still assigned](/img/ferry-operator/security/09-delete-role-error.png)
+_The refusal for a role that is still assigned to someone._
 
 :::warning[There is no "which users hold this role?" list]
 The message tells you the role is in use but not by whom. Open **Users** and
@@ -103,8 +112,3 @@ deleted one you needed is a rebuild.
 
 - [Assign a Role to a User](/operator-administrator/assign-role)
 - [Manage a Role's Permissions](/operator-administrator/manage-role-permissions)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Edit Role Settings** form or of the **Delete System
-Role?** dialog with its type-the-name confirmation box.
-:::

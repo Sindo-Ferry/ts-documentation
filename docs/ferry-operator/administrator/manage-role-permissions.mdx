@@ -44,9 +44,17 @@ You need the permissions named above. The screenshots below use `https://ts-oper
 Open **Roles**, find the role, and use its **⋯** menu → **Manage
 Permissions** (route: `/roles/permissions?id=…`).
 
-The page is headed **Manage Role Permissions** with the role's name beneath it.
-**Check that name before you touch anything** — the two panels look identical
-whichever role you opened.
+The page is headed **Manage Role Permissions**.
+
+:::warning[The page does not say which role you opened]
+Unlike the Terminal Portal, the Operator Portal does **not** show the role's name on
+this page, and the two panels look the same whichever role you opened. **Check the
+row before you click Manage Permissions.** If in doubt, go back to **Roles** and
+open it again from the right row.
+:::
+
+![The Manage Role Permissions page](/img/ferry-operator/security/04-manage-role-permission.png)
+_A role with no permissions yet — everything is in **Available Permissions**, and both buttons read **(0)**._
 
 ## Step 2 — Understand the two panels
 
@@ -74,6 +82,9 @@ Both panels work the same way:
 In **Available Permissions**, filter and tick what the role needs, then click
 **Add Selected (N)**.
 
+![Three permissions ticked in Available Permissions](/img/ferry-operator/security/05-assign-role-permission.png)
+_Three permissions ticked — **Add Selected (3)** is now active._
+
 The row moves to **Assigned to Role** and both panels refresh.
 
 :::tip[Read the permission string as three parts]
@@ -88,6 +99,9 @@ Watch for the action on the end: `.read` is harmless, `.write`, `.cancel` and
 ## Step 4 — Remove permissions
 
 In **Assigned to Role**, tick the rows and click **Remove Selected (N)**.
+
+![Three permissions ticked in Assigned to Role](/img/ferry-operator/security/06-remove-role-permission.png)
+_The same three permissions, now assigned and ticked for removal — **Remove Selected (3)**._
 
 :::warning[Removing takes effect for everyone holding the role]
 There is **no confirmation dialog** on either panel. The change applies the moment
@@ -125,9 +139,3 @@ the role.
 
 - [Assign a Role to a User](/operator-administrator/assign-role)
 - [Edit or Delete a Role](/operator-administrator/edit-delete-role)
-
-:::note[Screenshot needed]
-No screenshot exists of the **Manage Role Permissions** page — the two panels side
-by side, with the filter box, ticked rows, and the **Add Selected (N)** button
-active.
-:::
