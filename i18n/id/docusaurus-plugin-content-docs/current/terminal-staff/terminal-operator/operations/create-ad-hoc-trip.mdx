@@ -1,0 +1,108 @@
+---
+id: create-ad-hoc-trip
+title: Membuat Perjalanan Ad Hoc
+sidebar_label: Membuat Perjalanan Ad Hoc
+sidebar_position: 4
+slug: /terminal-operator/create-ad-hoc-trip
+description: Tambahkan perjalanan keberangkatan satu kali yang tidak dicakup Timeslot mana pun, dari halaman Departure Trips.
+keywords:
+  - adhoc trip
+  - ad hoc
+  - one-off trip
+  - new trip
+  - departure trips
+  - create trip
+---
+
+Perjalanan **AdHoc** adalah pelayaran satu kali — Vessel tambahan saat lonjakan
+penumpang, carter, atau layanan pengganti. Perjalanan ini tidak dibuat dari
+[Timeslot](/terminal-operator/create-timeslot), jadi Anda menambahkannya secara
+manual.
+
+> **Departure Trips → New AdHoc Trip → isi formulir → Create Trip**
+
+:::note
+Anda membutuhkan permission untuk mengelola perjalanan keberangkatan. Tangkapan
+layar di bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- **Operator**, **Route**, dan **Vessel aktif** untuk operator tersebut sudah ada.
+
+## Langkah 1 — Buka Departure Trips {/* #step-1--open-departure-trips */}
+
+Di sidebar, buka **Management → Departure Trips** (route: `/departure-trips`).
+
+Halaman terbuka di tampilan **Calendar** dan memiliki tombol **Calendar / List** di
+kanan atas. Secara default kedua tampilan menunjukkan **minggu mendatang** — hari ini
+ditambah enam hari berikutnya — yang difilter berdasarkan **Trip Date**, dan dapat
+dipersempit lagi dengan **Show Filters**.
+
+- **Calendar** (_Departure Trip Calendar_) menyusun perjalanan berdasarkan **jam
+  keberangkatan** (baris) di sepanjang **hari** dalam rentang tersebut (kolom).
+  Setiap kartu menampilkan kode perjalanan, operator, Route, status, dan muatan.
+
+  ![Departure Trip Calendar yang menampilkan minggu mendatang](/img/terminal-staff/departure-trips/01-calendar.png)
+  _Tampilan calendar — perjalanan selama seminggu, setiap kartu dengan tombol **View** dan menu **⋯**._
+
+- **List** menampilkan satu baris per perjalanan dengan **Date**, **Code**,
+  **Operator**, **Route**, **Type**, **Departure** (dan rentang Gate), **Status**,
+  serta jumlah penumpang (**PAX**).
+
+  ![Tampilan daftar Departure Trips](/img/terminal-staff/departure-trips/02-list.png)
+  _Tampilan daftar — perhatikan kolom **Type**, yang membedakan Scheduled dan AdHoc._
+
+## Langkah 2 — Klik New AdHoc Trip {/* #step-2--click-new-adhoc-trip */}
+
+Klik **New AdHoc Trip** (kanan atas tampilan **List**) untuk membuka formulir **New
+AdHoc Departure Trip** (route: `/departure-trips/new`).
+
+## Langkah 3 — Isi Formulir {/* #step-3--fill-in-the-form */}
+
+| Kolom | Yang diisi |
+| --- | --- |
+| **Operator** | Operator yang menjalankan perjalanan ini. |
+| **Vessel** | Aktif setelah Anda memilih operator; hanya menampilkan Vessel **aktif** milik operator tersebut. |
+| **Route** | Route yang dilayari. |
+| **Trip Date** | Hari ini atau sesudahnya. |
+| **Code Suffix** _(opsional)_ | Hanya diperlukan jika kode perjalanan akan sama dengan perjalanan lain dengan operator, Route, tanggal, dan jam keberangkatan yang sama. |
+| **Gate Open** / **Gate Close** / **Departure** | Gate Open harus sama dengan atau sebelum Gate Close, dan Departure harus setelah Gate Close. |
+
+Lalu klik **Create Trip**.
+
+![Formulir New AdHoc Departure Trip yang sudah diisi](/img/terminal-staff/departure-trips/05-adhoc-form.png)
+_Membuat perjalanan AdHoc untuk Waterfront Ferry di Route WFC–HFC, berangkat 2:30 PM._
+
+## Hasil {/* #outcome */}
+
+Perjalanan dibuat dengan status **Scheduled** dan muncul di **calendar** maupun
+**list** bersama perjalanan yang dibuat dari Timeslot, dibedakan dengan badge
+**Type = AdHoc**. Sejak saat itu perjalanan ini berlaku sama seperti perjalanan
+lain: penumpang dapat di-check-in, dan perjalanan bergerak melalui
+[Boarding](/terminal-operator/set-trip-as-boarding) →
+[Closed](/terminal-operator/set-trip-as-close) →
+[Departed](/terminal-operator/set-trip-as-depart).
+
+![Perjalanan AdHoc di daftar dengan badge Type = AdHoc](/img/terminal-staff/departure-trips/06-adhoc-in-list.png)
+_Perjalanan baru di daftar, bertanda **AdHoc** (semua perjalanan hasil sinkronisasi bertipe **Scheduled**)._
+
+:::info[Scheduled vs AdHoc — mengapa Type penting]
+Setiap perjalanan memiliki **Type**. Perjalanan **Scheduled** berasal dari
+[Trip Sync Job](/terminal-operator/generate-trips) yang dijalankan terhadap
+Timeslot Anda; perjalanan **AdHoc** adalah perjalanan satu kali yang Anda buat di
+sini.
+
+Sync job hanya menyentuh perjalanan **Scheduled**, sehingga perjalanan **AdHoc**
+Anda tidak pernah dihapus atau disesuaikan olehnya. Jika Anda membutuhkan pelayaran
+berulang, bukan satu kali, buatlah [Timeslot](/terminal-operator/create-timeslot) —
+jika tidak, Anda akan menambahkan perjalanan AdHoc yang sama secara manual setiap
+hari.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan dan Memulihkan Perjalanan](/terminal-operator/cancel-restore-trip)
+- [Mengatur Perjalanan menjadi Boarding](/terminal-operator/set-trip-as-boarding)

@@ -1,0 +1,97 @@
+---
+id: countries
+title: Countries
+sidebar_label: Countries
+sidebar_position: 7
+slug: /terminal-staff/countries
+description: Kelola daftar negara yang dipakai untuk kewarganegaraan penumpang dan negara penerbit — buat, ubah, hapus, serta tambahkan/hapus negara dari daftar Popular.
+keywords:
+  - countries
+  - country
+  - nationality
+  - popular
+  - master data
+---
+
+Daftar **Countries** adalah data master di balik **kewarganegaraan** dan **negara
+penerbit** dokumen penumpang, sekaligus di balik **cakupan hari libur nasional**:
+setiap [hari libur nasional](/terminal-operator/configure-public-holiday) milik satu
+negara, dan [Timeslot](/terminal-operator/create-timeslot) yang berjalan di hari
+libur memilih hari libur negara mana yang diikutinya. Saat penumpang
+[di-check-in](/ferry-operator/check-in-passenger) atau
+[ditambahkan sebagai NTL / LM](/terminal-operator/check-in-ntl-lm),
+kewarganegaraannya dipilih dari daftar ini. Negara yang sering dipakai dapat
+ditandai **Popular** agar muncul di bagian atas pilihan sehingga check-in lebih
+cepat.
+
+> **Countries → Create Country / Actions (Edit · Add to / Remove Popular · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola negara. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Daftar Countries {/* #the-countries-list */}
+
+Buka **Countries** (route: `/countries`). Setiap baris menampilkan **Name**,
+**Nationality**, **Codes** (Alpha-2 / Alpha-3 / kode telepon) negara, dan apakah
+negara tersebut ada di daftar **Popular**, serta menu **Actions** (**⋯**). Gunakan
+kotak **search** dan filter **Popular** untuk mempersempit daftar.
+
+![Tampilan daftar Countries](/img/terminal-staff/countries/01-list.png)
+_Daftar Countries — Name, Nationality, Codes, dan Popular, dengan pencarian dan filter Popular._
+
+## Membuat Negara {/* #create-a-country */}
+
+Klik **Add Country** (kanan atas) untuk membuka formulir **New Country** dan isi:
+
+| Kolom | Catatan |
+| --- | --- |
+| **Country Name** | Nama negara, misalnya `United States`. |
+| **Nationality** | Label kewarganegaraan yang dipakai saat check-in, misalnya `American`. |
+| **Alpha-2 Code** | Kode ISO 2 huruf, misalnya `US`. |
+| **Alpha-3 Code** | Kode ISO 3 huruf, misalnya `USA`. |
+| **Phone Code** | Kode telepon, misalnya `+1`. |
+
+Lalu klik **Create Country**.
+
+![Formulir New Country](/img/terminal-staff/countries/02-create.png)
+_Membuat negara._
+
+:::warning[Aturan kode]
+- **Alpha-2 Code** harus **tepat 2 huruf** dan **unik**.
+- **Alpha-3 Code** harus **tepat 3 huruf** dan **unik**.
+- **Phone Code** paling banyak 10 karakter.
+:::
+
+## Menandai atau Menghapus Popular {/* #set-or-remove-popular */}
+
+Dari menu **⋯ Actions** pada baris, gunakan **Add To Popular** / **Remove From
+Popular** untuk mengatur apakah negara muncul di daftar **Popular**. Negara Popular
+ditampilkan di bagian atas pilihan kewarganegaraan / negara saat check-in
+penumpang, jadi tandai negara yang paling sering ditangani terminal Anda.
+
+![Menu Actions pada baris negara](/img/terminal-staff/countries/03-actions.png)
+_Menu Actions — Edit, Add To / Remove From Popular, dan Delete (negara ini sudah Popular, sehingga menampilkan **Remove From Popular**)._
+
+## Mengubah dan Menghapus {/* #edit-and-delete */}
+
+Menu **⋯ Actions** yang sama memungkinkan Anda **Edit** detail negara atau
+**Delete** negara tersebut (perlu konfirmasi).
+
+:::info[Delete diblokir jika masih dipakai]
+Negara yang masih dirujuk tidak dapat dihapus — portal menampilkan:
+
+- _"Cannot delete Country because it has public holidays. Delete those public
+  holidays first."_
+- _"Cannot delete Country because departure timeslots run on its public holidays."_
+
+Hapus [hari libur nasional](/terminal-operator/configure-public-holiday) negara
+tersebut dan keluarkan negara itu dari daftar negara **Public Holiday** di Timeslot
+mana pun terlebih dahulu.
+:::
+
+## Langkah Berikutnya {/* #next-steps */}
+
+- [Mengatur Hari Libur Nasional](/terminal-operator/configure-public-holiday)
+- [Routes](/terminal-staff/routes)

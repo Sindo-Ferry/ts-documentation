@@ -1,0 +1,103 @@
+---
+id: look-up-vessel
+title: Mencari Vessel
+sidebar_label: Mencari Vessel
+sidebar_position: 4
+slug: /ferry-operator/look-up-vessel
+description: Periksa Vessel milik operator Anda — kode, nama, nomor sertifikasi, kapasitas kursi, dan status aktif — di daftar Vessels yang read-only.
+keywords:
+  - vessels
+  - capacity
+  - certification
+  - read only
+  - active
+---
+
+Halaman **Vessels** mencantumkan kapal feri milik **operator Anda**, dengan angka yang
+paling sering Anda butuhkan: **kapasitas**.
+
+> **Vessels → cari / filter → baca kapasitas dan statusnya**
+
+:::warning[Read-only]
+**Tidak ada tindakan membuat, mengubah, atau menghapus** di sini. Vessel adalah data
+master yang dikelola **staf terminal** di Terminal Portal. Jika Vessel perlu
+ditambah, diganti nama, disertifikasi ulang, atau diaktifkan, minta ke terminal —
+lihat panduan terminal [Vessels](/terminal-staff/vessels).
+:::
+
+:::note
+Anda membutuhkan permission vessels-read; tanpanya item **Vessels** tidak muncul di
+sidebar. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+
+## Langkah 1 — Buka Vessels {/* #step-1--open-vessels */}
+
+Di sidebar, buka **Vessels** (route: `/vessels`).
+
+![Daftar Vessels](/img/ferry-operator/vessels/01-list.png)
+_Daftar Vessels — kode, nama dengan nomor sertifikat, kapasitas, dan status._
+
+## Langkah 2 — Baca Daftarnya {/* #step-2--read-the-list */}
+
+| Kolom | Isinya |
+| --- | --- |
+| **Code** | Kode pendek Vessel. |
+| **Vessel** | Nama Vessel, dengan **nomor sertifikasi** (`Cert: …`) di bawahnya. |
+| **Capacity** | **Total kursi.** Inilah yang menentukan apakah Vessel dapat menampung penumpang suatu perjalanan. |
+| **Status** | **Active** (hijau) atau **Inactive** (merah). |
+
+Urutkan berdasarkan **Code**, **Vessel**, atau **Capacity** dengan mengklik judul
+kolom.
+
+## Langkah 3 — Cari dan Filter {/* #step-3--search-and-filter */}
+
+- **Kotak pencarian** — temukan Vessel dengan mengetik sebagian detailnya.
+- **Show Filters → Status** — pilih **All Statuses**, **Active Only**, atau
+  **Inactive Only**, lalu klik **Done**.
+- **Refresh** memuat ulang daftar.
+
+![Dialog Filter Vessels](/img/ferry-operator/vessels/02-filter.png)
+_Dialog **Filter Vessels**, dibuka di atas daftar yang sudah dipersempit dengan kotak pencarian._
+
+## Mengapa Kapasitas dan Status Penting {/* #why-capacity-and-status-matter */}
+
+Halaman ini biasanya menjadi langkah **sebelum**
+[mengganti Vessel pada perjalanan](/ferry-operator/change-trip-vessel), karena kedua
+kolom menentukan apakah penggantian akan diterima:
+
+| Yang Anda periksa | Alasannya |
+| --- | --- |
+| **Capacity** | Vessel baru harus memiliki **kursi setidaknya sebanyak penumpang yang sudah ada di perjalanan**. Vessel yang lebih kecil ditolak dengan pesan yang menyebutkan Vessel, kapasitasnya, kode perjalanan, dan kursi yang terisi. |
+| **Status** | Hanya Vessel **Active** yang dapat ditetapkan. Vessel tidak aktif tidak ditawarkan di pemilih, dan ditolak jika entah bagaimana terpilih: _"The selected vessel is inactive. Reactivate it before assigning it to trips."_ |
+
+Jadi sebelum mengganti: catat **kursi terisi** di perjalanan, buka halaman ini, dan
+pastikan Vessel pengganti berstatus **Active** dengan **kapasitas ≥ angka
+tersebut**.
+
+:::tip[Kapasitas adalah total kursi, bukan kursi kosong]
+Kolom **Capacity** adalah jumlah kursi penuh Vessel. Kursi **tersedia** sebuah
+perjalanan adalah kapasitas itu dikurangi penumpang yang sudah check-in — itulah
+sebabnya Vessel dengan kapasitas besar di atas kertas tetap bisa ditolak untuk
+perjalanan yang ramai.
+:::
+
+## Vessel Tidak Ada atau Tidak Aktif {/* #a-vessel-is-missing-or-inactive */}
+
+| Situasi | Yang dilakukan |
+| --- | --- |
+| Vessel tidak tercantum sama sekali | Milik operator lain, atau belum dibuat. Tanyakan ke terminal. |
+| Vessel berstatus **Inactive** | Tidak dapat ditetapkan ke perjalanan. Minta terminal mengaktifkannya kembali. |
+| Kapasitas tampak salah | Minta terminal memperbaikinya — Anda tidak dapat mengubahnya di sini, dan angka yang salah akan memblokir atau meloloskan penggantian yang keliru. |
+| Seluruh menu **Vessels** tidak ada | Anda tidak memiliki permission vessels-read. Tanyakan ke administrator Anda. |
+
+## Selanjutnya {/* #next */}
+
+- [Mengganti Vessel pada Perjalanan](/ferry-operator/change-trip-vessel)
+- [Mencari Timeslot](/ferry-operator/look-up-timeslot) — Vessel default yang dipakai
+  setiap pelayaran berulang.

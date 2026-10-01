@@ -1,0 +1,111 @@
+---
+id: operator-timeslots
+title: Mencari Timeslot
+sidebar_label: Mencari Timeslot
+sidebar_position: 5
+slug: /ferry-operator/look-up-timeslot
+description: Periksa jadwal mingguan berulang operator Anda — Route, Vessel default, jam keberangkatan dan Gate, hari, serta negara hari libur — di daftar Timeslots yang read-only.
+keywords:
+  - timeslots
+  - schedule
+  - recurring
+  - read only
+  - public holiday
+  - gate window
+---
+
+**Timeslot** adalah satu baris dalam jadwal mingguan berulang: _Route ini, Vessel
+ini, berangkat pada jam ini, di hari-hari ini._ Halaman **Timeslots** menampilkan
+Timeslot milik **operator Anda**.
+
+Timeslot adalah **templatnya**. Pelayaran nyata yang dibuat darinya adalah
+[perjalanan](/ferry-operator/look-up-trip).
+
+> **Timeslots → filter berdasarkan Route, status, atau hari → baca jadwalnya**
+
+:::warning[Read-only]
+**Tidak ada tindakan membuat, mengubah, atau menghapus** di sini. Timeslot dikelola
+**staf terminal**. Jika sebuah pelayaran perlu ditambah, diubah jamnya, atau
+dihentikan, minta ke terminal — lihat panduan terminal
+[Membuat Timeslot](/terminal-operator/create-timeslot).
+:::
+
+:::note
+Tangkapan layar di bawah menggunakan `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+
+## Langkah 1 — Buka Timeslots {/* #step-1--open-timeslots */}
+
+Di sidebar, buka **Timeslots** (route: `/departure-timeslots`).
+
+## Langkah 2 — Baca Daftarnya {/* #step-2--read-the-list */}
+
+| Kolom | Isinya |
+| --- | --- |
+| **Route** | Route yang dilayari pelayaran ini. |
+| **Default Vessel** | Vessel awal untuk perjalanan yang dibuat dari Timeslot ini. |
+| **Departure** | Jam keberangkatan, dengan **rentang Gate dibuka–ditutup** di bawahnya. |
+| **Days** | Hari berjalannya (Mon–Sun), ditambah **PH** dengan kode negara yang hari liburnya juga diikuti — misalnya **PH (SG, ID)**. |
+| **Status** | **Active** atau **Inactive**. |
+
+![Daftar Timeslots operator yang read-only](/img/ferry-operator/timeslots/01-list.png)
+_Daftar Timeslots — Route, Default Vessel, Departure, Days, dan Status._
+
+Gunakan toolbar filter untuk mempersempit berdasarkan **Route**, **status**, atau
+**hari**.
+
+## Cara Membaca Kolom Days {/* #how-to-read-the-days-column */}
+
+Aturan hari bersifat **menambah** — hari libur nasional **menambah** pelayaran, tidak
+pernah menghapus pelayaran hari biasa:
+
+- Hari yang dicentang Mon–Sun adalah pola mingguan biasa.
+- Badge **PH (SG)** berarti pelayaran itu **juga** berjalan di hari libur nasional
+  Singapura, di luar pola hari biasanya.
+- **Tanpa badge PH** berarti tidak berjalan di hari libur selain hari normalnya.
+- Timeslot dengan **Monday** dan **PH (SG)** tetap hanya membuat **satu**
+  perjalanan saat hari libur Singapura jatuh di hari Senin — bukan dua.
+
+## Arti Active / Inactive yang Sebenarnya {/* #what-active--inactive-actually-means */}
+
+| Status | Dampaknya |
+| --- | --- |
+| **Active** | Perjalanan terus dibuat darinya untuk tanggal-tanggal mendatang. |
+| **Inactive** | **Tidak ada perjalanan baru** yang dibuat. Perjalanan yang sudah dibuat tetap ada dan tetap berlayar — sampai terminal menjalankan ulang pembuatan perjalanan, saat perjalanan yatim yang kosong dihapus. |
+
+Jadi Timeslot **Inactive** yang perjalanannya masih tampil di halaman
+[Departure Trips](/ferry-operator/look-up-trip) itu normal, bukan kesalahan.
+
+## Default Vessel vs. Vessel di Perjalanan {/* #default-vessel-vs-the-vessel-on-the-trip */}
+
+**Default Vessel** di sini hanyalah **titik awal**. Setelah perjalanan dibuat,
+Vessel-nya menjadi milik perjalanan itu sendiri, dan Anda dapat
+[menggantinya](/ferry-operator/change-trip-vessel) tanpa menyentuh Timeslot.
+
+Ini berlaku dua arah:
+
+- Mengganti Vessel di perjalanan **tidak** mengubah Timeslot — perjalanan baru yang
+  dibuat besok kembali ke Vessel default.
+- Jika penggantian Vessel perlu **permanen**, minta terminal mengubah Default Vessel
+  Timeslot tersebut, jika tidak Anda akan mengulang penggantian setiap hari.
+
+## Yang Perlu Diminta ke Terminal {/* #what-to-ask-the-terminal-for */}
+
+| Situasi | Yang diminta |
+| --- | --- |
+| Sebuah pelayaran tidak ada di jadwal | Timeslot baru untuk Route, jam, dan hari tersebut |
+| Jam keberangkatan berubah | Timeslot dengan jam baru — dan pembuatan ulang perjalanan untuk tanggal yang sudah dibuat |
+| Rentang Gate salah | Perubahan jam Gate dibuka / ditutup pada Timeslot |
+| Pelayaran harus berhenti beroperasi | Nonaktifkan Timeslot (dan hapus perjalanan yang sudah dibuat) |
+| Pelayaran harus berjalan di hari libur | Centang **Public Holiday** dan negara yang tepat |
+| Vessel default salah | Perubahan **Default Vessel** |
+
+## Selanjutnya {/* #next */}
+
+- [Mencari Perjalanan](/ferry-operator/look-up-trip) — pelayaran yang sebenarnya.
+- [Mencari Vessel](/ferry-operator/look-up-vessel)

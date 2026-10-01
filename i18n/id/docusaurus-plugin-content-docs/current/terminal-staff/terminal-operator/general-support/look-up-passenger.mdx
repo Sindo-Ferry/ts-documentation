@@ -1,0 +1,188 @@
+---
+id: look-up-passenger
+title: Mencari Penumpang
+sidebar_label: Mencari Penumpang
+sidebar_position: 1
+slug: /terminal-operator/look-up-passenger
+description: Temukan data penumpang mana pun di perjalanan lalu, hari ini, maupun mendatang dari daftar Passengers yang read-only, lalu buka detail lengkapnya.
+keywords:
+  - look up passenger
+  - passenger search
+  - find passenger
+  - passengers list
+  - read only
+  - trip date
+  - cari penumpang
+---
+
+Seseorang datang ke konter dengan pertanyaan tetapi tanpa boarding pass. Di
+**Passengers**-lah Anda menemukannya. Halaman ini mencari di **semua perjalanan** —
+kemarin, hari ini, bulan depan — dan itulah yang membedakannya dari **Current
+Trips**, yang hanya menampilkan hari ini.
+
+> **Passengers → atur rentang Trip Date → cari → View Passenger**
+
+:::warning[Layar ini read-only]
+Daftar Passengers digunakan untuk **mencari dan membaca** data. Anda **tidak dapat**
+melakukan check-in, mengubah, membatalkan, mengubah status, atau mencetak boarding
+pass dari sini. Menu **⋯** pada baris hanya menawarkan satu item: **View
+Passenger**.
+
+Untuk *melakukan* sesuatu pada penumpang, buka **perjalanannya** dan bekerja dari
+tabel penumpang perjalanan tersebut — lihat
+[Menindaklanjuti hasil pencarian](#acting-on-what-you-find).
+:::
+
+:::note
+Anda membutuhkan permission untuk melihat penumpang. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Siapkan sesuatu untuk dicari — **nomor paspor / ID**, **nama**, atau
+  **perjalanan dan tanggal** penumpang berangkat.
+
+## Langkah 1 — Buka Passengers {/* #step-1--open-passengers */}
+
+Di sidebar, buka **Management → Passengers** (route: `/passengers`).
+
+Setiap baris menampilkan **Trip**, **No** (paspor / ID), **Name** (dengan jenis
+kelamin di bawahnya), **Operator / Route**, **Type**, **Status**, dan
+**Nationality** penumpang.
+
+![Tampilan daftar Passengers, difilter berdasarkan tanggal perjalanan](/img/terminal-staff/passengers/01-passengers-list.png)
+_Daftar Passengers — tampilan read-only data penumpang di semua perjalanan._
+
+## Langkah 2 — Atur Rentang Tanggal yang Diinginkan {/* #step-2--set-the-date-range-you-want */}
+
+:::danger[Daftar terbuka dengan cakupan hari ini — jebakan nomor satu]
+Saat halaman dimuat, **Trip Date From** dan **Trip Date To** sama-sama diatur ke
+**hari ini**. Penumpang yang berangkat kemarin, atau yang memesan untuk minggu
+depan, **tidak akan muncul** seteliti apa pun Anda mengeja namanya.
+
+Jika pencarian kosong, periksa chip tanggal perjalanan **terlebih dahulu**.
+:::
+
+Klik **Show Filters** dan atur rentangnya agar mencakup yang Anda cari:
+
+| Yang Anda cari | Atur Trip Date From / To ke |
+| --- | --- |
+| Penumpang hari ini | Biarkan apa adanya — keduanya hari ini |
+| Perjalanan yang sudah lewat | From = tanggal berangkat, To = tanggal berangkat |
+| Apa saja dalam suatu periode | From = awal periode, To = akhir periode |
+| Pemesanan di masa depan | From = hari ini, To = tanggal setelah perjalanan |
+| "Saya tidak tahu kapan" | Perlebar kedua ujungnya, lalu persempit dengan filter lain |
+
+Tidak ada batasan tanggal — rentangnya boleh sejauh apa pun ke belakang atau ke
+depan.
+
+## Langkah 3 — Cari {/* #step-3--search */}
+
+Ada dua cara mencari dan keduanya bekerja **berbeda**. Ini sering membingungkan:
+
+### Pencarian Cepat — Cocok Sebagian {/* #quick-search--partial-match */}
+
+Kotak **search** di bagian atas daftar mencocokkan **"mengandung"** pada **No**
+_atau_ **Name**. Ketik `budi` dan Anda mendapat semua orang yang namanya mengandung
+"budi"; ketik `A123` dan Anda mendapat semua nomor dokumen yang mengandungnya.
+
+**Gunakan cara ini secara default.**
+
+### Kolom Filter — Cocok Persis {/* #filter-fields--exact-match */}
+
+Di dalam **Show Filters**, kolom **No** (Passport No) dan **Name** membutuhkan
+**nilai lengkap**:
+
+:::warning[Filter No dan Name harus cocok persis]
+Kedua kolom ini membutuhkan **kecocokan persis dan utuh** — nomor paspor / ID
+lengkap, atau **nama lengkap** penumpang. Huruf besar dan kecil diabaikan, tetapi
+**nilai sebagian tidak menghasilkan apa pun**.
+
+Mengetik `Budi` di kolom **Name** pada filter, padahal datanya `Budi Santoso`,
+menghasilkan **nol hasil** — dan tampak seolah-olah penumpangnya tidak ada. Gunakan
+kotak **pencarian cepat** jika Anda hanya punya sebagian nilainya.
+:::
+
+### Mempersempit Lebih Lanjut {/* #narrowing-further */}
+
+Dialog **Filter Passengers** juga menyediakan **Operator**, **Route**, **Date of
+Birth**, **Passenger Type**, **Passenger Status**, dan **Nationality**. Atur yang
+diperlukan, lalu klik **Done**.
+
+![Dialog Filter Passengers](/img/terminal-staff/passengers/03-passenger-filter.png)
+_Dialog Filter Passengers — Trip Date From / To di atas, kolom **No** dan **Name** yang harus cocok persis di tengah._
+
+Setiap filter yang diterapkan tampil sebagai **chip** di bawah kotak pencarian.
+Hapus chip untuk menghilangkan satu filter, atau klik **Reset** untuk mengosongkan
+semuanya. **Refresh** memuat ulang hasil saat ini.
+
+:::tip[Baca chip sebelum menyimpulkan "penumpang tidak ada"]
+Chip adalah gambaran lengkap filter yang sedang dipakai — termasuk rentang tanggal
+perjalanan. Jika pencarian tidak menghasilkan apa pun, baca chip dari kiri ke kanan.
+Jawabannya hampir selalu ada di sana.
+:::
+
+## Langkah 4 — Buka Data Lengkap {/* #step-4--open-the-full-record */}
+
+Buka menu **⋯** pada baris dan pilih **View Passenger**. Halaman detail yang
+**read-only** terbuka dengan data lengkap dalam tiga bagian — jauh lebih banyak dari
+kolom di daftar:
+
+| Bagian | Isinya |
+| --- | --- |
+| **Trips Informations** | Trip Code, Trip Date / Departure, **Trip Status**, **Trip Type** (Scheduled atau AdHoc), Operator / Route, **Vessel**, **Boarding Gate / Berth** |
+| **Passport Informations** | No, Name, Gender, **Date of Birth**, **Issuance Date**, Nationality, **Issuance Country**, **Passport Expiry Date** |
+| **Check In Informations** | **Boarding Pass No**, Type, Status, **Checked-in At**, **Pre-Immigration At**, **Boarded At**, dan apakah penumpang **Cancelled** — beserta waktunya dan **siapa yang membatalkan** |
+
+![Halaman detail View Passenger](/img/terminal-staff/passengers/02-passenger-detail.png)
+_View Passenger — Trips, Passport, dan Check In Informations untuk satu penumpang di satu perjalanan._
+
+Stempel waktu di **Check In Informations** sudah menjawab sebagian besar pertanyaan
+di konter. Stempel itu menunjukkan sejauh mana penumpang benar-benar sampai: ada jam
+**Boarded At** berarti ia berlayar; **Checked-in At** tanpa apa pun sesudahnya
+berarti ia tidak pernah melewati Pre-Immigration.
+
+## Yang Bisa Dijawab dari Sini {/* #what-you-can-answer-from-here */}
+
+| Pertanyaan di konter | Tempat melihat |
+| --- | --- |
+| "Apakah rekan saya sudah Boarding kemarin?" | Atur tanggal ke kemarin, cari namanya, baca **Boarded At** |
+| "Berapa nomor boarding pass saya?" | **Boarding Pass No** di halaman detail |
+| "Vessel dan Berth mana waktu itu?" | **Trips Informations** |
+| "Apakah saya dibatalkan, dan oleh siapa?" | **Check In Informations** — waktu pembatalan dan pelakunya |
+| "Apakah saya sudah terdaftar untuk Selasa depan?" | Perlebar **Trip Date To** melewati tanggal itu, lalu cari |
+| "Apakah tanggal kedaluwarsa paspor saya tercatat benar?" | **Passport Informations** |
+
+## Menindaklanjuti Hasil Pencarian {/* #acting-on-what-you-find */}
+
+Setelah penumpang ditemukan, catat **perjalanannya** — lalu buka perjalanan itu untuk
+melakukan apa pun:
+
+1. **Perjalanan hari ini:** **Operational → Current Trips** → klik baris
+   perjalanannya.
+   **Perjalanan lama atau mendatang:** **Management → Departure Trips** → temukan
+   perjalanannya → buka halaman detailnya.
+2. Temukan penumpang di tabel di bagian bawah halaman tersebut.
+3. Lakukan tindakan dari sana:
+   - [Ubah data paspornya](/terminal-operator/edit-passenger) — hanya CheckedIn
+   - [Batalkan penumpang](/terminal-operator/cancel-passenger)
+   - [Ubah statusnya](/terminal-operator/update-passenger-status)
+   - [Cetak ulang atau unduh boarding pass-nya](/terminal-operator/reprint-boarding-pass)
+
+:::info[Mengapa tindakan ada di dalam perjalanan]
+Mengikat setiap tindakan ke satu pelayaran tertentu menjaga **integritas data**.
+Penumpang yang bepergian setiap minggu punya satu data per pelayaran; bertindak dari
+daftar lintas perjalanan akan membuat sangat mudah mengubah atau membatalkan data
+yang salah. Tabel penumpang di perjalanan itu sendiri tidak menyisakan keraguan
+pelayaran mana yang sedang Anda ubah.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Check-in Penumpang NTL / LM](/terminal-operator/check-in-ntl-lm)
+- [Mencetak Ulang atau Mengunduh Boarding Pass](/terminal-operator/reprint-boarding-pass)
+- [Mengunduh Manifest](/terminal-operator/download-manifest) — daftar resmi untuk
+  satu perjalanan penuh, bukan satu penumpang.

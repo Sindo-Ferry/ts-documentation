@@ -1,0 +1,115 @@
+---
+id: how-sign-in-works
+title: Cara Kerja Masuk dan Akses
+sidebar_label: Cara Kerja Masuk dan Akses
+sidebar_position: 1
+slug: /how-sign-in-works
+description: Penjelasan sederhana tentang tiga jenis data pengguna, bagaimana akun masuk terhubung ke akses portal melalui email, dan berapa lama sesi berlaku.
+keywords:
+  - sign in
+  - authentication
+  - access
+  - session
+  - token
+  - terminal user
+  - operator user
+---
+
+Penjelasan sederhana tentang cara kerja masuk (sign in) — ditulis untuk semua orang,
+tanpa perlu latar belakang teknis.
+
+## Tiga Jenis Data Pengguna {/* #three-kinds-of-user-records */}
+
+Sistem menyimpan **tiga data pengguna yang terpisah**. Ketiganya tidak saling
+terhubung di database — hanya dihubungkan oleh **alamat email yang sama**.
+
+| Data | Pertanyaan yang dijawab |
+| --- | --- |
+| **User** (akun masuk) | *Siapa Anda? Bolehkah Anda masuk?* Berisi email, password, dan status konfirmasi email. |
+| **Terminal User** | *Apa yang boleh Anda lakukan di Terminal Portal?* Berisi role, permission, dan status aktif/tidak aktif. |
+| **Operator User** | *Apa yang boleh Anda lakukan di Operator Portal, dan untuk operator feri mana?* Satu email dapat memiliki data terpisah untuk setiap operator tempatnya terdaftar. |
+
+**Bayangkan sebagai paspor dan kartu akses gedung.**
+
+- Data **User** adalah *paspornya* — membawa Anda melewati pintu depan (masuk).
+- Data **Terminal User** dan **Operator User** adalah *kartu akses gedung* — yang
+  menentukan pintu mana yang dapat Anda buka setelah di dalam.
+- Keduanya dicocokkan berdasarkan nama yang tertera di keduanya: **alamat email**.
+
+Paspor tanpa kartu akses bisa masuk, tetapi ditolak di mana-mana ("your account is
+not provisioned"). Kartu akses tanpa paspor sama sekali tidak bisa masuk. Satu orang
+dapat memegang paspor ditambah kombinasi kartu akses apa pun — akses terminal *dan*
+keanggotaan di beberapa operator — semuanya dengan satu email dan satu password.
+
+### Siapa Membuat Apa {/* #who-creates-what */}
+
+- Orang itu sendiri membuat data **User** dengan
+  [mendaftar di halaman publik](/register-account) (atau dengan masuk sekali
+  menggunakan Google/Microsoft).
+- Administrator membuat data **Terminal User** atau **Operator User** (**Users →
+  Create User**), dan harus mengaktifkannya sebelum berfungsi.
+- Pendaftaran **tidak pernah** memasukkan siapa pun ke daftar pengguna portal — jika
+  sebuah nama muncul di sana, administratorlah yang memasukkannya.
+
+### Menyiapkan Orang Baru {/* #setting-up-a-new-person */}
+
+Urutan mana pun bisa:
+
+1. Ia mendaftar dan mengonfirmasi emailnya → akun masuk sudah ada.
+2. Admin membuat dan mengaktifkan pengguna portal *dengan email yang sama* → akses
+   sudah ada.
+3. Ia masuk dan semuanya terhubung.
+
+## Dua Token {/* #the-two-tokens */}
+
+Masuk memberi browser dua token dengan tugas yang sangat berbeda.
+
+:::note
+Masa berlakunya adalah **konfigurasi, bukan kode** — saat ini diatur **5 menit**
+(akses) dan **30 hari** (refresh).
+:::
+
+### Access Token — "Tiket Harian" Berumur Pendek {/* #access-token--the-short-lived-day-pass */}
+
+- Token bertanda tangan yang dikirim bersama **setiap permintaan API** untuk
+  membuktikan siapa Anda.
+- Hanya berisi identitas — **bukan** permission. Permission diperiksa ulang pada
+  setiap permintaan, sehingga menonaktifkan pengguna atau mengubah role berlaku
+  dalam sekitar satu menit, tanpa perlu login ulang.
+- Berlaku **5 menit**. Saat kedaluwarsa, browser diam-diam menukarnya dengan yang baru
+  menggunakan refresh token — **pengguna tidak merasakan apa pun**.
+
+### Refresh Token — "Kunci Sesi" Berumur Panjang {/* #refresh-token--the-long-lived-session-key */}
+
+- Rahasia acak dalam cookie browser yang aman dan tidak dapat dibaca JavaScript.
+  Satu-satunya tugasnya: mendapatkan access token baru.
+- Berlaku **30 hari**, dan batas ini **mutlak** — tetap aktif *tidak*
+  memperpanjangnya.
+- **Sekali pakai**: setiap pemakaian menggantinya dengan yang baru. Jika token yang
+  sudah dipakai muncul lagi, sistem menganggapnya dicuri dan **mengakhiri seluruh
+  sesi** bagi siapa pun yang memegangnya. Refresh dari perangkat/browser yang berbeda
+  dari tempat sesi dimulai juga berakibat sama.
+
+### Mulai Baru, Bukan Terputus di Tengah Shift {/* #fresh-start-instead-of-a-mid-shift-cutoff */}
+
+Saat seseorang kembali setelah istirahat panjang (**4 jam atau lebih tidak aktif**)
+dan sesinya tinggal **kurang dari 24 jam**, sistem memintanya **masuk ulang saat itu
+juga** — di awal, sebelum mulai bekerja. Ini mencegah kemungkinan buruknya: memulai
+hari kerja dengan sesi yang hampir habis dan akan berakhir di tengah shift. Selama
+seseorang sedang aktif bekerja, pemeriksaan ini tidak pernah mengeluarkannya.
+
+## Yang Sebenarnya Dialami Pengguna {/* #what-users-actually-experience */}
+
+- **Tidak ada batas waktu tidak aktif** — tidak ada yang dikeluarkan karena diam.
+- Access token 5 menit diperbarui diam-diam, terus-menerus, selama sesi masih
+  berlaku.
+- Sesi hanya berakhir jika: rentang 30 hari habis, pemeriksaan mulai-baru menjelang
+  kedaluwarsa terpicu di awal sesi, pengguna keluar, atau pencabutan keamanan
+  terpicu.
+- Dalam praktiknya: staf masuk kira-kira sebulan sekali, selalu di *awal* hari kerja,
+  tidak pernah di tengahnya.
+
+:::info[Satu pengecualian]
+Perangkat yang terus aktif tanpa jeda 4 jam — seperti kiosk yang selalu menyala —
+masih bisa mencapai batas 30 hari di tengah pemakaian.
+:::

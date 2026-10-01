@@ -1,0 +1,66 @@
+---
+id: berths
+title: Berths
+sidebar_label: Berths
+sidebar_position: 5
+slug: /terminal-staff/berths
+description: Kelola Berth — buat, ubah, aktifkan/nonaktifkan, dan hapus Berth di setiap Port yang ditetapkan ke perjalanan untuk Boarding.
+keywords:
+  - berths
+  - berth
+  - port
+  - master data
+---
+
+**Berth** adalah posisi sandar kapal di sebuah Port. Saat perjalanan diatur menjadi
+[Boarding](/terminal-operator/set-trip-as-boarding), staf menetapkan Berth (dan
+[Gate](/terminal-staff/gates)) untuknya — hanya Berth **aktif** di Port asal
+perjalanan yang dapat dipilih.
+
+> **Berths → Create Berth / Actions (Edit · Activate · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola Berth. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Daftar Berths {/* #the-berths-list */}
+
+Buka **Berths** (route: `/berths`). Setiap baris menampilkan **Code**, **Name**,
+**Port**, dan **Status** (**Active** / **Inactive**) Berth, serta menu **Actions**
+(**⋯**). Gunakan kotak **search** (mencocokkan kode dan nama) dan **Show Filters**
+(Port, Status) untuk mempersempit daftar.
+
+![Tampilan daftar Berths](/img/terminal-staff/berths/01-berths-list.png)
+_Daftar Berths — Code, Name, Port, dan Status. Perhatikan **B1** muncul di dua Port berbeda: kode hanya harus unik **di dalam** satu Port._
+
+## Membuat Berth {/* #create-a-berth */}
+
+Klik **Create Berth** (kanan atas) dan isi formulir **New Berth**:
+
+| Kolom | Catatan |
+| --- | --- |
+| **Port** | Port tempat Berth berada — pilih ini terlebih dahulu. |
+| **Berth code** | Kode Berth, misalnya `B1`. |
+| **Name** | Nama deskriptif, misalnya `East Pier Berth 1`. |
+| **Active** | Apakah Berth tersedia untuk ditetapkan. Tercentang secara default. |
+
+Lalu klik **Create Berth**.
+
+![Formulir New Berth, berisi Port, Berth code, Name, dan kotak centang Active](/img/terminal-staff/berths/02-create-berth.png)
+_Membuat Berth — pilih **Port** terlebih dahulu, lalu kode dan nama._
+
+:::warning[Unik di dalam Port]
+**Berth code** harus **unik di dalam Port yang dipilih**.
+:::
+
+## Mengubah, Mengaktifkan/Menonaktifkan, dan Menghapus {/* #edit-activatedeactivate-and-delete */}
+
+Dari menu **⋯ Actions** pada baris, Anda dapat **Edit** Berth, **Activate /
+Deactivate** Berth (hanya Berth aktif yang dapat ditetapkan ke perjalanan
+Boarding), atau **Delete** Berth (perlu konfirmasi).
+
+## Langkah Berikutnya {/* #next-steps */}
+
+- [Routes](/terminal-staff/routes)
+- [Gates](/terminal-staff/gates)

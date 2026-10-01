@@ -1,0 +1,142 @@
+---
+id: manage-role-permissions
+title: Mengelola Permission Role
+sidebar_label: Mengelola Permission Role
+sidebar_position: 2
+slug: /terminal-administrator/manage-role-permissions
+description: Tambah dan hapus permission pada role menggunakan daftar dua panel Available / Assigned.
+keywords:
+  - role permissions
+  - permissions
+  - assign permission
+  - super admin
+  - security
+---
+
+Di sinilah role berhenti menjadi label kosong dan mulai memberi akses.
+
+> **Roles → ⋯ → Manage Permissions → centang → Add Selected / Remove Selected**
+
+**Permission yang dibutuhkan:** `terminal.security.is_super_admin`
+
+:::warning[Hanya Super Admin yang dapat mengubah permission role]
+Tombol di kedua panel dikunci dengan **`terminal.security.is_super_admin`** — bukan
+dengan `terminal.roles.write` atau `terminal.users.write`.
+
+Jadi administrator biasa **dapat membuka dan membaca halaman ini**, tetapi tombol
+tindakannya tidak muncul. Jika Anda dapat melihat daftarnya tetapi tidak melihat
+tombolnya, itulah sebabnya.
+:::
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- [Role sudah ada](/terminal-administrator/add-role).
+- Anda adalah **Super Admin**.
+
+## Langkah 1 — Buka Permission Role {/* #step-1--open-the-roles-permissions */}
+
+Buka **Security → Roles**, temukan role-nya, dan gunakan menu **⋯** → **Manage
+Permissions** (route: `/roles/permissions?id=…`).
+
+![Menu tindakan role](/img/terminal-staff/security/03-role-actions.png)
+_Menu **⋯** role — **Edit**, **Manage Permissions**, dan **Delete Role**._
+
+Halaman berjudul **Manage Role Permissions** dengan nama role di bawahnya. **Periksa
+nama itu sebelum menyentuh apa pun** — kedua panel terlihat sama untuk role mana
+pun yang Anda buka.
+
+## Langkah 2 — Pahami Kedua Panel {/* #step-2--understand-the-two-panels */}
+
+| Panel | Isinya |
+| --- | --- |
+| **Available Permissions** (kiri) | Semua permission yang **belum** dimiliki role. |
+| **Assigned to Role** (kanan) | Semua yang **sudah** dimiliki role. Tampil dengan latar berwarna. |
+
+Permission tampil sebagai **string permission mentah** dalam huruf monospace —
+misalnya `terminal.departure_trip.read`, `terminal.passenger.write`. String ini tidak
+diterjemahkan menjadi nama yang ramah, jadi bacalah dengan teliti.
+
+Kedua panel bekerja dengan cara yang sama:
+
+- **Kotak filter** — ketik untuk mempersempit daftar. Dengan ratusan string
+  permission, inilah satu-satunya cara praktis untuk menemukannya.
+- **Centang baris** yang diinginkan. **Kotak centang di header** mencentang semua yang
+  sedang tampil.
+- Tombol tindakan menampilkan jumlahnya — **Add Selected (3)** — dan tetap
+  **nonaktif sampai setidaknya satu baris dicentang**.
+- Setiap panel bergulir sendiri; pilihan dikosongkan setelah setiap tindakan.
+
+![Halaman Manage Role Permissions](/img/terminal-staff/security/04-manage-role-permission.png)
+_Kedua panel untuk **UAT Boarding Gate Officer**. Belum ada yang dicentang, jadi kedua tombol bertuliskan **(0)** dan berwarna abu-abu._
+
+## Langkah 3 — Tambah Permission {/* #step-3--add-permissions */}
+
+Di **Available Permissions**, filter dan centang yang dibutuhkan role, lalu klik
+**Add Selected (N)**.
+
+![Dua permission dicentang di Available Permissions](/img/terminal-staff/security/05-assign-role-permission.png)
+_Difilter dengan `boarding`, dua permission dicentang — **Add Selected (2)** kini aktif._
+
+Barisnya pindah ke **Assigned to Role** dan kedua panel diperbarui.
+
+:::tip[Baca string permission sebagai tiga bagian]
+`terminal.departure_trip.cancel` adalah _portal_ . _objek_ . _tindakan_. Memfilter
+bagian tengahnya — ketik `departure_trip` — mengumpulkan semua yang terkait satu
+area, dan biasanya memang begitulah cara Anda ingin memberi akses.
+
+Perhatikan tindakan di ujungnya: `.read` tidak berbahaya, sedangkan `.write`,
+`.cancel`, dan `.execute` tidak demikian.
+:::
+
+## Langkah 4 — Hapus Permission {/* #step-4--remove-permissions */}
+
+Di **Assigned to Role**, centang barisnya dan klik **Remove Selected (N)**.
+
+![Dua permission dicentang di Assigned to Role](/img/terminal-staff/security/06-remove-role-permission.png)
+_Dua permission yang sama, kini sudah diberikan dan dicentang untuk dihapus — **Remove Selected (2)**._
+
+:::warning[Penghapusan berlaku bagi semua pemegang role]
+**Tidak ada dialog konfirmasi** di kedua panel. Perubahan berlaku saat Anda
+mengklik, dan berlaku bagi **semua pengguna yang memegang role ini** — bahkan di
+tengah shift.
+
+Menghapus permission pemindaian dari _Boarding Gate Officer_ membuat semua petugas
+Boarding berhenti memindai. Lakukan perubahan seperti itu di antara shift.
+:::
+
+## Jika Perubahan Ditolak {/* #if-a-change-is-rejected */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"Invalid permissions detected: …"_ | String permission yang tidak dikenal sistem terkirim. Ini seharusnya tidak terjadi dari UI; laporkan. |
+
+## Bagaimana Permission Role Sampai ke Pengguna {/* #how-role-permissions-reach-a-user */}
+
+Akses **efektif** pengguna adalah gabungan dari:
+
+1. semua permission dari **setiap role** yang dipegangnya, ditambah
+2. [permission langsung](/terminal-administrator/manage-user-permissions) yang
+   diberikan kepadanya secara individu.
+
+Anda dapat melihat hasil gabungannya di profil keamanan pengguna pada tab
+**Effective Access**.
+
+:::info[Admin melewati semua ini]
+Pengguna yang ditandai **Admin** memiliki akses penuh terlepas dari role atau
+permission-nya — lihat
+[Memberikan atau Mencabut Role Admin](/terminal-administrator/grant-revoke-admin).
+Jika seseorang dapat melakukan sesuatu yang tidak diizinkan role-nya, periksa apakah
+ia Admin sebelum menelusuri role-nya.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Memberikan Role kepada Pengguna](/terminal-administrator/assign-role)
+- [Mengubah atau Menghapus Role](/terminal-administrator/edit-delete-role)

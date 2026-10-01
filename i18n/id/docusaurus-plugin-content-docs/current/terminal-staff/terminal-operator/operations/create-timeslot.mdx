@@ -1,0 +1,160 @@
+---
+id: create-timeslot
+title: Membuat Timeslot
+sidebar_label: Membuat Timeslot
+sidebar_position: 2
+slug: /terminal-operator/create-timeslot
+description: Buat dan kelola Timeslot keberangkatan — templat jadwal mingguan berulang yang menjadi dasar pembuatan perjalanan.
+keywords:
+  - timeslot
+  - create timeslot
+  - departure timeslot
+  - recurring schedule
+  - weekday
+  - public holiday
+  - gate open
+  - gate close
+---
+
+**Timeslot** adalah satu baris dalam jadwal mingguan yang berulang. Isinya: _operator
+ini, di Route ini, dengan Vessel ini, berangkat pada jam ini, di hari-hari ini._
+
+Timeslot adalah **templat, bukan perjalanan**. Tidak ada kapal yang berlayar hanya
+karena sebuah Timeslot ada — Timeslot adalah yang dibaca sistem saat
+[membuat perjalanan untuk suatu tanggal](/terminal-operator/generate-trips).
+
+> **Timeslots → Create Timeslot → isi formulir → Create Timeslot**
+
+:::note
+Anda membutuhkan permission untuk mengelola Timeslot. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- **Operator**, **Route**, dan **Vessel aktif** milik operator tersebut sudah ada.
+  Timeslot adalah tempat ketiganya bertemu, jadi jika salah satunya belum ada, Anda
+  tidak dapat menyelesaikan formulir.
+- Jika pelayaran berjalan di hari libur,
+  [hari libur nasional yang relevan sudah diatur](/terminal-operator/configure-public-holiday).
+  Di sini Anda memilih **negara**, bukan tanggal — jadi tanggalnya harus ada
+  terlebih dahulu.
+
+## Langkah 1 — Buka Timeslots {/* #step-1--open-timeslots */}
+
+Di sidebar, buka **Management → Timeslots** (route: `/departure-timeslots`).
+
+Anda akan tiba di tampilan **Calendar** atau **List** — gunakan tombol
+**Calendar / List** di kanan atas untuk berpindah. Kedua tampilan menggambarkan
+Timeslot yang sama; lihat [Periksa hasilnya](#step-4--check-your-work) di bawah.
+
+## Langkah 2 — Klik Create Timeslot dan Isi Formulir {/* #step-2--click-create-timeslot-and-fill-in-the-form */}
+
+Klik **Create Timeslot** dan lengkapi setiap kolom:
+
+| Kolom | Yang diisi |
+| --- | --- |
+| **Operator** | Operator feri yang menjalankan layanan (misalnya **Waterfront Ferry**). |
+| **Route** | Route yang dilayari (misalnya **WFC - TMFT — Waterfront to Tanah Merah**). |
+| **Default Vessel** | Vessel yang ditetapkan. Pilihan ini tetap **nonaktif sampai Anda memilih operator**, lalu hanya menampilkan Vessel milik operator tersebut. |
+| **Gate Open** / **Gate Close** / **Departure** | Tiga waktu pelayaran — misalnya Gate dibuka 10:40, Gate ditutup 11:10, berangkat **11:20 AM**. |
+| **Suffix** _(opsional)_ | Hanya diperlukan jika dua Timeslot akan identik — lihat peringatan di bawah. |
+| **Days** | Centang **Weekday**, **Weekend**, **Public Holiday**, atau hari tertentu. **All Days** mencentang semuanya sekaligus. |
+| **Negara Public Holiday** | Hanya muncul setelah **Public Holiday** dicentang. Klik **Select countries**, centang negara yang [hari liburnya](/terminal-operator/configure-public-holiday) diikuti pelayaran ini (kotak centang di header mencentang seluruh halaman), lalu **Done**. Negara yang dipilih tampil sebagai chip yang dapat dihapus satu per satu. |
+| **Active** | Tercentang secara default. **Hanya Timeslot aktif yang membuat perjalanan.** |
+
+Lalu klik **Create Timeslot**.
+
+![Formulir Create Timeslot untuk Waterfront Ferry di Route WFC–TMFT berangkat 11:20 AM, berjalan di hari kerja serta di hari libur nasional Indonesia dan Singapura](/img/terminal-staff/timeslots/01-create-timeslot.png)
+_Membuat Timeslot Waterfront Ferry di **WFC - TMFT**, berangkat **11:20 AM** — berjalan **Senin–Jumat** dan juga di hari libur nasional **ID** dan **SG**, yang tampil sebagai chip yang dapat dihapus._
+
+## Langkah 3 — Jika Penyimpanan Ditolak {/* #step-3--if-the-save-is-rejected */}
+
+Sistem memeriksa empat hal sebelum menyimpan. Jika salah satunya gagal, perbaiki
+lalu simpan lagi:
+
+| Pesan yang mungkin muncul | Artinya |
+| --- | --- |
+| Waktu tidak berurutan | **Gate Open** harus sama dengan atau sebelum **Gate Close**, yang harus sama dengan atau sebelum **Departure**. |
+| Vessel tidak valid | **Default Vessel** harus **milik operator yang Anda pilih** dan harus **aktif**. |
+| Timeslot dengan kode ini sudah ada | Dua Timeslot dengan **operator, Route, dan jam keberangkatan yang sama** harus memiliki **Suffix yang berbeda** — jika tidak, keduanya akan membuat dua perjalanan dengan kode yang sama. |
+| Public Holiday membutuhkan negara | Anda mencentang **Public Holiday** tetapi tidak memilih negara. Pilih setidaknya satu, atau hapus centangnya. |
+
+## Langkah 4 — Periksa Hasilnya {/* #step-4--check-your-work */}
+
+Timeslot baru muncul di kedua tampilan. Setiap tampilan punya **filter** sendiri
+(operator, Route, status, dan — di daftar — hari).
+
+### Tampilan Calendar {/* #calendar-view */}
+
+**Departure Timeslot Weekly Grid** menyusun Timeslot berdasarkan **jam
+keberangkatan** (baris) di sepanjang **hari dalam seminggu** (kolom), dengan **PH**
+sebagai kolom terakhir. Setiap kartu menampilkan operator, Route, Vessel, dan status
+Active/Inactive; di kolom **PH** kartu juga membawa tag kecil berisi **kode
+negara** hari libur. Sel kosong menampilkan **+ Add**, yang membuat Timeslot untuk
+jam dan hari tersebut.
+
+- **Klik kartu untuk memilih seluruh Timeslot** — setiap hari tempat Timeslot itu
+  berjalan menyala bersamaan, cara tercepat melihat satu jadwal sebagai satu
+  kesatuan.
+- **Klik dua kali kartu untuk mengubahnya.**
+
+![Tampilan calendar yang difilter ke Route Harbourfront–Waterfront, dengan Timeslot 07:00 terpilih dan setiap hari jalannya tersorot](/img/terminal-staff/timeslots/02-calendar-grouping.png)
+_Memilih Timeslot **07:00** menyorot setiap hari jalannya sebagai satu kelompok — Senin–Minggu **dan** kolom **PH**, yang kartunya membawa tag **ID** dan **SG**._
+
+### Tampilan List {/* #list-view */}
+
+Satu baris per Timeslot, menampilkan **operator** (dengan badge hari), **Route**,
+**Vessel**, **keberangkatan** (dengan rentang Gate dibuka–ditutup), dan **status**.
+Timeslot yang berjalan di hari libur menampilkan negaranya di badge — misalnya
+**Public Holiday (ID, SG)**. Tanpa badge berarti tidak berjalan di hari libur.
+
+![Tampilan daftar Timeslots yang difilter ke Route Harbourfront–Waterfront](/img/terminal-staff/timeslots/03-timeslots-list.png)
+_Tampilan daftar, difilter ke **Harbourfront to Waterfront** — badge hari di setiap baris menunjukkan **Weekday**, **Weekend**, dan bila berlaku **Public Holiday** beserta kode negaranya._
+
+## Langkah 5 — Mengubah Timeslot Nanti {/* #step-5--change-a-timeslot-later */}
+
+Dari menu **⋯ Actions** pada baris di tampilan daftar:
+
+- **Edit** — buka kembali formulir.
+- **Activate / Deactivate** — nyalakan atau matikan Timeslot untuk pembuatan
+  perjalanan. Timeslot yang dinonaktifkan berhenti membuat perjalanan baru;
+  perjalanan yang sudah dibuatnya tidak terpengaruh sampai pembuatan berikutnya.
+- **Delete** — hapus sepenuhnya.
+
+![Menu Actions pada baris Timeslot, berisi Edit, Deactivate, dan Delete](/img/terminal-staff/timeslots/04-list-actions.png)
+_Menu Actions — Edit, Deactivate, dan Delete._
+
+:::tip[Timeslot hanya bisa diaktifkan jika Vessel-nya aktif]
+Jika Default Vessel sudah dinonaktifkan, Anda tidak dapat mengaktifkan kembali
+Timeslot tersebut. Aktifkan kembali [Vessel](/terminal-staff/vessels) terlebih
+dahulu, atau arahkan Timeslot ke Vessel lain.
+:::
+
+## Cara Kerja Hari {/* #how-days-actually-work */}
+
+Bagian ini sering membingungkan, jadi perlu dijelaskan dengan tepat. Aturan hari
+bersifat **menambah** — hari libur nasional **menambah** pelayaran, tidak pernah
+menghapus pelayaran hari biasa.
+
+| Pada suatu tanggal… | Timeslot berjalan jika… |
+| --- | --- |
+| tanggal apa pun | **flag hari** untuk hari tersebut tercentang |
+| tanggal itu juga [hari libur nasional](/terminal-operator/configure-public-holiday) di negara X | _sebagai tambahan_, negara **Public Holiday**-nya mencakup **X** |
+
+Jadi pada hari libur **Singapura** yang jatuh di hari Senin:
+
+- setiap Timeslot dengan **Monday** tercentang berjalan seperti biasa;
+- Timeslot **Public Holiday (SG)** **juga** berjalan — pelayaran tambahan hari itu;
+- Timeslot yang hanya **Public Holiday (ID)** **tidak** berjalan, karena tanggal
+  tersebut bukan hari libur Indonesia;
+- Timeslot yang mencentang **Monday dan** Public Holiday (SG) tetap hanya membuat
+  **satu** perjalanan hari itu.
+
+## Selanjutnya {/* #next */}
+
+- [Membuat Perjalanan dari Timeslot](/terminal-operator/generate-trips) — mengubah
+  templat ini menjadi perjalanan nyata.
+- [Vessels](/terminal-staff/vessels) · [Hari Libur Nasional](/terminal-operator/configure-public-holiday)

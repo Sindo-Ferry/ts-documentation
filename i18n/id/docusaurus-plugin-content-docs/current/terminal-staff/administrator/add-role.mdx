@@ -1,0 +1,102 @@
+---
+id: add-role
+title: Menambah Role Baru
+sidebar_label: Menambah Role Baru
+sidebar_position: 1
+slug: /terminal-administrator/add-role
+description: Buat role keamanan di Terminal Portal — kumpulan permission bernama yang kemudian Anda berikan kepada pengguna.
+keywords:
+  - role
+  - create role
+  - new role
+  - security
+  - permissions
+---
+
+**Role** adalah kumpulan permission yang diberi nama — _Boarding Gate Officer_,
+_Check-in Counter_, _Head of Operations_. Anda membuat role di sini, memberinya
+permission, lalu memberikannya kepada orang-orang.
+
+> **Roles → Create Role → beri nama → Create Role**
+
+:::info[Role adalah cara yang tepat untuk memberi akses]
+Anda *bisa* memberi permission langsung kepada seseorang, tetapi role-lah yang
+seharusnya dipakai. Satu perubahan pada role memperbarui semua pemegangnya; permission
+langsung harus diperbaiki orang per orang. Lihat
+[Mengelola Permission Langsung Pengguna](/terminal-administrator/manage-user-permissions).
+:::
+
+**Permission yang dibutuhkan:** `terminal.roles.write`
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda memiliki `terminal.roles.write`. Tanpanya tombol **Create Role** tidak
+  muncul.
+- Anda kurang lebih tahu permission apa yang dibutuhkan role tersebut — meskipun
+  permission diberikan di [langkah berikutnya](/terminal-administrator/manage-role-permissions),
+  bukan di sini.
+
+## Langkah 1 — Buka Roles {/* #step-1--open-roles */}
+
+Di sidebar, **Roles** dan **Users** berada di kelompok **Security**. Buka **Security →
+Roles** (route: `/roles`).
+
+Daftar menampilkan satu baris per role, dengan kotak **search** dan menu tindakan
+**⋯** di setiap baris.
+
+![Daftar Roles](/img/terminal-staff/security/01-role-list.png)
+_Daftar Roles, difilter dengan kotak pencarian. **Create Role** ada di kanan atas._
+
+## Langkah 2 — Klik Create Role {/* #step-2--click-create-role */}
+
+**Create Role** ada di kanan atas. Halaman **Add New Role** terbuka dengan satu
+formulir, berjudul **New Role** — _"Define the identity of this security role."_
+
+## Langkah 3 — Beri Nama Role {/* #step-3--name-the-role */}
+
+| Kolom | Aturan |
+| --- | --- |
+| **Role Name** | Minimal **2 karakter**. Harus **unik**. Contoh placeholder: _e.g. Project Manager_. |
+
+![Formulir Add New Role](/img/terminal-staff/security/02-add-role.png)
+_Formulir **Add New Role** — hanya satu kolom **Role Name**._
+
+Lalu klik **Create Role** (atau **Cancel** untuk membatalkan). Anda kembali ke daftar
+Roles.
+
+:::tip[Beri nama sesuai pekerjaan, bukan orangnya]
+_Boarding Gate Officer_ tetap relevan; _Role Budi_ tidak. Nama inilah yang dibaca
+administrator berikutnya saat memutuskan siapa yang harus memegangnya, dan juga yang
+harus Anda ketik untuk [menghapus role](/terminal-administrator/edit-delete-role#delete-a-role)
+nanti.
+:::
+
+## Jika Penyimpanan Ditolak {/* #if-the-save-is-rejected */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"Role name must be at least 2 characters."_ | Pemeriksaan formulir itu sendiri, sebelum apa pun dikirim. |
+| _"Role name is required."_ | Nama terkirim dalam keadaan kosong. |
+| _"Role name must be unique."_ | Role dengan nama itu sudah ada. Periksa daftarnya — mungkin Anda akan menggandakan role yang sudah menjalankan fungsi tersebut. |
+
+## Yang Sudah Ada — dan Yang Masih Kurang {/* #what-you-have-now--and-what-is-missing */}
+
+Role sudah ada, tetapi masih **kosong**. Role tanpa permission tidak memberi apa pun,
+dan memberikannya kepada seseorang tidak mengubah apa yang dapat dilakukannya.
+
+Tinggal dua langkah:
+
+1. [Berikan permission ke role](/terminal-administrator/manage-role-permissions).
+2. [Berikan role kepada pengguna](/terminal-administrator/assign-role).
+
+## Selanjutnya {/* #next */}
+
+- [Mengelola Permission Role](/terminal-administrator/manage-role-permissions)
+- [Mengubah atau Menghapus Role](/terminal-administrator/edit-delete-role)

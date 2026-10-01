@@ -1,0 +1,164 @@
+---
+id: change-trip-vessel
+title: Mengganti Vessel pada Perjalanan
+sidebar_label: Mengganti Vessel Perjalanan
+sidebar_position: 7
+slug: /ferry-operator/change-trip-vessel
+description: Ganti Vessel pada satu perjalanan tertentu atau banyak sekaligus dari grid Departure Trips, dengan pintasan pemilihan dan aturan yang menentukan apakah perubahan diterima.
+keywords:
+  - assign vessel
+  - change vessel
+  - swap vessel
+  - bulk assign
+  - capacity
+  - breakdown
+---
+
+Saat sebuah Vessel rusak, berhenti beroperasi, atau diganti pada menit terakhir, Anda
+memindahkan perjalanan yang terdampak di sini. Anda dapat menangani **satu perjalanan
+atau satu hari penuh** dalam satu tindakan.
+
+> **Departure Trips → pilih perjalanan → Assign Vessel → pilih Vessel → Confirm Assign**
+
+:::note
+Anda membutuhkan permission assign-vessel. Tanpanya Anda tetap dapat memilih
+perjalanan, tetapi tombol **Assign Vessel** tidak pernah muncul. Tangkapan layar di
+bawah menggunakan `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+- Anda tahu **Vessel pengganti** berstatus **Active** dan memiliki **kapasitas yang
+  cukup** — periksa di [Mencari Vessel](/ferry-operator/look-up-vessel). Inilah
+  alasan paling umum penggantian ditolak.
+
+## Langkah 1 — Temukan Perjalanannya {/* #step-1--find-the-trips */}
+
+Buka **Departure Trips** dan filter sesuai kebutuhan — berdasarkan rentang tanggal,
+Route, Vessel, atau status. Memfilter berdasarkan **Vessel yang akan diganti** adalah
+cara tercepat menemukan semua perjalanan yang seharusnya dilayani Vessel yang rusak.
+
+Catat Vessel dan muatan kursi saat ini sebelum mengubah apa pun.
+
+![Grid Departure Trips dengan petunjuk Assign a vessel](/img/ferry-operator/check-in-passenger/01-departure-trips.png)
+_Departure Trips. Petunjuk di atas grid — **Assign a vessel to trips** — mengingatkan cara kerja pemilihan._
+
+## Langkah 2 — Pilih Perjalanannya {/* #step-2--select-the-trips */}
+
+Klik sel perjalanan untuk memilihnya. Sel tersorot, dan **bilah gelap muncul di
+bagian bawah** layar bertuliskan **"1 trip selected"** dengan ringkasan satu baris
+berisi tanggal, jam, dan Route.
+
+Untuk memilih lebih banyak:
+
+| Tindakan | Hasil |
+| --- | --- |
+| **Klik** | Pilih perjalanan itu saja (menggantikan pilihan sebelumnya) |
+| **Ctrl + klik** (**⌘ + klik** di Mac) | Tambah atau hapus satu perjalanan |
+| **Shift + klik** | Pilih seluruh rentang antara pilihan pertama dan yang ini |
+| **Klik judul tanggal** (di bagian atas) | Pilih semua perjalanan yang dapat dipilih pada tanggal itu |
+| **Klik judul jam keberangkatan** (di sisi kiri) | Pilih semua perjalanan yang dapat dipilih pada jam itu, di semua hari yang tampil |
+| **Klik lagi satu-satunya perjalanan terpilih** | Batalkan pilihannya; bilah menghilang |
+| **Clear** di bilah bawah | Kosongkan seluruh pilihan |
+
+![Enam perjalanan terpilih, dengan bilah di bagian bawah layar](/img/ferry-operator/departure-trips/04-select-trip.png)
+_Enam perjalanan terpilih (tersorot hijau). Bilahnya bertuliskan **6 trips selected** dengan ringkasan — **30 Sep – 5 Oct · 2 times · HFC - WFC** — dan menawarkan **Clear** serta **Assign Vessel**._
+
+:::info[Perjalanan Departed dan Cancelled tidak dapat dipilih]
+Selnya **tidak dapat diklik** dan tidak pernah masuk pilihan. Klik **judul tanggal**
+pada hari yang statusnya campur dan hanya perjalanan **Scheduled, Boarding, dan
+Closed** yang terpilih — jumlah di bilah mencerminkan itu, jadi bisa lebih kecil dari
+jumlah sel yang terlihat.
+
+Ini cara sistem melindungi Anda: Vessel pelayaran yang sudah berangkat tidak dapat
+diubah.
+:::
+
+## Langkah 3 — Tetapkan Vessel {/* #step-3--assign-the-vessel */}
+
+Klik **Assign Vessel** di bilah bawah. Dialog **Assign Vessel to Selected Trips**
+terbuka dengan keterangan: _"This will assign one vessel to **N** selected
+trip(s)."_
+
+:::warning[Periksa N sebelum mengonfirmasi]
+**N** adalah jumlah perjalanan yang akan berubah. Shift+klik yang tidak disengaja
+bisa memilih satu minggu penuh. Jika N bukan jumlah yang Anda maksud, klik **Cancel**
+dan pilih ulang.
+:::
+
+![Dialog Assign Vessel to Selected Trips](/img/ferry-operator/departure-trips/03-assign.png)
+_Dialog mengonfirmasi berapa perjalanan yang akan berubah. **Confirm Assign** tetap abu-abu sampai Vessel dipilih._
+
+Klik **Select Vessel**, pilih dari daftar, lalu klik **Confirm Assign** (atau
+**Cancel** untuk membatalkan).
+
+Dialog tertutup, grid diperbarui, dan perjalanan menampilkan Vessel baru.
+
+:::tip[Pemilih hanya menawarkan Vessel aktif milik Anda]
+Vessel operator lain tidak pernah muncul, begitu pula Vessel yang tidak aktif.
+:::
+
+## Langkah 4 — Periksa {/* #step-4--verify */}
+
+Buka salah satu perjalanan (**View**) dan periksa:
+
+- **Vessel** sudah yang baru, dengan nilai `Cap.`-nya.
+- **Load** dan **Available** sudah dihitung ulang: kursi tersedia adalah **kapasitas
+  Vessel baru dikurangi penumpang yang sudah check-in**.
+
+## Jika Penggantian Ditolak {/* #when-a-swap-is-refused */}
+
+Tidak ada yang disimpan jika penggantian gagal. Pesannya menyebutkan aturan mana
+yang dilanggar:
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Vessel **X** (Capacity: 100) is too small for trip **SSFWH0930** which already has 120 occupied seats."_ | Vessel pengganti tidak dapat menampung penumpang yang sudah check-in di perjalanan itu. Pesan menyebutkan Vessel, kapasitasnya, perjalanan, dan kursi yang terisi. | Pilih Vessel yang lebih besar, atau pindahkan penumpangnya terlebih dahulu. |
+| _"The selected vessel is inactive. Reactivate it before assigning it to trips."_ | Vessel tidak aktif. | Minta terminal mengaktifkannya kembali, atau pilih yang lain. |
+| _"Only Scheduled, Boarding, or Closed trips can change vessel. Invalid: **CODE1, CODE2**."_ | Perjalanan Departed atau Cancelled ikut terpilih. | Batalkan pilihan perjalanan tersebut — kode yang disebutkan menunjukkan yang mana. |
+| _"One or more Departure Trip IDs are invalid."_ | Pilihannya sudah usang — ada perjalanan yang berubah saat Anda memilih. | **Refresh** grid dan pilih ulang. |
+
+:::danger[Satu kelompok berlaku semua atau tidak sama sekali]
+Jika **satu** perjalanan dalam pilihan gagal, **tidak ada** yang berubah — termasuk
+yang sebenarnya akan berhasil. Seluruh penetapan disimpan bersama-sama atau tidak
+sama sekali.
+
+Jadi setelah penolakan, periksa **setiap** perjalanan yang Anda pilih: semuanya masih
+memakai Vessel aslinya. Perbaiki masalah yang disebutkan pesan, lalu jalankan ulang
+seluruh kelompok.
+:::
+
+## Yang Tidak Disentuh Penggantian Vessel {/* #what-a-vessel-change-does-not-touch */}
+
+Hanya **Vessel** dan **kapasitas kursi** yang berubah. Semua hal lain tetap seperti
+semula:
+
+- **status** perjalanan, dan Boarding tetap berjalan tanpa gangguan pada perjalanan
+  Boarding;
+- **jam keberangkatan dan jam Gate**, termasuk keterlambatan yang sudah dicatat;
+- **Gate dan Berth** yang ditetapkan terminal;
+- setiap **penumpang**, **status**-nya, dan **nomor boarding pass**-nya — boarding
+  pass tidak perlu diterbitkan ulang.
+
+:::tip[Perjalanan yang sudah memakai Vessel tersebut dibiarkan]
+Memilih campuran perjalanan yang sebagian sudah memakai Vessel A lalu menetapkan
+Vessel A tetap berhasil — yang sudah memakainya tidak disentuh, sisanya dipindahkan.
+Tidak perlu memilah pilihan Anda terlebih dahulu.
+:::
+
+## Perubahan Ini per Perjalanan, Bukan Permanen {/* #this-change-is-per-trip-not-permanent */}
+
+Penetapan ulang hanya memengaruhi **perjalanan yang Anda pilih**. **Default Vessel**
+pada [Timeslot](/ferry-operator/look-up-timeslot) tidak berubah, sehingga perjalanan
+yang dibuat berikutnya kembali ke Vessel aslinya.
+
+Untuk perubahan permanen, minta terminal memperbarui Timeslot-nya — jika tidak, Anda
+akan mengulang ini setiap hari.
+
+## Selanjutnya {/* #next */}
+
+- [Mencari Vessel](/ferry-operator/look-up-vessel) — periksa kapasitas dan status
+  sebelum mengganti.
+- [Mencari Perjalanan](/ferry-operator/look-up-trip)

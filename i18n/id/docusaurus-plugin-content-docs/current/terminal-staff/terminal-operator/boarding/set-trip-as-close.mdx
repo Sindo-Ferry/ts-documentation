@@ -1,0 +1,119 @@
+---
+id: set-trip-as-close
+title: Mengatur Perjalanan menjadi Close
+sidebar_label: Mengatur Perjalanan menjadi Close
+sidebar_position: 4
+slug: /terminal-operator/set-trip-as-close
+description: Tutup Boarding pada perjalanan setelah semua penumpang naik, dari halaman Boarding Scan atau halaman detail perjalanan.
+keywords:
+  - set as close
+  - close trip
+  - closed
+  - boarding
+  - trip status
+---
+
+Menutup perjalanan mengakhiri Boarding. Setelahnya, tidak ada lagi penumpang yang
+dapat dipindai naik, dan perjalanan siap dicatat sebagai sudah berangkat.
+
+> **Boarding Scan (atau Current Trips) → Set As Close → konfirmasi**
+
+:::warning[Tidak dapat dibatalkan]
+Penutupan bersifat **final**. Boarding tidak dapat dibuka kembali, dan
+[pembatalan Boarding](/terminal-operator/revert-boarding) tidak berfungsi lagi.
+Lakukan koreksi **sebelum** menutup.
+:::
+
+## Sebelum Menutup {/* #before-you-close */}
+
+- Perjalanan berstatus **Boarding**. **Set As Close** tidak tersedia pada perjalanan
+  **Scheduled** — perjalanan harus dibuka untuk Boarding terlebih dahulu.
+- Semua penumpang yang akan berangkat sudah naik. Periksa hitungan **Pre-Imm** di
+  kartu perjalanan: angka di atas nol berarti ada penumpang di dalam terminal yang
+  belum naik.
+- [Last Call](/terminal-operator/last-call) sudah dilakukan.
+- Pemindaian yang salah sudah
+  [dibatalkan](/terminal-operator/revert-boarding).
+
+## Tempat Menutup Perjalanan {/* #where-you-can-close-a-trip */}
+
+Tiga tempat, dialog yang sama:
+
+1. **Dari halaman Boarding Scan** — klik **Set As Close** di bagian atas kartu
+   perjalanan di panel Boarding Trips. Inilah yang biasa dipakai, karena petugas
+   Gate memang sudah berada di sana.
+2. **Dari halaman detail perjalanan** — buka **Operational → Current Trips**, klik
+   perjalanan, lalu **Set As Close** di kanan atas.
+3. **Dari daftar Current Trips** — menu **⋯** pada baris langsung menawarkan **Set
+   As Close**.
+
+## Konfirmasi {/* #confirm */}
+
+Dialog terbuka berjudul **Set As Close**, dengan **kode · tanggal · jam
+keberangkatan** perjalanan di bawahnya, dan teks:
+
+> Close boarding for this trip. No further passengers can board afterwards, and the
+> trip can then be departed. This moves the trip forward and cannot be undone.
+
+![Dialog konfirmasi Set As Close](/img/terminal-staff/manage-departure-trip/08-confirm-close.png)
+_Konfirmasi Set As Close, dibuka dari halaman Boarding Scan._
+
+Klik **Set As Close** untuk memproses, atau **Cancel** untuk membatalkan.
+
+### Jika Masih Ada Penumpang di Pre-Immigration {/* #if-passengers-are-still-in-pre-immigration */}
+
+Peringatan kuning muncul di atas teks tersebut:
+
+> ⚠ **_N_ passenger(s) still in Pre-Immigration**
+> They have not boarded yet. Closing this trip will prevent them from boarding.
+
+![Dialog Set As Close yang memperingatkan masih ada penumpang di Pre-Immigration](/img/terminal-staff/manage-departure-trip/07-close-preimm-warning.png)
+_Menutup perjalanan yang masih memiliki penumpang di Pre-Immigration — peringatan kuning muncul di atas teks konfirmasi biasa._
+
+Peringatan ini **tidak** memblokir Anda. Tujuannya agar penutupan menjadi keputusan
+yang disengaja, bukan kecelakaan. Jika penumpang tersebut masih ditunggu:
+
+1. Klik **Cancel**.
+2. Lakukan [Last Call](/terminal-operator/last-call) dan naikkan mereka dari
+   [Boarding Scan](/terminal-operator/boarding-scan).
+3. Tutup perjalanan sesudahnya.
+
+Jika tidak, lanjutkan penutupan — mereka akan tertinggal.
+
+:::tip[Hitungan di dialog selalu terbaru]
+Angka Pre-Immigration **dibaca ulang saat dialog dibuka**, bukan diambil dari
+halaman yang sedang Anda lihat. Jadi angkanya mencerminkan pemindaian beberapa detik
+yang lalu di meja lain, bukan angka lama.
+:::
+
+## Hasil {/* #outcome */}
+
+- Status perjalanan menjadi **Closed**.
+- **Set As Departed** menjadi tersedia, di tempat yang sama.
+- Di halaman Boarding Scan perjalanan **tetap terlihat** di panel Boarding Trips
+  dengan badge **Closed**, sehingga Anda dapat memberangkatkannya tanpa pindah
+  halaman.
+- Setiap pemindaian Boarding untuk perjalanan ini sekarang ditolak dengan pesan
+  _"Trip must be in Boarding status to mark passenger as Boarded. Current status:
+  Closed."_
+- **Manifest** dapat diunduh dari halaman detail perjalanan di **Departure Trips** —
+  lihat [Mengunduh Manifest](/terminal-operator/download-manifest).
+
+![Halaman setelah menutup perjalanan, dengan Set As Departed tersedia](/img/terminal-staff/manage-departure-trip/05-close-outcome.png)
+_Setelah ditutup, perjalanan berstatus **Closed** dan **Set As Departed** tersedia._
+
+## Urutan Status Tidak Dapat Dilompati {/* #status-order-cannot-be-skipped */}
+
+| Pada perjalanan yang… | **Set As Close**… |
+| --- | --- |
+| Scheduled | **tidak tersedia** — atur menjadi [Boarding](/terminal-operator/set-trip-as-boarding) dulu |
+| Boarding | tersedia |
+| Closed / Departed / Cancelled | **tidak tersedia** |
+
+Jika dipaksakan, sistem menjawab _"Only boarding trips can be closed. Current status
+is …"_
+
+## Selanjutnya {/* #next */}
+
+- [Mengatur Perjalanan menjadi Depart](/terminal-operator/set-trip-as-depart)
+- [Mengunduh Manifest](/terminal-operator/download-manifest)

@@ -1,0 +1,125 @@
+---
+id: download-manifest
+title: Mengunduh Manifest
+sidebar_label: Mengunduh Manifest
+sidebar_position: 7
+slug: /terminal-operator/download-manifest
+description: Unduh manifest penumpang suatu perjalanan sebagai file Excel dalam bahasa Inggris atau Indonesia — siapa yang tercantum, dan di mana tombolnya.
+keywords:
+  - passenger manifest
+  - download manifest
+  - export
+  - xlsx
+  - excel
+  - english
+  - indonesian
+---
+
+**Manifest** adalah daftar resmi siapa yang benar-benar berlayar. Manifest berupa
+file Excel, tersedia dalam bahasa **Inggris** atau **Indonesia**, dan hanya
+mencantumkan **penumpang Boarded**.
+
+> **Buka perjalanan → Download Manifest → English / Indonesian**
+
+## Isinya {/* #what-is-on-it */}
+
+Hanya penumpang yang status akhirnya **Boarded**, diurutkan berdasarkan jam
+check-in. Penumpang yang sudah check-in tetapi tidak pernah naik, dan penumpang yang
+dibatalkan, **tidak dicantumkan**. Jumlah barisnya sama dengan hitungan **Boarded**
+perjalanan.
+
+Untuk setiap penumpang, file memuat detail perjalanan (kode, tanggal, keberangkatan,
+Route, Vessel) ditambah **No**, **nama**, **jenis kelamin**, **tanggal lahir**,
+**kewarganegaraan**, **negara penerbit**, **tanggal terbit / kedaluwarsa**, **nomor
+boarding pass**, **jenis penumpang**, dan **status** penumpang.
+
+:::info[Kedua bahasa mencantumkan orang yang sama]
+Memilih Indonesian mengubah **teks judul dan label**, bukan penumpangnya. Unduh
+keduanya dan barisnya sama persis.
+:::
+
+## Letak Tombol — dan Kapan Bisa Dipakai {/* #where-to-find-the-button--and-when-it-works */}
+
+Bagian ini sering membingungkan, karena kedua halaman berperilaku berbeda.
+
+| Tempat Anda berada | Download Manifest muncul jika perjalanan… |
+| --- | --- |
+| **Operational → Current Trips** → detail perjalanan | Hanya **Departed** |
+| **Management → Departure Trips** → detail perjalanan | **Closed atau Departed** |
+| **Management → Departure Trips** → tampilan list, menu **⋯** baris | **Closed atau Departed** |
+
+Jadi: di **Current Trips** tombolnya tidak ada pada perjalanan Scheduled, Boarding,
+dan Closed, dan baru muncul setelah perjalanan **Departed**. Jika Anda membutuhkan
+manifest untuk perjalanan yang **sudah Closed tetapi belum berangkat**, gunakan
+**Departure Trips** — halaman itu mengizinkannya begitu perjalanan ditutup.
+
+Di **halaman detail Departure Trips**, tombolnya terlihat tetapi **berwarna
+abu-abu** pada perjalanan Scheduled atau Boarding, dengan tooltip yang menjelaskan
+alasannya:
+
+- _"Available once the trip is closed or departed."_ — perjalanan masih Scheduled
+  atau Boarding.
+- _"Select a trip to download its manifest."_ — belum ada perjalanan yang dimuat.
+
+Di **daftar Departure Trips**, item **Download Manifest** memang tidak ada di menu
+baris untuk perjalanan Scheduled atau Boarding.
+
+## Cara 1 — Dari Halaman Detail Perjalanan {/* #method-1--from-the-trips-detail-page */}
+
+1. Buka perjalanannya — **Current Trips** (jika Departed) atau **Departure Trips**
+   (jika Closed atau Departed).
+2. Klik **Download Manifest** di kanan atas.
+3. Pilih **English** atau **Indonesian**.
+
+![Halaman detail perjalanan yang sudah berangkat dengan tombol Download Manifest](/img/terminal-staff/passenger-manifest/01-download-manifest.png)
+_Perjalanan Departed. **Download Manifest** aktif di kanan atas._
+
+![Menu Download Manifest dengan pilihan English dan Indonesian](/img/terminal-staff/passenger-manifest/02-language-options.png)
+_Pilih bahasanya — laporan dibuat dalam bahasa tersebut._
+
+Tombol bertuliskan **Downloading…** selama file dibuat.
+
+## Cara 2 — Dari Daftar Departure Trips {/* #method-2--from-the-departure-trips-list */}
+
+Paling cocok untuk perjalanan lama, karena Anda tidak perlu membukanya.
+
+1. Buka **Management → Departure Trips** dan pindah ke tampilan **List**.
+2. Filter **Trip Date** ke hari yang diinginkan.
+3. Pada baris **Closed** atau **Departed**, buka menu **⋯** → **Download Manifest**
+   → **English** atau **Indonesian**.
+
+Item menu bertuliskan **Downloading Manifest…** selama prosesnya berjalan.
+
+## File-nya {/* #the-file */}
+
+File Excel (`.xlsx`) bernama:
+
+```
+passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.xlsx
+```
+
+misalnya `passenger-manifest-SSFHW202607031300-2026-07-03.xlsx`.
+
+:::tip[Unduh sesering yang Anda mau]
+Tidak ada batasan dan tidak ada perubahan status. Selama perjalanan tetap Closed atau
+Departed, Anda dapat mengunduhnya lagi, dalam bahasa mana pun. Tidak ada yang
+ditandai "sudah diunduh".
+:::
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Masalah | Penyebab | Solusi |
+| --- | --- | --- |
+| Tidak ada tombol **Download Manifest** di Current Trips | Perjalanan belum berangkat | [Atur menjadi Depart](/terminal-operator/set-trip-as-depart), atau gunakan **Departure Trips** jika baru Closed |
+| Tombol berwarna abu-abu | Perjalanan masih Scheduled atau Boarding | Arahkan kursor untuk melihat tooltip; tutup perjalanan terlebih dahulu |
+| Tidak ada tombol di mana pun, pada perjalanan yang sudah berangkat | Anda tidak memiliki permission export-manifest | Tanyakan ke administrator Anda |
+| Baris lebih sedikit dari perkiraan | Manifest hanya mencantumkan penumpang **Boarded** | Bandingkan dengan hitungan **Boarded** perjalanan, bukan **Checked-In** — atau gunakan [laporan Passenger Manifest](/terminal-operator/export-other-reports#passenger-manifest) untuk memilih status lain |
+| _"The manifest was generated but could not be saved. Please try again."_ | Browser tidak dapat menyimpan file | Periksa folder unduhan dan pengaturan unduhan browser, lalu coba lagi |
+
+## Selanjutnya {/* #next */}
+
+- [Mengatur Perjalanan menjadi Depart](/terminal-operator/set-trip-as-depart)
+- [Mencetak Ulang atau Mengunduh Boarding Pass](/terminal-operator/reprint-boarding-pass)
+- [Mengekspor Laporan Lainnya](/terminal-operator/export-other-reports) — manifest
+  dalam PDF, bahasa lain, atau status penumpang lain, serta total penumpang lintas
+  perjalanan.

@@ -1,0 +1,101 @@
+---
+id: set-trip-as-depart
+title: Mengatur Perjalanan menjadi Depart
+sidebar_label: Mengatur Perjalanan menjadi Depart
+sidebar_position: 5
+slug: /terminal-operator/set-trip-as-depart
+description: Catat bahwa perjalanan yang sudah Closed telah berlayar — langkah terakhir dalam siklus perjalanan, yang memfinalkannya dan membuka manifest.
+keywords:
+  - set as depart
+  - departed
+  - finalize trip
+  - manifest
+  - trip status
+---
+
+Menandai perjalanan **Departed** mencatat bahwa kapal benar-benar sudah berangkat.
+Ini adalah hal terakhir yang terjadi pada sebuah perjalanan.
+
+> **Boarding Scan (atau Current Trips) → Set As Departed → konfirmasi**
+
+:::warning[Final — tidak dapat diubah]
+Memberangkatkan perjalanan **memfinalkannya**. Tidak ada lagi yang dapat dilakukan
+pada perjalanan atau penumpangnya sesudah itu, dan perjalanan keluar dari daftar
+kerja Current Trips. Lakukan saat kapal **benar-benar sudah berlayar**, bukan saat
+Anda memperkirakannya.
+:::
+
+## Sebelum Memberangkatkan {/* #before-you-depart */}
+
+- Perjalanan berstatus **Closed**. **Set As Depart** tidak tersedia pada perjalanan
+  **Boarding** — [tutup dulu](/terminal-operator/set-trip-as-close).
+- Kapal sudah meninggalkan Berth.
+- Semua koreksi penumpang sudah selesai. Setelah berangkat, perjalanan menjadi
+  read-only.
+
+## Tempat Melakukannya {/* #where-you-can-do-it */}
+
+Tiga tempat yang sama seperti menutup:
+
+1. **Dari halaman Boarding Scan** — **Set As Departed** di kartu perjalanan Closed
+   pada panel Boarding Trips.
+2. **Dari halaman detail perjalanan** — **Operational → Current Trips**, buka
+   perjalanan, lalu **Set As Depart** di kanan atas.
+3. **Dari daftar Current Trips** — menu **⋯** pada baris.
+
+## Konfirmasi {/* #confirm */}
+
+Dialog terbuka berjudul **Set As Departed**, dengan **kode · tanggal · jam
+keberangkatan** perjalanan, dan:
+
+> Mark this trip as departed. This finalizes the trip and enables sending the
+> passenger manifest. This cannot be undone.
+
+![Dialog konfirmasi Set As Departed](/img/terminal-staff/manage-departure-trip/09-confirm-depart.png)
+_Konfirmasi Set As Departed, dibuka dari kartu perjalanan Closed di halaman Boarding Scan._
+
+Klik **Set As Departed** (atau **Cancel** untuk membatalkan).
+
+## Hasil {/* #outcome */}
+
+- Status perjalanan menjadi **Departed**.
+- Perjalanan **hilang dari panel Boarding Trips** di halaman Boarding Scan — panel
+  itu hanya memuat perjalanan Boarding dan Closed. Ini normal, dan justru menjadi
+  tanda bahwa keberangkatan sudah tercatat.
+- Di halaman detail perjalanan, tombol **Download Manifest** muncul — lihat
+  [Mengunduh Manifest](/terminal-operator/download-manifest).
+- Semua tindakan pada perjalanan kini hilang. Tidak ada Boarding, pembatalan,
+  perubahan waktu, maupun check-in.
+
+![Halaman detail perjalanan setelah berangkat — status Departed dengan Download Manifest](/img/terminal-staff/manage-departure-trip/06-departed-outcome.png)
+_Perjalanan yang sudah final, **Departed**, dengan manifest siap diunduh._
+
+## Urutan Status Tidak Dapat Dilompati {/* #status-order-cannot-be-skipped */}
+
+| Pada perjalanan yang… | **Set As Depart**… |
+| --- | --- |
+| Scheduled | **tidak tersedia** |
+| Boarding | **tidak tersedia** — [tutup dulu](/terminal-operator/set-trip-as-close) |
+| Closed | tersedia |
+| Departed / Cancelled | **tidak tersedia** |
+
+Jika dipaksakan, sistem menjawab _"Only closed trips can be departed. Current status
+is …"_
+
+## Siklus Lengkap dalam Satu Tabel {/* #the-full-lifecycle-in-one-place */}
+
+| Status | Artinya | Cara mencapainya |
+| --- | --- | --- |
+| **Scheduled** | Terencana dan tercantum; penumpang dapat di-check-in; belum dibuka untuk Boarding. | [Dibuat dari Timeslot](/terminal-operator/generate-trips), atau [dibuat ad hoc](/terminal-operator/create-ad-hoc-trip) |
+| **Boarding** | Boarding dibuka; Gate dan Berth sudah ditetapkan. | [Set As Boarding](/terminal-operator/set-trip-as-boarding) |
+| **Closed** | Boarding selesai; tidak ada lagi penumpang yang dapat naik. | [Set As Close](/terminal-operator/set-trip-as-close) |
+| **Departed** | Kapal sudah berlayar; perjalanan sudah final. | **Set As Depart** |
+| **Cancelled** | Perjalanan tidak akan berjalan. | [Cancel Trip](/terminal-operator/cancel-restore-trip) — hanya dari Scheduled |
+
+Status hanya bergerak **maju**. Satu-satunya jalan mundur adalah **Cancelled →
+Scheduled** melalui [Restore](/terminal-operator/cancel-restore-trip).
+
+## Selanjutnya {/* #next */}
+
+- [Mengunduh Manifest](/terminal-operator/download-manifest) — daftar resmi siapa
+  yang berlayar.

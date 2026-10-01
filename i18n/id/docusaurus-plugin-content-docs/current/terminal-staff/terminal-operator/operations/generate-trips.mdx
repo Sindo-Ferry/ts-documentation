@@ -1,0 +1,216 @@
+---
+id: generate-trips
+title: Membuat Perjalanan dari Timeslot
+sidebar_label: Membuat Perjalanan dari Timeslot
+sidebar_position: 3
+slug: /terminal-operator/generate-trips
+description: Jalankan Trip Sync Job untuk mengubah Timeslot berulang menjadi perjalanan keberangkatan nyata untuk suatu rentang tanggal, dan baca pratinjaunya sebelum dijalankan.
+keywords:
+  - trip sync job
+  - generate trips
+  - departure trips
+  - synchronization
+  - preview
+  - conflicts
+---
+
+Timeslot adalah templat. **Trip Sync Job** adalah yang mengubahnya menjadi
+**perjalanan keberangkatan** nyata tempat penumpang di-check-in.
+
+> **Trip Sync Jobs → New Sync Job → tinjau pratinjau → Execute Job**
+
+Untuk setiap tanggal dalam suatu rentang, sync job membandingkan **Timeslot aktif**
+yang berlaku pada tanggal itu dengan **perjalanan yang sudah ada**, lalu membuat
+yang belum ada dan menghapus yang sudah tidak sesuai.
+
+:::note
+Anda membutuhkan permission untuk mengelola sinkronisasi perjalanan. Tangkapan layar
+di bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- [Timeslot](/terminal-operator/create-timeslot) yang ingin dibuatkan perjalanannya
+  sudah ada dan berstatus **Active**.
+
+:::info[Biasanya sistem sudah melakukannya untuk Anda]
+Selain job yang Anda jalankan secara manual, sistem menjalankan **sinkronisasinya
+sendiri sekali sehari**. Job ini muncul di daftar sebagai **Requested By: System
+(Daily Auto-Sync)** dengan catatan seperti _"Automated daily rolling sync from
+29-Sep-2026 to 29-Oct-2026"_.
+
+Job otomatis tersebut mencakup **rentang bergulir 60 sampai 90 hari ke depan**,
+untuk **semua operator, semua Route, dan semua hari** (termasuk hari libur
+nasional), dan langsung dijalankan — tidak ada pratinjau yang perlu disetujui.
+
+Inilah sebabnya perjalanan untuk tanggal dua bulan ke depan biasanya **sudah ada**,
+dan mengapa job manual untuk tanggal dekat sering menampilkan pratinjau **0 to
+create**. Jalankan job secara manual jika Anda membutuhkan perjalanan **lebih cepat
+dari jangkauan rentang otomatis**, atau jika Anda baru saja mengubah Timeslot dan
+ingin perjalanannya dibuat ulang **sekarang**.
+:::
+
+## Langkah 1 — Buka Trip Sync Jobs {/* #step-1--open-trip-sync-jobs */}
+
+Di sidebar, buka **Management → Trip Sync Jobs**
+(route: `/departure-trip-synchronizations`). Halaman ini berjudul **Trip
+Synchronizations** dan menampilkan job sebelumnya, satu baris per job:
+
+| Kolom | Menampilkan |
+| --- | --- |
+| **Date Range** | Periode yang dicakup job, dengan catatan job di bawahnya |
+| **Operator** / **Route** | Cakupan job — **All** jika dikosongkan |
+| **Results** | **+N created** dan **−N deleted** |
+| **Status** | **Pending**, **Enqueued**, atau **Completed** |
+| **Requested By** | Siapa yang membuatnya, dan kapan |
+
+**Show Filters** mempersempit daftar; **New Sync Job** (kanan atas) memulai job
+baru.
+
+![Daftar Trip Synchronizations](/img/terminal-staff/generate-departure-trips/01-trip-sync-list.png)
+_Daftar Trip Synchronizations — job sebelumnya beserta cakupan, hasil, dan statusnya, serta tombol **New Sync Job**._
+
+## Langkah 2 — Membuat Job {/* #step-2--create-the-job */}
+
+Klik **New Sync Job** dan isi:
+
+- **Start Date / End Date** — periode yang akan dibuatkan perjalanan. Gunakan
+  **tanggal yang sama dua kali** untuk satu tanggal saja.
+- **Operator** _(opsional — kosong berarti semua)_ — membuka pemilih **Select
+  Operator**; cari di tabel, lalu **Select** barisnya. Hanya operator **aktif** yang
+  ditampilkan.
+- **Route** _(opsional — kosong berarti semua)_ — biarkan **All Routes** untuk
+  mencakup semua Route.
+- **Day Filter** _(opsional — tanpa centang berarti semua)_ — **Weekdays** dan
+  **Weekends** mencentang harinya sekali klik; **Clear All** mengosongkan. Mencentang
+  hari kerja menyertakan hari-hari tersebut; **P.H.** _tambahan_ menyertakan setiap
+  tanggal yang merupakan hari libur nasional di negara mana pun.
+- **Remarks** _(opsional)_ — catatan alasan Anda menjalankannya. Sebaiknya diisi;
+  inilah yang dilihat orang berikutnya di daftar.
+
+Lalu klik **Create Sync Job**.
+
+:::note[Aturan tanggal]
+**Start Date** tidak boleh di masa lalu, dan **End Date** harus sama dengan atau
+setelah Start Date.
+:::
+
+![Formulir New Sync Job](/img/terminal-staff/generate-departure-trips/02-new-sync-job.png)
+_Formulir New Sync Job — rentang tanggal, cakupan operator/Route opsional, dan filter hari._
+
+## Langkah 3 — Membaca Pratinjau {/* #step-3--read-the-preview */}
+
+Membuat job akan membuka halaman detailnya, berjudul **Sync Job — _awal_ →
+_akhir_**, dengan badge status dan pembuatnya. Ada tiga bagian:
+
+**1. Job Configuration** — kolom yang baru saja Anda isi, masih dapat diubah selama
+job berstatus **Pending**. Perbaiki dengan **Save Changes**, atau batalkan dengan
+**Delete Job**.
+
+**2. Preview** — tiga angka: **To Create**, **To Delete**, dan **Conflicts**. Di
+bawahnya, **Trips to Create** mencantumkan setiap perjalanan yang akan dibuat,
+dikelompokkan **per tanggal**, lalu **per Route**, dengan setiap keberangkatan
+menampilkan **jam** dan **operator**-nya. Buka tanggal atau Route untuk memeriksa
+detail sebelum menjalankan. **Refresh Preview** (kanan atas) menjalankan ulang
+perbandingan jika Timeslot atau perjalanan sudah berubah sejak job dibuat.
+
+**3. Execute** — lihat langkah berikutnya.
+
+:::tip[Arti ketiga angka]
+- **To Create** — Timeslot aktif belum memiliki perjalanan yang cocok pada tanggal
+  itu.
+- **To Delete** — perjalanan terjadwal sudah tidak cocok dengan Timeslot aktif mana
+  pun **dan tidak memiliki penumpang yang sudah check-in atau Boarded**, sehingga
+  aman dihapus.
+- **Conflicts** — perjalanan yatim (tanpa Timeslot) **sudah memiliki penumpang**.
+  Perjalanan ini **dilewati, tidak pernah dihapus**, dan ditandai agar Anda
+  selesaikan secara manual.
+
+**0 to create / 0 to delete / 0 conflicts** berarti semuanya sudah sinkron.
+Menjalankan ulang job selalu aman — hasilnya tidak berubah meskipun diulang.
+:::
+
+## Langkah 4 — Menjalankan Job {/* #step-4--execute */}
+
+Jika pratinjau sudah benar, klik **Execute Job**. Konfirmasi menanyakan _"Execute
+synchronization job?"_ dan mengulangi bahwa perjalanan akan dibuat dan dihapus
+sesuai pratinjau serta konflik akan dilewati. Klik **Execute**.
+
+Job masuk antrean dan diproses di latar belakang; statusnya berpindah **Pending →
+Enqueued → Completed**. Muat ulang halaman untuk melihat angka akhirnya.
+
+![Pratinjau sync job dikelompokkan per tanggal dan Route, dengan tombol Execute Job](/img/terminal-staff/generate-departure-trips/03-execute-job.png)
+_Pratinjau — **To Create / To Delete / Conflicts**, dengan daftar perjalanan dibuka per tanggal dan Route, serta **Execute Job** di bawahnya._
+
+:::note[Hanya job Pending yang dapat diubah]
+**Edit**, **Delete**, dan **Execute** hanya berlaku selama job berstatus
+**Pending**. Setelah Enqueued atau Completed, tindakan tersebut hilang — job yang
+selesai adalah catatan dari apa yang sudah dijalankan. Untuk menyinkronkan periode
+yang sama lagi, buat job **baru**.
+:::
+
+## Langkah 5 — Memeriksa Perjalanan {/* #step-5--verify-the-trips */}
+
+Buka **Management → Departure Trips** dan filter **Trip Date** ke periode yang baru
+saja disinkronkan. Perjalanan yang dibuat muncul dengan kode, operator, Route, jam
+keberangkatan, status, dan jumlah penumpangnya.
+
+:::note[Type = Scheduled]
+Setiap perjalanan yang dibuat sync job memiliki **Type = Scheduled**. Perjalanan
+satu kali yang Anda tambahkan secara manual bertipe **AdHoc** — lihat
+[Membuat Perjalanan Ad Hoc](/terminal-operator/create-ad-hoc-trip).
+:::
+
+![Daftar Departure Trips untuk tanggal yang disinkronkan](/img/terminal-staff/generate-departure-trips/04-departure-trips.png)
+_Perjalanan yang dibuat untuk periode yang disinkronkan, masing-masing dengan **Type = Scheduled**._
+
+## Menjalankan Job yang Sama Dua Kali {/* #running-the-same-job-twice */}
+
+Menjalankan ulang pembuatan untuk tanggal yang sudah dibuat **tidak** menggandakan
+apa pun. Job melakukan penyesuaian, bukan memasukkan ulang: perjalanan yang sudah
+cocok dengan Timeslot aktif dibiarkan apa adanya.
+
+## Apa yang Disentuh dan Tidak Disentuh Sync Job {/* #what-a-sync-job-does-and-does-not-touch */}
+
+Sync job hanya memengaruhi perjalanan **Scheduled**. Perjalanan **AdHoc** tidak
+pernah disentuhnya.
+
+### Timeslot Mana yang Berjalan pada Suatu Tanggal {/* #which-timeslots-run-on-a-date */}
+
+Aturan hari bersifat **menambah** — hari libur nasional menambah pelayaran dan tidak
+pernah menghapus pelayaran hari biasa:
+
+| Tanggalnya… | Timeslot berjalan jika… |
+| --- | --- |
+| tanggal apa pun | **flag hari** untuk hari tersebut tercentang |
+| juga [hari libur nasional](/terminal-operator/configure-public-holiday) di negara X | _sebagai tambahan_, negara **Public Holiday**-nya mencakup **X** |
+
+### Cara Perjalanan Disesuaikan {/* #how-trips-are-reconciled */}
+
+Untuk setiap tanggal dalam rentang (sesuai **Day Filter**), job melihat Timeslot
+yang berjalan pada tanggal itu — hanya menghitung **Timeslot aktif yang operatornya
+juga aktif** — dan mencocokkannya dengan perjalanan terjadwal yang ada berdasarkan
+**trip code** (operator + Route + tanggal + keberangkatan + suffix):
+
+| Hasil | Kapan terjadi | Yang dilakukan saat dijalankan |
+| --- | --- | --- |
+| **Created** | Timeslot aktif berlaku untuk tanggal itu tetapi **belum ada perjalanan yang cocok**. | Perjalanan **Scheduled** baru dibuat dari Timeslot, lengkap dengan Vessel dan waktu Gate-nya. |
+| **Deleted** | Perjalanan terjadwal **sudah tidak cocok dengan Timeslot aktif mana pun** dan **tidak memiliki penumpang yang sudah check-in atau Boarded**. | Perjalanan yatim yang kosong itu **dihapus**. |
+| **Conflicts** | Perjalanan terjadwal yatim **memiliki penumpang yang sudah check-in atau Boarded**. | Perjalanan itu **dipertahankan dan dilewati**, serta dicatat untuk ditinjau manual — pindahkan atau selesaikan penumpangnya, lalu jalankan ulang. |
+
+:::info[Apa yang membuat perjalanan "yatim"]
+Perjalanan menjadi yatim jika tidak ada lagi yang membuatnya — Timeslot-nya
+**dihapus atau dinonaktifkan**, **operatornya dinonaktifkan**, atau **entri hari
+libur nasional** untuk perjalanan tambahan hari libur **dihapus** (atau daftar
+**negara** hari libur pada Timeslot tidak lagi mencakupnya). Perjalanan yatim
+kemudian **dihapus** jika kosong, atau dijadikan **conflict** jika sudah ada
+penumpangnya.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Membuat Perjalanan Ad Hoc](/terminal-operator/create-ad-hoc-trip) — untuk
+  pelayaran satu kali yang tidak dicakup Timeslot mana pun.
+- [Membatalkan dan Memulihkan Perjalanan](/terminal-operator/cancel-restore-trip)

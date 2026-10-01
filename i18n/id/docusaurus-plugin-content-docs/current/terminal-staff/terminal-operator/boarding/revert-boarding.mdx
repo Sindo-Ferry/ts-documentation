@@ -1,0 +1,107 @@
+---
+id: revert-boarding
+title: Membatalkan Pemindaian Boarding
+sidebar_label: Membatalkan Boarding
+sidebar_position: 2
+slug: /terminal-operator/revert-boarding
+description: Batalkan pemindaian Boarding dan kembalikan penumpang ke PreImmigration, dari kartu hasil Boarding Scan.
+keywords:
+  - revert boarding
+  - undo scan
+  - revert to pre-immigration
+  - correction
+  - boarding
+---
+
+Menaikkan orang yang salah, atau penumpang yang kemudian harus turun lagi dari
+kapal? **Revert To Pre-Immigration** membatalkan pemindaian Boarding dan
+mengembalikannya ke **PreImmigration**, sekaligus mengembalikan hitungannya.
+
+> **Boarding Scan → pindai boarding pass → Revert To Pre-Immigration → Confirm Revert**
+
+:::warning[Akses terbatas]
+Pembatalan membutuhkan permission **revert boarding**, yang terpisah dari permission
+pemindaian. Jika Anda bisa memindai tetapi tidak melihat tombol **Revert To
+Pre-Immigration**, itulah sebabnya.
+:::
+
+## Kapan Pembatalan Bisa Dilakukan {/* #when-you-can-revert */}
+
+| Syarat | Yang dibutuhkan |
+| --- | --- |
+| Status penumpang | **Boarded** |
+| Status perjalanan | **Boarding** |
+
+Syarat perjalanan inilah yang sering terlewat: **setelah perjalanan Closed, Anda
+tidak dapat lagi membatalkan Boarding**. Pembatalan adalah koreksi di Gate, dan Gate
+sudah ditutup.
+
+## Langkah 1 — Tampilkan Penumpang di Layar {/* #step-1--bring-the-passenger-up-on-screen */}
+
+Tombol **Revert To Pre-Immigration** ada di **kartu hasil hijau**.
+
+- Baru saja dipindai? Kartunya sudah ada — lanjut ke Langkah 2.
+- Kartunya hilang? **Pindai lagi boarding pass-nya.** Memindai ulang penumpang yang
+  sudah Boarded tidak berbahaya — tidak mengubah apa pun dan menampilkan detailnya —
+  dan memunculkan kembali kartu beserta tombolnya.
+
+![Kartu hasil Boarding dengan tombol Revert To Pre-Immigration](/img/terminal-staff/boarding-scan/06-revert.png)
+_Kartu hasil hijau — **Revert To Pre-Immigration** ada di bagian bawahnya._
+
+## Langkah 2 — Klik Revert To Pre-Immigration {/* #step-2--click-revert-to-pre-immigration */}
+
+Tombol merah ada di bagian bawah kartu hasil.
+
+## Langkah 3 — Konfirmasi {/* #step-3--confirm */}
+
+> **Revert Boarding** — This will move **_[nama penumpang]_** back to
+> Pre-Immigration status. They can be re-scanned for boarding when ready.
+
+![Dialog konfirmasi Revert Boarding](/img/terminal-staff/boarding-scan/07-confirm-revert.png)
+_Konfirmasi menyebutkan nama penumpang yang dibatalkan._
+
+Klik **Confirm Revert** (atau **Cancel** untuk membatalkan).
+
+## Hasil {/* #outcome */}
+
+- Status penumpang kembali menjadi **PreImmigration**.
+- Hitungan **Boarded** perjalanan berkurang satu dan hitungan **Pre-Imm** bertambah
+  lagi, di panel Boarding Trips.
+- Kartu hasil hilang.
+- Penumpang dapat **dipindai naik lagi** kapan saja saat siap — boarding pass dan
+  nomornya tetap sama.
+
+## Jika Pembatalan Ditolak {/* #if-the-revert-is-refused */}
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Trip must be in Boarding status to revert boarding. Current status: Closed."_ | Perjalanan sudah ditutup. | Sudah terlambat di sini. Jika datanya memang perlu dikoreksi, gunakan [Mengubah Status Penumpang](/terminal-operator/update-passenger-status) dari tabel penumpang perjalanan. |
+| _"Passenger must be Boarded to revert boarding. Current status: PreImmigration."_ | Sudah dibatalkan. | Tidak perlu tindakan apa pun. |
+
+## Mengoreksi Boarding yang Salah, Langkah demi Langkah {/* #correcting-a-wrong-boarding-step-by-step */}
+
+Kasus yang paling umum: dua penumpang menyerahkan boarding pass bersamaan, dan Anda
+memindai yang salah.
+
+1. Di **Boarding Scan**, pindai boarding pass yang keliru dipindai → kartu hijau
+   muncul (memindai ulang tidak berbahaya).
+2. Klik **Revert To Pre-Immigration** → **Confirm Revert**. Statusnya kembali
+   **PreImmigration**.
+3. Pindai boarding pass penumpang yang **benar**. Penumpang naik seperti biasa.
+4. Jika penumpang pertama juga perlu dikembalikan sampai ke **CheckedIn** —
+   misalnya karena keluar dari terminal — pindah ke **Pre-Immigration Scan**, pindai
+   boarding pass yang sama, dan gunakan
+   [Revert To Check-In](/terminal-operator/revert-pre-immigration).
+
+:::tip[Lakukan sebelum perjalanan ditutup]
+Kedua pembatalan berhenti berfungsi setelah perjalanan **Closed**. Jika Anda melihat
+kesalahan saat kapal akan berlayar, perbaiki **sebelum**
+[mengatur perjalanan menjadi Close](/terminal-operator/set-trip-as-close) — setelah
+itu koreksi menjadi urusan administrasi, bukan lagi urusan Gate.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Memindai Boarding Pass di Gate](/terminal-operator/boarding-scan)
+- [Membatalkan Pemindaian Pre-Immigration](/terminal-operator/revert-pre-immigration)
+- [Mengatur Perjalanan menjadi Close](/terminal-operator/set-trip-as-close)

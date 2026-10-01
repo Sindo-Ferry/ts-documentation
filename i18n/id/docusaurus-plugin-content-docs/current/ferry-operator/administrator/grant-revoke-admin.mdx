@@ -1,0 +1,126 @@
+---
+id: grant-revoke-admin
+title: Memberikan atau Mencabut Role Admin
+sidebar_label: Memberikan / Mencabut Role Admin
+sidebar_position: 6
+slug: /operator-administrator/grant-revoke-admin
+description: Berikan status administrator kepada pengguna — akses penuh yang melewati role dan permission — atau cabut kembali.
+keywords:
+  - admin
+  - grant admin
+  - revoke admin
+  - super admin
+  - privileges
+---
+
+Tanda **Admin** bukan role. Ini adalah pengecualian yang memberi pengguna **akses
+penuh ke semua hal**, sepenuhnya mengabaikan role dan permission-nya.
+
+> **Users → ⋯ → Grant Admin / Revoke Admin → konfirmasi**
+
+**Permission yang dibutuhkan:** `operator.security.is_super_admin`
+
+:::danger[Admin melewati setiap pemeriksaan permission]
+Konfirmasinya menyebutkan dengan jelas: memberi admin memberikan pengguna _"full
+access to all system features, **bypassing standard role restrictions**."_
+
+Tidak ada pengaturan [role](/operator-administrator/add-role) atau
+[permission langsung](/operator-administrator/manage-user-permissions) yang membatasi
+Admin. Berikan hanya kepada yang benar-benar perlu mengelola portal — bukan sebagai
+jalan pintas saat role sulit diatur dengan tepat.
+:::
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Operator Portal — lihat
+  [Masuk ke Operator Portal](/ferry-operator/sign-in).
+- Anda adalah **Super Admin**. Administrator biasa melihat item menunya dalam keadaan
+  nonaktif.
+
+## Langkah 1 — Temukan Pengguna {/* #step-1--find-the-user */}
+
+Buka **Users**. Administrator yang sudah ada memiliki badge **Admin** di
+kolom **Status**; pemilik sistem memiliki badge kuning **Super Admin**.
+
+![Users yang difilter ke administrator](/img/ferry-operator/security/18-user-admin.png)
+_Difilter ke **Account Type: Admin** — seorang **Admin**, dan pemilik sistem dengan **Admin** dan **Super Admin**._
+
+## Langkah 2 — Berikan atau Cabut {/* #step-2--grant-or-revoke */}
+
+Dua cara, dialog yang sama:
+
+- **Dari daftar** — menu **⋯** pada baris → **Grant Admin** atau **Revoke Admin**.
+- **Dari profil pengguna** — **⋯ → Manage Security** membuka **User Security
+  Profile**, yang menampilkan **Admin Access: Enabled / Disabled** dan tombol
+  **Grant Admin** / **Revoke Admin** yang sesuai. Tombol ini nonaktif di profil
+  Super Admin sendiri.
+
+![Menu baris yang menawarkan Grant Admin](/img/ferry-operator/security/16-grant-admin.png)
+_Pengguna yang bukan Admin — menunya menawarkan **Grant Admin**._
+
+![Menu baris yang menawarkan Revoke Admin](/img/ferry-operator/security/17-revoke-admin.png)
+_Seorang Admin (perhatikan badge **Admin**) — item yang sama bertuliskan **Revoke Admin**._
+
+
+## Langkah 3 — Konfirmasi {/* #step-3--confirm */}
+
+**Memberikan:**
+
+> **Grant Administrator Privileges?** — This will grant **[username]** full access to
+> all system features, bypassing standard role restrictions.
+
+**Mencabut:**
+
+> **Revoke Administrator Privileges?** — This will remove administrative overrides
+> for **[username]**. They will revert to standard role-based access.
+
+Klik **Confirm Grant** / **Confirm Revoke** (atau **Cancel** untuk membatalkan).
+
+## Yang Berubah {/* #what-changes */}
+
+| | Memberikan | Mencabut |
+| --- | --- | --- |
+| Akses | Semuanya, langsung | Kembali ke role dan permission langsungnya |
+| Role | Tidak disentuh — tetap ada, hanya tidak berpengaruh selama Admin | Kembali berlaku |
+| Badge | **Admin** muncul di barisnya | Hilang |
+
+:::warning[Mencabut bisa membuat seseorang tanpa akses sama sekali]
+Pengguna yang dijadikan Admin **sebelum** diberi role tidak memiliki akses dasar sama
+sekali. Cabut tandanya dan ia kembali ke nol — bisa masuk tetapi hampir tidak melihat
+apa pun.
+
+Sebelum mencabut, buka tab **Roles**-nya dan pastikan ada yang menjadi sandarannya.
+Lihat [Memberikan Role kepada Pengguna](/operator-administrator/assign-role).
+:::
+
+## Admin vs. Super Admin {/* #admin-vs-super-admin */}
+
+| | **Admin** | **Super Admin** |
+| --- | --- | --- |
+| Fungsinya | Akses penuh ke fitur portal | Akses penuh **ditambah** kontrol keamanan — permission role, role pengguna, permission langsung, dan pemberian admin |
+| Cara mengaturnya | Diberikan di sini oleh Super Admin | Tidak dapat diatur dari portal |
+| Dapat dicabut | Ya | **Tidak** — _"Super Admin's administrator priviledges cannot be revoked."_ |
+| Dapat dinonaktifkan | Ya | **Tidak** |
+| Dapat dihapus | Ya, setelah tidak aktif | **Tidak** |
+
+Super Admin adalah akun pemilik sistem. Akun ini ada agar portal tidak pernah
+terkunci dari administrasinya sendiri, dan karena itu tidak ada tindakan merusak yang
+berlaku padanya.
+
+:::info[Mengapa halaman keamanan membutuhkan Super Admin]
+[Permission role](/operator-administrator/manage-role-permissions),
+[role pengguna](/operator-administrator/assign-role), dan
+[permission langsung](/operator-administrator/manage-user-permissions) semuanya
+mengunci tombol tindakannya untuk Super Admin — sehingga Admin biasa dapat
+menjalankan portal tetapi tidak dapat diam-diam memperluas aksesnya sendiri.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Memberikan Role kepada Pengguna](/operator-administrator/assign-role)
+- [Mengelola Permission Langsung Pengguna](/operator-administrator/manage-user-permissions)

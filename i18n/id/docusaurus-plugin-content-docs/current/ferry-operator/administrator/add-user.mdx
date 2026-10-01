@@ -1,0 +1,154 @@
+---
+id: add-user
+title: Menambah Pengguna Baru
+sidebar_label: Menambah Pengguna Baru
+sidebar_position: 4
+slug: /operator-administrator/add-user
+description: Buat pengguna portal untuk staf operator feri Anda, dan pahami bagaimana pengguna itu terhubung dengan akun masuknya.
+keywords:
+  - create user
+  - new user
+  - add user
+  - username
+  - email
+---
+
+Membuat pengguna portal adalah separuh dari pemberian akses. Separuh lainnya adalah
+**pendaftaran oleh orang itu sendiri** — dan keduanya dicocokkan melalui **alamat
+email**.
+
+> **Users → Create User → username + email → Create User**
+
+**Permission yang dibutuhkan:** `operator.users.write`
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Bagaimana Kedua Akun Saling Terhubung {/* #how-the-two-accounts-fit-together */}
+
+:::warning[Baca ini sebelum membuat pengguna]
+Ada **dua hal terpisah** dengan orang yang sama di baliknya:
+
+| | Dibuat oleh | Berisi |
+| --- | --- | --- |
+| **Akun masuk** | Orang itu sendiri, di [Mendaftarkan Akun](/register-account) | Email + password |
+| **Pengguna portal** | **Anda**, di sini | Username, role, permission, status aktif |
+
+Keduanya dihubungkan **berdasarkan alamat email, saat masuk**. Jika kedua email
+berbeda meski hanya satu salah ketik, orang itu akan mengonfirmasi emailnya, Anda
+akan mengaktifkan penggunanya, dan ia *tetap* diberi tahu bahwa akunnya belum
+disiapkan (not provisioned) — tanpa ada yang tampak salah di kedua sisi.
+
+**Gunakan alamat email yang persis sama dengan yang dipakai orang itu untuk
+mendaftar.**
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Operator Portal — lihat
+  [Masuk ke Operator Portal](/ferry-operator/sign-in).
+- Anda memiliki `operator.users.write`. Tanpanya tombol **Create User** tidak
+  muncul.
+- Anda tahu **alamat email yang persis** dipakai — atau akan dipakai — orang itu
+  untuk mendaftar.
+
+## Langkah 1 — Buka Users {/* #step-1--open-users */}
+
+Di sidebar, **Roles** dan **Users** adalah item tingkat atas. Buka **Users** (route: `/users`).
+
+Setiap baris menampilkan **username** dengan **email** di bawahnya, serta badge
+status: **Active** / **Inactive**, ditambah **Admin** dan **Super Admin** jika
+berlaku.
+
+![Daftar Users](/img/ferry-operator/security/10-user-list.png)
+_Daftar Users, difilter dengan kotak pencarian. **Create User** ada di kanan atas._
+
+## Langkah 2 — Klik Create User {/* #step-2--click-create-user */}
+
+**Create User** ada di kanan atas. Formulir **New User** hanya berisi dua kolom.
+
+![Formulir New User](/img/ferry-operator/security/11-add-user.png)
+_Formulir **New User** — hanya **Username** dan **Email Address**._
+
+## Langkah 3 — Isi Kedua Kolom {/* #step-3--fill-in-the-two-fields */}
+
+| Kolom | Aturan |
+| --- | --- |
+| **Username** | Minimal **3 karakter**. Harus **unik**. Ini nama tampilan di seluruh portal dan jejak audit. |
+| **Email Address** | Harus email yang valid, dan **harus sama dengan alamat di akun masuknya**. Harus unik. |
+
+Lalu klik **Create User** (atau **Cancel** untuk membatalkan).
+
+:::info[Tidak ada centang Admin di formulir ini]
+Status administrator **tidak** diatur saat pembuatan — formulirnya hanya username
+dan email. Untuk menjadikan seseorang admin, buat dulu penggunanya, lalu gunakan
+[Memberikan atau Mencabut Role Admin](/operator-administrator/grant-revoke-admin).
+:::
+
+## Langkah 4 — Yang Terjadi Selanjutnya {/* #step-4--what-happens-next */}
+
+Jika berhasil, muncul notifikasi: **"User created — a notification email has been
+sent to _[email]_."**
+
+Orang tersebut menerima email **"You've been added to _[nama sistem]_"** berisi
+tautan ke halaman **pendaftaran**, yang mengingatkannya untuk mendaftar dengan alamat
+yang sama jika belum.
+
+:::tip[Email dikirim sebisanya]
+Data pengguna disimpan **lebih dulu**, lalu email masuk antrean. Jika sistem email
+sedang bermasalah, **pengguna tetap dibuat** — hanya saja janji di notifikasi tidak
+terpenuhi. Beri tahu orangnya secara langsung alih-alih menganggap emailnya sudah
+sampai.
+:::
+
+## Langkah 5 — Aktifkan Pengguna {/* #step-5--activate-them */}
+
+Pengguna baru **belum dapat masuk**. Masih dibutuhkan dua hal:
+
+![Pengguna baru yang tampil sebagai Inactive, dengan Set Active di menu](/img/ferry-operator/security/12-activate-user.png)
+_Notifikasi konfirmasi, dan pengguna baru tercantum sebagai **Inactive** — **Set Active** ada di menu **⋯**-nya._
+
+1. **Orangnya mendaftar** (atau sudah mendaftar) dengan email yang sama lalu
+   mengonfirmasinya — lihat [Mendaftarkan Akun](/register-account).
+2. **Anda mengaktifkannya** — lihat
+   [Mengaktifkan atau Menonaktifkan Pengguna](/operator-administrator/activate-deactivate-user).
+   Di Operator Portal ini membutuhkan **Super Admin**, meskipun Anda yang membuat
+   penggunanya.
+
+Lalu berikan aksesnya:
+
+3. [Berikan role](/operator-administrator/assign-role) — jika tidak, ia bisa masuk
+   tetapi hampir tidak melihat apa pun.
+
+## Jika Penyimpanan Ditolak {/* #if-the-save-is-rejected */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"Username is required."_ | Username terkirim dalam keadaan kosong. |
+| _"Username is already taken."_ | Pengguna lain sudah memakainya. Username harus unik. |
+| _"Email is required."_ | Email terkirim dalam keadaan kosong. |
+| _"Email is already registered."_ | Pengguna portal dengan alamat itu sudah ada — cari di daftar Users sebelum membuat yang kedua. |
+| _"Invalid email address."_ | Pemeriksaan format oleh formulir. |
+
+## Pemecahan Masalah: "Not Provisioned" Padahal Semuanya Tampak Benar {/* #troubleshooting-not-provisioned-after-everything-looks-right */}
+
+Orang itu masuk dan tetap melihat _"Login succeeded, but your account is not
+provisioned for Opusbay access. Please contact your administrator."_ Periksa hal
+berikut secara berurutan:
+
+1. **Apakah pengguna portalnya Active?** Pengguna yang tidak aktif mendapat pesan
+   persis seperti ini.
+2. **Apakah emailnya sama persis?** Bandingkan alamat di barisnya di sini dengan yang
+   dipakai untuk mendaftar. Inilah penyebab paling umum.
+3. **Apakah emailnya sudah dikonfirmasi?** Pendaftaran belum selesai sebelum
+   dikonfirmasi.
+4. **Apakah ia masuk ke portal yang benar?** Pengguna Terminal Portal tidak dapat
+   masuk ke Operator Portal, begitu pula sebaliknya — ia membutuhkan data pengguna di
+   masing-masing portal.
+
+## Selanjutnya {/* #next */}
+
+- [Mengaktifkan atau Menonaktifkan Pengguna](/operator-administrator/activate-deactivate-user)
+- [Memberikan Role kepada Pengguna](/operator-administrator/assign-role)

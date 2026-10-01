@@ -1,0 +1,111 @@
+---
+id: last-call
+title: Panggilan Terakhir (Last Call)
+sidebar_label: Last Call
+sidebar_position: 3
+slug: /terminal-operator/last-call
+description: Pahami peringatan Last Call Recommended di halaman Boarding Scan — kapan muncul, apa yang dihitung, dan apa yang harus dilakukan.
+keywords:
+  - last call
+  - final call
+  - panggilan terakhir
+  - boarding
+  - pre-immigration
+  - departure
+  - alert
+---
+
+**Last Call Recommended** adalah banner kuning yang muncul di kartu perjalanan pada
+halaman [Boarding Scan](/terminal-operator/boarding-scan). Ini cara sistem memberi
+tahu Anda: _keberangkatan sudah dekat dan masih ada penumpang menunggu yang belum
+naik._
+
+Ini adalah **ajakan untuk membuat pengumuman**. Banner ini tidak mengubah
+perjalanan, tidak menghentikan apa pun, dan tidak perlu ditutup.
+
+## Tampilannya {/* #what-it-looks-like */}
+
+Kotak kuning di bagian atas kartu perjalanan, dengan segitiga peringatan:
+
+> ⚠ **Last Call Recommended**
+> _3 passenger(s) are still in pre-immigration and departure is in 12 minute(s)._
+
+Jika perjalanan ditandai terlambat, pesannya juga menyebutkannya:
+
+> _3 passenger(s) are still in pre-immigration and departure is in 12 minute(s)
+> (delayed to 15:45)._
+
+![Banner Last Call Recommended pada kartu perjalanan Boarding](/img/terminal-staff/boarding-scan/08-last-call.png)
+_Perjalanan yang terlambat dengan satu penumpang masih di Pre-Immigration, delapan menit sebelum jam keberangkatan barunya._
+
+## Kapan Banner Muncul {/* #when-it-appears */}
+
+Keempat syarat berikut harus terpenuhi sekaligus:
+
+| Syarat | Detail |
+| --- | --- |
+| Perjalanan berstatus **Boarding** | Bukan Scheduled, bukan Closed, bukan Departed. |
+| Masih ada penumpang di **Pre-Immigration** | Hitungan **Pre-Imm** perjalanan lebih dari nol. |
+| Keberangkatan **20 menit lagi atau kurang** | Dihitung ke jam keberangkatan **efektif**. |
+| Keberangkatan **paling lama 30 menit yang lalu** | Setelah itu banner tidak tampil lagi — pada titik itu sudah jauh melewati panggilan terakhir. |
+
+Jadi banner aktif dalam rentang **20 menit sebelum** sampai **30 menit sesudah**
+jam keberangkatan efektif.
+
+:::info[Hanya menghitung Pre-Immigration, bukan check-in]
+Angka di banner adalah hitungan **Pre-Imm** — penumpang yang sudah melewati
+Pre-Immigration dan berada di dalam terminal menunggu naik. Merekalah yang bisa
+dijangkau pengumuman.
+
+Penumpang yang masih **Checked-In** tidak dihitung. Mereka punya boarding pass
+tetapi belum datang ke Pre-Immigration, jadi banyak di antaranya bahkan belum
+berada di gedung.
+:::
+
+:::info[Keterlambatan ikut diperhitungkan]
+Hitung mundur memakai jam keberangkatan **efektif**: **Delayed To** jika perjalanan
+ditandai terlambat, jika tidak jam keberangkatan terjadwal. Catat keterlambatan
+dengan [Mengubah Waktu](/terminal-operator/update-timings) dan banner menghitung
+ulang sendiri — banner tidak akan mengingatkan Anda tentang keberangkatan yang sudah
+dimundurkan.
+
+Jamnya adalah **jam server dalam timezone Port**, bukan jam komputer Anda.
+Workstation dengan jam atau timezone yang salah tidak dapat membuat peringatan
+muncul terlalu cepat atau terlambat.
+:::
+
+## Yang Dilakukan Saat Banner Muncul {/* #what-to-do-when-it-appears */}
+
+1. **Baca angkanya.** Tiga penumpang berarti pengumuman; satu penumpang mungkin
+   cukup dengan pesan singkat ke petugas Gate.
+2. **Lakukan panggilan terakhir** lewat pengeras suara terminal untuk perjalanan
+   tersebut — kode, operator, tujuan, dan Berth semuanya ada di kartu di depan
+   Anda.
+3. **Periksa siapa yang belum datang.** Klik **View PreImm Passengers** di kartu
+   perjalanan untuk melihat persis siapa yang sudah melewati Pre-Immigration tetapi
+   belum naik — nama dan nomor dokumen, agar pengumuman bisa spesifik.
+4. **Terus memindai.** Saat penumpang yang terlambat datang dan dipindai, hitungan
+   Pre-Imm berkurang; saat mencapai nol, banner hilang sendiri.
+5. **Putuskan.** Jika penumpang tetap tidak muncul,
+   [tutup perjalanan](/terminal-operator/set-trip-as-close). Dialog penutupan akan
+   memperingatkan Anda lagi, dengan hitungan terbaru, sebelum diproses.
+
+## Hal yang Perlu Diketahui {/* #things-worth-knowing */}
+
+- **Banner muncul dan hilang sendiri.** Daftar perjalanan diperbarui setiap 10
+  detik dan setelah setiap pemindaian, sehingga hitung mundur tetap terkini tanpa
+  Anda lakukan apa pun.
+- **Sifatnya hanya saran.** Tidak ada yang diblokir saat banner tampil, dan tidak
+  terjadi apa pun jika Anda mengabaikannya.
+- **Satu banner per perjalanan.** Jika beberapa perjalanan Boarding bersamaan,
+  setiap kartu punya banner dan hitungannya sendiri.
+- **Bukan catatan.** Tidak ada yang mencatat apakah panggilan terakhir sudah
+  dilakukan. Jika terminal Anda memerlukan catatannya, tulis di log Anda sendiri.
+
+## Selanjutnya {/* #next */}
+
+- [Memindai Boarding Pass di Gate](/terminal-operator/boarding-scan)
+- [Mengatur Perjalanan menjadi Close](/terminal-operator/set-trip-as-close) — dialog
+  penutupan mengulangi peringatan Pre-Immigration.
+- [Mengubah Waktu](/terminal-operator/update-timings) — catat keterlambatan dan hitung
+  mundur menyesuaikan.

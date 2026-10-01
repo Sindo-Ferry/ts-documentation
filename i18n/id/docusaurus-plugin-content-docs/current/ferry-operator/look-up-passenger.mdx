@@ -1,0 +1,114 @@
+---
+id: operator-passengers
+title: Mencari Penumpang
+sidebar_label: Mencari Penumpang
+sidebar_position: 10
+slug: /ferry-operator/look-up-passenger
+description: Cari penumpang operator Anda di perjalanan terjadwal yang akan datang, buka halaman detail yang read-only, dan ketahui tempat mencarinya setelah perjalanan berlayar.
+keywords:
+  - passengers
+  - passenger search
+  - read only
+  - view passenger
+  - scheduled trips
+---
+
+Halaman **Passengers** adalah cara cepat menemukan penumpang di pelayaran yang **akan
+datang** tanpa perlu tahu perjalanannya yang mana.
+
+> **Passengers → cari / filter → ⋯ → View Passenger**
+
+:::warning[Read-only]
+Anda dapat mencari, memfilter, dan membuka data penumpang. Anda **tidak dapat**
+melakukan check-in, mengubah, membatalkan, atau mencetak dari sini — menu **⋯** pada
+baris hanya menawarkan **View Passenger**.
+
+Tindakan-tindakan itu ada di halaman detail perjalanan — lihat
+[Check-in Penumpang](/ferry-operator/check-in-passenger).
+:::
+
+:::note
+Tangkapan layar di bawah menggunakan `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+
+## Langkah 1 — Buka Passengers {/* #step-1--open-passengers */}
+
+Di sidebar, buka **Passengers** (route: `/passengers`).
+
+Setiap baris menampilkan **Trip** (kode, dengan tanggal dan jam keberangkatan di
+bawahnya), **No** (paspor / ID), **Name**, **Type**, **Status**, dan **Nationality**
+penumpang.
+
+![Daftar Passengers operator yang read-only, difilter ke satu tanggal perjalanan](/img/ferry-operator/passengers/01-list.png)
+_Daftar Passengers — Trip, No, Name, Type, Status, dan Nationality._
+
+## Langkah 2 — Pahami Cakupan Halaman Ini {/* #step-2--know-what-this-page-covers */}
+
+:::danger[Hanya perjalanan Scheduled, dan default-nya hari ini — dua hal yang sering menjebak]
+Halaman ini sudah menerapkan **dua** filter sebelum Anda mengetik apa pun:
+
+1. **Tanggal perjalanan = hari ini.** Perlebar **Show Filters → tanggal perjalanan**
+   untuk menjangkau hari lain.
+2. **Status perjalanan = Scheduled.** Penumpang yang perjalanannya sudah berlanjut ke
+   **Boarding**, **Closed**, **Departed**, atau **Cancelled** **tidak lagi tampil di
+   sini** — dan memperlebar rentang tanggal **tidak** akan memunculkannya kembali.
+
+Jadi penumpang yang berlayar pagi ini memang tidak dapat ditemukan di halaman ini.
+Itu disengaja: halaman ini adalah tampilan pelayaran yang belum berangkat.
+:::
+
+Untuk menemukan seseorang di perjalanan yang sudah dimulai atau sudah berlayar,
+buka lewat perjalanannya: **Departure Trips → temukan perjalanan → View**.
+[Halaman detail perjalanan](/ferry-operator/look-up-trip) mencantumkan setiap
+penumpang dengan status akhirnya, apa pun status perjalanannya.
+
+## Langkah 3 — Cari dan Filter {/* #step-3--search-and-filter */}
+
+- **Kotak pencarian** — cocok sebagian pada **No** atau **Name** penumpang.
+- **Show Filters** — persempit berdasarkan **tanggal perjalanan**, **No**, **Name**,
+  **Date of Birth**, **Passenger Status**, **Route**, dan **Nationality**.
+- Filter yang diterapkan tampil sebagai **chip** di bawah kotak pencarian; hapus
+  salah satunya, atau **Reset** untuk mengosongkan semuanya.
+
+:::tip[Hasilnya kosong? Baca chip-nya dulu]
+Dengan tanggal default dan aturan hanya-Scheduled, daftar kosong biasanya berarti
+penumpang berada di luar rentang, bukan tidak ada. Periksa chip sebelum menyimpulkan
+datanya tidak ada.
+:::
+
+## Langkah 4 — Lihat Data Lengkap {/* #step-4--view-the-full-record */}
+
+Menu **⋯ Actions** pada baris menawarkan satu tindakan — **View Passenger** — yang
+membuka halaman **read-only** dalam tiga bagian:
+
+| Bagian | Isinya |
+| --- | --- |
+| **Trips Informations** | Trip Code, Trip Date / Departure, Trip Status, Trip Type, Route, Vessel |
+| **Passport Informations** | No, Name, Gender, Date of Birth, Issuance Date, Nationality, Issuance Country, Passport Expiry Date |
+| **Check In Informations** | Boarding Pass No, Type, Status, Checked-in At, Pre-Immigration At, Boarded At, dan apakah penumpang Cancelled |
+
+![Halaman detail View Passenger yang read-only](/img/ferry-operator/passengers/02-view.png)
+_Halaman View Passenger — detail perjalanan, paspor, dan check-in._
+
+Stempel waktu di **Check In Informations** menunjukkan sejauh mana penumpang sampai:
+ada jam **Boarded At** berarti ia sudah dipindai naik.
+
+## Halaman Mana yang Dipakai {/* #which-page-to-use */}
+
+| Anda ingin… | Buka |
+| --- | --- |
+| Menemukan penumpang di perjalanan **mendatang**, perjalanannya tidak diketahui | **Halaman ini** |
+| Melihat semua orang di perjalanan **tertentu**, status apa pun | [Mencari Perjalanan](/ferry-operator/look-up-trip) → View |
+| Check-in, mengubah, atau membatalkan | [Check-in Penumpang](/ferry-operator/check-in-passenger) |
+| Mencetak atau mengunduh boarding pass | [Mencetak Ulang / Mengunduh](/ferry-operator/reprint-boarding-pass) |
+| Daftar resmi siapa yang berlayar | [Mengunduh Manifest](/ferry-operator/download-manifest) |
+
+## Selanjutnya {/* #next */}
+
+- [Check-in Penumpang](/ferry-operator/check-in-passenger)
+- [Mencari Perjalanan](/ferry-operator/look-up-trip)

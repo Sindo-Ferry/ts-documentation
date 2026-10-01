@@ -1,0 +1,109 @@
+---
+id: activate-deactivate-user
+title: Mengaktifkan atau Menonaktifkan Pengguna
+sidebar_label: Mengaktifkan / Menonaktifkan Pengguna
+sidebar_position: 5
+slug: /terminal-administrator/activate-deactivate-user
+description: Ubah pengguna portal antara Active dan Inactive — sakelar hidup/mati akses portal.
+keywords:
+  - activate user
+  - deactivate user
+  - active
+  - inactive
+  - access
+---
+
+**Active / Inactive** adalah sakelar hidup/mati akses seseorang. Inilah cara
+tercepat menghentikan akses, sekaligus langkah terakhir dalam menyiapkan seseorang.
+
+> **Users → ⋯ → Activate / Deactivate**
+
+**Permission yang dibutuhkan:** `terminal.users.write`
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- [Pengguna portalnya sudah ada](/terminal-administrator/add-user).
+- Anda memiliki `terminal.users.write`.
+
+## Langkah 1 — Temukan Pengguna {/* #step-1--find-the-user */}
+
+Buka **Security → Users**. Kolom **Status** menampilkan badge **Active** (hijau) atau
+**Inactive** (merah) di setiap baris.
+
+Gunakan **Show Filters** untuk menampilkan hanya pengguna aktif atau tidak aktif —
+cara tercepat menemukan orang yang menunggu diaktifkan.
+
+## Langkah 2 — Ubah Statusnya {/* #step-2--toggle-the-status */}
+
+Buka menu **⋯** pada baris. Di bawah **Security Flags** ada satu item yang mengikuti
+status saat ini:
+
+- **Activate** — pada pengguna yang tidak aktif.
+- **Deactivate** — pada pengguna yang aktif.
+
+![Menu baris yang menawarkan Activate](/img/terminal-staff/security/12-activate-user.png)
+_Pengguna **Inactive** — menunya menawarkan **Activate**._
+
+![Menu baris yang menawarkan Deactivate](/img/terminal-staff/security/13-deactivate-user.png)
+_Pengguna **Active** — item yang sama kini bertuliskan **Deactivate**._
+
+:::warning[Langsung berlaku, tanpa konfirmasi]
+Di Terminal Portal **tidak ada dialog konfirmasi**. Begitu Anda mengklik, perubahan
+diterapkan dan daftar diperbarui.
+
+Menonaktifkan orang yang salah langsung memutus aksesnya. Periksa username dan email
+di baris tersebut — email ada di bawah username — **sebelum** mengklik.
+:::
+
+Badge di baris tersebut berubah.
+
+## Arti Setiap Status {/* #what-each-status-means */}
+
+| Status | Dampaknya |
+| --- | --- |
+| **Active** | Orang tersebut dapat masuk, sesuai role dan permission-nya. |
+| **Inactive** | Masuk ditolak dengan pesan _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ Role, permission, dan riwayatnya tetap tersimpan. |
+
+:::info[Menonaktifkan bukan menghapus]
+Pengguna yang tidak aktif tetap menyimpan semuanya — role, permission langsung, jejak
+audit. Aktifkan kembali dan ia melanjutkan persis seperti sebelumnya.
+
+Menonaktifkan juga merupakan **syarat** penghapusan: pengguna harus tidak aktif
+sebelum dapat [dihapus](/terminal-administrator/delete-user).
+:::
+
+## Super Admin Tidak Dapat Dinonaktifkan {/* #the-super-admin-cannot-be-deactivated */}
+
+Percobaannya ditolak dengan pesan _"The system super admin account can not be set to
+inactive"_.
+
+Ini disengaja — agar sistem tidak terkunci dari administrasinya sendiri. Jika akun
+Super Admin perlu berpindah tangan, itu tugas tim pengembang.
+
+## Kapan Memakai yang Mana {/* #when-to-use-which */}
+
+| Situasi | Lakukan ini |
+| --- | --- |
+| Pengguna baru, yang lain sudah siap | **Activate** |
+| Seseorang keluar, atau diskors | **Deactivate** — langsung berlaku, dan dapat dikembalikan |
+| Staf musiman di luar musim | **Deactivate**, lalu **Activate** saat kembali |
+| Seseorang berganti tugas | Biarkan aktif; ubah [role-nya](/terminal-administrator/assign-role) |
+| Akun dibuat karena kesalahan, tidak pernah dipakai | **Deactivate**, lalu [hapus](/terminal-administrator/delete-user) |
+
+:::tip[Nonaktifkan dulu, tanya belakangan]
+Jika Anda mencurigai sebuah akun disusupi atau disalahgunakan, **nonaktifkan**. Ini
+langsung berlaku, dapat dikembalikan, dan memberi waktu untuk menyelidiki. Menghapus
+menghilangkan bukti.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Memberikan Role kepada Pengguna](/terminal-administrator/assign-role)
+- [Menghapus Pengguna](/terminal-administrator/delete-user)

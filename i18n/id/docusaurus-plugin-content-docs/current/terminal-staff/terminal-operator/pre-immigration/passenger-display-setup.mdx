@@ -1,0 +1,112 @@
+---
+id: pre-immigration-display
+title: Menyiapkan Layar Penumpang (Pre-Immigration)
+sidebar_label: Menyiapkan Layar Penumpang
+sidebar_position: 3
+slug: /terminal-operator/pre-immigration-display
+description: Siapkan layar yang menghadap penumpang di meja Pre-Immigration — buka di monitor kedua, jadikan layar penuh, dan pahami apa yang dilihat penumpang.
+keywords:
+  - passenger display
+  - second screen
+  - public display
+  - pre-immigration
+  - full screen
+---
+
+**Passenger Display** adalah layar yang **menghadap penumpang** di meja
+Pre-Immigration. Layar ini menampilkan **Success** hijau atau **Rejected.** merah
+yang besar setelah setiap pemindaian, sehingga penumpang langsung tahu apakah boleh
+lanjut atau harus berhenti dan berbicara dengan Anda.
+
+Siapkan sekali di awal shift dan biarkan tetap berjalan.
+
+> **Pre-Immigration Scan → Open Passenger Display → seret ke monitor kedua → F11**
+
+## Langkah 1 — Buka Layar {/* #step-1--open-the-display */}
+
+Di halaman **Pre-Immigration Scan**, panel kanan berjudul **Passenger Display
+Preview**. Klik **Open Passenger Display** di header panel tersebut.
+
+Layar terbuka di **tab browser baru**, menampilkan tampilan diamnya.
+
+![Passenger Display dalam keadaan siap](/img/terminal-staff/pre-imm-scan/06-passenger-display-ready.png)
+_Passenger Display saat pertama dibuka — diam, menunggu pemindaian pertama._
+
+## Langkah 2 — Pindahkan ke Monitor Kedua {/* #step-2--move-it-to-the-second-screen */}
+
+Seret tab tersebut keluar menjadi jendela sendiri, lalu seret jendelanya ke
+**monitor yang menghadap penumpang**.
+
+## Langkah 3 — Jadikan Layar Penuh {/* #step-3--full-screen-it */}
+
+Dengan jendela layar aktif, tekan **F11**. Bagian browser — address bar, tab,
+bookmark — hilang dan tampilan memenuhi monitor.
+
+Tekan **F11** lagi kapan saja untuk keluar.
+
+:::warning[Biarkan tab pemindaian dan tab layar sama-sama terbuka]
+Layar dikendalikan oleh halaman pemindaian **di browser yang sama**. Jika Anda
+menutup tab pemindaian, atau membuka layar di browser lain atau di komputer lain,
+layar akan tetap menampilkan tampilan diam dan tidak pernah berubah.
+:::
+
+## Langkah 4 — Kembali ke Tab Pemindaian dan Mulai Bekerja {/* #step-4--go-back-to-the-scan-tab-and-work */}
+
+Klik kembali ke layar operator Anda. Kolom **Boarding Pass Number** harus aktif
+agar pemindai berfungsi, jadi klik kolom tersebut sebelum penumpang pertama.
+
+Anda **tidak** perlu melihat monitor kedua saat bekerja — panel **Passenger Display
+Preview** di layar Anda sendiri menampilkan hal yang persis sama, secara langsung.
+
+## Apa yang Dilihat Penumpang {/* #what-passengers-see */}
+
+### Diam — di antara pemindaian {/* #idle--between-scans */}
+
+Layar gelap bertuliskan **Ready For Pre-Immigration** / _"Waiting for next scanned
+passenger..."_ Ini juga yang tampil saat layar baru dibuka — lihat gambar di
+[Langkah 1](#step-1--open-the-display).
+
+### Success — penumpang boleh lanjut {/* #success--the-passenger-may-proceed */}
+
+Layar **hijau** dengan tanda centang besar, kata **Success**, **nama penumpang**,
+serta operator dan jam keberangkatannya.
+
+![Passenger Display menampilkan pemindaian Pre-Immigration yang berhasil](/img/terminal-staff/pre-imm-scan/08-passenger-display-success.png)
+_Pemindaian berhasil — penumpang lolos ke Pre-Immigration._
+
+### Rejected — penumpang harus berhenti {/* #rejected--the-passenger-must-stop */}
+
+Layar **merah** dengan tanda silang, kata **Rejected.**, dan pesan singkat.
+
+![Passenger Display menampilkan pemindaian yang ditolak](/img/terminal-staff/pre-imm-scan/07-passenger-display-reject.png)
+_Pemindaian ditolak — penumpang tidak lolos._
+
+:::info[Layar tidak pernah menampilkan detail internal]
+Penumpang hanya melihat dua jenis alasan sebenarnya — pesan **rentang Gate**
+(_"Pre-immigration gate is not open yet…"_) dan **"Invalid boarding pass number."**
+
+Penolakan lainnya — status salah, Port salah, masalah konfigurasi — tampil di layar
+publik sebagai **"Please Check with our terminal staff"**. Alasan sebenarnya hanya
+tampil di layar **Anda**. Status perjalanan siapa pun tidak ditampilkan di monitor
+publik yang besar.
+:::
+
+### Kembali diam {/* #back-to-idle */}
+
+Sekitar **10 detik** setelah setiap pemindaian, hasilnya memudar dan layar kembali
+ke **Ready For Pre-Immigration**.
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Gejala | Penyebab | Solusi |
+| --- | --- | --- |
+| Layar tetap di **Ready For Pre-Immigration** saat Anda memindai | Tab pemindaian tertutup, atau layar dibuka dari browser / komputer lain | Buka ulang layar dari tombol **Open Passenger Display** di halaman pemindaian, dan biarkan kedua tab terbuka |
+| Layar ada di monitor yang salah | Terbuka di layar operator | Seret jendelanya, lalu tekan **F11** |
+| Tab browser dan address bar terlihat oleh penumpang | Belum layar penuh | Klik jendela layar, tekan **F11** |
+| Menampilkan hasil penumpang sebelumnya | Normal — hasil tampil sekitar 10 detik | Tunggu, atau pindai penumpang berikutnya |
+
+## Selanjutnya {/* #next */}
+
+- [Memindai Boarding Pass di Pre-Immigration](/terminal-operator/pre-immigration-scan)
+- [Menyiapkan Layar Penumpang (Boarding)](/terminal-operator/boarding-display) —
+  konsep yang sama di Gate Boarding.

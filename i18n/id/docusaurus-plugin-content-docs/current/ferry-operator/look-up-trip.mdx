@@ -1,0 +1,133 @@
+---
+id: operator-departure-trips
+title: Mencari Perjalanan
+sidebar_label: Mencari Perjalanan
+sidebar_position: 6
+slug: /ferry-operator/look-up-trip
+description: Temukan perjalanan keberangkatan operator Anda di grid mingguan, beralih ke tampilan ringkas, dan buka halaman detail perjalanan untuk melihat Vessel, waktu, muatan, dan penumpangnya.
+keywords:
+  - departure trips
+  - weekly grid
+  - compact view
+  - trip detail
+  - load
+  - trip status
+---
+
+**Departure Trips** adalah pusat Operator Portal. Semua hal lain — check-in
+penumpang, mengganti Vessel, mengambil manifest — dimulai dengan menemukan
+perjalanannya di sini.
+
+> **Departure Trips → filter → View → halaman detail perjalanan**
+
+:::note
+Tangkapan layar di bawah menggunakan `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+
+## Langkah 1 — Buka Departure Trips {/* #step-1--open-departure-trips */}
+
+Di sidebar, buka **Departure Trips** (route: `/departure-trips`).
+
+Halaman menampilkan **grid**: **jam keberangkatan** di sisi kiri, **tanggal** di
+bagian atas, dan satu sel untuk setiap perjalanan. Secara default mencakup **satu
+minggu** — hari ini ditambah enam hari berikutnya.
+
+Setiap sel menampilkan **kode** perjalanan, **Route**, **Vessel** yang ditetapkan,
+**muatan kursi**, dan **status**-nya.
+
+![Kalender mingguan Departure Trips operator](/img/ferry-operator/departure-trips/01-calendar.png)
+_Grid mingguan perjalanan keberangkatan._
+
+## Langkah 2 — Persempit {/* #step-2--narrow-it-down */}
+
+Gunakan **Show Filters** di bagian atas:
+
+| Filter | Catatan |
+| --- | --- |
+| **Date** / **From Date** / **To Date** | Rentang yang dicakup grid. Atur keduanya ke hari yang sama untuk satu tanggal. |
+| **Route** | Salah satu Route Anda. |
+| **Vessel** | Berguna untuk "kapal ini di mana hari ini?" |
+| **Departure** | Jam keberangkatan tertentu. |
+| **Status** | **All Statuses**, atau salah satu dari Scheduled / Boarding / Closed / Departed / Cancelled. |
+
+Kotak **search** langsung mencocokkan perjalanan, dan **Refresh** memuat ulang grid.
+
+### Tampilan Ringkas {/* #compact-view */}
+
+Satu minggu penuh bisa melebihi layar. Klik **Compact view** (kanan atas) untuk
+mengecilkan sel dan memuat lebih banyak; tombolnya lalu bertuliskan **Normal view**
+untuk kembali.
+
+![Kalender Departure Trips dalam tampilan ringkas](/img/ferry-operator/departure-trips/02-compact.png)
+_Tampilan ringkas memuat lebih banyak hari dalam satu layar._
+
+## Langkah 3 — Buka Perjalanan {/* #step-3--open-a-trip */}
+
+Klik **View** pada sel perjalanan untuk membuka halaman **Departure Trip Detail**.
+
+Sel juga langsung menawarkan **Manifest**, setelah perjalanan Closed atau Departed —
+lihat [Mengunduh Manifest](/ferry-operator/download-manifest).
+
+## Isi Halaman Detail Perjalanan {/* #what-the-trip-detail-page-shows */}
+
+Header memuat **kode** perjalanan, badge **status**-nya, dan badge **Load** yang
+bertuliskan _terisi / total_ kursi.
+
+| Bagian | Kolom |
+| --- | --- |
+| **Trip** | **Vessel** (dengan `Cap.` = kapasitasnya), **Route**, **Type** (Scheduled atau AdHoc) |
+| **Schedule** | **Trip Date**, **Departure**, **Delayed To** (kuning, hanya saat perjalanan terlambat), rentang **Gate** dibuka–ditutup |
+
+Di bawahnya, bagian **Passengers** menampilkan empat hitungan langsung —
+**Checked-In**, **Pre-Immigration**, **Boarded**, **Available** — dan tabel
+penumpang.
+
+![Departure Trip Detail dengan tombol Check In Passenger](/img/ferry-operator/check-in-passenger/02-trip-detail.png)
+_Halaman detail perjalanan — info perjalanan, hitungan, dan tabel penumpang._
+
+Dari halaman ini Anda dapat:
+
+- [Check-in penumpang](/ferry-operator/check-in-passenger) — selama perjalanan
+  Scheduled dan Gate masih dibuka.
+- [Mencetak ulang atau mengunduh boarding pass](/ferry-operator/reprint-boarding-pass).
+- [Mengunduh manifest](/ferry-operator/download-manifest) — setelah Closed atau
+  Departed.
+
+## Membaca Status Perjalanan {/* #reading-trip-status */}
+
+| Status | Artinya bagi Anda |
+| --- | --- |
+| **Scheduled** | Belum dibuka untuk Boarding. **Satu-satunya status yang memungkinkan Anda check-in penumpang** — dan hanya selama Gate masih dibuka. |
+| **Boarding** | Terminal sudah membuka Gate dan sedang memindai penumpang naik. Check-in ditutup; Vessel masih dapat diganti. |
+| **Closed** | Boarding selesai. **Manifest menjadi tersedia.** Vessel masih dapat diganti. |
+| **Departed** | Kapal sudah berlayar. Read-only — tidak bisa ganti Vessel, tidak bisa check-in. |
+| **Cancelled** | Pelayaran tidak akan berjalan. Read-only. |
+
+Status dikendalikan oleh **staf terminal**, bukan oleh Anda. Perjalanan yang
+statusnya tidak bergerak adalah pertanyaan untuk terminal.
+
+:::info[Delayed To vs. Departure]
+Saat terminal mencatat keterlambatan, kolom **Departure** tetap berisi jam
+**terjadwal asli** dan kolom **Delayed To** terpisah muncul berwarna kuning. Jam
+keterlambatan itulah yang harus disampaikan kepada penumpang.
+:::
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Gejala | Penyebab | Solusi |
+| --- | --- | --- |
+| Perjalanan yang diharapkan tidak ada | Rentang tanggal masih minggu default, atau ada filter yang diterapkan | Perlebar rentang tanggal; periksa chip filter |
+| Tidak ada perjalanan sama sekali pada suatu tanggal | Belum ada yang dibuat untuk tanggal itu | Minta terminal membuat perjalanan untuk periode tersebut |
+| Perjalanan ada tetapi di baris yang tampak salah | Anda membaca grid berdasarkan jam keberangkatan, bukan tanggal | Jam ada di sisi kiri, tanggal di bagian atas |
+| Perjalanan operator lain muncul | Seharusnya tidak pernah terjadi | Berhenti dan laporkan ke administrator Anda |
+
+## Selanjutnya {/* #next */}
+
+- [Mengganti Vessel pada Perjalanan](/ferry-operator/change-trip-vessel)
+- [Check-in Penumpang](/ferry-operator/check-in-passenger)
+- [Mengunduh Manifest](/ferry-operator/download-manifest)

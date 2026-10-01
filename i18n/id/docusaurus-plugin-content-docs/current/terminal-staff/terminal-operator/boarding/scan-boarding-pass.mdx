@@ -1,0 +1,163 @@
+---
+id: boarding-scan
+title: Memindai Boarding Pass di Gate
+sidebar_label: Memindai Boarding Pass
+sidebar_position: 1
+slug: /terminal-operator/boarding-scan
+description: Naikkan penumpang di Gate — satu kolom pemindaian mencakup semua perjalanan Boarding di Port Anda, dengan hitungan langsung dan layar yang menghadap penumpang.
+keywords:
+  - boarding scan
+  - boarding
+  - gate
+  - berth
+  - boarding pass
+  - boarding trips
+---
+
+Gate Boarding adalah titik pemindaian terakhir. Penumpang menunjukkan boarding pass,
+Anda memindainya, dan layar memberi tahu penumpang ke **Berth** mana harus
+berjalan.
+
+> **Boarding Scan → pindai boarding pass → penumpang Boarded → "Proceed to Berth #…"**
+
+Yang dilakukan pemindaian: memindahkan penumpang ke **Boarded** dan menambah
+hitungan **Boarded** perjalanan tersebut.
+
+:::warning[Akses terbatas]
+Halaman ini hanya tersedia bagi staf yang memiliki permission pemindaian Boarding.
+:::
+
+:::note
+Tangkapan layar di bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda sudah [mengatur Port aktif](/terminal-staff/set-port-context). Tombol **Scan**
+  tetap nonaktif sampai Anda melakukannya, dengan petunjuk _"Choose the port context
+  from Settings before scanning."_
+- Perjalanan sudah [diatur menjadi Boarding](/terminal-operator/set-trip-as-boarding)
+  dengan Gate dan Berth yang ditetapkan.
+- Layar penumpang sudah berjalan di monitor kedua — lihat
+  [Menyiapkan Layar Penumpang](/terminal-operator/boarding-display).
+
+## Langkah 1 — Buka Boarding Scan {/* #step-1--open-boarding-scan */}
+
+Di sidebar, buka **Operational → Boarding Scan**
+(route: `/current-departure-trips/scan-boarding`). Header menampilkan **Active
+Port** Anda.
+
+![Halaman Boarding Scan — kolom pemindaian di kiri, Boarding Trips di kanan](/img/terminal-staff/boarding-scan/04-operator-display-ready.png)
+_Halaman Boarding Scan — kolom pemindaian di kiri, dan semua perjalanan Boarding di Port Anda di kanan._
+
+:::info[Satu halaman untuk semua perjalanan Boarding]
+Anda **tidak** memilih perjalanan sebelum memindai. Hanya ada satu kolom
+pemindaian, dan sistem menentukan sendiri perjalanan mana pemilik setiap boarding
+pass lalu memperbarui hitungannya. Saat tiga Vessel melakukan Boarding bersamaan,
+satu petugas di satu layar menangani ketiganya.
+:::
+
+## Langkah 2 — Periksa Panel Boarding Trips {/* #step-2--check-the-boarding-trips-panel */}
+
+Panel kanan menampilkan setiap perjalanan di Port aktif Anda yang sedang
+**Boarding** atau **Closed**. Setiap kartu menampilkan:
+
+- **Kode** perjalanan dan badge **status**-nya (**Boarding** / **Closed**).
+- **Operator**, **Vessel**, **Departure Time**, **Gate / Berth**, dan **Destination
+  Port**.
+- Hitungan langsung — **Check In**, **Pre-Imm**, dan **Boarded**.
+- **View PreImm Passengers** (pada perjalanan Boarding) — membuka tabel yang dapat
+  dicari berisi penumpang yang sudah lolos Pre-Immigration dan menunggu naik.
+- **Set As Close** (pada perjalanan **Boarding**) atau **Set As Departed** (pada
+  perjalanan **Closed**).
+- Banner **Last Call Recommended** saat keberangkatan sudah dekat dan masih ada
+  penumpang menunggu — lihat [Last Call](/terminal-operator/last-call).
+
+Panel **diperbarui sendiri setiap 10 detik** saat Anda tidak memindai, dan langsung
+diperbarui setelah setiap pemindaian. Ada juga tombol **refresh** manual.
+
+Jika tertulis _"No boarding or closed trips for now."_, belum ada perjalanan di Port
+Anda yang dibuka untuk Boarding.
+[Atur perjalanan menjadi Boarding](/terminal-operator/set-trip-as-boarding)
+terlebih dahulu.
+
+## Langkah 3 — Pindai {/* #step-3--scan */}
+
+Klik kolom **Boarding Pass Number**, lalu **pindai barcode** atau **ketik nomor 16
+karakter lalu tekan Enter**. Anda juga dapat mengklik **Scan**.
+
+Setelah setiap pemindaian, kolom kosong sendiri dan kursor kembali ke kolom
+tersebut secara otomatis, sehingga Anda dapat bekerja terus tanpa menyentuh mouse.
+
+## Langkah 4 — Baca Hasilnya {/* #step-4--read-the-result */}
+
+### Diterima {/* #accepted */}
+
+**Kartu hijau** muncul dengan detail dokumen penumpang — **No**, **Name**,
+**Gender**, **Date Of Birth**, **Nationality**, **Issuance Country**, **Issue
+Date**, **Expiry Date** — dan hitungan **Boarded** perjalanan yang sesuai bertambah
+di panel Boarding Trips.
+
+Layar penumpang berubah hijau: **Success — Proceed to Berth #_[Berth]_**, dengan
+logo operator dan Port tujuan.
+
+![Layar operator setelah pemindaian Boarding berhasil](/img/terminal-staff/boarding-scan/05-scan-result.png)
+_Pemindaian berhasil — detail penumpang, tombol **Revert To Pre-Immigration**, dan hitungan Boarded perjalanan yang sudah diperbarui._
+
+![Passenger Display menampilkan pemindaian Boarding yang berhasil](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
+_Layar yang menghadap penumpang — nomor Berth adalah informasi yang dibutuhkan penumpang._
+
+### Ditolak {/* #rejected */}
+
+Kotak merah **Invalid BP** muncul di layar Anda beserta alasannya, dan layar
+penumpang berubah merah.
+
+![Passenger Display menampilkan pemindaian Boarding yang ditolak](/img/terminal-staff/boarding-scan/03-passenger-display-error.png)
+_Pemindaian ditolak — penumpang tidak naik._
+
+## Penumpang Boleh Naik Langsung dari CheckedIn {/* #a-passenger-may-board-straight-from-checked-in */}
+
+Melewati Pre-Immigration **diperbolehkan**. Penumpang berstatus **CheckedIn** dapat
+dipindai di Gate dan langsung menjadi **Boarded** — tanpa error, tanpa peringatan.
+Yang berkurang adalah hitungan **Check In** perjalanan, bukan hitungan **Pre-Imm**.
+
+Ini disengaja: sebagian terminal tidak membuka meja Pre-Immigration di setiap
+pelayaran, dan penumpang yang terlewat di sana tidak boleh tertahan di Gate.
+
+## Pesan Penolakan dan Yang Harus Dilakukan {/* #rejection-messages-and-what-to-do */}
+
+| Yang tampil | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| **"Please enter boarding pass number."** | Anda mengklik Scan dengan kolom kosong. | Pindai atau ketik nomornya. |
+| **"Invalid boarding pass number."** | Bukan 16 karakter, atau tidak ada penumpang dengan nomor itu. | Pindai ulang. Jika barcode rusak, cari penumpang di **View PreImm Passengers** dan baca nomor BP-nya. |
+| **"Passenger boarding pass is not valid for the currently selected port."** | Boarding pass milik perjalanan dari **Port asal lain**. | Periksa **Active Port** Anda. Pemeriksaan ini dijalankan **sebelum** status penumpang dilihat, jadi pesan ini tetap muncul meskipun penumpang sudah Boarded. |
+| **"Trip must be in Boarding status to mark passenger as Boarded. Current status: Scheduled."** | Perjalanan belum dibuka untuk Boarding. | [Atur menjadi Boarding](/terminal-operator/set-trip-as-boarding). |
+| **"Trip must be in Boarding status to mark passenger as Boarded. Current status: Closed."** (atau Departed) | Boarding untuk perjalanan itu sudah selesai. | Penumpang tertinggal. Arahkan ke konter. |
+| **"Passenger must be CheckedIn or PreImmigration to move to Boarding. Current status: Cancelled."** | Pemesanannya dibatalkan. | Arahkan ke konter. |
+| **"Port context is required. Please select an active port in terminal portal."** | Belum ada Port aktif. | [Atur Port Context Anda](/terminal-staff/set-port-context). |
+
+:::info[Yang dilihat penumpang saat pemindaian gagal]
+Hanya **"Invalid boarding pass number."** yang diteruskan ke layar publik. Selain
+itu tampil sebagai **"Please Check with our terminal staff"**. Alasan sebenarnya
+tetap di layar Anda.
+:::
+
+## Memindai Boarding Pass yang Sama Dua Kali Itu Aman {/* #scanning-the-same-pass-twice-is-safe */}
+
+Memindai penumpang yang sudah **Boarded** tidak berpengaruh apa pun — tanpa error,
+dan hitungannya tidak berubah. Penumpang tidak dihitung dua kali. Jika ragu, pindai
+lagi.
+
+## Ada Kesalahan? {/* #made-a-mistake */}
+
+Gunakan [Membatalkan Pemindaian Boarding](/terminal-operator/revert-boarding) —
+tombol **Revert To Pre-Immigration** ada di kartu hasil.
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan Pemindaian Boarding](/terminal-operator/revert-boarding)
+- [Last Call](/terminal-operator/last-call)
+- [Mengatur Perjalanan menjadi Close](/terminal-operator/set-trip-as-close) — saat
+  Boarding selesai.

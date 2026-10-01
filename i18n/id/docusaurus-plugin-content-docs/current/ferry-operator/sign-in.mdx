@@ -1,0 +1,103 @@
+---
+id: operator-sign-in
+title: Masuk ke Operator Portal
+sidebar_label: Masuk
+sidebar_position: 1
+slug: /ferry-operator/sign-in
+description: Masuk ke Operator Portal dan pilih workspace operator Anda dengan Operator Code.
+keywords:
+  - sign in
+  - login
+  - operator code
+  - operator portal
+  - workspace
+---
+
+Masuk terdiri dari **dua bagian**: autentikasi dengan akun Anda, lalu pilih
+**workspace operator** tempat Anda bekerja. Semua hal lain di portal — perjalanan,
+penumpang, manifest — dibatasi ke workspace tersebut, jadi memilihnya dengan benar
+itu penting.
+
+> **Login → Sign In → Select Operator (Operator Code) → Dashboard**
+
+:::note
+**Operator Code** Anda diberikan oleh administrator. Tangkapan layar di bawah
+menggunakan kode contoh dan `https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Akun terdaftar dengan **email yang sudah dikonfirmasi**, dan sudah **diaktifkan**
+  oleh administrator — lihat [Mendaftarkan Akun](/register-account).
+- **Operator Code** Anda.
+
+## Langkah 1 — Masuk dengan Akun Anda {/* #step-1--sign-in-with-your-account */}
+
+Buka Operator Portal dan masuk ke halaman login. Masukkan **Email** dan **Password**
+yang terdaftar, lalu klik **Sign In**.
+
+![Halaman masuk Operator Portal](/img/ferry-operator/sign-in/01-login.png)
+_Halaman masuk Operator Portal._
+
+## Langkah 2 — Pilih Operator Anda {/* #step-2--select-your-operator */}
+
+Layar **Select Operator** menanyakan workspace mana yang Anda masuki:
+
+- **Pertama kali:** ketik **Operator Code** Anda di kolom **Enter operator code…**
+  lalu klik tombol **+**. Kode diverifikasi dan workspace ditambahkan ke daftar
+  Anda.
+- **Sudah pernah:** operator yang sudah diverifikasi tersimpan di bawahnya. Klik
+  kartu workspace — atau gunakan kotak **search** jika Anda punya beberapa — untuk
+  melanjutkan.
+
+![Layar Select Operator dengan Operator Code sudah diisi](/img/ferry-operator/sign-in/02-select-operator.png)
+_Masukkan Operator Code lalu tambahkan, atau pilih workspace yang tersimpan._
+
+:::tip[Workspace tersimpan tetap ada di perangkat ini]
+Setelah diverifikasi, operator tetap ada di daftar sehingga Anda tidak memerlukan
+kodenya lagi. Setiap kartu memiliki ikon **tempat sampah** untuk menghapusnya —
+berguna jika Anda tidak lagi bekerja untuk operator tersebut. Menghapusnya tidak
+memengaruhi akun Anda; Anda dapat menambahkannya kembali dengan kode.
+:::
+
+## Langkah 3 — Anda Sudah Masuk {/* #step-3--youre-in */}
+
+Anda tiba di **Dashboard** workspace tersebut, yang menampilkan perjalanan hari ini,
+aktivitas Boarding, dan total penumpang. **Nama dan logo operator** tampil di kiri
+atas — selalu pastikan sesuai dengan operator tempat Anda bekerja.
+
+![Dashboard Operator Portal](/img/ferry-operator/sign-in/03-dashboard.png)
+_Dashboard Operator Portal setelah memilih operator._
+
+Sidebar menampilkan modul yang dapat Anda akses:
+
+| Menu | Kegunaannya |
+| --- | --- |
+| **Overview** | Dashboard |
+| **Vessels** | [Mencari Vessel](/ferry-operator/look-up-vessel) — read-only |
+| **Timeslots** | [Mencari Timeslot](/ferry-operator/look-up-timeslot) — read-only |
+| **Departure Trips** | [Mencari perjalanan](/ferry-operator/look-up-trip), [mengganti Vessel](/ferry-operator/change-trip-vessel), [check-in penumpang](/ferry-operator/check-in-passenger) |
+| **Passengers** | [Mencari penumpang](/ferry-operator/look-up-passenger) — read-only |
+| **Operator** | Detail operator Anda sendiri |
+| **Reports** | [Mengekspor laporan Passenger Manifest](/ferry-operator/export-manifest-report) |
+
+:::info[Anda hanya melihat data operator Anda sendiri]
+Setiap daftar di portal dibatasi ke workspace yang Anda pilih — perjalanan,
+penumpang, Vessel, Timeslot, serta pemilih perjalanan di dalam filter dan laporan.
+Data operator feri lain tidak pernah muncul. Jika Anda melihatnya, berhenti dan
+segera laporkan ke administrator Anda.
+:::
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Email not confirmed. Please check your inbox."_ | Alamat email Anda belum dikonfirmasi. | Gunakan tautan konfirmasi, atau **Resend confirmation email** jika sudah kedaluwarsa — lihat [Mendaftarkan Akun](/register-account#step-2--confirm-your-email). |
+| _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ | Akun Anda ada tetapi belum diaktifkan. | Minta administrator mengaktifkannya — lihat [Mendaftarkan Akun](/register-account#step-3--get-activated-by-an-administrator). |
+| Operator Code tidak diterima | Kode salah, atau bukan milik Anda. | Periksa dengan administrator Anda — kode berbeda untuk setiap operator. |
+| Item sidebar yang diharapkan tidak ada | Anda tidak memiliki permission untuk modul tersebut. | Tanyakan ke administrator Anda. |
+
+## Selanjutnya {/* #next */}
+
+- [Berpindah Operator](/ferry-operator/switch-operator) — pindah ke workspace lain.
+- [Mencari Perjalanan](/ferry-operator/look-up-trip)

@@ -1,0 +1,136 @@
+---
+id: cancel-restore-trip
+title: Membatalkan dan Memulihkan Perjalanan
+sidebar_label: Membatalkan dan Memulihkan Perjalanan
+sidebar_position: 5
+slug: /terminal-operator/cancel-restore-trip
+description: Batalkan perjalanan terjadwal yang tidak akan berjalan, dan pulihkan perjalanan yang dibatalkan kembali ke Scheduled.
+keywords:
+  - cancel trip
+  - restore trip
+  - cancelled
+  - departure trips
+  - un-cancel
+---
+
+Jika sebuah pelayaran tidak akan berjalan, **batalkan** perjalanannya agar tidak lagi
+tampil sebagai layanan aktif. Jika keputusan itu berubah, **pulihkan** kembali ke
+**Scheduled**.
+
+> **Departure Trips → ⋯ Actions (atau buka perjalanannya) → Cancel Trip / Restore Trip → konfirmasi**
+
+:::note
+Anda membutuhkan permission untuk membatalkan dan memulihkan perjalanan
+keberangkatan. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda tahu perjalanan mana yang dimaksud. Membatalkan baris yang salah itu mudah
+  terjadi — periksa **kode**, **tanggal**, dan **jam keberangkatan** sebelum
+  mengonfirmasi.
+
+## Langkah 1 — Temukan Perjalanannya {/* #step-1--find-the-trip */}
+
+Buka **Management → Departure Trips** (route: `/departure-trips`) dan temukan
+perjalanannya di tampilan **Calendar** atau **List**. Gunakan **Show Filters** atau
+filter **Trip Date** untuk mempersempit — secara default Anda hanya melihat minggu
+mendatang.
+
+![Departure Trip Calendar](/img/terminal-staff/cancel-restore-trip/01-calendar-view.png)
+_Departure Trip Calendar — satu kartu per perjalanan, dengan menu **⋯** di kanan atas kartu._
+
+## Langkah 2 — Batalkan Perjalanan {/* #step-2--cancel-the-trip */}
+
+Anda dapat membatalkan dari salah satu dari dua tempat — gunakan yang paling
+nyaman.
+
+**Pilihan A — dari menu ⋯.** Klik **⋯** di kanan atas kartu perjalanan (atau di
+ujung barisnya di tampilan **List**) dan pilih **Cancel Trip**.
+
+![Menu Actions pada perjalanan terjadwal](/img/terminal-staff/cancel-restore-trip/02-action-ellipsis.png)
+_Menu Actions perjalanan **Scheduled** — **View Detail** dan **Cancel Trip**._
+
+**Pilihan B — dari halaman detail perjalanan.** Klik kartu perjalanan (atau tombol
+**View**-nya, atau **⋯ → View Detail**) untuk membuka **Departure Trip Detail**.
+Halaman ini menampilkan info perjalanan, **status timeline** (Scheduled → Boarding →
+Closed → Departed), dan daftar penumpang — tempat yang baik untuk memastikan Anda
+memilih perjalanan yang benar. Lalu klik tombol merah **Cancel Trip** di kanan
+atas.
+
+![Halaman detail perjalanan terjadwal dengan tombol Cancel Trip](/img/terminal-staff/cancel-restore-trip/03-trip-detail.png)
+_Departure Trip Detail untuk perjalanan **Scheduled** — **Cancel Trip** di kanan atas._
+
+Dengan cara mana pun, konfirmasi muncul: **Cancel Trip?** — _"This will cancel the
+trip and affect all passengers. This action cannot be undone."_
+
+![Dialog konfirmasi Cancel Trip](/img/terminal-staff/cancel-restore-trip/04-confirm-cancel.png)
+_Konfirmasi Cancel Trip._
+
+Klik **Confirm Cancel** (atau **Close** untuk membatalkan).
+
+Status perjalanan menjadi **Cancelled**.
+
+:::warning[Hanya perjalanan Scheduled yang dapat dibatalkan]
+**Cancel Trip** hanya tersedia pada perjalanan **Scheduled**. Jika dicoba pada
+perjalanan yang sudah Boarding, Closed, atau Departed, sistem menolaknya —
+_"Only scheduled trips can be cancelled. Current status is …"_
+
+Perjalanan juga **tidak dapat dibatalkan jika sudah ada penumpang yang check-in**:
+_"Cannot cancel a trip that already has checked-in passengers."_ Tangani
+penumpangnya terlebih dahulu — lihat
+[Membatalkan Penumpang](/terminal-operator/cancel-passenger).
+:::
+
+## Langkah 3 — Memulihkan Perjalanan yang Dibatalkan {/* #step-3--restore-a-cancelled-trip */}
+
+**Restore Trip** adalah "batal membatalkan", jadi hanya muncul pada perjalanan
+**Cancelled** — di dua tempat yang sama dengan **Cancel Trip**: menu **⋯**
+perjalanan, atau kanan atas halaman detailnya.
+
+![Halaman detail perjalanan yang dibatalkan dengan tombol Restore Trip](/img/terminal-staff/cancel-restore-trip/05-restore.png)
+_Perjalanan **Cancelled** — badge merah **Cancelled** di samping kode, dan **Restore Trip** di tempat **Cancel Trip** sebelumnya._
+
+Konfirmasinya berbunyi **Restore Trip?** — _"This returns the trip to Scheduled
+status. Only future trips with no active slot conflict can be restored."_
+
+![Dialog konfirmasi Restore Trip](/img/terminal-staff/cancel-restore-trip/06-confirm-restore.png)
+_Konfirmasi Restore Trip._
+
+Klik **Confirm Restore** (atau **Close** untuk membatalkan).
+
+Perjalanan kembali menjadi **Scheduled**.
+
+## Jika Pemulihan Diblokir {/* #when-a-restore-is-blocked */}
+
+Pemulihan hanya berhasil jika semua syarat berikut terpenuhi. Jika ada yang tidak,
+pesannya menyebutkan yang mana:
+
+| Syarat | Pesan jika gagal |
+| --- | --- |
+| Perjalanan memang dibatalkan | _"Only cancelled trips can be restored. Current status is …"_ |
+| Jam keberangkatannya masih di masa depan | _"Cannot restore a trip whose departure time has already passed."_ |
+| Tidak ada perjalanan aktif lain yang memakai kodenya | _"An active trip with code '…' already exists."_ |
+| Operatornya aktif | _"The trip's operator is inactive. Reactivate it before restoring the trip."_ |
+| Route-nya aktif | _"The trip's route is inactive. Reactivate it before restoring the trip."_ |
+| Vessel-nya aktif | _"The trip's vessel is inactive. Reactivate it before restoring the trip."_ |
+
+Semuanya dapat diperbaiki: aktifkan kembali [Vessel](/terminal-staff/vessels),
+[Route](/terminal-staff/routes), atau [operator](/terminal-staff/operators), lalu
+coba lagi. Perjalanan yang **jam keberangkatannya sudah lewat** sama sekali tidak
+dapat dipulihkan — jika layanannya masih dibutuhkan, buat
+[perjalanan ad hoc](/terminal-operator/create-ad-hoc-trip).
+
+:::tip
+Perjalanan yang dibatalkan **tidak** dihapus. Perjalanan itu tetap ada di daftar
+dengan badge **Cancelled**, dan memang seharusnya begitu — catatan pembatalan adalah
+bagian dari riwayat hari itu.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Mengatur Perjalanan menjadi Boarding](/terminal-operator/set-trip-as-boarding)
+- [Membuat Perjalanan Ad Hoc](/terminal-operator/create-ad-hoc-trip)

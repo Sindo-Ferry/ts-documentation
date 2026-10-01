@@ -1,0 +1,105 @@
+---
+id: boarding-display
+title: Menyiapkan Layar Penumpang (Boarding)
+sidebar_label: Menyiapkan Layar Penumpang
+sidebar_position: 6
+slug: /terminal-operator/boarding-display
+description: Siapkan layar yang menghadap penumpang di Gate Boarding — buka di monitor kedua, jadikan layar penuh, dan pahami apa yang dilihat penumpang.
+keywords:
+  - passenger display
+  - second screen
+  - boarding gate
+  - berth
+  - full screen
+---
+
+**Passenger Display** di Gate Boarding punya satu tugas: memberi tahu penumpang,
+dengan huruf yang terbaca dari beberapa meter, **ke Berth mana harus berjalan**.
+
+> **Boarding Scan → Open Passenger Display → seret ke monitor kedua → F11**
+
+## Langkah 1 — Buka Layar {/* #step-1--open-the-display */}
+
+Di halaman **Boarding Scan**, klik **Open Passenger Display** di kanan atas. Layar
+terbuka di **tab browser baru**.
+
+## Langkah 2 — Pindahkan ke Monitor Kedua {/* #step-2--move-it-to-the-second-screen */}
+
+Seret tab tersebut keluar menjadi jendela sendiri dan pindahkan jendelanya ke
+monitor yang menghadap penumpang.
+
+## Langkah 3 — Jadikan Layar Penuh {/* #step-3--full-screen-it */}
+
+Tekan **F11**. Tekan lagi untuk keluar dari layar penuh.
+
+:::warning[Biarkan kedua tab terbuka di browser yang sama]
+Layar dikendalikan oleh halaman Boarding Scan **di browser yang sama pada komputer
+yang sama**. Jika tab pemindaian ditutup, atau layar dibuka di tempat lain, layar
+akan tetap di tampilan diam dan tidak pernah berubah.
+:::
+
+## Langkah 4 — Kembali ke Tab Pemindaian {/* #step-4--back-to-the-scan-tab */}
+
+Klik kembali tab pemindaian. Mengklik **Open Passenger Display** sudah
+mengembalikan kursor ke kolom **Boarding Pass Number** untuk Anda, dan kursor
+kembali ke sana secara otomatis setelah setiap pemindaian — jadi setelah mulai, Anda
+dapat bekerja tanpa menyentuh mouse.
+
+## Apa yang Dilihat Penumpang {/* #what-passengers-see */}
+
+### Diam — di antara pemindaian {/* #idle--between-scans */}
+
+Layar gelap bertuliskan **Ready For Boarding** / _"Waiting for next scanned
+passenger..."_
+
+![Passenger Display dalam keadaan siap di Gate Boarding](/img/terminal-staff/boarding-scan/01-passenger-display-ready.png)
+_Tampilan diam di Gate Boarding._
+
+### Success — lanjut ke Berth {/* #success--proceed-to-the-berth */}
+
+Layar **hijau** dengan tanda centang, kata **Success**, lalu dengan huruf terbesar
+di layar: **Proceed to Berth #_[kode Berth]_**. Di bawahnya, logo operator (atau
+nama operator jika belum ada logo) dan **Port tujuan**.
+
+![Passenger Display menampilkan pemindaian Boarding yang berhasil](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
+_Pemindaian berhasil — nomor Berth adalah yang perlu diikuti penumpang._
+
+:::tip[Berth berasal dari perjalanan]
+Berth yang tampil adalah Berth yang ditetapkan saat perjalanan
+[diatur menjadi Boarding](/terminal-operator/set-trip-as-boarding). Jika penumpang
+diarahkan ke Berth yang salah, penetapan itulah yang perlu diperiksa.
+:::
+
+### Rejected — berhenti dan bicara dengan staf {/* #rejected--stop-and-speak-to-staff */}
+
+Layar **merah** dengan tanda silang, kata **Rejected.**, nama penumpang, dan pesan
+singkat.
+
+![Passenger Display menampilkan pemindaian Boarding yang ditolak](/img/terminal-staff/boarding-scan/03-passenger-display-error.png)
+_Pemindaian ditolak — penumpang tidak naik._
+
+:::info[Layar tidak pernah menampilkan detail internal]
+Hanya **"Invalid boarding pass number."** yang diteruskan ke layar publik. Penolakan
+lainnya — Port salah, status perjalanan salah, pemesanan dibatalkan — tampil sebagai
+**"Please Check with our terminal staff"**. Alasan sebenarnya hanya ada di layar
+Anda.
+:::
+
+### Kembali diam {/* #back-to-idle */}
+
+Sekitar **10 detik** setelah setiap pemindaian, hasilnya hilang dan layar kembali ke
+**Ready For Boarding**.
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Gejala | Penyebab | Solusi |
+| --- | --- | --- |
+| Layar tetap di **Ready For Boarding** saat Anda memindai | Tab pemindaian tertutup, atau layar dibuka dari browser / komputer lain | Buka ulang dari **Open Passenger Display** dan biarkan kedua tab terbuka |
+| Berth yang tampil salah | Berth yang ditetapkan ke perjalanan salah | Periksa **Gate / Berth** di kartu perjalanan; ditetapkan saat [Set As Boarding](/terminal-operator/set-trip-as-boarding) |
+| Nama operator tampil, bukan logo | Belum ada logo untuk operator tersebut | Hanya tampilan — minta administrator mengunggahnya di [Operators](/terminal-staff/operators) |
+| Bagian browser terlihat oleh penumpang | Belum layar penuh | Klik jendela layar, tekan **F11** |
+
+## Selanjutnya {/* #next */}
+
+- [Memindai Boarding Pass di Gate](/terminal-operator/boarding-scan)
+- [Menyiapkan Layar Penumpang (Pre-Immigration)](/terminal-operator/pre-immigration-display)

@@ -1,0 +1,114 @@
+---
+id: operator-reprint-boarding-pass
+title: Mencetak Ulang atau Mengunduh Boarding Pass
+sidebar_label: Mencetak Ulang / Mengunduh Boarding Pass
+sidebar_position: 9
+slug: /ferry-operator/reprint-boarding-pass
+description: Cetak ulang boarding pass yang hilang atau simpan sebagai PDF dari tabel penumpang perjalanan, dan periksa riwayat penerbitannya.
+keywords:
+  - reprint boarding pass
+  - print
+  - download
+  - PDF
+  - boarding pass history
+  - lost pass
+---
+
+Boarding pass bisa hilang, buram, atau tertinggal. Mencetak ulang **menerbitkan
+kembali nomor boarding pass yang sama** — boarding pass lama dan yang baru adalah
+boarding pass yang sama.
+
+> **Departure Trips → View perjalanan → ikon printer atau unduh pada baris penumpang**
+
+## Langkah 1 — Buka Perjalanan {/* #step-1--open-the-trip */}
+
+Buka **Departure Trips**, temukan perjalanannya, lalu klik **View**. Gulir ke tabel
+**Passengers**.
+
+Tidak yakin perjalanan yang mana? [Mencari Penumpang](/ferry-operator/look-up-passenger)
+akan menemukannya dan memberi tahu Anda.
+
+![Ikon printer dan unduh pada baris penumpang](/img/ferry-operator/departure-trips/05-reprint-download-bp.png)
+_Ikon **printer** dan **unduh** berada tepat di kiri menu **⋯**. Mengarahkan kursor ke printer menampilkan **Print boarding pass**._
+
+## Langkah 2 — Gunakan Ikon Printer atau Unduh {/* #step-2--use-the-printer-or-download-icon */}
+
+Di ujung kanan baris penumpang, **sebelum** menu **⋯**, ada dua tombol ikon kecil:
+
+| Ikon | Fungsinya |
+| --- | --- |
+| 🖨 **Printer** | Membuka boarding pass dan mengirimnya untuk dicetak. |
+| ⬇ **Unduh** | Menyimpannya sebagai PDF bernama `boarding-pass-<nomor>.pdf`. |
+
+:::warning[Keduanya tidak ada di dalam menu ⋯]
+Ini adalah **tombol ikon terpisah di samping** menu **⋯**, bukan item di dalamnya.
+Banyak orang mencarinya di dropdown lalu menyimpulkan fiturnya tidak ada. Lihat di
+sebelah kiri titik tiga.
+:::
+
+Keduanya menampilkan indikator berputar selama boarding pass dibuat.
+
+## Nomornya Tidak Pernah Berubah {/* #the-number-never-changes */}
+
+Cetakan ulang memiliki **nomor boarding pass yang sama dengan sebelumnya**. Penumpang
+yang memegang cetakan lama dan baru memiliki dua salinan boarding pass yang sama;
+keduanya dapat dipindai.
+
+Satu-satunya cara mendapatkan nomor **baru** adalah meng-check-in ulang penumpang dari
+awal, yang berarti
+[membatalkannya terlebih dahulu](/ferry-operator/check-in-passenger#cancel-the-check-in).
+
+## Jika Ikon Berwarna Abu-abu {/* #when-the-icons-are-greyed-out */}
+
+Arahkan kursor untuk melihat tooltip, yang menyebutkan alasannya:
+
+| Tooltip | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| **"This passenger has no boarding pass number."** | Boarding pass tidak pernah diterbitkan untuk data ini. | Jarang terjadi. Datanya mungkin perlu dibatalkan lalu di-check-in ulang. |
+| **"Only checked-in or pre-immigration passengers have a boarding pass."** | Penumpang berstatus **Boarded** atau **Cancelled**. Penumpang Boarded sudah di kapal; penumpang yang dibatalkan tidak punya boarding pass yang berlaku. | Untuk penumpang yang dibatalkan tetapi ternyata tetap berangkat, [check-in ulang](/ferry-operator/check-in-passenger). |
+| **"Only available while the trip is scheduled or boarding."** | Perjalanan berstatus **Closed**, **Departed**, atau **Cancelled**. | Sudah terlambat untuk menerbitkan boarding pass. Untuk catatan siapa yang berlayar, gunakan [manifest](/ferry-operator/download-manifest). |
+
+Jika tidak ada ikon sama sekali, Anda tidak memiliki permission boarding pass —
+tanyakan ke administrator Anda.
+
+## Langkah 3 — Periksa Riwayat Penerbitan (Opsional) {/* #step-3--check-the-issue-history-optional */}
+
+Buka menu **⋯** pada baris dan pilih **Boarding Pass History** untuk melihat setiap
+kali boarding pass diterbitkan. Dialog terbuka dengan tiga total — **Total**,
+**Printed**, dan **Downloaded** — lalu mencantumkan setiap penerbitan dengan:
+
+- ikon **printer** atau **unduh**, sesuai cara penerbitannya,
+- **siapa** yang menerbitkan,
+- **kapan**, dan
+- badge bertuliskan **Terminal** atau **Operator**, sehingga Anda dapat membedakan
+  cetak ulang di konter Anda dengan yang dilakukan di terminal.
+
+:::info[Staf terminal tampil sebagai "Hidden"]
+Anda hanya melihat nama staf **operator Anda sendiri**. Jika boarding pass
+diterbitkan oleh terminal, namanya tertulis **Hidden** — tanggal, jam, ikon, dan
+badge **Terminal** tetap ditampilkan.
+:::
+
+![Dialog Boarding Pass History](/img/ferry-operator/departure-trips/06-bp-history.png)
+_Tiga penerbitan — dua di terminal (nama **Hidden**), satu di konter operator._
+
+Jika belum ada yang diterbitkan, tertulis _"No boarding pass issued yet."_
+
+Inilah cara tercepat menjawab "apakah penumpang ini sudah diberi boarding pass?"
+sebelum Anda mencetak lagi.
+
+## Situasi Umum {/* #common-situations */}
+
+| Situasi | Yang dilakukan |
+| --- | --- |
+| Penumpang kehilangan boarding pass | Cetak ulang. Nomornya sama; pemindaiannya tetap berfungsi. |
+| Barcode tidak terbaca | Cetak ulang. Jika masih gagal, baca nomornya dari kolom **BP No** agar terminal dapat mengetiknya. |
+| Penumpang ingin menyimpannya di ponsel | Gunakan ikon **unduh** dan kirimkan PDF-nya. |
+| Nama yang tercetak salah | [Ubah data penumpang](/ferry-operator/check-in-passenger#edit-the-details) terlebih dahulu — hanya CheckedIn — **lalu** cetak ulang. |
+| Penumpang mengaku belum pernah menerimanya | Periksa **Boarding Pass History** sebelum mencetak lagi. |
+| Perjalanan sudah ditutup | Ikon nonaktif. Tidak ada yang dapat diterbitkan sekarang. |
+
+## Selanjutnya {/* #next */}
+
+- [Check-in Penumpang](/ferry-operator/check-in-passenger)
+- [Mencari Penumpang](/ferry-operator/look-up-passenger)

@@ -1,0 +1,170 @@
+---
+id: operator-check-in-passenger
+title: Check-in Penumpang
+sidebar_label: Check-in Penumpang
+sidebar_position: 8
+slug: /ferry-operator/check-in-passenger
+description: Lakukan check-in penumpang ke salah satu perjalanan Anda dari halaman detail perjalanan, terbitkan boarding pass-nya, lalu koreksi atau batalkan check-in sesudahnya.
+keywords:
+  - check in
+  - passenger
+  - boarding pass
+  - edit passenger
+  - cancel passenger
+  - validation
+---
+
+Check-in mencatat penumpang pada sebuah perjalanan dan menerbitkan **boarding
+pass**-nya — nomor 16 karakter yang dipindai di Pre-Immigration dan di Gate
+Boarding.
+
+> **Departure Trips → temukan perjalanan → View → Check In Passenger → isi → Check In Passenger**
+
+:::info[Operator hanya meng-check-in penumpang biasa]
+**Tidak ada kolom Passenger Type** di formulir ini, dan memang begitu. Penumpang
+**NTL** (Not To Land) dan **LM** (Last Minute) ditangani terminal — lihat panduan
+terminal [Check-in Penumpang NTL / LM](/terminal-operator/check-in-ntl-lm).
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+- Perjalanan berstatus **Scheduled** dan **Gate-nya belum ditutup**.
+- Perjalanan masih punya **kursi kosong**.
+- **Dokumen perjalanan** penumpang ada di tangan Anda.
+
+## Langkah 1 — Buka Perjalanan {/* #step-1--open-the-trip */}
+
+Buka **Departure Trips**, filter ke harinya (atur **From Date** dan **To Date** ke
+tanggal yang sama untuk satu hari), temukan perjalanannya, lalu klik **View**.
+
+![Departure Trips difilter ke hari ini](/img/ferry-operator/check-in-passenger/01-departure-trips.png)
+_Departure Trips difilter ke satu hari. Setiap sel perjalanan memiliki tombol **View**._
+
+## Langkah 2 — Klik Check In Passenger {/* #step-2--click-check-in-passenger */}
+
+Tombolnya ada di atas tabel **Passengers** di halaman detail perjalanan. Periksa
+**Available** di hitungan terlebih dahulu — nol berarti Vessel penuh.
+
+![Departure Trip Detail dengan tombol Check In Passenger](/img/ferry-operator/check-in-passenger/02-trip-detail.png)
+_Halaman detail perjalanan. Penumpang yang sudah check-in tampil di tabel Passengers._
+
+:::warning[Tombolnya berwarna abu-abu?]
+**Check In Passenger** **hanya aktif selama perjalanan Scheduled dan Gate masih
+dibuka**. Tombol ini nonaktif jika:
+
+- perjalanan berstatus **Boarding**, **Closed**, **Departed**, atau **Cancelled**;
+  atau
+- perjalanan masih Scheduled tetapi **jam Gate ditutup sudah lewat**.
+
+Kasus kedua sering mengejutkan: check-in ditutup saat **Gate ditutup**, bukan saat
+Boarding dimulai. Jika rentang Gate perlu diperpanjang, minta terminal
+[mengubah waktu perjalanan](/terminal-operator/update-timings).
+:::
+
+## Langkah 3 — Isi Formulir {/* #step-3--fill-in-the-form */}
+
+| Kolom | Catatan |
+| --- | --- |
+| **No** | Nomor paspor / ID. **Hanya huruf dan angka** — tanpa tanda hubung, garis miring, atau spasi. Minimal 3 karakter. |
+| **Name** | Nama lengkap. **Hanya huruf, angka, dan spasi.** Minimal 2 karakter. |
+| **Gender** | Male, Female, atau Unspecified. |
+| **Nationality** | Wajib. Pilih dari daftar negara. |
+| **Date of Birth** | Wajib. Harus di masa lalu. |
+| **Issue Date** _(opsional)_ | **Satu-satunya** kolom opsional. Tidak boleh di masa depan. |
+| **Expiry Date** | Wajib. Tidak boleh di masa lalu — tanggal paling awal yang dapat dipilih adalah hari ini. |
+| **Issue Country** | Wajib. |
+
+Lalu klik **Check In Passenger**.
+
+![Dialog Check In Passenger yang sudah diisi](/img/ferry-operator/check-in-passenger/03-check-in-dialog.png)
+_Formulir Check In Passenger._
+
+## Langkah 4 — Cetak Boarding Pass {/* #step-4--print-the-boarding-pass */}
+
+Jika Anda memiliki permission boarding pass, sebuah pertanyaan langsung muncul:
+
+> **Passenger Checked In** — Print the boarding pass now?
+
+![Pertanyaan Passenger Checked In yang menawarkan pencetakan boarding pass](/img/ferry-operator/check-in-passenger/05-confirm-print-bp.png)
+_Pertanyaan cetak, dengan penumpang baru sudah tampil di tabel di belakangnya._
+
+Klik **Print Boarding Pass**, atau **Not Now** untuk mencetaknya nanti dari baris
+penumpang — lihat
+[Mencetak Ulang atau Mengunduh Boarding Pass](/ferry-operator/reprint-boarding-pass).
+
+## Hasil {/* #outcome */}
+
+- Penumpang muncul di tabel perjalanan dengan status **CheckedIn**.
+- **Nomor boarding pass 16 karakter** yang unik diterbitkan.
+- Hitungan **Checked-In** dan **Load** perjalanan bertambah; **Available** berkurang.
+
+## Jika Check-in Ditolak {/* #if-the-check-in-is-rejected */}
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"No must contain only letters and digits. Invalid character(s): '-', '/'"_ | Nomor dokumen mengandung simbol. Pesan **menyebutkan simbolnya**. | Hapus simbolnya — `A-12/3` menjadi `A123`. |
+| _"Name must contain only letters, digits, and spaces. Invalid character(s): …"_ | Nama mengandung tanda baca. | Hapus apostrof, tanda hubung, dan aksen. |
+| _"A passenger with this No already exists on this trip."_ | Nomor dokumen itu sudah di-check-in di pelayaran ini. | Periksa tabel penumpang — mungkin memang duplikat. **Penumpang yang dibatalkan diabaikan**, jadi data yang sudah dibatalkan tidak menghalangi pemakaian ulang. |
+| _"No available seats on this trip."_ | Kapal penuh. | Pelayaran lain, atau batalkan penumpang yang tidak datang untuk membebaskan kursi. |
+| _"Issue date must be before the expiry date."_ | Issue Date sama dengan atau setelah Expiry Date. | Baca ulang dokumennya. |
+| _"Date of birth must be before the issue date."_ | Date of Birth sama dengan atau setelah Issue Date. | Baca ulang dokumennya. |
+| Satu kolom ditandai sendiri | Kolom wajib kosong. | Semua kolom wajib kecuali **Issue Date**. |
+
+![Error validasi saat No penumpang sudah ada di perjalanan](/img/ferry-operator/check-in-passenger/04-duplicate-passenger.png)
+_Check-in penumpang yang No-nya sudah ada di perjalanan ditolak._
+
+## Mengoreksi atau Membatalkan Check-in {/* #correcting-or-cancelling-a-check-in */}
+
+Keduanya dilakukan dari menu **⋯ Actions** di ujung baris penumpang pada tabel
+perjalanan.
+
+![Menu Actions baris penumpang](/img/ferry-operator/edit-remove-passenger/01-action-menu.png)
+_Menu Actions baris: View, Edit, dan Cancel Passenger._
+
+### Mengubah Data {/* #edit-the-details */}
+
+Pilih **Edit Passenger**. Dialog terbuka dengan data saat ini sudah terisi — No,
+Full Name, Gender, Date of Birth, Expiry Date, Nationality, Issue Country, Issue
+Date. Perbaiki yang perlu lalu klik **Save Changes**.
+
+![Dialog Edit Passenger](/img/ferry-operator/edit-remove-passenger/02-edit-dialog.png)
+_Dialog Edit Passenger, sudah terisi data penumpang._
+
+Validasi yang sama berlaku, termasuk pemeriksaan **No** duplikat. Mengubah data
+**tidak** mengubah nomor boarding pass — tetapi cetak ulang boarding pass jika nama
+yang tercetak berubah.
+
+:::warning[Perubahan berhenti setelah penumpang dipindai]
+Hanya penumpang **CheckedIn** yang dapat diubah. Begitu terminal memindainya di
+Pre-Immigration, datanya terkunci — pada titik itu data sudah dicocokkan dengan
+paspornya. Tanyakan ke terminal jika koreksi memang diperlukan.
+:::
+
+### Membatalkan Check-in {/* #cancel-the-check-in */}
+
+Pilih **Cancel Passenger** (opsi berwarna merah) lalu konfirmasi dengan **Confirm
+Cancel**.
+
+![Konfirmasi Cancel Passenger](/img/ferry-operator/edit-remove-passenger/03-cancel-confirm.png)
+_Konfirmasi sebelum membatalkan check-in penumpang._
+
+Status penumpang menjadi **Cancelled**, **kursinya dibebaskan**, dan barisnya tetap
+ada di tabel sebagai rujukan. Datanya tidak dihapus.
+
+![Penumpang tampil sebagai Cancelled setelah dibatalkan](/img/ferry-operator/edit-remove-passenger/04-cancelled-result.png)
+_Setelah dikonfirmasi, status penumpang tampil **Cancelled** dan kursinya bebas._
+
+:::tip[Batalkan lalu check-in ulang untuk data yang sangat salah]
+Pemeriksaan **No** duplikat mengabaikan penumpang yang dibatalkan, jadi membatalkan
+data yang salah ketik lalu check-in ulang dengan nomor dokumen yang sama tetap
+berhasil. Perhatikan bahwa ini menerbitkan **nomor boarding pass baru** — cetakan
+lama tidak berlaku lagi.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Mencetak Ulang atau Mengunduh Boarding Pass](/ferry-operator/reprint-boarding-pass)
+- [Mencari Penumpang](/ferry-operator/look-up-passenger)
+- [Mengunduh Manifest](/ferry-operator/download-manifest)

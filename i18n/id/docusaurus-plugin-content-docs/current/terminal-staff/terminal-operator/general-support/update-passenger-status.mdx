@@ -1,0 +1,129 @@
+---
+id: update-passenger-status
+title: Mengubah Status Penumpang
+sidebar_label: Mengubah Status Penumpang
+sidebar_position: 5
+slug: /terminal-operator/update-passenger-status
+description: Pindahkan penumpang langsung antara CheckedIn, PreImmigration, dan Boarded jika catatan pemindaian tidak sesuai kenyataan.
+keywords:
+  - update status
+  - passenger status
+  - checked-in
+  - pre-immigration
+  - boarded
+  - correction
+---
+
+**Update Status** mengatur tahap penumpang secara langsung, tanpa pemindaian. Ini
+adalah koreksi manual jika catatan dan kenyataan tidak sesuai — pemindai gagal,
+penumpang diloloskan saat ramai, atau pembatalan terlewat.
+
+> **Current Trips → buka perjalanan → menu ⋯ penumpang → Update Status → pilih → Update Status**
+
+:::warning[Utamakan pemindaian]
+Pemindaian adalah cara normal penumpang berpindah tahap, dan meninggalkan jejak yang
+semestinya. Gunakan **Update Status** jika pemindaian tidak memungkinkan atau akan
+keliru — bukan sebagai jalan pintas melewati Gate.
+:::
+
+## Langkah 1 — Temukan Penumpang {/* #step-1--find-the-passenger */}
+
+Dari dalam perjalanannya:
+
+- **Perjalanan hari ini:** **Operational → Current Trips** → klik perjalanan → tabel
+  **Passengers** di bagian bawah.
+- **Perjalanan lama:** **Management → Departure Trips** → temukan perjalanannya →
+  buka halaman detailnya.
+- **Tidak yakin perjalanan yang mana?** Gunakan
+  [Mencari Penumpang](/terminal-operator/look-up-passenger) terlebih dahulu —
+  pencarian itu mencakup semua perjalanan dan memberi tahu di perjalanan mana
+  penumpang berada.
+
+![Menu baris penumpang dengan Update Status](/img/terminal-staff/edit-passenger/02-edit-from-current-trip.png)
+_Menu **⋯** penumpang pada perjalanan yang dibuka dari **Current Trips** — **Update Status** adalah item keempat._
+
+## Langkah 2 — Buka Update Status {/* #step-2--open-update-status */}
+
+Di baris penumpang, klik **⋯** dan pilih **Update Status**.
+
+Jika tidak ada di menu, penumpang berstatus **Cancelled** — lihat
+[Penumpang Cancelled](#update-status-cannot-cancel) di bawah.
+
+## Langkah 3 — Pilih Status Baru dan Konfirmasi {/* #step-3--pick-the-new-status-and-confirm */}
+
+Dialog bertuliskan **Update Status** — _"Change the status of **[nama]** ([No])."_
+
+Buka pilihan **New Status**. Isinya tepat tiga:
+
+| Status | Artinya |
+| --- | --- |
+| **CheckedIn** | Punya boarding pass; belum melewati Pre-Immigration. |
+| **PreImmigration** | Sudah melewati Pre-Immigration; menunggu naik. |
+| **Boarded** | Sudah di kapal. |
+
+![Dialog Update Status](/img/terminal-staff/edit-passenger/05-update-status.png)
+_Dialog Update Status, dengan **PreImmigration** dipilih untuk penumpang CheckedIn._
+
+Pilih salah satu dan klik **Update Status** (atau **Cancel** untuk membatalkan).
+Tombol tetap **nonaktif selama status yang dipilih sama dengan status saat ini**,
+sehingga Anda tidak bisa mengirim perubahan kosong.
+
+## Hasil {/* #outcome */}
+
+- Status penumpang langsung berubah.
+- Hitungan perjalanan menyesuaikan — satu hitungan berkurang, yang lain bertambah.
+- **Stempel waktu dicatat untuk status baru**: mengatur **CheckedIn** mencatat jam
+  check-in baru, **PreImmigration** jam Pre-Immigration, **Boarded** jam Boarded.
+  Semuanya diisi **saat ini**, bukan saat penumpang benar-benar melewati titik
+  tersebut.
+- Perubahan berlaku **apa pun status perjalanannya** — berbeda dengan pembatalan di
+  halaman pemindaian, ini tidak diblokir meskipun perjalanan sudah Closed atau
+  Departed. Justru itulah alasan fitur ini ada.
+
+:::info[Dapat bergerak ke arah mana pun]
+Berbeda dengan pemindaian, ini bukan jalan satu arah. Anda dapat mengembalikan
+penumpang Boarded ke CheckedIn dalam satu langkah, atau melompat dari CheckedIn
+langsung ke Boarded. Tidak ada aturan urutan.
+:::
+
+## Update Status Tidak Dapat Membatalkan {/* #update-status-cannot-cancel */}
+
+Dua aturan tegas:
+
+1. **Cancelled tidak ada di pilihan.** Daftarnya hanya CheckedIn, PreImmigration,
+   dan Boarded. Untuk membatalkan seseorang, gunakan
+   [Membatalkan Penumpang](/terminal-operator/cancel-passenger) — tindakan yang juga
+   membebaskan kursi. Jika nilai Cancelled dipaksakan, jawabannya _"Direct status
+   update does not support Cancelled. Use cancel action instead."_
+2. **Penumpang yang dibatalkan tidak dapat diubah.** **Update Status** **tidak
+   tampil sama sekali** pada baris Cancelled. Jika dipaksakan, jawabannya
+   _"Cancelled passenger status cannot be updated directly."_ Tidak ada jalan dari
+   Cancelled kembali ke CheckedIn —
+   [check-in ulang](/terminal-operator/check-in-ntl-lm) sebagai gantinya.
+
+## Update Status vs. Pembatalan Pemindaian {/* #update-status-vs-the-scan-reverts */}
+
+Keduanya memundurkan penumpang. Keduanya tidak bisa saling menggantikan:
+
+| | **Pembatalan di halaman pemindaian** | **Update Status** |
+| --- | --- | --- |
+| Tempat | [Pre-Immigration Scan](/terminal-operator/revert-pre-immigration) / [Boarding Scan](/terminal-operator/revert-boarding) | Tabel penumpang perjalanan |
+| Status perjalanan yang dibutuhkan | Scheduled atau Boarding | **Status apa pun** |
+| Pergerakan | Mundur satu langkah | Ke **salah satu** dari tiga status, arah mana pun |
+| Paling cocok untuk | Memperbaiki pemindaian yang baru saja dilakukan, di Gate | Memperbaiki data setelah kejadian |
+
+Di Gate, batalkan pemindaian. Di konter, ubah status.
+
+## Jika Perubahan Ditolak {/* #if-the-update-is-refused */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"Trip CheckInCount is inconsistent for this status transition."_ (atau PreImmigrationCount / BoardedCount) | Hitungan perjalanan tidak sesuai dengan perubahan — biasanya karena dua orang mengubah perjalanan yang sama bersamaan. Muat ulang halaman dan coba lagi; jika terus terjadi, laporkan. |
+| _"Cancelled passenger status cannot be updated directly."_ | Penumpang sudah dibatalkan. |
+| _"Direct status update does not support Cancelled."_ | Gunakan [Membatalkan Penumpang](/terminal-operator/cancel-passenger). |
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan Penumpang](/terminal-operator/cancel-passenger)
+- [Membatalkan Pemindaian Boarding](/terminal-operator/revert-boarding) ·
+  [Membatalkan Pemindaian Pre-Immigration](/terminal-operator/revert-pre-immigration)

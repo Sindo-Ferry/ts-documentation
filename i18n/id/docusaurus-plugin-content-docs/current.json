@@ -1,0 +1,118 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.Terminal Portal": {
+    "message": "Terminal Portal",
+    "description": "The label for category 'Terminal Portal' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Terminal Portal.link.generated-index.description": {
+    "message": "Panduan bagi staf terminal yang mengoperasikan Terminal Portal (ts-terminal.sindoferry.com.sg).",
+    "description": "The generated-index page description for category 'Terminal Portal' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.terminal-administrator": {
+    "message": "Administrator",
+    "description": "The label for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.terminal-administrator.link.generated-index.title": {
+    "message": "Administrator",
+    "description": "The generated-index page title for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.terminal-administrator.link.generated-index.description": {
+    "message": "Administrasi keamanan untuk Terminal Portal — buat peran (role), berikan hak akses, buat pengguna, dan atur siapa yang boleh melakukan apa.",
+    "description": "The generated-index page description for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Master Data Setup": {
+    "message": "Pengaturan Data Master",
+    "description": "The label for category 'Master Data Setup' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Master Data Setup.link.generated-index.description": {
+    "message": "Data master yang mendasari semuanya — Operators, Vessels, Ports, Gates, Berths, Routes, dan Countries. Diatur sekali, jarang diubah.",
+    "description": "The generated-index page description for category 'Master Data Setup' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Terminal Operator": {
+    "message": "Operator Terminal",
+    "description": "The label for category 'Terminal Operator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Terminal Operator.link.generated-index.title": {
+    "message": "Operator Terminal",
+    "description": "The generated-index page title for category 'Terminal Operator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Terminal Operator.link.generated-index.description": {
+    "message": "Semua yang dikerjakan operator terminal setiap hari — menyiapkan jadwal dan perjalanan, meloloskan penumpang melalui Pre-Immigration, memproses Boarding penumpang di Gate, dan menangani pengecualian di antaranya.",
+    "description": "The generated-index page description for category 'Terminal Operator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Operations": {
+    "message": "Operasional",
+    "description": "The label for category 'Operations' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Operations.link.generated-index.title": {
+    "message": "Operasional",
+    "description": "The generated-index page title for category 'Operations' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Operations.link.generated-index.description": {
+    "message": "Susun jadwal dan siapkan perjalanan: timeslot, perjalanan yang dibuat otomatis, perjalanan ad hoc, pembatalan, membuka Boarding, dan perubahan waktu.",
+    "description": "The generated-index page description for category 'Operations' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Pre-Immigration": {
+    "message": "Pre-Immigration",
+    "description": "The label for category 'Pre-Immigration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Pre-Immigration.link.generated-index.title": {
+    "message": "Pre-Immigration",
+    "description": "The generated-index page title for category 'Pre-Immigration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Pre-Immigration.link.generated-index.description": {
+    "message": "Titik pemindaian pertama. Loloskan penumpang yang sudah check-in melalui Pre-Immigration, batalkan pemindaian, dan jalankan layar untuk penumpang.",
+    "description": "The generated-index page description for category 'Pre-Immigration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Boarding": {
+    "message": "Boarding",
+    "description": "The label for category 'Boarding' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Boarding.link.generated-index.title": {
+    "message": "Boarding",
+    "description": "The generated-index page title for category 'Boarding' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Boarding.link.generated-index.description": {
+    "message": "Gate Boarding. Pindai boarding pass saat penumpang Boarding, batalkan pemindaian, pantau peringatan Last Call, lalu tutup dan berangkatkan perjalanan.",
+    "description": "The generated-index page description for category 'Boarding' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.General Support": {
+    "message": "Dukungan Umum",
+    "description": "The label for category 'General Support' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.General Support.link.generated-index.title": {
+    "message": "Dukungan Umum",
+    "description": "The generated-index page title for category 'General Support' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.General Support.link.generated-index.description": {
+    "message": "Konter di samping alur utama — check-in penumpang NTL / LM, perbaiki data paspor, batalkan penumpang, koreksi status, cetak ulang boarding pass, unduh manifest, dan ekspor laporan.",
+    "description": "The generated-index page description for category 'General Support' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator Portal": {
+    "message": "Ferry Operator Portal",
+    "description": "The label for category 'Ferry Operator Portal' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator Portal.link.generated-index.title": {
+    "message": "Ferry Operator Portal",
+    "description": "The generated-index page title for category 'Ferry Operator Portal' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator Portal.link.generated-index.description": {
+    "message": "Panduan bagi staf operator feri yang menggunakan Operator Portal (ts-operator.sindoferry.com.sg) — masuk, lihat jadwal dan perjalanan, ganti Vessel, check-in penumpang, dan unduh manifest.",
+    "description": "The generated-index page description for category 'Ferry Operator Portal' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.operator-administrator": {
+    "message": "Administrator",
+    "description": "The label for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.operator-administrator.link.generated-index.title": {
+    "message": "Administrator",
+    "description": "The generated-index page title for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.operator-administrator.link.generated-index.description": {
+    "message": "Administrasi keamanan untuk Operator Portal — buat peran (role), berikan hak akses, buat pengguna, dan atur siapa yang boleh melakukan apa.",
+    "description": "The generated-index page description for category 'Administrator' in sidebar 'docsSidebar'"
+  }
+}

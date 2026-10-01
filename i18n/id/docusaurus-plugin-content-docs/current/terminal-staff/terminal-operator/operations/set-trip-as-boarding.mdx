@@ -1,0 +1,128 @@
+---
+id: set-trip-as-boarding
+title: Mengatur Perjalanan menjadi Boarding
+sidebar_label: Mengatur Perjalanan menjadi Boarding
+sidebar_position: 6
+slug: /terminal-operator/set-trip-as-boarding
+description: Buka Boarding untuk perjalanan terjadwal dengan menetapkan Gate dan Berth-nya, dari Current Trips.
+keywords:
+  - set as boarding
+  - gate
+  - berth
+  - current trips
+  - boarding
+  - trip status
+---
+
+Mengatur perjalanan menjadi **Boarding** adalah saat operasional hari itu dimulai
+untuk pelayaran tersebut. Tindakan ini melakukan dua hal sekaligus: **membuka
+Boarding**, dan **menetapkan Gate dan Berth** tujuan penumpang.
+
+> **Current Trips → buka perjalanan → Set As Boarding → pilih Gate & Berth → konfirmasi**
+
+:::warning[Status perjalanan hanya bergerak maju]
+**Scheduled → Boarding → Closed → Departed** (atau **Cancelled**). Setiap tindakan
+hanya tersedia pada status yang tepat, dan tidak ada yang dapat dibatalkan. **Set As
+Boarding** hanya tersedia pada perjalanan **Scheduled**.
+:::
+
+:::note
+Anda membutuhkan permission untuk melihat Current Trips dan menetapkan perjalanan ke
+Boarding. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda sudah [mengatur Port aktif](/terminal-staff/set-port-context). **Current
+  Trips hanya menampilkan perjalanan hari ini di Port aktif Anda**, jadi jika
+  daftarnya kosong atau tampak salah, periksa Port terlebih dahulu.
+- [Gate](/terminal-staff/gates) dan [Berth](/terminal-staff/berths) yang akan
+  dipakai ada di Port tersebut dan berstatus **Active**.
+
+## Langkah 1 — Buka Current Trips dan Pilih Perjalanan {/* #step-1--open-current-trips-and-select-the-trip */}
+
+Di sidebar, buka **Operational → Current Trips**
+(route: `/current-departure-trips`). Halaman ini menampilkan perjalanan
+keberangkatan **hari ini** beserta Vessel, tujuan, jam keberangkatan, status, dan
+jumlah penumpang terkini.
+
+Klik baris perjalanan untuk membuka **halaman detail**-nya.
+
+![Daftar Current Departure Trips](/img/terminal-staff/check-in-ntl-lm-passenger/01-current-trips.png)
+_Daftar Current Departure Trips — perjalanan hari ini di Port aktif Anda._
+
+## Langkah 2 — Klik Set As Boarding {/* #step-2--click-set-as-boarding */}
+
+Di halaman detail perjalanan, selama **Status** masih **Scheduled**, klik **Set As
+Boarding** di kanan atas. Sebelum ditetapkan, kolom **Gate / Berth** berisi
+`- / -`.
+
+![Detail perjalanan terjadwal dengan tombol Set As Boarding](/img/terminal-staff/manage-departure-trip/01-set-as-boarding.png)
+_Perjalanan Scheduled. Tombol **Set As Boarding** ada di kanan atas._
+
+:::tip[Bisa juga tanpa membuka perjalanan]
+Menu **⋯** pada baris perjalanan di daftar Current Trips langsung menawarkan **Set
+As Boarding**. Dialognya sama.
+:::
+
+## Langkah 3 — Pilih Gate dan Berth {/* #step-3--choose-a-gate-and-a-berth */}
+
+Dialog terbuka: **Set As Boarding — Assign a gate and berth for _[kode
+perjalanan]_ to begin boarding.**
+
+1. Klik **Gate** dan pilih dari daftar **Select active gate**.
+2. Klik **Berth** dan pilih dengan cara yang sama.
+3. Klik **Set As Boarding** untuk mengonfirmasi.
+
+![Dialog penetapan Gate dan Berth](/img/terminal-staff/manage-departure-trip/02-assign-gate-berth.png)
+_Dialog Set As Boarding — pilih Gate dan Berth, lalu konfirmasi._
+
+![Pemilih Select Gate](/img/terminal-staff/manage-departure-trip/03-select-gate.png)
+_Pemilih Gate menampilkan Gate aktif di Port asal perjalanan; pemilih Berth bekerja dengan cara yang sama._
+
+:::warning[Keduanya wajib]
+Tombol konfirmasi tetap **nonaktif sampai Gate dan Berth sama-sama dipilih**. Anda
+tidak dapat membuka Boarding tanpa keduanya.
+:::
+
+:::tip[Jika Gate atau Berth yang diinginkan tidak muncul]
+Pemilih hanya menampilkan Gate dan Berth yang **Active** dan **berada di Port asal
+perjalanan**. Jika yang Anda cari tidak ada, periksa di
+[Gates](/terminal-staff/gates) atau [Berths](/terminal-staff/berths) — kemungkinan
+statusnya inactive, atau terdaftar di Port lain.
+:::
+
+## Langkah 4 — Hasil {/* #step-4--outcome */}
+
+**Status** perjalanan berubah menjadi **Boarding**, Gate dan Berth tersimpan pada
+perjalanan, dan muncul pertanyaan:
+
+> **Trip Set As Boarding** — Open the Boarding Scan page now?
+
+Pilih **Open Boarding Scan** untuk membuka halaman
+[Boarding Scan](/terminal-operator/boarding-scan) di tab baru, atau **Not Now** jika
+rekan lain di Gate sudah menjalankannya.
+
+Sejak saat ini perjalanan sudah aktif:
+
+- Perjalanan muncul di panel **Boarding Trips** pada
+  [Boarding Scan](/terminal-operator/boarding-scan), tempat petugas Gate memindai
+  penumpang naik ke kapal.
+- Penumpang masih dapat melewati
+  [Pre-Immigration](/terminal-operator/pre-immigration-scan) — dan setelah
+  perjalanan berstatus Boarding, **rentang Gate dibuka / ditutup tidak lagi
+  membatasi pemindaian Pre-Immigration**.
+- Anda masih dapat
+  [melakukan check-in penumpang NTL / LM](/terminal-operator/check-in-ntl-lm) dan
+  [mengubah waktunya](/terminal-operator/update-timings).
+- Setelah Boarding selesai, [tutup perjalanan](/terminal-operator/set-trip-as-close).
+
+## Selanjutnya {/* #next */}
+
+- [Boarding Scan](/terminal-operator/boarding-scan) — naikkan penumpang ke kapal.
+- [Mengubah Waktu](/terminal-operator/update-timings) — sesuaikan waktu Gate atau
+  catat keterlambatan.
+- [Mengatur Perjalanan menjadi Close](/terminal-operator/set-trip-as-close)

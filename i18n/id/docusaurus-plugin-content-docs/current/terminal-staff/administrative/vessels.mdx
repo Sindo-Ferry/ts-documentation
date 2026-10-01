@@ -1,0 +1,109 @@
+---
+id: vessels
+title: Vessels
+sidebar_label: Vessels
+sidebar_position: 2
+slug: /terminal-staff/vessels
+description: Kelola Vessel yang dipakai untuk perjalanan keberangkatan — cari di daftar, buat Vessel, aktifkan/nonaktifkan, lalu ubah atau hapus.
+keywords:
+  - vessels
+  - vessel
+  - create vessel
+  - activate
+  - deactivate
+  - operator
+  - capacity
+---
+
+Modul **Vessels** adalah tempat staf mengelola kapal feri (Vessel) yang dipakai
+untuk perjalanan keberangkatan. Di sini Anda dapat mencari Vessel yang ada, membuat
+yang baru, serta mengaktifkan, menonaktifkan, mengubah, atau menghapus Vessel.
+
+> **Vessels → List View / Create Vessel → Actions (Activate · Edit · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola Vessel. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Persyaratan {/* #prerequisites */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda memiliki permission untuk mengelola Vessel.
+- **Operator** pemilik Vessel sudah ada.
+
+## Daftar Vessels {/* #the-vessels-list */}
+
+Buka **Vessels** (route: `/vessels`). Setiap baris menampilkan **Code**, **Name**,
+**Operator**, **Capacity**, dan **Status** (**Active** / **Inactive**) Vessel, serta
+menu **Actions** (**⋯**).
+
+![Tampilan daftar Vessels](/img/terminal-staff/vessels/01-vessels-list.png)
+_Daftar Vessels — dapat diurutkan berdasarkan Code, Name, dan Capacity._
+
+### Mencari dan Memfilter {/* #search-and-filter */}
+
+- **Pencarian cepat** — ketik di kotak **search** untuk menemukan Vessel sambil
+  mengetik.
+- **Show Filters** — buka dialog **Filter Vessels** untuk mempersempit hasil
+  berdasarkan **Operator** dan **Status** (**All Statuses**, **Active Only**, atau
+  **Inactive Only**).
+- Filter yang diterapkan tampil sebagai **chip**; hapus chip atau klik **Reset**
+  untuk mengosongkannya. **Refresh** memuat ulang hasil.
+
+## Membuat Vessel {/* #create-a-vessel */}
+
+1. Klik **Create Vessel** (kanan atas) untuk membuka formulir **New Vessel**.
+2. Isi kolom-kolomnya:
+
+   | Kolom | Catatan |
+   | --- | --- |
+   | **Operator** | Pilih operator pemilik Vessel (misalnya **Waterfront Ferry**). |
+   | **Vessel code** | Kode pendek, misalnya `WF-01`. |
+   | **Vessel name** | Nama Vessel, misalnya `Waterfront Star`. |
+   | **Certification number** | Nomor sertifikasi Vessel, misalnya `CERT-WF-001`. |
+   | **Capacity** | Jumlah penumpang maksimum (harus lebih dari 0). |
+
+3. Klik **Create Vessel**.
+
+![Formulir New Vessel yang diisi untuk operator Waterfront Ferry](/img/terminal-staff/vessels/02-create-vessel.png)
+_Membuat Vessel untuk operator **Waterfront Ferry**._
+
+## Mengaktifkan Vessel {/* #activate-a-vessel */}
+
+:::warning[Vessel baru berstatus Inactive]
+Vessel yang baru dibuat berstatus **Inactive** dan **tidak dapat dipakai** untuk
+perjalanan keberangkatan sampai diaktifkan.
+:::
+
+Untuk mengaktifkan (atau menonaktifkan) Vessel, buka menu **⋯ Actions** pada daftar
+dan pilih:
+
+- **Activate** — muncul jika Vessel berstatus **Inactive**; membuatnya bisa
+  dipakai.
+- **Deactivate** — muncul jika Vessel berstatus **Active**.
+
+![Menu Actions pada Vessel inactive, berisi Edit, Activate, dan Delete](/img/terminal-staff/vessels/03-actions-menu.png)
+_Vessel **WF-01** yang baru dibuat berstatus **Inactive**; menu **⋯**-nya menawarkan **Activate**._
+
+:::tip[Menonaktifkan ada pengamannya]
+Vessel yang sudah dipakai di satu atau lebih **perjalanan terjadwal** tidak dapat
+dinonaktifkan. Pindahkan perjalanan tersebut ke Vessel lain terlebih dahulu, lalu
+nonaktifkan.
+:::
+
+## Mengubah atau Menghapus Vessel {/* #edit-or-delete-a-vessel */}
+
+Dari menu **⋯ Actions** yang sama:
+
+- **Edit** — membuka formulir Vessel untuk mengubah operator, kode, nama, nomor
+  sertifikasi, atau kapasitasnya.
+- **Delete** — menghapus Vessel secara permanen. Dialog konfirmasi muncul
+  (_"Are you sure you want to delete …? This action cannot be undone."_); klik
+  **Delete** untuk mengonfirmasi.
+
+## Langkah Berikutnya {/* #next-steps */}
+
+- [Ports](/terminal-staff/ports)
+- [Operators](/terminal-staff/operators)

@@ -1,0 +1,108 @@
+---
+id: register-account
+title: Mendaftarkan Akun
+sidebar_label: Mendaftarkan Akun
+sidebar_position: 2
+description: Buat akun Opusbay Anda, konfirmasi email, dan minta administrator mengaktifkannya sebelum masuk ke Terminal Portal atau Operator Portal.
+keywords:
+  - register
+  - sign up
+  - email confirmation
+  - account activation
+  - daftar
+---
+
+**Staf terminal** maupun **operator feri** membuat akun di halaman pendaftaran publik
+yang sama sebelum dapat masuk ke salah satu portal:
+
+> **Daftar → Konfirmasi email → Administrator mengaktifkan akun Anda → Masuk**
+
+:::note
+Halaman pendaftaran bersifat publik — tidak perlu masuk:
+`https://ts-terminal.sindoferry.com.sg/public/register/`
+:::
+
+## Langkah 1 — Daftar {/* #step-1--sign-up */}
+
+Buka halaman pendaftaran dan isi formulirnya:
+
+- **Full Name**
+- **Email** — Anda harus dapat membuka kotak masuk email ini untuk
+  mengonfirmasinya.
+- **Password** / **Confirm Password**
+
+Lalu klik **Sign Up**.
+
+![Formulir pendaftaran Create an Account](/img/public/register.png)
+_Formulir pendaftaran publik._
+
+## Langkah 2 — Konfirmasi Email Anda {/* #step-2--confirm-your-email */}
+
+Setelah mendaftar, email konfirmasi dikirim ke alamat yang Anda daftarkan. Buka
+email tersebut dan klik **tautan konfirmasi** — Anda diarahkan kembali ke halaman
+login, siap untuk masuk.
+
+:::tip[Tidak ada email di kotak masuk?]
+Periksa folder **Spam / Junk**. Jika tidak ada juga, gunakan cara kirim ulang di
+bawah.
+:::
+
+### Jika Tautan Konfirmasi Kedaluwarsa (Kirim Ulang) {/* #if-the-confirmation-link-expired-resend */}
+
+Tautan konfirmasi memiliki batas waktu. Jika tautan Anda sudah kedaluwarsa — atau
+emailnya tidak pernah datang — cukup coba **masuk** dengan email dan password yang
+terdaftar. Halaman login akan menampilkan *"Email not confirmed. Please check your
+inbox."* beserta tombol **Resend confirmation email**. Klik tombol itu, lalu periksa
+kotak masuk (dan folder spam) untuk email konfirmasi yang baru.
+
+![Halaman login yang menampilkan tombol Resend confirmation email](/img/public/resend-confirmation.png)
+_Masuk dengan email yang belum dikonfirmasi memunculkan tombol **Resend confirmation email**._
+
+## Langkah 3 — Minta Administrator Mengaktifkan Akun {/* #step-3--get-activated-by-an-administrator */}
+
+Mengonfirmasi email bukan langkah terakhir: akun baru juga harus **diaktifkan oleh
+administrator** sebelum dapat mengakses portal. Jika Anda masuk sebelum diaktifkan,
+Anda akan melihat:
+
+> _"Login succeeded, but your account is not provisioned for Opusbay access.
+> Please contact your administrator."_
+
+Jika pesan ini muncul, hubungi administrator Anda dan minta akun Anda diaktifkan.
+
+### Untuk Administrator — Membuat dan Mengaktifkan Pengguna Portal {/* #for-administrators--creating-and-activating-the-portal-user */}
+
+Pendaftaran **hanya membuat akun masuk** — orang baru tersebut **belum** muncul di
+daftar **Users** portal mana pun. Untuk memberinya akses, bekerjalah di portal yang
+ia butuhkan (Terminal Portal untuk staf terminal, Operator Portal untuk staf
+perusahaan feri):
+
+1. **Buat pengguna portalnya** — buka **Users**, klik **Create User**, lalu masukkan
+   username beserta **alamat email yang persis sama** dengan yang dipakai orang itu
+   untuk mendaftar. Orang tersebut menerima email pemberitahuan bahwa ia sudah
+   ditambahkan — email ini juga mengingatkannya untuk mendaftar dengan email yang
+   sama jika belum.
+   Lihat **Menambah Pengguna Baru** —
+   [Terminal Portal](/terminal-administrator/add-user) ·
+   [Operator Portal](/operator-administrator/add-user).
+2. **Aktifkan** — kembali ke daftar **Users**, klik tombol **… (Actions)** di
+   barisnya dan pilih **Activate** (Terminal Portal) atau **Set Active** (Operator
+   Portal, yang membutuhkan **Super Admin**).
+   Lihat **Mengaktifkan atau Menonaktifkan Pengguna** —
+   [Terminal Portal](/terminal-administrator/activate-deactivate-user) ·
+   [Operator Portal](/operator-administrator/activate-deactivate-user).
+
+:::info[Bagaimana kedua akun terhubung]
+Akun masuk (email + password) dan pengguna portal dicocokkan melalui **alamat
+email** saat masuk. Jika kedua email berbeda, orang tersebut akan terus melihat
+pesan "not provisioned" meskipun sudah diaktifkan.
+:::
+
+Kedua langkah juga dapat dilakukan **melalui API** — lihat **Dokumentasi API** dari
+tim pengembang.
+
+## Langkah 4 — Masuk {/* #step-4--sign-in */}
+
+Setelah email dikonfirmasi dan akun diaktifkan, Anda dapat masuk:
+
+- [Masuk ke Terminal Portal](/terminal-staff/sign-in) — staf terminal
+- [Masuk ke Operator Portal](/ferry-operator/sign-in) — operator feri

@@ -1,0 +1,135 @@
+---
+id: assign-role
+title: Memberikan Role kepada Pengguna
+sidebar_label: Memberikan Role kepada Pengguna
+sidebar_position: 7
+slug: /terminal-administrator/assign-role
+description: Berikan satu atau lebih role kepada pengguna, cabut kembali, dan periksa akses efektif yang dihasilkan.
+keywords:
+  - assign role
+  - revoke role
+  - user roles
+  - effective access
+  - super admin
+---
+
+Memberikan role adalah cara pengguna benar-benar mendapatkan aksesnya. Semua langkah
+sebelumnya hanyalah persiapan.
+
+> **Users → ⋯ → Manage Security → tab Roles → Assign / Revoke**
+
+**Permission yang dibutuhkan:** `terminal.security.is_super_admin`
+
+:::warning[Hanya Super Admin yang dapat mengubah role pengguna]
+Tombol di kedua panel dikunci dengan **`terminal.security.is_super_admin`** — bukan
+dengan `terminal.roles.write` atau `terminal.users.write`.
+
+Jadi administrator biasa **dapat membuka dan membaca halaman ini**, tetapi tombol
+tindakannya tidak muncul. Jika Anda dapat melihat daftarnya tetapi tidak melihat
+tombolnya, itulah sebabnya.
+:::
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- [Penggunanya sudah ada](/terminal-administrator/add-user) dan
+  [role-nya sudah ada](/terminal-administrator/add-role) dengan
+  [permission yang sudah diatur](/terminal-administrator/manage-role-permissions).
+- Anda adalah **Super Admin**.
+
+## Langkah 1 — Buka Profil Keamanan Pengguna {/* #step-1--open-the-users-security-profile */}
+
+Buka **Security → Users**, temukan penggunanya, dan gunakan menu **⋯** pada baris →
+**Manage Security** (route: `/users/edit?id=…`).
+
+**User Security Profile** terbuka, dengan nama, email, dan badge **Admin** / **Super
+Admin** pengguna di bagian atas. Pastikan Anda membuka orang yang benar — email
+tampil di bawah username.
+
+Ada tiga tab: **Roles**, **Direct Permissions**, dan **Effective Access**.
+
+## Langkah 2 — Buka Tab Roles {/* #step-2--open-the-roles-tab */}
+
+Dua panel:
+
+| Panel | Isinya |
+| --- | --- |
+| **Available Roles** (kiri) | Role yang **belum** dipegang pengguna. |
+| **Assigned Roles** (kanan) | Role yang **sudah** dipegang. Tampil dengan latar berwarna. |
+
+Kedua panel bekerja dengan cara yang sama:
+
+- **Kotak filter** — ketik sebagian nama role untuk mempersempit daftar.
+- **Centang baris** yang diinginkan. **Kotak centang di header** mencentang semua yang
+  sedang tampil.
+- Tombol tindakan menampilkan jumlahnya — **Assign (3)** — dan tetap **nonaktif
+  sampai setidaknya satu baris dicentang**.
+- Setiap panel bergulir sendiri; pilihan dikosongkan setelah setiap tindakan.
+
+## Langkah 3 — Berikan Role {/* #step-3--assign-a-role */}
+
+Centang role di **Available Roles** dan klik **Assign (N)**. Role langsung berpindah.
+
+![Role dicentang di Available Roles](/img/terminal-staff/security/20-assign-user-role.png)
+_**UAT Boarding Gate Officer** dicentang — **Assign (1)** aktif._
+
+## Langkah 4 — Cabut Role {/* #step-4--revoke-a-role */}
+
+Centang role di **Assigned Roles** dan klik **Revoke (N)**.
+
+![Role dicentang di Assigned Roles](/img/terminal-staff/security/21-revoke-user-role.png)
+_Role yang sama, kini sudah diberikan dan dicentang — **Revoke (1)** aktif._
+
+:::warning[Tanpa konfirmasi, langsung berlaku]
+Kedua panel tidak meminta konfirmasi. Perubahan langsung berlaku — termasuk bagi
+pengguna yang sedang bertugas dengan portal terbuka.
+
+Mencabut role pemindaian dari seseorang yang bertugas di Gate Boarding langsung
+menghentikan pemindaiannya. Sebisa mungkin lakukan perubahan ini di antara shift.
+:::
+
+Role juga harus dicabut dari setiap pemegangnya sebelum role itu sendiri dapat
+[dihapus](/terminal-administrator/edit-delete-role#delete-a-role).
+
+## Langkah 5 — Periksa Hasilnya {/* #step-5--check-the-result */}
+
+Buka tab **Effective Access**. Tab ini mencantumkan **setiap permission yang
+benar-benar dimiliki pengguna** — gabungan semua role-nya ditambah
+[permission langsung](/terminal-administrator/manage-user-permissions) apa pun.
+
+Tab inilah yang menjawab _"mengapa orang ini bisa melakukan itu?"_ dan _"mengapa ia
+tidak bisa?"_ Periksa setelah setiap perubahan alih-alih menganggap role-nya sudah
+cukup.
+
+:::info[Lebih dari satu role tidak masalah]
+Role saling menjumlahkan. Seseorang yang menjadi _Check-in Counter_ sekaligus
+_Boarding Gate Officer_ mendapat kedua kumpulan permission. Tidak ada peringkat dan
+tidak ada konflik — permission hanya bertambah.
+:::
+
+## Jika Perubahan Ditolak {/* #if-a-change-is-rejected */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"One or more Role IDs are invalid."_ / _"Invalid Role IDs detected: …"_ | Daftar di halaman sudah usang — role dihapus atau diganti nama saat halaman terbuka. Muat ulang dan coba lagi. |
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Gejala | Kemungkinan penyebab |
+| --- | --- |
+| Role sudah diberikan, tetapi pengguna tetap tidak bisa melakukan hal itu | **Role**-nya tidak memiliki permission tersebut. Periksa [permission role](/terminal-administrator/manage-role-permissions), lalu tab **Effective Access**. |
+| Pengguna tidak melihat apa pun setelah masuk | Ia tidak punya role, atau role-nya kosong. |
+| Pengguna bisa melakukan apa saja terlepas dari role-nya | Ia seorang [**Admin**](/terminal-administrator/grant-revoke-admin) — tanda ini melewati semua aturan di atas. |
+| Tidak ada tombol **Assign** / **Revoke** | Anda bukan Super Admin. |
+| Perubahan tidak terlihat oleh pengguna | Minta ia keluar lalu masuk lagi. |
+
+## Selanjutnya {/* #next */}
+
+- [Mengelola Permission Langsung Pengguna](/terminal-administrator/manage-user-permissions)
+- [Mengaktifkan atau Menonaktifkan Pengguna](/terminal-administrator/activate-deactivate-user)

@@ -1,0 +1,221 @@
+---
+id: export-other-reports
+title: Mengekspor Laporan Lainnya
+sidebar_label: Mengekspor Laporan Lainnya
+sidebar_position: 8
+slug: /terminal-operator/export-other-reports
+description: Buat laporan Terminal Portal — laporan Passenger Manifest, Passenger Summary untuk satu Port, dan Daily Passenger Report untuk satu operator — dalam PDF atau Excel.
+keywords:
+  - reports
+  - passenger manifest
+  - passenger summary
+  - daily passenger report
+  - pdf
+  - xlsx
+  - password
+  - sign-off
+---
+
+Tombol [Download Manifest](/terminal-operator/download-manifest) di halaman
+perjalanan hanya memberi satu hal: daftar Excel penumpang Boarded dari satu
+perjalanan. **Reports** adalah tempat untuk kebutuhan lainnya — manifest dalam format
+lain atau dengan penumpang lain, serta **total** penumpang lintas banyak perjalanan
+dan hari.
+
+> **Reports → pilih laporan → isi formulir → Download Report**
+
+| Laporan | Cakupan | Dipakai untuk |
+| --- | --- | --- |
+| [**Passenger Manifest**](#passenger-manifest) | **Satu perjalanan** | Manifest dalam PDF atau Excel, bahasa apa pun, status penumpang apa pun, dengan perlindungan kata sandi opsional. |
+| [**Passenger Summary**](#passenger-summary) | **Satu Port**, rentang tanggal, satu atau semua operator | Berapa penumpang yang berangkat dari Port ini — per hari, operator, tujuan, dan jam keberangkatan. |
+| [**Daily Passenger Report**](#daily-passenger-report) | **Satu operator**, rentang tanggal | Jumlah penumpang Indonesia / asing per perjalanan, dengan baris tanda tangan. |
+
+:::note
+Setiap laporan punya **permission sendiri**. Anda hanya melihat laporan yang Anda
+miliki, dan item **Reports** di sidebar hanya muncul jika Anda memiliki setidaknya
+satu. Tangkapan layar di bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Untuk **Passenger Summary**, [atur Port aktif Anda](/terminal-staff/set-port-context)
+  — formulir dimulai dari Port tersebut.
+
+## Langkah 1 — Buka Reports {/* #step-1--open-reports */}
+
+Di sidebar, klik **Reports** (route: `/reports`). Letaknya terpisah di bagian bawah
+sidebar, di bawah kelompok **Operational**.
+
+Halaman menampilkan satu kartu untuk setiap laporan yang dapat Anda akses. Klik yang
+diinginkan.
+
+![Halaman Reports dengan tiga kartu laporan](/img/terminal-staff/reports/01-report-list.png)
+_Halaman Reports untuk pengguna yang memiliki ketiga permission laporan._
+
+Jika halaman bertuliskan _"You don't have access to any reports,"_ tanyakan ke
+administrator Anda.
+
+## Langkah 2 — Isi Formulir dan Unduh {/* #step-2--fill-in-the-form-and-download */}
+
+Setiap laporan punya formulir sendiri, dijelaskan di bawah. Setelah diisi, klik
+**Download Report**. Tombol bertuliskan **Generating…** selama file disiapkan, lalu
+browser Anda menyimpannya.
+
+---
+
+## Passenger Manifest {/* #passenger-manifest */}
+
+_"Boarding / passenger list for a departure trip."_ Formulirnya sama dengan milik
+operator feri — lihat
+[Mengekspor Laporan Manifest Penumpang](/ferry-operator/export-manifest-report) —
+dengan satu perbedaan: di sini pemilih perjalanan mencakup perjalanan **semua
+operator**, bukan hanya satu.
+
+| Kolom | Pilihan | Default |
+| --- | --- | --- |
+| **Departure Trip** | Klik **Select trip**. Jendela **Select Departure Trip** terbuka dengan pencarian dan filter yang sama seperti **Departure Trips** — temukan perjalanannya lalu pilih. Wajib. | — |
+| **Format** | **Excel (.xlsx)** atau **PDF (.pdf)** | Excel |
+| **Language** | **English** atau **Indonesian** | English |
+| **Passenger Status** | **All passengers**, atau salah satu dari **CheckedIn**, **PreImmigration**, **Boarded**, **Cancelled** | **Boarded** |
+| **Password (optional)** | Melindungi file yang dibuat. **Hanya muncul jika Format = PDF.** | kosong |
+
+| Passenger Status | Yang Anda dapat | Penggunaan umum |
+| --- | --- | --- |
+| **Boarded** _(default)_ | Hanya penumpang yang sudah dipindai naik. | Manifest resmi siapa yang berlayar. |
+| **All passengers** | Semua orang di perjalanan, apa pun statusnya. | Mencocokkan pemesanan dengan yang benar-benar berangkat. |
+| **CheckedIn** | Sudah check-in tetapi tidak pernah melewati Pre-Immigration. | Menelusuri penumpang yang tidak datang. |
+| **PreImmigration** | Sudah melewati Pre-Immigration tetapi tidak pernah naik. | Menyelidiki penumpang yang tertinggal. |
+| **Cancelled** | Hanya penumpang yang dibatalkan. | Catatan pembatalan. |
+
+:::warning[Default-nya Boarded, bukan semua orang]
+Jika formulir tidak diubah, Anda hanya mendapat **penumpang Boarded** — orang yang
+sama dengan tombol Download Manifest. Untuk daftar lengkap, ubah **Passenger
+Status** menjadi **All passengers**.
+:::
+
+:::info[Kata sandi hanya untuk PDF, dan tidak disimpan]
+Ubah **Format** menjadi **PDF (.pdf)** dan kolom **Password (optional)** muncul.
+Ketik kata sandi dan PDF akan memintanya saat dibuka; kosongkan untuk PDF biasa.
+Tidak ada yang mencatat apa yang Anda ketik — jika Anda mengirim manifest yang
+dilindungi, sampaikan kata sandinya secara terpisah, dan simpan catatan Anda
+sendiri.
+:::
+
+![Formulir laporan Passenger Manifest](/img/terminal-staff/reports/02-manifest-report.png)
+_Formulir dengan perjalanan terpilih dan nilai default — **Excel (.xlsx)**, **English**, **Boarded**. Tidak ada kolom **Password** karena formatnya Excel._
+
+File-nya bernama `passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.pdf` (atau `.xlsx`).
+
+---
+
+## Passenger Summary {/* #passenger-summary */}
+
+_"Boarded passengers leaving one port, per day, by operator, destination and
+departure time."_ Gunakan untuk angka lalu lintas Port — berapa orang yang
+berangkat, dengan pelayaran operator mana, ke mana.
+
+| Kolom | Yang diisi | Default |
+| --- | --- | --- |
+| **Origin Port** | Port asal perjalanan. Wajib. | **Port aktif** Anda |
+| **Operator** | Satu operator, atau biarkan **All operators** untuk mencakup semua. | All operators |
+| **Start Date** / **Until Date** | Rentang tanggal perjalanan. **Kedua tanggal ikut dihitung.** | Tanggal 1 bulan ini → hari ini |
+| **Format** | **PDF (.pdf)** atau **Excel (.xlsx)** | PDF |
+
+![Formulir laporan Passenger Summary](/img/terminal-staff/reports/03-passenger-report.png)
+_Origin Port terisi dari Port aktif, **All operators**, dan rentang tanggal satu bulan._
+
+**Yang Anda dapat:** tabel penumpang Boarded untuk setiap perjalanan yang berangkat
+dari Port tersebut dalam periode itu, dirinci berdasarkan **tanggal perjalanan**,
+**operator**, **Port tujuan**, dan **jam keberangkatan**, beserta totalnya.
+
+File-nya bernama `passenger-summary-<PORT>-<OPERATOR atau all>-<START>-<UNTIL>.pdf`
+(atau `.xlsx`).
+
+---
+
+## Daily Passenger Report {/* #daily-passenger-report */}
+
+_"Per-trip Indonesian / foreign passenger counts for one operator, with sign-off."_
+Gunakan untuk laporan harian resmi yang memuat angka satu operator.
+
+| Kolom | Yang diisi | Default |
+| --- | --- | --- |
+| **Operator** | Operator yang dilaporkan. Wajib. | — |
+| **Start Date** / **Until Date** | Rentang tanggal perjalanan. **Kedua tanggal ikut dihitung.** | Hari ini → hari ini |
+| **Format** | **PDF (.pdf)** atau **Excel (.xlsx)** | PDF |
+| **Prepared by** / **Acknowledged by** / **Received by** _(opsional)_ | Nama yang dicetak di bawah tiga baris tanda tangan laporan. Masing-masing hingga 100 karakter. | kosong |
+
+![Formulir Daily Passenger Report](/img/terminal-staff/reports/04-daily-passenger-report.png)
+_Operator terpilih, rentang tanggal, dan ketiga nama tanda tangan terisi._
+
+**Yang Anda dapat:** perjalanan operator tersebut dikelompokkan berdasarkan **Port
+asal** dan **tanggal perjalanan**. Setiap perjalanan menampilkan jam keberangkatan,
+Vessel, serta jumlah penumpang **Indonesia**, **asing**, dan **total**, diikuti total
+keseluruhan dan tiga baris tanda tangan.
+
+- **Indonesia** berarti **kewarganegaraan** penumpang adalah Indonesia;
+  kewarganegaraan lain dihitung sebagai **asing**.
+- Nama tanda tangan yang dikosongkan dicetak sebagai **garis titik-titik**, siap
+  ditandatangani secara manual.
+
+File-nya bernama `daily-passenger-report-<OPERATOR>-<START>-<UNTIL>.pdf` (atau `.xlsx`).
+
+---
+
+## Yang Dihitung Laporan Ringkasan {/* #what-the-summary-reports-count */}
+
+:::warning[Hanya perjalanan Departed dan penumpang Boarded]
+**Passenger Summary** dan **Daily Passenger Report** hanya menghitung perjalanan
+yang **Departed**, dan hanya penumpang yang **Boarded** di perjalanan tersebut.
+Formulirnya menyebutkan hal ini di bawah kolom tanggal: _"Both dates are inclusive.
+Only departed trips and their boarded passengers are counted."_
+
+Jadi perjalanan yang masih **Scheduled**, **Boarding**, atau **Closed** belum
+menyumbang apa pun, begitu pula perjalanan yang dibatalkan. Angka hari ini terisi
+seiring perjalanan hari itu [diatur menjadi Depart](/terminal-operator/set-trip-as-depart).
+Jalankan laporan harian setelah keberangkatan terakhir, bukan sebelumnya.
+:::
+
+Inilah perbedaan utama dengan laporan **Passenger Manifest**, yang bekerja pada satu
+perjalanan dalam status **apa pun** dan memungkinkan Anda memilih penumpang yang
+dicantumkan.
+
+:::info[Operator yang nonaktif tetap dapat dilaporkan]
+Menonaktifkan operator tidak menyembunyikan riwayatnya. Anda tetap dapat memilihnya
+dan melaporkan perjalanan lamanya.
+:::
+
+## Jika Formulir Menolak {/* #when-the-form-refuses */}
+
+Formulir memeriksa dirinya sendiri sebelum apa pun dibuat, dan menampilkan
+masalahnya di bawah kolom:
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Select a departure trip"_ | Passenger Manifest: belum ada perjalanan dipilih. | Klik **Select trip**. |
+| _"Select an origin port"_ | Passenger Summary: belum ada Port. Biasanya karena Port aktif belum diatur. | Pilih Port, atau [atur Port Context Anda](/terminal-staff/set-port-context). |
+| _"Select an operator"_ | Daily Passenger Report: belum ada operator dipilih. | Pilih satu — laporan ini selalu untuk satu operator. |
+| _"Until date must be on or after the start date."_ | Rentangnya terbalik. | Tukar tanggalnya. |
+| _"The period cannot be longer than 366 days."_ | Rentangnya lebih dari setahun. | Pecah menjadi beberapa rentang yang lebih pendek. |
+| _"At most 100 characters"_ | Nama tanda tangan terlalu panjang. | Persingkat. |
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Masalah | Penyebab | Solusi |
+| --- | --- | --- |
+| **Reports** tidak ada di sidebar | Anda tidak memiliki permission laporan | Tanyakan ke administrator Anda |
+| Kartu laporan yang diharapkan tidak ada | Anda tidak memiliki permission laporan tersebut | Tanyakan ke administrator Anda |
+| Petunjuk di bawah **Operator** menyebut `terminal.operators.read`, dan tidak ada operator yang dapat dipilih | Menampilkan daftar operator membutuhkan permission terpisah | Tanyakan ke administrator Anda |
+| Anda tidak dapat mengubah **Origin Port**, dengan petunjuk tentang `terminal.ports.read` | Memilih Port lain membutuhkan permission terpisah | Laporkan Port aktif Anda, atau tanyakan ke administrator |
+| Laporan ringkasan kosong, atau lebih kecil dari perkiraan | Perjalanannya belum **Departed**, atau penumpangnya belum **Boarded** | Berangkatkan perjalanannya terlebih dahulu; pastikan rentang tanggal mencakup perjalanan yang dimaksud |
+| Laporan manifest berisi lebih sedikit orang daripada perjalanan | **Passenger Status** masih **Boarded** | Ubah menjadi **All passengers** |
+| File tidak bisa dibuka | File adalah PDF yang dilindungi kata sandi | Gunakan kata sandi yang Anda ketik saat membuatnya |
+
+## Selanjutnya {/* #next */}
+
+- [Mengunduh Manifest](/terminal-operator/download-manifest) — versi dua klik untuk
+  satu perjalanan.
+- [Mengatur Perjalanan menjadi Depart](/terminal-operator/set-trip-as-depart) — yang
+  membuat perjalanan masuk hitungan laporan ringkasan.

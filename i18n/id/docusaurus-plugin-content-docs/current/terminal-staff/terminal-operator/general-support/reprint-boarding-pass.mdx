@@ -1,0 +1,120 @@
+---
+id: reprint-boarding-pass
+title: Mencetak Ulang atau Mengunduh Boarding Pass
+sidebar_label: Mencetak Ulang / Mengunduh Boarding Pass
+sidebar_position: 6
+slug: /terminal-operator/reprint-boarding-pass
+description: Cetak ulang boarding pass yang hilang atau unduh sebagai PDF dari tabel penumpang perjalanan, dan periksa siapa yang pernah menerbitkannya.
+keywords:
+  - reprint boarding pass
+  - print
+  - download
+  - PDF
+  - boarding pass history
+  - lost pass
+---
+
+Boarding pass bisa hilang, basah, atau tertinggal di taksi. Mencetak ulang itu cepat,
+dan — ini yang penting — boarding pass diterbitkan ulang **dengan nomor yang sama**.
+Boarding pass lama dan yang baru adalah boarding pass yang sama.
+
+> **Current Trips → buka perjalanan → ikon printer (atau unduh) pada baris penumpang**
+
+## Langkah 1 — Temukan Penumpang {/* #step-1--find-the-passenger */}
+
+Dari dalam perjalanannya:
+
+- **Perjalanan hari ini:** **Operational → Current Trips** → klik perjalanan → tabel
+  **Passengers** di bagian bawah.
+- **Perjalanan lama:** **Management → Departure Trips** → temukan perjalanannya →
+  buka halaman detailnya.
+- **Tidak yakin perjalanan yang mana?** Gunakan
+  [Mencari Penumpang](/terminal-operator/look-up-passenger) terlebih dahulu —
+  pencarian itu mencakup semua perjalanan dan memberi tahu di perjalanan mana
+  penumpang berada.
+
+Kolom **BP No** di tabel menampilkan nomor boarding pass setiap penumpang — cara
+cepat memastikan Anda berada di baris yang benar.
+
+![Ikon printer dan unduh pada baris penumpang](/img/terminal-staff/edit-passenger/06-reprint-download-bp.png)
+_Ikon **printer** dan **unduh** berada tepat di kiri menu **⋯**. Mengarahkan kursor ke printer menampilkan **Print boarding pass**._
+
+## Langkah 2 — Gunakan Ikon Printer atau Unduh {/* #step-2--use-the-printer-or-download-icon */}
+
+Di ujung kanan baris penumpang, **sebelum** menu **⋯**, ada dua tombol ikon kecil:
+
+| Ikon | Fungsinya |
+| --- | --- |
+| 🖨 **Printer** | Membuka boarding pass dan mengirimnya untuk dicetak. |
+| ⬇ **Unduh** | Menyimpan boarding pass sebagai PDF, bernama `boarding-pass-<nomor>.pdf`. |
+
+:::warning[Keduanya tidak ada di dalam menu ⋯]
+Ini adalah **tombol ikon terpisah di samping** menu **⋯**, bukan item di dalamnya.
+Banyak orang mencarinya di dropdown lalu menyimpulkan fiturnya tidak ada. Lihat di
+sebelah kiri titik tiga.
+:::
+
+Kedua ikon menampilkan indikator berputar selama boarding pass dibuat.
+
+## Langkah 3 — Periksa Nomornya {/* #step-3--check-the-number */}
+
+Boarding pass yang dicetak ulang memiliki **nomor yang sama dengan sebelumnya**.
+Cetak ulang tidak pernah membuat nomor baru. Penumpang yang memegang cetakan lama dan
+baru memiliki dua salinan boarding pass yang sama — keduanya dapat dipindai.
+
+Satu-satunya cara mendapatkan nomor **baru** adalah meng-check-in ulang penumpang
+dari awal, yang berarti
+[membatalkannya](/terminal-operator/cancel-passenger) terlebih dahulu.
+
+## Jika Ikon Berwarna Abu-abu {/* #when-the-icons-are-greyed-out */}
+
+Arahkan kursor untuk melihat tooltip, yang menyebutkan alasannya:
+
+| Tooltip | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| **"This passenger has no boarding pass number."** | Boarding pass tidak pernah diterbitkan untuk data ini. | Jarang terjadi. Pastikan data dibuat dengan benar; mungkin perlu dibatalkan dan di-check-in ulang. |
+| **"This passenger is cancelled."** | Penumpang yang dibatalkan tidak punya boarding pass yang berlaku. | Jika ternyata tetap berangkat, [check-in ulang](/terminal-operator/check-in-ntl-lm) — penumpang mendapat nomor baru. |
+| **"This trip is cancelled."** | Seluruh pelayaran dibatalkan. | Tidak ada boarding pass yang berlaku di perjalanan yang dibatalkan. |
+| **"Loading trip…"** | Halaman masih memuat perjalanan. | Tunggu sebentar. |
+
+Jika Anda **tidak melihat ikon sama sekali**, Anda tidak memiliki permission
+boarding pass — tanyakan ke administrator Anda.
+
+## Langkah 4 — Periksa Riwayat Penerbitan (Opsional) {/* #step-4--check-the-issue-history-optional */}
+
+Untuk melihat berapa kali boarding pass diterbitkan dan oleh siapa, buka menu **⋯**
+pada baris dan pilih **Boarding Pass History**.
+
+Dialog menampilkan nama dan nomor boarding pass penumpang, lalu tiga total —
+**Total**, **Printed**, dan **Downloaded** — dan daftar setiap penerbitan. Setiap
+entri menampilkan:
+
+- ikon **printer** atau **unduh**, sesuai cara penerbitannya,
+- **siapa** yang menerbitkan,
+- **kapan**, dan
+- badge bertuliskan **Terminal** atau **Operator**, sehingga Anda dapat membedakan
+  cetak ulang di terminal dengan yang dilakukan di konter operator feri.
+
+![Dialog Boarding Pass History](/img/terminal-staff/edit-passenger/07-bp-history.png)
+_Boarding Pass History — satu cetakan di konter operator, satu unduhan di terminal._
+
+Jika belum ada yang diterbitkan, tertulis _"No boarding pass issued yet."_
+
+Inilah cara tercepat menjawab "apakah penumpang ini sudah diberi boarding pass hari
+ini?" — dan melihat apakah rekan Anda baru saja mencetaknya dua menit yang lalu.
+
+## Situasi Umum {/* #common-situations */}
+
+| Situasi | Yang dilakukan |
+| --- | --- |
+| Penumpang kehilangan boarding pass | Cetak ulang. Nomornya sama; pemindaiannya tetap berfungsi. |
+| Cetakan buram dan barcode tidak terbaca | Cetak ulang. Jika masih gagal, ketik nomor 16 karakter secara manual di kolom pemindaian — nomornya ada di kolom **BP No**. |
+| Penumpang ingin menyimpannya di ponsel | Gunakan ikon **unduh** dan kirimkan PDF-nya. |
+| Nama yang tercetak salah | [Ubah data penumpang](/terminal-operator/edit-passenger) terlebih dahulu (hanya bisa selama CheckedIn), **lalu** cetak ulang. |
+| Penumpang bersikeras belum pernah menerimanya | Periksa **Boarding Pass History** sebelum mencetak ulang. |
+| Boarding pass diterbitkan di konter operator dan penumpang ingin satu lagi | Cetak ulang dari sini. Riwayatnya akan menampilkan keduanya, bertanda Operator dan Terminal. |
+
+## Selanjutnya {/* #next */}
+
+- [Mengubah Data Penumpang yang Sudah Check-in](/terminal-operator/edit-passenger)
+- [Mengunduh Manifest](/terminal-operator/download-manifest)

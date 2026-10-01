@@ -1,0 +1,159 @@
+---
+id: operator-export-manifest-report
+title: Mengekspor Laporan Manifest Penumpang
+sidebar_label: Mengekspor Laporan Passenger Manifest
+sidebar_position: 12
+slug: /ferry-operator/export-manifest-report
+description: Buat laporan Passenger Manifest dengan pilihan format, bahasa, dan status penumpang, serta lindungi PDF dengan kata sandi bila perlu.
+keywords:
+  - reports
+  - passenger manifest
+  - pdf
+  - xlsx
+  - password
+  - passenger status
+---
+
+Laporan **Passenger Manifest** adalah versi manifest dengan pilihan lengkap. Jika
+tombol [Download Manifest](/ferry-operator/download-manifest) di halaman perjalanan
+selalu memberi file Excel berisi penumpang Boarded, formulir ini memungkinkan Anda
+memilih **format**, **bahasa**, **penumpang mana** yang dicantumkan, dan apakah
+hasilnya **dilindungi kata sandi**.
+
+> **Reports → Passenger Manifest → pilih perjalanan dan opsinya → Download Report**
+
+:::note
+Anda membutuhkan permission manifest-report; tanpanya item **Reports** tidak muncul
+di sidebar. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk dengan operator yang benar terpilih — lihat
+  [Masuk](/ferry-operator/sign-in).
+- Anda tahu **perjalanan** mana yang diinginkan. Pemilihnya hanya menampilkan
+  perjalanan milik Anda.
+
+## Langkah 1 — Buka Laporannya {/* #step-1--open-the-report */}
+
+Di sidebar, buka **Reports** (route: `/reports`). Halaman ini menampilkan laporan
+yang dapat Anda akses; klik **Passenger Manifest** — _"Boarding / passenger list for
+a departure trip."_
+
+![Halaman Reports](/img/ferry-operator/reports/01-report-list.png)
+_Halaman Reports, dengan kartu **Passenger Manifest**._
+
+Jika daftarnya bertuliskan _"You don't have access to any reports,"_ tanyakan ke
+administrator Anda.
+
+## Langkah 2 — Isi Formulir {/* #step-2--fill-in-the-form */}
+
+| Kolom | Pilihan | Default |
+| --- | --- | --- |
+| **Departure Trip** | Klik **Select trip** dan pilih dari perjalanan operator Anda. Wajib. | — |
+| **Format** | **Excel (.xlsx)** atau **PDF (.pdf)** | Excel |
+| **Language** | **English** atau **Indonesian** | English |
+| **Passenger Status** | **All passengers**, atau salah satu dari **CheckedIn**, **PreImmigration**, **Boarded**, **Cancelled** | **Boarded** |
+| **Password (optional)** | Melindungi file yang dibuat. **Hanya muncul jika Format = PDF.** | kosong |
+
+![Formulir laporan Passenger Manifest](/img/ferry-operator/reports/02-report-manifest.png)
+_Formulir dengan perjalanan terpilih dan nilai default — **Excel (.xlsx)**, **English**, **Boarded**. Kolom **Password** tidak tampil karena formatnya Excel._
+
+Lalu klik **Download Report**. Tombol bertuliskan **Generating…** selama prosesnya
+berjalan.
+
+## Memilih Status Penumpang {/* #choosing-the-passenger-status */}
+
+Pengaturan inilah yang membuat laporan ini berguna:
+
+| Status | Yang Anda dapat | Penggunaan umum |
+| --- | --- | --- |
+| **Boarded** _(default)_ | Hanya penumpang yang sudah dipindai naik. | Manifest resmi siapa yang berlayar. |
+| **All passengers** | Semua orang di perjalanan, apa pun statusnya. | Mencocokkan pemesanan dengan yang benar-benar berangkat. |
+| **CheckedIn** | Sudah check-in tetapi tidak naik. | Menelusuri penumpang yang tidak datang setelah keberangkatan. |
+| **PreImmigration** | Sudah melewati Pre-Immigration tetapi tidak pernah naik. | Menyelidiki penumpang yang tertinggal. |
+| **Cancelled** | Hanya pemesanan yang dibatalkan. | Pengembalian dana dan catatan pembatalan. |
+
+:::warning[Default-nya Boarded, bukan semua orang]
+Jika formulir tidak diubah, Anda hanya mendapat **penumpang Boarded** — sama dengan
+tombol Download Manifest di perjalanan. Jika butuh daftar lengkap, Anda harus
+mengubah **Passenger Status** menjadi **All passengers**.
+:::
+
+## Perlindungan Kata Sandi {/* #password-protection */}
+
+:::info[Kata sandi hanya untuk PDF]
+Kolom **Password (optional)** **hanya muncul jika Format = PDF**. Ubah format ke
+Excel dan kolom itu hilang — hasil Excel tidak dapat dilindungi kata sandi di sini,
+dan layanan ekspor menolak percobaannya.
+
+Petunjuk di kolom itu sendiri menyebutkannya: _"Protects the generated PDF. Only
+available for the PDF format."_
+:::
+
+Untuk melindungi laporan:
+
+1. Atur **Format** ke **PDF (.pdf)**.
+2. Ketik kata sandi di **Password (optional)** — tersamarkan saat diketik.
+3. **Download Report.** File akan meminta kata sandi tersebut saat dibuka.
+
+Kosongkan dan PDF terbuka seperti biasa.
+
+:::warning[Kata sandi tidak disimpan di mana pun]
+Tidak ada yang mencatat apa yang Anda ketik. Jika Anda mengirim manifest yang
+dilindungi, sampaikan kata sandinya kepada penerima melalui saluran terpisah — dan
+simpan catatan Anda sendiri. Membuat ulang laporan dengan kata sandi yang sama adalah
+satu-satunya jalan kembali.
+:::
+
+## Yang Anda Dapat {/* #what-you-get */}
+
+File bernama:
+
+```
+passenger-manifest-<TRIP-CODE>-<TRIP-DATE>.pdf   (atau .xlsx)
+```
+
+Ekstensinya mengikuti **Format** yang Anda pilih. Isinya sama dalam kedua format —
+detail perjalanan ditambah satu baris per penumpang yang sesuai filter status Anda.
+
+## Laporan Ini vs. Tombol Download Manifest di Perjalanan {/* #this-report-vs-the-trips-download-manifest-button */}
+
+| | **Download Manifest** (di perjalanan) | **Laporan Passenger Manifest** |
+| --- | --- | --- |
+| Tempat | Grid Departure Trips atau detail perjalanan | Reports → Passenger Manifest |
+| Format | Hanya Excel | **Excel atau PDF** |
+| Bahasa | English / Indonesian | English / Indonesian |
+| Penumpang | Hanya Boarded | **Status apa pun, atau semua** |
+| Kata sandi | Tidak | **Ya, pada PDF** |
+| Perjalanan harus | Closed atau Departed | Dipilih dari pemilih |
+| Kecepatan | Dua klik | Formulir singkat |
+
+Gunakan tombol untuk manifest sehari-hari; gunakan laporan saat Anda membutuhkan
+format lain, kumpulan penumpang lain, atau perlindungan.
+
+## Hanya Data Operator Anda Sendiri {/* #only-your-own-operators-data */}
+
+Pemilih **Departure Trip** hanya menampilkan **perjalanan operator Anda**, dan file
+yang dibuat hanya berisi penumpang Anda sendiri. Totalnya harus cocok persis dengan
+tabel penumpang perjalanan.
+
+Perjalanan atau penumpang operator lain yang muncul di sini adalah masalah serius —
+berhenti dan laporkan ke administrator Anda.
+
+## Pemecahan Masalah {/* #troubleshooting */}
+
+| Masalah | Penyebab | Solusi |
+| --- | --- | --- |
+| **Reports** tidak ada di sidebar | Tidak punya permission laporan | Tanyakan ke administrator Anda |
+| _"You don't have access to any reports."_ | Sudah masuk, tetapi tidak punya permission laporan | Tanyakan ke administrator Anda |
+| Kolom **Password** hilang | Anda mengganti Format ke Excel | Kata sandi hanya untuk PDF; ganti kembali ke PDF |
+| Baris lebih sedikit dari perkiraan | **Passenger Status** masih default **Boarded** | Ubah menjadi **All passengers** |
+| Perjalanan yang diinginkan tidak ada di pemilih | Milik operator lain, atau tidak ada | Periksa workspace di kiri atas; [berpindah operator](/ferry-operator/switch-operator) jika perlu |
+| File tidak bisa dibuka | File adalah PDF yang dilindungi kata sandi | Gunakan kata sandi yang Anda ketik saat membuatnya |
+
+## Selanjutnya {/* #next */}
+
+- [Mengunduh Manifest](/ferry-operator/download-manifest) — versi dua klik.
+- [Mencari Perjalanan](/ferry-operator/look-up-trip)

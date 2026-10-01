@@ -1,0 +1,153 @@
+---
+id: pre-immigration-scan
+title: Memindai Boarding Pass di Pre-Immigration
+sidebar_label: Memindai Boarding Pass
+sidebar_position: 1
+slug: /terminal-operator/pre-immigration-scan
+description: Loloskan penumpang melalui Pre-Immigration — pindai boarding pass untuk memindahkan mereka dari CheckedIn ke PreImmigration, dan pahami pesan penolakannya.
+keywords:
+  - pre-immigration
+  - scan
+  - boarding pass
+  - checked-in
+  - passport check
+  - gate window
+---
+
+Pre-Immigration adalah **titik pemindaian pertama**. Penumpang datang membawa
+boarding pass; Anda memindainya, mencocokkan paspornya dengan yang tampil di layar,
+lalu mempersilakannya menuju imigrasi.
+
+> **Pre-Immigration Scan → pindai boarding pass → kartu Passport Check → persilakan lewat**
+
+Yang dilakukan pemindaian: memindahkan penumpang dari **CheckedIn** ke
+**PreImmigration**, serta mengurangi hitungan Check-In perjalanan satu dan menambah
+hitungan Pre-Imm satu.
+
+:::warning[Akses terbatas]
+Halaman ini hanya tersedia bagi staf yang memiliki permission pemindaian
+Pre-Immigration.
+:::
+
+:::note
+Tangkapan layar di bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda sudah [mengatur Port aktif](/terminal-staff/set-port-context). **Ini tidak
+  opsional** — tombol **Scan Pre-Immigration** tetap nonaktif sampai Port dipilih,
+  dan halaman menampilkan banner kuning: _"No port selected. Choose a port context in
+  Settings before scanning."_ dengan pintasan **Go to Settings**.
+- Penumpang berstatus **CheckedIn** pada perjalanan yang **Scheduled** (dan masih
+  di dalam rentang Gate) atau **Boarding**.
+- Layar penumpang sudah disiapkan di monitor kedua — lihat
+  [Menyiapkan Layar Penumpang](/terminal-operator/pre-immigration-display).
+
+## Langkah 1 — Buka Pre-Immigration Scan {/* #step-1--open-pre-immigration-scan */}
+
+Di sidebar, buka **Operational → Pre-Immigration Scan**
+(route: `/pre-immigration-scan`). Header menampilkan **Active Port** Anda — misalnya
+_Active Port: WFC - Waterfront Terminal_. Pastikan sesuai dengan tempat Anda
+bertugas.
+
+Halaman terbagi dua: **kontrol pemindaian** di kiri, dan **Passenger Display
+Preview** di kanan, yang mencerminkan persis apa yang tampil di layar penumpang.
+
+![Halaman Pre-Immigration Scan sebelum pemindaian pertama](/img/terminal-staff/pre-imm-scan/01-display.png)
+_Halaman Pre-Immigration Scan, siap untuk penumpang pertama — kontrol pemindaian di kiri, Passenger Display Preview di kanan._
+
+## Langkah 2 — Pindai Boarding Pass {/* #step-2--scan-the-boarding-pass */}
+
+Klik kolom **Boarding Pass Number**. Lalu:
+
+- **pindai barcode** dengan pemindai — nomornya terketik dan terkirim otomatis,
+  atau
+- **ketik nomornya lalu tekan Enter**, atau ketik lalu klik **Scan
+  Pre-Immigration**.
+
+Nomor boarding pass selalu **16 karakter**. Kolom dikosongkan otomatis setelah
+setiap pemindaian, sehingga Anda bisa langsung lanjut ke penumpang berikutnya.
+
+## Langkah 3 — Baca Hasilnya {/* #step-3--read-the-result */}
+
+### Diterima {/* #accepted */}
+
+Kartu hijau **Passport Check #_[nomor BP]_** muncul dengan detail dokumen penumpang
+— **No**, **Name**, **Gender**, **Date Of Birth**, **Nationality**, **Issuance
+Country**, **Issue Date**, dan **Expiry Date** — dan di bawahnya kartu hijau kedua
+berisi **perjalanan**: kode, operator, Route, rentang Gate, dan jam keberangkatan.
+
+Cocokkan paspor di tangan Anda dengan kartu tersebut. Jika sesuai, penumpang boleh
+lewat.
+
+Pada saat yang sama layar penumpang berubah **hijau** dan menampilkan **Success**
+beserta nama penumpang, operatornya, dan jam keberangkatan.
+
+![Halaman Pre-Immigration Scan setelah pemindaian berhasil](/img/terminal-staff/pre-imm-scan/02-success.png)
+_Pemindaian diterima — kartu Passport Check dan perjalanan di kiri, pratinjau hijau **Success** di kanan._
+
+### Ditolak {/* #rejected */}
+
+Kotak merah **Invalid BP** muncul di layar Anda beserta alasannya. Layar penumpang
+berubah **merah** dan menampilkan **Rejected.**
+
+![Halaman Pre-Immigration Scan setelah pemindaian ditolak](/img/terminal-staff/pre-imm-scan/03-error.png)
+_Pemindaian ditolak — kotak merah **Invalid BP** di kiri, pratinjau merah **Rejected.** di kanan._
+
+:::info[Penumpang tidak pernah melihat alasan sebenarnya]
+Hanya dua jenis pesan yang diteruskan ke layar publik: pesan **rentang Gate** dan
+**"Invalid boarding pass number."** Selain itu — status salah, Port salah, masalah
+konfigurasi — disederhanakan menjadi pesan umum **"Please Check with our terminal
+staff"**.
+
+Ini disengaja. Penumpang yang berdiri di meja tidak perlu diberi tahu, di layar
+besar, bahwa mereka sudah tercatat Boarded. **Anda** melihat alasan sebenarnya di
+layar operator; mereka melihat ajakan sopan untuk berbicara dengan Anda.
+:::
+
+## Langkah 4 — Ulangi {/* #step-4--repeat */}
+
+Kolom sudah kosong dan siap. Lanjutkan memindai. Kartu hasil tetap tampil sampai
+digantikan pemindaian berikutnya, dan layar penumpang kembali ke tampilan diam
+**"Ready For Pre-Immigration"** sekitar **10 detik** setelah setiap pemindaian.
+
+## Pesan Penolakan dan Yang Harus Dilakukan {/* #rejection-messages-and-what-to-do */}
+
+| Yang tampil di layar operator | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| **"Please enter boarding pass number."** | Anda mengklik Scan dengan kolom kosong. | Pindai atau ketik nomornya. |
+| **"Invalid boarding pass number."** | Nomornya tidak tepat 16 karakter, atau tidak ada penumpang yang memilikinya. | Pindai ulang. Jika barcode rusak, cari penumpang berdasarkan nama di perjalanannya dan baca nomor BP dari barisnya. |
+| **"Passenger boarding pass is not valid for the currently selected port."** | Boarding pass milik perjalanan yang berangkat dari **Port lain**. | Periksa **Active Port** Anda di Settings. Jika Port sudah benar, penumpang berada di terminal yang salah. |
+| **"Passenger must be CheckedIn to move to PreImmigration. Current status: Boarded."** (atau PreImmigration, atau Cancelled) | Penumpang tidak berada di tahap yang diharapkan pemindaian ini. **Boarded** biasanya berarti mereka sudah lewat; **Cancelled** berarti pemesanannya dibatalkan. | Untuk Boarded, lihat [Membatalkan Pemindaian Boarding](/terminal-operator/revert-boarding). Untuk Cancelled, arahkan ke konter. |
+| **"Trip must be in Scheduled or Boarding status to scan at pre-immigration gate. Current status: Closed."** (atau Departed, atau Cancelled) | Perjalanan sudah melewati tahap Pre-Immigration. | Penumpang sudah tertinggal pelayaran. Arahkan ke konter. |
+| **"Pre-immigration gate is not open yet. Gate opens at HH:mm (PORT time)."** | Perjalanan masih **Scheduled** dan Anda memindai **sebelum** Gate dibuka. | Tunggu, atau perlebar rentangnya dengan [Mengubah Waktu](/terminal-operator/update-timings). |
+| **"Pre-immigration gate is already closed. Gate closed at HH:mm (PORT time)."** | Perjalanan masih **Scheduled** dan Anda memindai **setelah** Gate ditutup. | Mundurkan **Gate Close** dengan [Mengubah Waktu](/terminal-operator/update-timings), atau atur perjalanan menjadi [Boarding](/terminal-operator/set-trip-as-boarding) — rentang tidak berlaku lagi setelahnya. |
+| **"Port context is required. Please select an active port in terminal portal."** | Belum ada Port aktif. | [Atur Port Context Anda](/terminal-staff/set-port-context). |
+
+:::tip[Rentang Gate hanya berlaku selama perjalanan Scheduled]
+Setelah perjalanan berstatus **Boarding**, jam Gate dibuka dan ditutup tidak lagi
+menghalangi pemindaian Pre-Immigration — sejak saat itu aturannya hanya status. Ini
+sama dengan pemindaian Boarding, yang tidak pernah memeriksa jam Gate.
+:::
+
+## Memindai Boarding Pass yang Sama Dua Kali Itu Aman {/* #scanning-the-same-pass-twice-is-safe */}
+
+Jika Anda memindai penumpang yang **sudah PreImmigration**, tidak terjadi apa-apa:
+tidak ada error, dan statusnya tetap **PreImmigration**. Penumpang tidak dihitung
+dua kali. Pindai saja jika Anda ragu apakah pemindaian sudah tercatat.
+
+## Ada Kesalahan? {/* #made-a-mistake */}
+
+Jika Anda memindai penumpang yang seharusnya tidak lolos, gunakan
+[Membatalkan Pemindaian Pre-Immigration](/terminal-operator/revert-pre-immigration)
+— tombol **Revert To Check-In** ada langsung di kartu hasil.
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan Pemindaian Pre-Immigration](/terminal-operator/revert-pre-immigration)
+- [Menyiapkan Layar Penumpang](/terminal-operator/pre-immigration-display)
+- [Memindai Boarding Pass di Gate](/terminal-operator/boarding-scan) — tahap
+  berikutnya.

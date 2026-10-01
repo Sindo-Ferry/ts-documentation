@@ -1,0 +1,121 @@
+---
+id: delete-user
+title: Menghapus Pengguna
+sidebar_label: Menghapus Pengguna
+sidebar_position: 9
+slug: /operator-administrator/delete-user
+description: Hapus pengguna portal secara permanen — mengapa harus dinonaktifkan dulu, dan mengapa menonaktifkan biasanya pilihan yang lebih baik.
+keywords:
+  - delete user
+  - remove user
+  - inactive
+  - permanent
+---
+
+Menghapus pengguna mengeluarkannya dari portal secara permanen. Ada dua pengaman:
+pengguna harus **tidak aktif** terlebih dahulu, dan Anda harus **mengetik
+username-nya** untuk mengonfirmasi.
+
+> **Users → ⋯ → Delete User → ketik username → Confirm Delete**
+
+**Permission yang dibutuhkan:** `operator.users.write`
+
+:::danger[Pertimbangkan menonaktifkan saja]
+[Menonaktifkan](/operator-administrator/activate-deactivate-user) memblokir akses
+**seketika**, **dapat dikembalikan**, dan menyimpan role, permission, serta riwayat
+orang tersebut untuk audit.
+
+Menghapus bersifat permanen dan tidak dapat dibatalkan dari portal. Untuk orang yang
+sudah keluar, menonaktifkan hampir selalu jawaban yang tepat — Anda tidak kehilangan
+apa pun dengan menyimpan datanya.
+:::
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Operator Portal — lihat
+  [Masuk ke Operator Portal](/ferry-operator/sign-in).
+- Pengguna sudah **Inactive** — lihat
+  [Mengaktifkan atau Menonaktifkan Pengguna](/operator-administrator/activate-deactivate-user).
+  Pengguna aktif tidak dapat dihapus.
+- Anda memiliki `operator.users.write`.
+
+## Langkah 1 — Nonaktifkan Terlebih Dahulu {/* #step-1--deactivate-them-first */}
+
+Buka **Users**, temukan penggunanya, dan gunakan **⋯ → Set Inactive**.
+Badge berubah menjadi **Inactive**.
+
+![Menu baris yang menawarkan Set Inactive](/img/ferry-operator/security/14-deactivate-user.png)
+_**Set Inactive** di menu **⋯** pengguna._
+
+:::info[Untuk langkah ini Anda mungkin membutuhkan Super Admin]
+Di Operator Portal, menghapus hanya membutuhkan `operator.users.write` — tetapi
+**menonaktifkan membutuhkan Super Admin**. Jika Anda bisa menghapus tetapi tidak bisa
+menonaktifkan, minta Super Admin menonaktifkan penggunanya terlebih dahulu, lalu
+kembali dan hapus.
+:::
+
+Lewati langkah ini dan penghapusan akan ditolak — lihat
+[di bawah](#if-the-delete-is-refused).
+
+:::tip[Urutan dua langkah adalah pengamannya]
+Mewajibkan penonaktifan lebih dulu berarti tidak ada yang dapat menghapus akun aktif
+dengan sekali klik. Ini juga memberi jeda: setelah dinonaktifkan, aksesnya sudah
+hilang, jadi jarang ada urgensi untuk menghapusnya.
+:::
+
+## Langkah 2 — Hapus {/* #step-2--delete */}
+
+1. Buka menu **⋯** pada baris → **Delete User** (berwarna merah).
+2. Dialog **Delete User Account?** meminta Anda mengetik username: _"Type
+   **"username"** to confirm deletion. This action cannot be reversed."_
+3. **Ketik username persis.** **Confirm Delete** tetap **nonaktif sampai cocok**,
+   termasuk huruf besarnya.
+4. Klik **Confirm Delete**.
+
+![Dialog Delete User Account](/img/ferry-operator/security/23-confirm-delete-user.png)
+_**Delete User Account?** dengan username sudah diketik. Pengguna di gambar ini masih **Active**, jadi konfirmasi akan ditolak — nonaktifkan terlebih dahulu._
+
+## Jika Penghapusan Ditolak {/* #if-the-delete-is-refused */}
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Active users cannot be deleted. Please set the user as inactive before deletion."_ | Pengguna masih Active. | [Nonaktifkan](/operator-administrator/activate-deactivate-user), lalu hapus. |
+| _"The super admin account cannot be deleted."_ | Anda mencoba menghapus akun pemilik sistem. | Tidak mungkin, memang dirancang begitu. |
+
+## Apa yang Dilakukan dan Tidak Dilakukan Penghapusan {/* #what-deleting-does-and-does-not-do */}
+
+| | |
+| --- | --- |
+| **Pengguna portal dihapus** | Ia hilang dari daftar Users dan tidak dapat lagi diberi role atau permission. |
+| **Akun masuknya tidak disentuh** | Akun email-dan-password yang dibuat saat [pendaftaran](/register-account) terpisah dan tetap ada. Ia masih bisa masuk dan akan diberi tahu bahwa akunnya belum disiapkan. |
+| **Riwayat audit** | Tindakan yang pernah dilakukannya tercatat atas username-nya. Menghapus pengguna tidak menulis ulang riwayat itu. |
+| **Portal lain tidak terpengaruh** | Data pengguna di portal lain terpisah dan tetap ada. |
+
+:::warning[Menghapus tidak mencabut akun masuknya]
+Karena kedua akun terpisah, menghapus pengguna portal hanya menghilangkan **aksesnya
+ke portal ini**. Jika yang dikhawatirkan adalah akun orang itu sendiri, bukan akses
+portalnya, sampaikan ke tim pengembang.
+:::
+
+## Memilih di Antara Pilihan yang Ada {/* #choosing-between-the-options */}
+
+| Situasi | Lakukan ini |
+| --- | --- |
+| Seseorang sudah keluar | **Nonaktifkan.** Jejak audit tetap tersimpan. |
+| Seseorang diskors atau sedang diselidiki | **Nonaktifkan.** Langsung berlaku dan dapat dikembalikan. |
+| Seseorang berganti pekerjaan | Biarkan aktif, ubah [role-nya](/operator-administrator/assign-role). |
+| Data ganda karena kesalahan, tidak pernah dipakai | Nonaktifkan, lalu **hapus**. |
+| Akun uji coba | Nonaktifkan, lalu **hapus**. |
+
+Ringkasnya: **hapus adalah untuk data yang seharusnya tidak pernah ada.** Untuk orang
+sungguhan yang sudah pindah, nonaktifkan.
+
+## Selanjutnya {/* #next */}
+
+- [Mengaktifkan atau Menonaktifkan Pengguna](/operator-administrator/activate-deactivate-user)
+- [Menambah Pengguna Baru](/operator-administrator/add-user)

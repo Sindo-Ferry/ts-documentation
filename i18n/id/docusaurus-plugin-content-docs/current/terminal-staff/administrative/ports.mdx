@@ -1,0 +1,84 @@
+---
+id: ports
+title: Ports
+sidebar_label: Ports
+sidebar_position: 3
+slug: /terminal-staff/ports
+description: Kelola Port — buat, ubah, dan hapus terminal yang dihubungkan oleh Route dan yang menjadi tempat Gate dan Berth.
+keywords:
+  - ports
+  - port
+  - terminal
+  - timezone
+  - master data
+---
+
+**Port** adalah terminal tempat feri berangkat dan tiba. Port menjadi asal dan
+tujuan [Routes](/terminal-staff/routes) dan menjadi tempat
+[Gates](/terminal-staff/gates) serta [Berths](/terminal-staff/berths) terminal.
+Setiap Port memiliki **timezone**, yang menentukan waktu lokal yang tampil di
+seluruh sistem.
+
+Port adalah **hal pertama yang dibuat** saat menyiapkan terminal baru — Gate,
+Berth, dan Route semuanya bergantung padanya.
+
+> **Ports → Create Port / Actions (Edit · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola Port. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Daftar Ports {/* #the-ports-list */}
+
+Buka **Ports** (route: `/ports`). Setiap baris menampilkan **Code**, **Name**, dan
+**Timezone** Port, serta menu **Actions** (**⋯**). Gunakan kotak **search** untuk
+menemukan Port.
+
+![Tampilan daftar Ports](/img/terminal-staff/ports/01-ports-list.png)
+_Daftar Ports — Code, Name, dan Timezone._
+
+## Membuat Port {/* #create-a-port */}
+
+Klik **Create Port** (kanan atas) dan isi formulir **New Port**:
+
+| Kolom | Catatan |
+| --- | --- |
+| **Port code** | Kode pendek yang unik, misalnya `PRT-01`. |
+| **Name** | Nama Port, misalnya `Waterfront`. |
+| **Timezone** | Ketik **ID timezone IANA** Port, misalnya `Asia/Singapore` — ini menentukan waktu lokal yang tampil untuk perjalanannya dan di papan publik. |
+
+:::note[Timezone diketik, bukan dipilih dari daftar]
+**Timezone** adalah kolom **teks bebas**, sehingga zona IANA apa pun yang valid
+dapat dipakai — Anda tidak terbatas pada daftar tertentu. Masukkan ID dalam bentuk
+`Region/City`, seperti `Asia/Singapore` atau `Asia/Jakarta`.
+
+Server memeriksa nilainya saat Anda menyimpan. Isian yang tidak dikenal ditolak
+dengan pesan _"Timezone '&lt;value&gt;' is not a valid IANA timezone ID. Use a value
+like 'Asia/Singapore'."_
+:::
+
+Lalu klik **Create Port**.
+
+![Formulir New Port, dengan Port code WFC dan nama Waterfront Terminal](/img/terminal-staff/ports/02-create-port.png)
+_Membuat Port — **WFC / Waterfront Terminal**, dengan kolom Timezone siap diisi ID IANA._
+
+:::warning[Kode harus unik]
+**Port code** harus **unik** di antara semua Port.
+:::
+
+## Mengubah dan Menghapus {/* #edit-and-delete */}
+
+Dari menu **⋯ Actions** pada baris, Anda dapat **Edit** kode, nama, atau timezone
+Port, atau **Delete** Port tersebut (perlu konfirmasi).
+
+:::info[Delete diblokir jika masih dipakai]
+Port **tidak dapat dihapus** selama masih memiliki **Berth** atau **dipakai oleh
+Route**. Hapus atau pindahkan keduanya terlebih dahulu.
+:::
+
+## Langkah Berikutnya {/* #next-steps */}
+
+- [Gates](/terminal-staff/gates)
+- [Berths](/terminal-staff/berths)
+- [Routes](/terminal-staff/routes)

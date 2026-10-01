@@ -1,0 +1,124 @@
+---
+id: configure-public-holiday
+title: Mengatur Hari Libur Nasional
+sidebar_label: Mengatur Hari Libur Nasional
+sidebar_position: 1
+slug: /terminal-operator/configure-public-holiday
+description: Buat, ubah, dan hapus tanggal hari libur per negara yang dipakai Timeslot dan pembuatan perjalanan untuk menjadwalkan pelayaran tambahan di hari libur.
+keywords:
+  - public holiday
+  - holiday
+  - hari libur
+  - country
+  - calendar
+  - extra sailing
+---
+
+Jadwal hari libur berbeda dari jadwal biasa, dan di sinilah semuanya dimulai.
+**Hari libur nasional** (public holiday) menandai sebuah tanggal sebagai hari libur
+**di satu negara**. Saat perjalanan dibuat untuk tanggal tersebut, setiap
+[Timeslot](/terminal-operator/create-timeslot) yang daftar negara **Public
+Holiday**-nya mencakup negara itu mendapat **satu pelayaran tambahan** — di luar
+jadwal hari biasa, yang tetap berjalan seperti biasa.
+
+Lakukan ini **terlebih dahulu**. Timeslot tidak dapat diatur berjalan di hari libur
+sebelum hari liburnya tercatat, dan perjalanan yang
+[sudah dibuat](/terminal-operator/generate-trips) untuk suatu tanggal tidak dibuat
+ulang hanya karena Anda menambahkan hari libur sesudahnya.
+
+> **Public Holiday → Create Public Holiday / Actions (Edit · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola hari libur nasional. Tangkapan layar di
+bawah menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Negara hari libur tersebut sudah ada di [Countries](/terminal-staff/countries).
+- Anda tahu **negara mana** yang relevan untuk terminal Anda. Layanan
+  Singapura–Batam biasanya membutuhkan entri **SG** dan **ID** — keduanya adalah
+  catatan terpisah meskipun tanggal dan namanya sama.
+
+## Langkah 1 — Buka Daftar Public Holiday {/* #step-1--open-the-public-holiday-list */}
+
+Di sidebar, buka **Management → Public Holidays** (route: `/public-holidays`).
+Setiap baris menampilkan **Date**, **Country** (sebagai badge kode negara), dan
+**Description** hari libur, serta menu **Actions** (**⋯**).
+
+- **Search** — ketik di kotak **search** untuk mencari hari libur berdasarkan
+  deskripsinya.
+- **Filter tahun** — persempit daftar ke satu **Year**.
+- **Filter negara** — tampilkan hari libur satu negara saja.
+
+Filter **Year** dan **Country** ada di balik **Show Filters**.
+
+![Daftar Public Holiday dengan kolom Date, Country, dan Description](/img/terminal-staff/public-holiday/01-list.png)
+_Daftar Public Holiday — Date, **Country** (sebagai badge kode), dan Description. Di sini nama hari libur yang sama dicatat terpisah untuk **SG** dan **ID**._
+
+## Langkah 2 — Membuat Hari Libur Nasional {/* #step-2--create-a-public-holiday */}
+
+Klik **Create Public Holiday** (kanan atas) dan isi formulir **New Public
+Holiday**:
+
+| Kolom | Catatan |
+| --- | --- |
+| **Country** | Negara yang merayakan hari libur — wajib. |
+| **Date** | Tanggal hari libur. |
+| **Description** | Label hari libur, misalnya `New Year's Day`. |
+
+Lalu klik **Create Public Holiday**.
+
+![Formulir New Public Holiday, berisi kolom Country, Date, dan Description](/img/terminal-staff/public-holiday/02-create.png)
+_Membuat hari libur nasional — pilih **Country** terlebih dahulu, lalu tanggal dan deskripsi._
+
+:::warning[Satu hari libur per tanggal dan negara]
+Setiap pasangan **tanggal + negara** hanya boleh memiliki **satu** hari libur —
+sistem menolak duplikat untuk tanggal dan negara yang sama. Tanggal yang sama
+**boleh** dimasukkan lagi untuk negara **lain** (misalnya Tahun Baru untuk Singapura
+dan Indonesia).
+:::
+
+## Langkah 3 — Mengubah atau Menghapus Hari Libur {/* #step-3--edit-or-delete-a-holiday */}
+
+Dari menu **⋯ Actions** pada baris, Anda dapat **Edit** negara, tanggal, atau
+deskripsi hari libur, atau **Delete** hari libur tersebut (perlu konfirmasi).
+
+:::warning[Mengubah hari libur tidak membuat ulang perjalanan yang sudah ada]
+Menambah, mengubah, atau menghapus hari libur hanya memengaruhi **pembuatan
+perjalanan berikutnya**. Perjalanan yang sudah dibuat untuk tanggal tersebut tetap
+seperti apa adanya.
+
+Jika tanggal tersebut sudah dibuat perjalanannya — dan karena sinkronisasi otomatis
+harian berjalan **60 sampai 90 hari ke depan**, biasanya memang sudah — Anda harus
+[menjalankan Trip Sync Job](/terminal-operator/generate-trips) untuk periode itu
+agar perubahannya terbawa. Hari libur yang **dihapus** akan menampilkan perjalanan
+terdampak di bagian **To Delete** (atau sebagai **Conflict** jika sudah ada
+penumpang yang memesan).
+:::
+
+## Apa Pengaruh Hari Libur terhadap Jadwal {/* #what-a-holiday-actually-does-to-the-schedule */}
+
+Aturannya bersifat **menambah**. Hari libur nasional **menambah** pelayaran; tidak
+pernah menghapus pelayaran hari biasa.
+
+Pada hari libur **Singapura** yang jatuh di hari Senin:
+
+- setiap Timeslot dengan **Monday** tercentang berjalan seperti biasa;
+- Timeslot **Public Holiday (SG)** **juga** berjalan — pelayaran tambahan hari itu;
+- Timeslot yang hanya **Public Holiday (ID)** **tidak** berjalan, karena tanggal
+  tersebut bukan hari libur Indonesia;
+- Timeslot yang mencentang **Monday dan** Public Holiday (SG) tetap hanya membuat
+  **satu** perjalanan hari itu.
+
+Inilah sebabnya **negara** pada setiap entri sama pentingnya dengan tanggalnya:
+negaralah yang menentukan Timeslot mana yang terpengaruh oleh hari libur tersebut.
+
+## Selanjutnya {/* #next */}
+
+- [Membuat Timeslot](/terminal-operator/create-timeslot) — centang **Public
+  Holiday** dan pilih negara yang hari liburnya diikuti pelayaran tersebut.
+- [Membuat Perjalanan dari Timeslot](/terminal-operator/generate-trips) — mewujudkan
+  pelayaran hari libur.

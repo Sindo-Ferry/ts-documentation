@@ -1,0 +1,132 @@
+---
+id: edit-passenger
+title: Mengubah Data Penumpang yang Sudah Check-in
+sidebar_label: Mengubah Data Penumpang CheckedIn
+sidebar_position: 3
+slug: /terminal-operator/edit-passenger
+description: Koreksi data paspor penumpang dari tabel penumpang perjalanan — hanya selama penumpang masih CheckedIn.
+keywords:
+  - edit passenger
+  - passport details
+  - correct details
+  - checked-in
+  - passenger table
+---
+
+Nama bisa salah ketik, kewarganegaraan bisa terpilih dari baris yang salah. **Edit
+Passenger** memperbaiki data dokumen penumpang — tetapi hanya selama penumpang masih
+**CheckedIn**.
+
+> **Current Trips → buka perjalanan → menu ⋯ penumpang → Edit Passenger → simpan**
+
+:::warning[Hanya penumpang CheckedIn yang dapat diubah]
+Begitu penumpang dipindai di Pre-Immigration, datanya terkunci. Menu **Edit
+Passenger** **tidak tampil sama sekali** pada baris **PreImmigration**, **Boarded**,
+atau **Cancelled** — bukan sekadar abu-abu, tetapi memang tidak ada.
+
+Alasannya: begitu penumpang sudah dicocokkan secara fisik dengan paspornya di titik
+pemindaian, datanya dianggap terverifikasi. Mengubahnya sesudah itu akan
+melemahkan pemeriksaan tersebut.
+:::
+
+## Langkah 1 — Temukan Penumpang {/* #step-1--find-the-passenger */}
+
+Data penumpang diubah **dari dalam perjalanannya**, tidak pernah dari daftar
+Passengers utama. Daftar itu hanya untuk mencari, dan menu barisnya hanya menawarkan
+**View Passenger**.
+
+- **Perjalanan hari ini:** **Operational → Current Trips** → klik baris perjalanan →
+  gulir ke tabel **Passengers** di bagian bawah halaman detail.
+- **Perjalanan lama:** **Management → Departure Trips** → temukan perjalanannya →
+  buka halaman detailnya.
+- **Tidak yakin perjalanan yang mana?** Gunakan
+  [Mencari Penumpang](/terminal-operator/look-up-passenger) terlebih dahulu —
+  pencarian itu mencakup semua perjalanan dan memberi tahu di perjalanan mana
+  penumpang berada.
+
+Gunakan toolbar filter di atas tabel — cari berdasarkan **No** atau **Name**, atau
+persempit dengan **Passenger Status** — jika daftarnya panjang.
+
+![Tabel penumpang di halaman Departure Trip Detail](/img/terminal-staff/edit-passenger/01-edit-from-departure-trip.png)
+_Tabel **Passengers** di bagian bawah halaman detail perjalanan — di sini dibuka dari **Management → Departure Trips**._
+
+:::info[Mengapa perubahan dilakukan di dalam perjalanan]
+Mengikat setiap tindakan penumpang ke satu pelayaran tertentu mencegah kesalahan
+lintas perjalanan: Anda tidak mungkin tanpa sengaja mengubah data orang yang sama di
+pelayaran lain.
+:::
+
+## Langkah 2 — Buka Menu Baris {/* #step-2--open-the-row-menu */}
+
+Di baris penumpang, klik **⋯** di ujung kanan dan pilih **Edit Passenger**.
+
+![Menu baris penumpang dengan Edit Passenger](/img/terminal-staff/edit-passenger/02-edit-from-current-trip.png)
+_Menu **⋯** penumpang CheckedIn, dibuka dari **Current Trips** — **View Passenger**, **Boarding Pass History**, **Edit Passenger**, **Update Status**, dan **Cancel Passenger**._
+
+Jika **Edit Passenger** tidak ada di menu, periksa badge **Status** di baris itu.
+Status apa pun selain **CheckedIn** menjelaskannya.
+
+## Langkah 3 — Ubah Seperlunya lalu Simpan {/* #step-3--change-what-needs-changing-and-save */}
+
+Formulir ubah memiliki kolom yang sama dengan check-in:
+
+| Kolom | Catatan |
+| --- | --- |
+| **No** | Hanya huruf dan angka. |
+| **Full Name** | Hanya huruf, angka, dan spasi. |
+| **Gender** | Male / Female / Unspecified. |
+| **Nationality** | Mengubahnya **tidak** mengisi ulang Issue Country di formulir ubah — atur Issue Country sendiri jika juga perlu diubah. |
+| **Date of Birth** | Harus di masa lalu. |
+| **Issue Date** _(opsional)_ / **Expiry Date** / **Issue Country** | Data dokumen. |
+
+![Formulir Edit Passenger](/img/terminal-staff/edit-passenger/03-edit-form.png)
+_Formulir Edit Passenger, terisi data penumpang saat ini._
+
+Klik **Save Changes** (atau **Cancel** untuk membatalkan).
+
+:::note[Validasi yang sama berlaku]
+Pengubahan menjalankan **pemeriksaan yang persis sama** dengan check-in — aturan
+karakter pada **No** dan **Name**, aturan urutan tanggal, dan pemeriksaan **No
+duplikat di perjalanan yang sama**. Lihat
+[Check-in Penumpang NTL / LM](/terminal-operator/check-in-ntl-lm#if-the-check-in-is-rejected)
+untuk daftar pesan lengkapnya.
+:::
+
+## Yang Tidak Berubah Saat Mengubah Data {/* #what-editing-does-not-change */}
+
+- **Nomor boarding pass tetap sama.** Memperbaiki nama tidak menerbitkan ulang
+  boarding pass, dan boarding pass yang sudah dicetak tetap berlaku. Anda mungkin
+  tetap ingin [mencetak ulang](/terminal-operator/reprint-boarding-pass) agar nama
+  yang tercetak sesuai.
+- **Statusnya tetap CheckedIn.**
+- **Penumpang tetap di perjalanan yang sama.** Tidak ada tindakan "pindah ke
+  perjalanan lain" — batalkan penumpang dan check-in ulang di pelayaran yang benar.
+- **Jumlah kursi tidak berubah.**
+
+## Jika Perubahan Ditolak {/* #if-the-edit-is-refused */}
+
+| Pesan | Artinya |
+| --- | --- |
+| _"Only CheckedIn passengers can have their passport information updated."_ | Status berubah antara saat Anda membuka menu dan saat menyimpan — seseorang memindainya di Pre-Immigration saat Anda mengetik. Muat ulang tabel. |
+| _"A passenger with this No already exists on this trip."_ | Nomor dokumen yang baru bentrok dengan penumpang aktif lain di perjalanan ini. Penumpang yang dibatalkan diabaikan. |
+
+## Jika Tidak Bisa Diubah tetapi Datanya Salah {/* #when-you-cannot-edit-but-the-record-is-wrong */}
+
+Penumpang sudah **Boarded** dan Anda baru sadar nomor paspornya salah. Pilihan,
+berurutan dari yang paling dianjurkan:
+
+1. **Biarkan dan catat.** Jika kapal sudah berlayar, manifest sudah dibuat dari data
+   yang tercatat. Ajukan melalui proses koreksi terminal Anda sendiri.
+2. **Kembalikan ke CheckedIn**, ubah, lalu pindai ulang. Ini hanya bisa selama
+   perjalanan masih **Boarding** — lihat
+   [Membatalkan Pemindaian Boarding](/terminal-operator/revert-boarding), lalu
+   [Membatalkan Pemindaian Pre-Immigration](/terminal-operator/revert-pre-immigration).
+   Dua kali pembatalan mengembalikan ke CheckedIn, tempat perubahan bisa dilakukan.
+3. **Batalkan lalu check-in ulang.** Pilihan terakhir — ini menerbitkan **nomor
+   boarding pass baru**, sehingga penumpang perlu cetak ulang.
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan Penumpang](/terminal-operator/cancel-passenger)
+- [Mengubah Status Penumpang](/terminal-operator/update-passenger-status)
+- [Mencetak Ulang atau Mengunduh Boarding Pass](/terminal-operator/reprint-boarding-pass)

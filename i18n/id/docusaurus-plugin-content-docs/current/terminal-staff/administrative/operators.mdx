@@ -1,0 +1,103 @@
+---
+id: operators
+title: Operators
+sidebar_label: Operators
+sidebar_position: 1
+slug: /terminal-staff/operators
+description: Kelola operator feri — buat, ubah, aktifkan/nonaktifkan, dan hapus data operator yang dipakai oleh Vessel, Route, Timeslot, dan perjalanan.
+keywords:
+  - operators
+  - operator
+  - master data
+  - activate
+  - deactivate
+---
+
+**Operator** adalah perusahaan feri yang menjalankan layanan dari terminal. Operator
+dirujuk di seluruh sistem — oleh [Vessels](/terminal-staff/vessels),
+[Routes](/terminal-staff/routes), [Timeslot](/terminal-operator/create-timeslot), dan
+perjalanan.
+
+> **Operators → Create Operator / Actions (Edit · Activate · Delete)**
+
+:::note
+Anda membutuhkan permission untuk mengelola operator. Tangkapan layar di bawah
+menggunakan `https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Daftar Operators {/* #the-operators-list */}
+
+Buka **Operators** (route: `/operators`). Setiap baris menampilkan **Code**,
+**Name**, **Trip Code**, dan **Status** (**Active** / **Inactive**) operator, serta
+menu **Actions** (**⋯**). Gunakan kotak **search** dan **Show Filters** (Status)
+untuk mempersempit daftar.
+
+![Tampilan daftar Operators](/img/terminal-staff/operators/01-operators-list.png)
+_Daftar Operators — Code, Name, Trip Code, dan Status._
+
+## Membuat Operator {/* #create-an-operator */}
+
+Klik **Create Operator** (kanan atas) untuk membuka formulir **New Operator**.
+Formulir ini terdiri dari dua bagian: **detail operator** dan **Admin Account**
+operator tersebut.
+
+### 1. Detail Operator {/* #1-operator-details */}
+
+| Kolom | Catatan |
+| --- | --- |
+| **Operator code** | Kode pendek yang unik, misalnya `OP001`. |
+| **Trip code** | Kode pendek yang dipakai saat membuat kode perjalanan. |
+| **Name** | Nama operator. |
+| **Logo URL** | Tautan ke logo operator (`https://…`), ditampilkan di papan publik. Harus berupa URL yang valid. |
+
+### 2. Admin Account {/* #2-admin-account */}
+
+Di bawah detail operator, isi data administrator operator — formulir mencatat
+bahwa _"This user will be created with Admin & Super Admin right"_:
+
+| Kolom | Catatan |
+| --- | --- |
+| **Username** | Username administrator, misalnya `jane.doe`. |
+| **Email** | Email administrator, misalnya `admin@operator.com`. |
+
+Lalu klik **Create Operator**.
+
+![Formulir New Operator, dengan detail operator dan bagian Admin Account](/img/terminal-staff/operators/02-create-operator.png)
+_Membuat operator — detail operator ditambah Admin Account._
+
+:::info[Satu pengguna super admin dibuat bersama operator]
+Mengirim formulir ini membuat operator **dan**, dalam langkah yang sama, **satu
+pengguna** untuk operator feri tersebut — diberi hak **Admin** dan **Super Admin**
+serta langsung **aktif**. Akun ini adalah administrator operator feri: mereka
+memakainya untuk masuk ke **Operator Portal** dan membuat pengguna lain untuk
+operator tersebut dari sana.
+:::
+
+:::warning[Validasi]
+- **Operator code** dan **Trip code** harus **unik** di antara semua operator.
+- **Logo URL** harus berupa URL yang valid.
+- **Username** wajib diisi, dan **Email** harus berupa alamat email yang valid.
+:::
+
+## Mengubah, Mengaktifkan/Menonaktifkan, dan Menghapus {/* #edit-activatedeactivate-and-delete */}
+
+Dari menu **⋯ Actions** pada baris:
+
+- **Edit** — ubah kode, nama, trip code, atau logo operator.
+- **Activate / Deactivate** — atur apakah operator tersedia untuk dipakai.
+- **Delete** — hapus operator secara permanen (perlu konfirmasi).
+
+![Menu Actions pada baris operator](/img/terminal-staff/operators/03-actions.png)
+_Menu Actions — Edit, Activate/Deactivate, dan Delete._
+
+:::info[Delete diblokir jika masih dipakai]
+Operator **tidak dapat dihapus** selama masih memiliki **Vessel**, atau masih
+dipakai di **Timeslot** atau **perjalanan** — sistem akan meminta Anda menjadikan
+operator **inactive** sebagai gantinya. Menonaktifkan tetap menyimpan riwayat
+sekaligus mengeluarkannya dari pilihan baru.
+:::
+
+## Langkah Berikutnya {/* #next-steps */}
+
+- [Vessels](/terminal-staff/vessels)
+- [Routes](/terminal-staff/routes)

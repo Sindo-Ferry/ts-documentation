@@ -1,0 +1,116 @@
+---
+id: edit-delete-role
+title: Mengubah atau Menghapus Role
+sidebar_label: Mengubah / Menghapus Role
+sidebar_position: 3
+slug: /terminal-administrator/edit-delete-role
+description: Ganti nama role, atau hapus secara permanen dengan konfirmasi mengetik nama role.
+keywords:
+  - edit role
+  - rename role
+  - delete role
+  - security
+---
+
+Mengganti nama role itu mudah. Menghapusnya bersifat permanen, dan sengaja dibuat
+tidak praktis.
+
+> **Roles → ⋯ → Edit _atau_ Delete Role**
+
+**Permission yang dibutuhkan:** `terminal.roles.write`
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda memiliki `terminal.roles.write`.
+
+## Mengubah Role {/* #edit-a-role */}
+
+1. Buka **Security → Roles** dan gunakan menu **⋯** role → **Edit**.
+2. Halaman **Edit Role Settings** terbuka dengan formulir yang sudah terisi.
+3. Ubah **Role Name** dan klik **Update Role**.
+
+![Halaman Edit Role Settings](/img/terminal-staff/security/07-edit-role.png)
+_**Edit Role Settings**, dengan catatan audit di bawah formulir._
+
+Aturannya sama seperti saat membuat: minimal **2 karakter**, dan nama harus
+**unik**.
+
+Di bawah formulir, panel **audit** menampilkan siapa yang membuat dan terakhir
+mengubah role, serta kapan.
+
+:::info[Mengganti nama hanya mengubah labelnya]
+Role tetap memiliki permission dan anggotanya. Akses siapa pun tidak berubah.
+
+Satu hal yang perlu diingat: [menghapus role](#delete-a-role) mengharuskan Anda
+mengetik namanya persis, jadi mengganti nama berarti mengubah apa yang harus Anda
+ketik nanti.
+:::
+
+Untuk mengubah apa yang dapat *dilakukan* role, gunakan
+[Mengelola Permission Role](/terminal-administrator/manage-role-permissions) — itu
+item menu terpisah dan membutuhkan Super Admin.
+
+## Menghapus Role {/* #delete-a-role */}
+
+:::danger[Permanen]
+Menghapus role tidak dapat dibatalkan dari portal. Role dan kumpulan permission-nya
+hilang; membuatnya ulang berarti menyusun kembali daftar permission secara manual.
+:::
+
+1. Buka menu **⋯** role → **Delete Role** (berwarna merah).
+2. Dialog **Delete System Role?** menjelaskan bahwa role akan dihapus permanen, dan
+   bahwa semua pengguna yang memegangnya harus dilepas terlebih dahulu.
+3. **Ketik nama role persis** di kotaknya — _"To confirm, please type **"Role
+   Name"** below"_. Tombol **Confirm Delete** tetap **nonaktif sampai ketikan Anda
+   persis sama**, termasuk huruf besar dan spasi.
+4. Klik **Confirm Delete**.
+
+![Dialog Delete System Role](/img/terminal-staff/security/08-confirm-delete.png)
+_**Delete System Role?** — **Confirm Delete** tetap abu-abu sampai nama role diketik persis._
+
+:::tip[Langkah mengetik adalah pengamannya]
+Langkah ini ada agar penghapusan tidak terjadi karena salah klik. Jika Anda mendapati
+diri menyalin-tempel nama untuk melewatinya, berhenti sejenak dan pastikan Anda
+membuka role yang benar.
+:::
+
+## Jika Penghapusan Ditolak {/* #if-the-delete-is-refused */}
+
+| Pesan | Artinya | Yang dilakukan |
+| --- | --- | --- |
+| _"Unable to delete Role. Role has user(s) assigned."_ | Setidaknya satu pengguna masih memegang role ini. | [Cabut dari setiap pengguna](/terminal-administrator/assign-role#step-4--revoke-a-role) terlebih dahulu, lalu hapus. |
+
+:::warning[Tidak ada daftar "siapa yang memegang role ini?"]
+Pesan tersebut memberi tahu bahwa role sedang dipakai, tetapi tidak oleh siapa. Buka
+**Security → Users** dan periksa tab **Roles** di profil keamanan setiap pengguna,
+atau minta Super Admin memeriksanya lewat API.
+
+Ini penting diketahui sebelum merencanakan pembersihan — menemukan pemegangnya adalah
+bagian yang paling lama.
+:::
+
+## Memensiunkan Role dengan Aman {/* #retiring-a-role-safely */}
+
+Jika sebuah role tidak boleh dipakai lagi tetapi Anda tidak yakin tidak ada yang
+bergantung padanya:
+
+1. **Cabut dari para penggunanya** — akses langsung berubah, jadi lakukan di antara
+   shift.
+2. **Biarkan role tetap ada** untuk sementara. Role kosong tidak memberi apa pun dan
+   tidak merugikan apa pun.
+3. **Hapus** setelah Anda yakin, dengan langkah-langkah di atas.
+
+Berhenti di langkah 2 pun sudah hasil yang baik. Role yang tidak dipakai tidak
+berbahaya; role yang terhapus padahal dibutuhkan berarti harus disusun ulang.
+
+## Selanjutnya {/* #next */}
+
+- [Memberikan Role kepada Pengguna](/terminal-administrator/assign-role)
+- [Mengelola Permission Role](/terminal-administrator/manage-role-permissions)

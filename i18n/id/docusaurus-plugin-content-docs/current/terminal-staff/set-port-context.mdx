@@ -1,0 +1,79 @@
+---
+id: set-port-context
+title: Mengatur Port Context
+sidebar_label: Mengatur Port Context
+sidebar_position: 2
+description: Pilih Port aktif Anda di Settings — langkah pertama yang wajib, yang membatasi Terminal Portal ke terminal Anda untuk semua pekerjaan operasional.
+keywords:
+  - port context
+  - active port
+  - settings
+  - current trips
+---
+
+Sebelum melakukan pekerjaan operasional apa pun, staf terminal wajib mengatur
+**Port aktif**. Ini memberi tahu Terminal Portal di terminal mana Anda bekerja, dan
+membatasi apa yang Anda lihat di layar-layar operasional ke Port tersebut.
+
+> **Settings → Port Context → pilih Active Port**
+
+:::warning[Atur ini terlebih dahulu]
+Mengatur Port aktif adalah **langkah pertama yang wajib** setelah masuk. Selama
+belum ada Port aktif yang dipilih, layar operasional tidak dapat memuat perjalanan
+Anda — lihat [Jika belum ada Port aktif](#if-no-active-port-is-selected) di bawah.
+:::
+
+## Persyaratan {/* #prerequisites */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+
+## Mengapa Port Aktif Penting {/* #why-the-active-port-matters */}
+
+Setiap terminal punya perjalanan dan operasionalnya sendiri. **Port aktif**
+berfungsi sebagai konteks kerja Anda: setelah diatur, layar seperti **Current
+Trips** difilter ke Port tersebut, sehingga Anda hanya melihat perjalanan yang
+relevan dengan tempat Anda bekerja. Memilih Port yang benar menjaga tampilan tetap
+fokus dan memastikan pemindaian serta check-in tercatat pada terminal yang tepat.
+
+## Langkah 1 — Buka Settings {/* #step-1--open-settings */}
+
+Dari sidebar, buka **Settings**. Di bagian atas terdapat bagian **Port Context**.
+
+## Langkah 2 — Pilih Port aktif Anda {/* #step-2--select-your-active-port */}
+
+Buka dropdown **Active Port** dan pilih terminal Anda dari daftar. Setiap entri
+menampilkan kode dan nama Port (misalnya **WFC – Waterfront Terminal**).
+
+![Memilih Port aktif di Settings → Port Context](/img/terminal-staff/set-port-context/01-port-context.png)
+_Bagian Port Context, dengan daftar Active Port terbuka._
+
+Pilihan Anda langsung diterapkan dan diingat selama sesi Anda.
+
+:::tip[Port Anda tidak ada?]
+Jika terminal Anda tidak ada di daftar, klik **Refresh Ports** untuk memuat ulang
+Port yang tersedia, lalu buka daftarnya lagi. Jika masih tidak ada, **hubungi
+administrator Anda** — akun atau Port Anda mungkin perlu dikonfigurasi.
+:::
+
+Anda juga dapat menggunakan **Clear** untuk menghapus pilihan saat ini (misalnya
+sebelum berpindah ke terminal lain).
+
+## Jika Belum Ada Port Aktif {/* #if-no-active-port-is-selected */}
+
+Layar operasional membutuhkan Port Context. Jika Anda membuka layar operasional
+dengan role yang membutuhkannya — dan belum ada Port aktif — Anda akan melihat:
+
+> _"Port context is required. Please select an active port in terminal portal."_
+
+Jika pesan ini muncul, kembali ke **Settings → Port Context** dan pilih Port aktif
+Anda dengan langkah-langkah di atas.
+
+## Langkah Berikutnya {/* #next-steps */}
+
+Setelah Port aktif diatur, Anda dapat mulai bekerja:
+
+- [Membuat Perjalanan dari Timeslot](/terminal-operator/generate-trips)
+- [Mengatur Perjalanan menjadi Boarding](/terminal-operator/set-trip-as-boarding)
+- [Mengubah Waktu](/terminal-operator/update-timings)
+- [Check-in Penumpang NTL / LM](/terminal-operator/check-in-ntl-lm)

@@ -1,0 +1,135 @@
+---
+id: cancel-passenger
+title: Membatalkan Penumpang
+sidebar_label: Membatalkan Penumpang
+sidebar_position: 4
+slug: /terminal-operator/cancel-passenger
+description: Batalkan penumpang dari perjalanan dan bebaskan kursinya — apa yang dilakukan, kapan diperbolehkan, dan apa yang tidak bisa dikembalikan.
+keywords:
+  - cancel passenger
+  - no-show
+  - release seat
+  - cancelled
+  - passenger table
+---
+
+Membatalkan penumpang mengeluarkannya dari pelayaran dan **membebaskan kursinya**.
+Gunakan untuk penumpang yang tidak datang, data ganda, dan penumpang yang berubah
+rencana di konter.
+
+> **Current Trips → buka perjalanan → menu ⋯ penumpang → Cancel Passenger → Confirm Cancel**
+
+:::warning[Tidak dapat dibatalkan]
+Tidak ada "batal membatalkan". Penumpang yang dibatalkan tetap dibatalkan; untuk
+memasukkannya kembali ke perjalanan Anda harus
+[meng-check-in ulang](/terminal-operator/check-in-ntl-lm), yang menerbitkan **nomor
+boarding pass baru** dan membuat boarding pass lamanya tidak berlaku.
+:::
+
+## Langkah 1 — Temukan Penumpang {/* #step-1--find-the-passenger */}
+
+Penumpang dibatalkan **dari dalam perjalanannya**:
+
+- **Perjalanan hari ini:** **Operational → Current Trips** → klik perjalanan → tabel
+  **Passengers** di bagian bawah.
+- **Perjalanan lama:** **Management → Departure Trips** → temukan perjalanannya →
+  buka halaman detailnya.
+- **Tidak yakin perjalanan yang mana?** Gunakan
+  [Mencari Penumpang](/terminal-operator/look-up-passenger) terlebih dahulu —
+  pencarian itu mencakup semua perjalanan dan memberi tahu di perjalanan mana
+  penumpang berada.
+
+![Tabel penumpang di halaman Departure Trip Detail](/img/terminal-staff/edit-passenger/01-edit-from-departure-trip.png)
+_Tabel **Passengers** di bagian bawah halaman detail perjalanan._
+
+Cocokkan **No** dan **Name** dengan orang yang berdiri di depan Anda sebelum
+menyentuh menu.
+
+## Langkah 2 — Batalkan {/* #step-2--cancel */}
+
+Di baris penumpang, klik **⋯** dan pilih **Cancel Passenger** (berwarna merah, di
+bagian bawah menu).
+
+Konfirmasi muncul:
+
+> **Cancel Passenger** — This will cancel passenger **_[nama]_** (_[No]_). This
+> cannot be undone.
+
+![Dialog konfirmasi Cancel Passenger](/img/terminal-staff/edit-passenger/04-confirm-cancel.png)
+_Konfirmasi menyebutkan nama dan nomor dokumen penumpang — baca keduanya sebelum mengonfirmasi._
+
+Klik **Confirm Cancel**, atau **Keep Passenger** untuk membatalkan.
+
+## Hasil {/* #outcome */}
+
+- Status penumpang menjadi **Cancelled**.
+- **Kursinya dibebaskan** — hitungan **Available** perjalanan bertambah satu, sehingga
+  orang lain dapat di-check-in.
+- Hitungan tempat penumpang berada sebelumnya berkurang satu: **Checked-In**,
+  **Pre-Immigration**, atau **Boarded**.
+- **Siapa yang membatalkan dan kapan, tercatat** pada penumpang dan terlihat di
+  halaman View Passenger-nya.
+- **Ikon boarding pass-nya menjadi nonaktif**, dengan tooltip _"This passenger is
+  cancelled."_
+- Penumpang **tidak masuk manifest**, yang hanya mencantumkan penumpang Boarded.
+
+## Siapa yang Dapat Dibatalkan {/* #who-can-be-cancelled */}
+
+Setiap penumpang yang **belum dibatalkan** — **CheckedIn**, **PreImmigration**,
+atau **Boarded**. Membatalkan penumpang yang sudah naik diperbolehkan; begitulah cara
+menangani penumpang yang turun lagi dari kapal.
+
+| Situasi | Hasil |
+| --- | --- |
+| Penumpang CheckedIn / PreImmigration / Boarded | Dibatalkan, kursi dibebaskan |
+| Penumpang sudah **Cancelled** | **Cancel Passenger** **tidak ada di menu** sama sekali. Jika dipaksakan, jawabannya _"Passenger is already cancelled."_ |
+
+:::info[Menu menyembunyikan dirinya sendiri]
+Pada baris Cancelled, **Cancel Passenger** dan **Update Status** sama-sama hilang dari
+menu **⋯**. Hanya **View Passenger** dan **Boarding Pass History** yang tersisa.
+Jadi jika Anda tidak menemukan tindakan pembatalan, kemungkinan penumpang sudah
+dibatalkan — periksa badge statusnya.
+:::
+
+## Membatalkan Juga Membebaskan Nomor Dokumen {/* #cancelling-frees-the-document-number-too */}
+
+Pemeriksaan duplikat — _"A passenger with this No already exists on this trip."_ —
+**mengabaikan penumpang yang dibatalkan**. Jadi cara standar memperbaiki check-in
+yang salah ketik adalah:
+
+1. **Batalkan** data yang salah.
+2. **Check-in** ulang dengan data yang benar dan nomor dokumen yang sama.
+
+Cara ini berhasil, dan memang jalur yang dimaksudkan jika datanya terlalu salah untuk
+[diubah](/terminal-operator/edit-passenger).
+
+## Cancel vs. Update Status {/* #cancel-vs-update-status */}
+
+Ini dua tindakan berbeda dan penting memilih yang tepat:
+
+| | **Cancel Passenger** | **Update Status** |
+| --- | --- | --- |
+| Untuk apa | Penumpang **tidak jadi berangkat** | Penumpang **tetap berangkat**, tetapi tahap yang tercatat salah |
+| Membebaskan kursi | **Ya** | Tidak |
+| Dapat mengatur Cancelled | **Ya** — hanya lewat sini | **Tidak** — Cancelled tidak ada di daftar |
+| Dapat dikembalikan | Tidak | Ya, dengan mengatur statusnya kembali |
+
+Anda **tidak dapat** membatalkan penumpang lewat Update Status. Pilihan statusnya
+hanya CheckedIn, PreImmigration, dan Boarded, dan sistem menolak nilai Cancelled
+dengan pesan _"Direct status update does not support Cancelled. Use cancel action
+instead."_ Lihat [Mengubah Status Penumpang](/terminal-operator/update-passenger-status).
+
+## Membatalkan Penumpang vs. Membatalkan Perjalanan {/* #cancelling-a-passenger-vs-cancelling-a-trip */}
+
+Membatalkan penumpang satu per satu **bukan** cara membatalkan pelayaran. Untuk
+membatalkan seluruh perjalanan, lihat
+[Membatalkan dan Memulihkan Perjalanan](/terminal-operator/cancel-restore-trip) —
+dan perhatikan bahwa perjalanan **tidak dapat dibatalkan jika sudah ada penumpang
+yang check-in**, jadi pada perjalanan yang sudah berisi pemesanan, penumpangnya
+memang harus ditangani terlebih dahulu.
+
+## Selanjutnya {/* #next */}
+
+- [Mengubah Status Penumpang](/terminal-operator/update-passenger-status)
+- [Check-in Penumpang NTL / LM](/terminal-operator/check-in-ntl-lm) — untuk
+  memasukkan seseorang kembali.

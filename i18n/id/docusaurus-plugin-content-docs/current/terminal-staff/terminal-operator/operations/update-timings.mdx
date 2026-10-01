@@ -1,0 +1,123 @@
+---
+id: update-timings
+title: Mengubah Waktu
+sidebar_label: Mengubah Waktu
+sidebar_position: 7
+slug: /terminal-operator/update-timings
+description: Ubah jam Gate dibuka dan ditutup, serta catat keterlambatan keberangkatan, selama perjalanan masih Scheduled atau Boarding.
+keywords:
+  - update timings
+  - gate open
+  - gate close
+  - delay
+  - mark as delayed
+  - delayed to
+---
+
+Jam Gate bisa bergeser dan keberangkatan bisa terlambat. **Update Timings** adalah
+tempat mencatat keduanya, agar rentang Gate yang dipakai untuk
+[pemindaian Pre-Immigration](/terminal-operator/pre-immigration-scan) dan jam yang
+ditampilkan kepada penumpang tetap akurat.
+
+> **Current Trips → buka perjalanan → Update Timings → Save Timings**
+
+:::warning[Hanya selama perjalanan Scheduled atau Boarding]
+Setelah perjalanan berstatus **Closed**, **Departed**, atau **Cancelled**, waktunya
+terkunci dan tindakan **Update Timings** hilang. Sistem menolak percobaan yang
+terlambat dengan pesan _"Cannot update timings for a trip that is already …"_
+:::
+
+:::note
+Anda membutuhkan permission untuk melihat Current Trips dan mengubah waktu
+perjalanan. Tangkapan layar di bawah menggunakan
+`https://ts-terminal.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Terminal Portal — lihat
+  [Masuk ke Terminal Portal](/terminal-staff/sign-in).
+- Anda sudah [mengatur Port aktif](/terminal-staff/set-port-context).
+- Perjalanan ada di **Current Trips** dan masih **Scheduled** atau **Boarding**.
+
+## Langkah 1 — Buka Perjalanan {/* #step-1--open-the-trip */}
+
+Buka **Operational → Current Trips** (route: `/current-departure-trips`) dan klik
+perjalanan **Scheduled** atau **Boarding** untuk membuka halaman detailnya.
+
+## Langkah 2 — Klik Update Timings {/* #step-2--click-update-timings */}
+
+Di halaman detail, kartu **Timings** menampilkan **Gate Open / Close**,
+**Departure**, dan — jika ada — **Delayed To**. Klik **Update Timings** di dalam
+kartu tersebut.
+
+:::tip
+Menu **⋯** pada baris perjalanan di daftar Current Trips juga menawarkan **Update
+Timings**, jika Anda tidak ingin membuka perjalanannya.
+:::
+
+## Langkah 3 — Masukkan Waktu Baru {/* #step-3--enter-the-new-timings */}
+
+| Kolom | Catatan |
+| --- | --- |
+| **Gate Open** | Jam Gate dibuka untuk perjalanan ini. |
+| **Gate Close** | Jam Gate ditutup. Harus **setelah** Gate Open. |
+| **Departure Time** | Jam keberangkatan **terjadwal asli**. Ini **tidak dapat diubah** — tetap menjadi acuan yang dipakai saat semua orang memesan. |
+| **Mark as Delayed** | Centang hanya jika keberangkatan memang terlambat. |
+| **Delayed To** | Jam keberangkatan **baru yang diperkirakan**. Muncul — dan menjadi wajib — setelah **Mark as Delayed** dicentang. Harus **setelah** jam keberangkatan terjadwal. |
+
+![Dialog Update Timings berisi Gate Open, Gate Close, dan Mark as Delayed](/img/terminal-staff/update-current-trip-timings/01-update-timings.png)
+_Dialog Update Timings. Centang **Mark as Delayed** untuk menampilkan dan mengisi **Delayed To**._
+
+:::info[Keterlambatan tidak pernah mengubah jam keberangkatan terjadwal]
+Mencentang **Mark as Delayed** tidak mengubah **Departure Time**. Jam aslinya tetap
+menjadi acuan terjadwal, dan **Delayed To** menjadi jam keberangkatan efektif yang
+dipakai staf dan penumpang. Ini disengaja — agar tetap tercatat seberapa terlambat
+pelayaran tersebut.
+:::
+
+## Langkah 4 — Simpan {/* #step-4--save */}
+
+Klik **Save Timings**.
+
+Jika ada yang salah, Anda akan melihat salah satu pesan berikut:
+
+| Pesan | Yang perlu diperbaiki |
+| --- | --- |
+| _"Gate close time must be after gate open time."_ | Gate Close sama dengan atau sebelum Gate Open. |
+| _"Delayed time is required when marking as delayed."_ | Anda mencentang **Mark as Delayed** tetapi **Delayed To** kosong. |
+| _"Delayed time must be after the scheduled departure."_ | **Delayed To** sama dengan atau sebelum jam keberangkatan asli. Keterlambatan harus lebih lambat dari jam yang ditunda. |
+
+## Hasil {/* #outcome */}
+
+Halaman detail dimuat ulang dengan waktu yang baru. Jika Anda menandai perjalanan
+terlambat, jam **Delayed To** ditampilkan berwarna kuning di samping jam
+keberangkatan asli, sehingga siapa pun yang melihat perjalanan tersebut melihat jam
+terjadwal maupun jam perkiraan.
+
+![Halaman detail perjalanan yang menampilkan waktu terlambat yang sudah diperbarui](/img/terminal-staff/update-current-trip-timings/02-delayed-trip.png)
+_Perjalanan setelah disimpan — jam keberangkatan yang tertunda kini tampil di samping jam terjadwal._
+
+:::tip[Ubah sesering yang diperlukan]
+Tidak ada batasnya. Selama perjalanan masih **Scheduled** atau **Boarding**, Anda
+dapat menyesuaikan jam Gate atau memundurkan **Delayed To** lagi setiap kali
+keadaan berubah.
+:::
+
+## Apa Lagi yang Dipengaruhi Waktu {/* #what-else-the-timings-affect */}
+
+- **Pemindaian Pre-Immigration pada perjalanan Scheduled** hanya diizinkan **di
+  dalam rentang Gate**. Memperlebar rentang di sini adalah cara meloloskan penumpang
+  yang terlambat — lihat
+  [Memindai Boarding Pass (Pre-Immigration)](/terminal-operator/pre-immigration-scan).
+  Setelah perjalanan berstatus **Boarding**, rentang ini tidak lagi berlaku.
+- **Peringatan Last Call** di halaman Boarding Scan menghitung mundur ke jam
+  keberangkatan **efektif** — jam **Delayed To** jika perjalanan terlambat, jika
+  tidak jam keberangkatan terjadwal. Lihat [Last Call](/terminal-operator/last-call).
+- **Check-in oleh operator feri** ditutup saat **Gate ditutup**, bukan saat Boarding
+  dimulai. Memundurkan **Gate Close** membuka kembali rentang check-in mereka.
+
+## Selanjutnya {/* #next */}
+
+- [Mengatur Perjalanan menjadi Boarding](/terminal-operator/set-trip-as-boarding)
+- [Last Call](/terminal-operator/last-call)

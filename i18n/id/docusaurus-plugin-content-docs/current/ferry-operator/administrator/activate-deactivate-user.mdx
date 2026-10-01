@@ -1,0 +1,125 @@
+---
+id: activate-deactivate-user
+title: Mengaktifkan atau Menonaktifkan Pengguna
+sidebar_label: Mengaktifkan / Menonaktifkan Pengguna
+sidebar_position: 5
+slug: /operator-administrator/activate-deactivate-user
+description: Ubah pengguna portal antara Active dan Inactive — sakelar hidup/mati akses portal.
+keywords:
+  - activate user
+  - deactivate user
+  - active
+  - inactive
+  - access
+---
+
+**Active / Inactive** adalah sakelar hidup/mati akses seseorang. Inilah cara
+tercepat menghentikan akses, sekaligus langkah terakhir dalam menyiapkan seseorang.
+
+> **Users → ⋯ → Set Active / Set Inactive**
+
+**Permission yang dibutuhkan:** `operator.security.is_super_admin`
+
+:::warning[Di Operator Portal, hanya Super Admin yang dapat melakukannya]
+Mengaktifkan atau menonaktifkan pengguna di sini membutuhkan
+**`operator.security.is_super_admin`** — bukan `operator.users.write`. Administrator
+yang dapat membuat dan menghapus pengguna tetap **tidak dapat** mengaktifkannya, dan
+melihat item menunya dalam keadaan nonaktif.
+
+Dalam praktiknya, pengguna baru membutuhkan **Super Admin** untuk diaktifkan, meskipun
+orang lain yang membuatnya.
+:::
+
+:::note
+Anda membutuhkan permission di atas. Tangkapan layar di bawah menggunakan
+`https://ts-operator.sindoferry.com.sg/`.
+:::
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah masuk ke Operator Portal — lihat
+  [Masuk ke Operator Portal](/ferry-operator/sign-in).
+- [Pengguna portalnya sudah ada](/operator-administrator/add-user).
+- Anda memiliki `operator.security.is_super_admin`.
+
+## Langkah 1 — Temukan Pengguna {/* #step-1--find-the-user */}
+
+Buka **Users**. Kolom **Status** menampilkan badge **Active** (hijau) atau
+**Inactive** (merah) di setiap baris.
+
+Gunakan **Show Filters** untuk menampilkan hanya pengguna aktif atau tidak aktif —
+cara tercepat menemukan orang yang menunggu diaktifkan.
+
+## Langkah 2 — Ubah Statusnya {/* #step-2--toggle-the-status */}
+
+Buka menu **⋯** pada baris. Di bawah **Security Flags** ada satu item yang mengikuti
+status saat ini:
+
+- **Set Active** — pada pengguna yang tidak aktif.
+- **Set Inactive** — pada pengguna yang aktif.
+
+![Menu baris yang menawarkan Set Active](/img/ferry-operator/security/12-activate-user.png)
+_Pengguna **Inactive** — menunya menawarkan **Set Active**._
+
+![Menu baris yang menawarkan Set Inactive](/img/ferry-operator/security/14-deactivate-user.png)
+_Pengguna **Active** — item yang sama bertuliskan **Set Inactive**._
+
+Konfirmasi muncul:
+
+- **Set User as Active?** — _"This will restore **[username]** access to the
+  operator portal."_
+- **Set User as Inactive?** — _"This will prevent **[username]** from accessing the
+  operator portal."_
+
+![Dialog Set User as Active](/img/ferry-operator/security/13-confirm-activate-user.png)
+_**Set User as Active?**_
+
+![Dialog Set User as Inactive](/img/ferry-operator/security/15-confirm-deactivate-user.png)
+_**Set User as Inactive?**_
+
+Klik **Confirm Set Active** / **Confirm Set Inactive**, atau **Cancel**.
+
+Badge di baris tersebut berubah.
+
+## Arti Setiap Status {/* #what-each-status-means */}
+
+| Status | Dampaknya |
+| --- | --- |
+| **Active** | Orang tersebut dapat masuk, sesuai role dan permission-nya. |
+| **Inactive** | Masuk ditolak dengan pesan _"Login succeeded, but your account is not provisioned for Opusbay access. Please contact your administrator."_ Role, permission, dan riwayatnya tetap tersimpan. |
+
+:::info[Menonaktifkan bukan menghapus]
+Pengguna yang tidak aktif tetap menyimpan semuanya — role, permission langsung, jejak
+audit. Aktifkan kembali dan ia melanjutkan persis seperti sebelumnya.
+
+Menonaktifkan juga merupakan **syarat** penghapusan: pengguna harus tidak aktif
+sebelum dapat [dihapus](/operator-administrator/delete-user).
+:::
+
+## Super Admin Tidak Dapat Dinonaktifkan {/* #the-super-admin-cannot-be-deactivated */}
+
+Percobaannya ditolak dengan pesan _"Super Admin cannot be set to inactive."_.
+
+Ini disengaja — agar sistem tidak terkunci dari administrasinya sendiri. Jika akun
+Super Admin perlu berpindah tangan, itu tugas tim pengembang.
+
+## Kapan Memakai yang Mana {/* #when-to-use-which */}
+
+| Situasi | Lakukan ini |
+| --- | --- |
+| Pengguna baru, yang lain sudah siap | **Set Active** |
+| Seseorang keluar, atau diskors | **Set Inactive** — langsung berlaku, dan dapat dikembalikan |
+| Staf musiman di luar musim | **Set Inactive**, lalu **Set Active** saat kembali |
+| Seseorang berganti tugas | Biarkan aktif; ubah [role-nya](/operator-administrator/assign-role) |
+| Akun dibuat karena kesalahan, tidak pernah dipakai | **Set Inactive**, lalu [hapus](/operator-administrator/delete-user) |
+
+:::tip[Nonaktifkan dulu, tanya belakangan]
+Jika Anda mencurigai sebuah akun disusupi atau disalahgunakan, **nonaktifkan**. Ini
+langsung berlaku, dapat dikembalikan, dan memberi waktu untuk menyelidiki. Menghapus
+menghilangkan bukti.
+:::
+
+## Selanjutnya {/* #next */}
+
+- [Memberikan Role kepada Pengguna](/operator-administrator/assign-role)
+- [Menghapus Pengguna](/operator-administrator/delete-user)
