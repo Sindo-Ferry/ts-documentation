@@ -1,0 +1,88 @@
+---
+id: operator-api-cancel-passenger
+title: Cancel a Check-in (API)
+sidebar_label: Cancel a Check-in
+sidebar_position: 3
+slug: /ferry-operator-api/cancel-passenger
+description: Cancel a passenger's check-in from your own system with PATCH /api/Operator/Passengers/cancel-by-code, freeing their seat.
+keywords:
+  - api
+  - cancel
+  - cancel-by-code
+  - check-in
+  - boarding pass number
+---
+
+Cancels a passenger's check-in and frees their seat — the same as **Cancel
+Passenger** in the [Operator Portal](/ferry-operator/check-in-passenger#cancel-the-check-in),
+but from your own system.
+
+> **`PATCH {API_BASE_URL}/api/Operator/Passengers/cancel-by-code`** · permission `operator.passenger.cancel`
+
+## Before you start
+
+- You have an access token and your operator code — see
+  [Getting Started](/ferry-operator-api/getting-started).
+- You have the passenger's **boarding pass number** — from
+  [check-in](/ferry-operator-api/check-in-passenger) or from the
+  [status list](/ferry-operator-api/passenger-status-list).
+- The passenger is still **CheckedIn** — not yet scanned at Pre-Immigration or
+  Boarding.
+
+## Request
+
+```http
+PATCH {API_BASE_URL}/api/Operator/Passengers/cancel-by-code
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+Content-Type: application/json
+
+{
+  "tripType": 0,
+  "routeTripCode": "HW",
+  "tripDate": "2026-11-02",
+  "departure": "09:30:00",
+  "suffix": null,
+  "boardingPassNo": "K7M2Q9XR4TW8HC3P"
+}
+```
+
+The first five fields identify the trip — see
+[Identify the trip](/ferry-operator-api/getting-started#identify-the-trip).
+`boardingPassNo` is the number returned at check-in.
+
+## Response
+
+`204 No Content`, with an empty body.
+
+- The passenger's status becomes **Cancelled** and their seat is freed.
+- The record is **kept**: it still shows in the Operator Portal and in the
+  [status list](/ferry-operator-api/passenger-status-list), with status `3`.
+- The boarding pass stops working — the terminal refuses it at Pre-Immigration and
+  Boarding.
+- The same `no` can be checked in again on the same trip. That issues a **new**
+  boarding pass number.
+
+## If the cancellation is rejected
+
+| HTTP | Message | What it means |
+| --- | --- | --- |
+| 404 | `Passenger not found (trip code 'SSFHW202611020930').` | No passenger with that boarding pass number on that trip — the number or one of the trip fields is wrong. The message names the trip code the API looked in. |
+| 400 | `Passenger is already cancelled.` | Nothing left to do — see below. |
+| 400 | `Only CheckedIn passengers can be cancelled.` | The passenger has already been through Pre-Immigration or has boarded. Contact the terminal. |
+| 400 | `Trip occupied seats are inconsistent for cancellation.` or `Trip check-in count is inconsistent for cancellation.` | The trip's seat counts need correcting. Contact the terminal. |
+
+## Retrying safely
+
+If a cancellation times out or returns `500`, send it again:
+
+- **`204`** — the first attempt didn't go through; this one cancelled the check-in.
+- **`400` with `Passenger is already cancelled.`** — the first attempt **did**
+  succeed.
+
+Either way, the passenger ends up cancelled.
+
+## Next
+
+- [Check In a Passenger](/ferry-operator-api/check-in-passenger)
+- [Get Passenger Statuses](/ferry-operator-api/passenger-status-list)

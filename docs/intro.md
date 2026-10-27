@@ -23,6 +23,8 @@ session lasts.
   (`ts-terminal.sindoferry.com.sg`): current trips, passenger check-in, departures, and more.
 - **[Ferry Operator](/ferry-operator/)** — using the **Operator Portal**
   (`ts-operator.sindoferry.com.sg`).
+- **[Ferry Operator API Integration](/ferry-operator-api/)** — for developers
+  connecting a ferry operator's own booking or ticketing system, server to server.
 - **[Public / Passengers](/public-live-tv)** — the no-login **Live TV** departure
   boards shown on terminal monitors.
 
@@ -129,3 +131,12 @@ Manifests
 
 - [Download the Manifest](/ferry-operator/download-manifest) — Excel, boarded passengers
 - [Export the Passenger Manifest Report](/ferry-operator/export-manifest-report) — PDF/Excel, any status, optional password
+
+## Ferry Operator API Integration
+
+For developers connecting a ferry operator's own system — server to server.
+
+- [Getting Started](/ferry-operator-api/getting-started) — account, access token, headers, trip codes, errors
+- [Check In a Passenger](/ferry-operator-api/check-in-passenger) — returns the boarding pass number
+- [Cancel a Check-in](/ferry-operator-api/cancel-passenger)
+- [Get Passenger Statuses](/ferry-operator-api/passenger-status-list) — every passenger on a trip, with their status

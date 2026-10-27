@@ -1,0 +1,156 @@
+---
+id: operator-api-check-in-passenger
+title: Check-in Penumpang (API)
+sidebar_label: Check-in Penumpang
+sidebar_position: 2
+slug: /ferry-operator-api/check-in-passenger
+description: Check-in penumpang ke salah satu perjalanan Anda dari sistem Anda sendiri dengan POST /api/Operator/Passengers/by-code, dan dapatkan kembali nomor boarding pass-nya.
+keywords:
+  - api
+  - check in
+  - by-code
+  - boarding pass number
+  - passenger
+---
+
+Melakukan check-in penumpang ke salah satu perjalanan Anda dan menerbitkan **nomor
+boarding pass**-nya — sama seperti
+[check-in dari Operator Portal](/ferry-operator/check-in-passenger), tetapi dari
+sistem Anda sendiri.
+
+> **`POST {API_BASE_URL}/api/Operator/Passengers/by-code`** · permission `operator.passenger.write`
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah memiliki access token dan kode operator — lihat
+  [Memulai](/ferry-operator-api/getting-started).
+- Perjalanan berstatus **Scheduled** — belum Boarding, Closed, Departed, atau
+  Cancelled — dan masih punya **kursi kosong**.
+- Data dokumen perjalanan penumpang sudah Anda pegang.
+
+:::warning[Hentikan saat Gate ditutup, seperti portal]
+Operator Portal menghentikan check-in begitu **Gate perjalanan ditutup**. Terapkan
+batas yang sama di sistem Anda: setelah Gate ditutup, terminal tidak lagi
+meloloskan penumpang melalui Pre-Immigration.
+:::
+
+## Permintaan {/* #request */}
+
+```http
+POST {API_BASE_URL}/api/Operator/Passengers/by-code
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+Content-Type: application/json
+
+{
+  "tripType": 0,
+  "routeTripCode": "HW",
+  "tripDate": "2026-11-02",
+  "departure": "09:30:00",
+  "suffix": null,
+  "no": "A12345678",
+  "name": "JOHN DOE",
+  "gender": 0,
+  "dateOfBirth": "1990-01-01",
+  "nationalityCode": "SG",
+  "issueCountryCode": "SG",
+  "issueDate": "2022-01-01",
+  "expiryDate": "2032-01-01"
+}
+```
+
+Lima field pertama mengidentifikasi perjalanan — lihat
+[Mengidentifikasi Perjalanan](/ferry-operator-api/getting-started#identify-the-trip).
+Sisanya menjelaskan penumpang:
+
+| Field | Wajib | Catatan |
+| --- | --- | --- |
+| `no` | Ya | Nomor paspor / dokumen perjalanan. **Hanya `A–Z`, `a–z`, dan `0–9`** — tanpa spasi, tanda hubung, atau garis miring. |
+| `name` | Ya | Nama lengkap. **Hanya `A–Z`, `a–z`, `0–9`, dan spasi** — tanpa apostrof, tanda hubung, atau huruf beraksen. |
+| `gender` | Ya | `0` Male, `1` Female, `2` Unspecified. |
+| `dateOfBirth` | Ya | `yyyy-MM-dd`. Harus sebelum `issueDate` jika dikirim. |
+| `nationalityCode` | Ya | Kode negara dua huruf, misalnya `SG`, `ID`, atau `MY`. |
+| `issueCountryCode` | Ya | Kode dua huruf negara yang menerbitkan dokumen. |
+| `issueDate` | Tidak | `yyyy-MM-dd`. Harus sebelum `expiryDate`. |
+| `expiryDate` | Ya | `yyyy-MM-dd`. |
+
+:::warning[Selalu kirim semua field wajib]
+`gender` atau tanggal yang tidak dikirim belum tentu ditolak — nilainya bisa
+tersimpan sebagai nilai default (`0` Male, `0001-01-01`).
+:::
+
+## Respons {/* #response */}
+
+`201 Created`:
+
+```json
+{
+  "id": "3f2c9a7e-5b1d-4e8a-9c6f-2d7b8e1a4c90",
+  "boardingPassNo": "K7M2Q9XR4TW8HC3P"
+}
+```
+
+| Field | Catatan |
+| --- | --- |
+| `id` | Data penumpang yang baru. |
+| `boardingPassNo` | **Nomor boarding pass** penumpang: 16 karakter dari `ABCDEFGHJKLMNPQRSTUVWXYZ23456789` (tidak pernah `0`, `O`, `1`, `I`, atau `L`). |
+
+**Simpan `boardingPassNo`.** Anda memerlukannya untuk
+[membatalkan check-in](/ferry-operator-api/cancel-passenger), dan nomor inilah yang
+dipindai terminal di Pre-Immigration dan Boarding — QR code pada boarding pass
+berisi persis nomor ini. Boarding pass standar juga dapat dicetak dari Operator
+Portal — lihat
+[Mencetak Ulang atau Mengunduh Boarding Pass](/ferry-operator/reprint-boarding-pass).
+
+Penumpang kini tampil di perjalanan pada Operator Portal dengan status
+**CheckedIn**, dan kursi kosong perjalanan berkurang satu.
+
+## Aturan yang Diperiksa API {/* #rules-the-api-checks */}
+
+Dengan urutan berikut:
+
+1. Ada perjalanan yang cocok dengan lima field perjalanan.
+2. Kedua kode negara ada di daftar negara terminal.
+3. Perjalanan berstatus **Scheduled** dan masih punya kursi kosong.
+4. `no` dan `name` hanya memakai karakter yang diizinkan; `issueDate` sebelum
+   `expiryDate`, dan `dateOfBirth` sebelum `issueDate`.
+5. `no` belum di-check-in di perjalanan ini. **Penumpang yang dibatalkan tidak
+   dihitung**, jadi nomor dokumen yang sudah dibatalkan dapat di-check-in lagi.
+
+## Jika Check-in Ditolak {/* #if-the-check-in-is-rejected */}
+
+| HTTP | Pesan | Yang dilakukan |
+| --- | --- | --- |
+| 404 | `Departure trip not found (code 'SSFHW202611021000').` | Tidak ada perjalanan dengan kode itu. Bandingkan dengan perjalanan di Operator Portal — biasanya jam keberangkatan, jenis perjalanan, atau suffix yang terlewat. |
+| 404 | `Nationality country not found.` atau `Issue country not found.` | Gunakan kode dua huruf. Jika negaranya memang belum ada, minta terminal menambahkannya. |
+| 400 | `Passengers can only be checked in while the trip is Scheduled.` | Perjalanan sudah Boarding, Closed, Departed, atau Cancelled. |
+| 400 | `No available seats on this trip.` | Kapal penuh. |
+| 400 | `errors.No`: `No must contain only letters and digits. Invalid character(s): '-', '/'` | Hapus karakter yang disebutkan — `A-12/3` menjadi `A123`. |
+| 400 | `errors.Name`: `Name must contain only letters, digits, and spaces. Invalid character(s): …` | Hapus tanda baca atau aksen yang disebutkan. |
+| 400 | `errors.IssueDate`: `Issue date must be before the expiry date.` | Periksa tanggal pada dokumen. |
+| 400 | `errors.DateOfBirth`: `Date of birth must be before the issue date.` | Periksa tanggal pada dokumen. |
+| 400 | `errors.No`: `A passenger with this No already exists on this trip.` | Sudah di-check-in — lihat di bawah. |
+
+Pesan di bawah `errors.…` datang dalam `ValidationException`, satu daftar per
+field; selebihnya ada di `message`. Lihat [Error](/ferry-operator-api/getting-started#errors).
+
+## Mengulang dengan Aman {/* #retrying-safely */}
+
+`no` yang sama tidak dapat di-check-in dua kali di satu perjalanan selama check-in
+pertama masih berlaku, sehingga check-in tidak bisa terduplikasi. Jika permintaan
+timeout atau menghasilkan `500`, kirim ulang:
+
+- **`201`** — percobaan pertama tidak berhasil; percobaan ini yang melakukan
+  check-in.
+- **`400` dengan `A passenger with this No already exists on this trip.`** —
+  percobaan pertama **ternyata** berhasil. Ambil nomor boarding pass-nya dari
+  [Melihat Status Penumpang](/ferry-operator-api/passenger-status-list): pilih
+  baris dengan `no` ini yang `status`-nya bukan `3` (Cancelled).
+
+Beberapa check-in yang dikirim **bersamaan untuk perjalanan yang sama** sesekali
+dapat gagal dengan `500` — ulangi dengan cara yang sama.
+
+## Selanjutnya {/* #next */}
+
+- [Membatalkan Check-in](/ferry-operator-api/cancel-passenger)
+- [Melihat Status Penumpang](/ferry-operator-api/passenger-status-list)

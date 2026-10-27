@@ -1,0 +1,155 @@
+---
+id: operator-api-check-in-passenger
+title: Check In a Passenger (API)
+sidebar_label: Check In a Passenger
+sidebar_position: 2
+slug: /ferry-operator-api/check-in-passenger
+description: Check a passenger in to one of your trips from your own system with POST /api/Operator/Passengers/by-code, and get their boarding pass number back.
+keywords:
+  - api
+  - check in
+  - by-code
+  - boarding pass number
+  - passenger
+---
+
+Checks a passenger in to one of your trips and issues their **boarding pass
+number** — the same as [checking in from the Operator Portal](/ferry-operator/check-in-passenger),
+but from your own system.
+
+> **`POST {API_BASE_URL}/api/Operator/Passengers/by-code`** · permission `operator.passenger.write`
+
+## Before you start
+
+- You have an access token and your operator code — see
+  [Getting Started](/ferry-operator-api/getting-started).
+- The trip is **Scheduled** — not yet Boarding, Closed, Departed or Cancelled —
+  and has a **free seat**.
+- You have the passenger's travel document details.
+
+:::warning[Stop at gate close, as the portal does]
+The Operator Portal stops check-in once the trip's **gate closes**. Apply the same
+cut-off in your system: after the gate closes, the terminal no longer lets
+passengers through Pre-Immigration.
+:::
+
+## Request
+
+```http
+POST {API_BASE_URL}/api/Operator/Passengers/by-code
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+Content-Type: application/json
+
+{
+  "tripType": 0,
+  "routeTripCode": "HW",
+  "tripDate": "2026-11-02",
+  "departure": "09:30:00",
+  "suffix": null,
+  "no": "A12345678",
+  "name": "JOHN DOE",
+  "gender": 0,
+  "dateOfBirth": "1990-01-01",
+  "nationalityCode": "SG",
+  "issueCountryCode": "SG",
+  "issueDate": "2022-01-01",
+  "expiryDate": "2032-01-01"
+}
+```
+
+The first five fields identify the trip — see
+[Identify the trip](/ferry-operator-api/getting-started#identify-the-trip). The
+rest describe the passenger:
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `no` | Yes | Passport / travel document number. **Only `A–Z`, `a–z` and `0–9`** — no spaces, dashes or slashes. |
+| `name` | Yes | Full name. **Only `A–Z`, `a–z`, `0–9` and spaces** — no apostrophes, hyphens or accented letters. |
+| `gender` | Yes | `0` Male, `1` Female, `2` Unspecified. |
+| `dateOfBirth` | Yes | `yyyy-MM-dd`. Must be before `issueDate` when one is sent. |
+| `nationalityCode` | Yes | Two-letter country code, for example `SG`, `ID` or `MY`. |
+| `issueCountryCode` | Yes | Two-letter code of the country that issued the document. |
+| `issueDate` | No | `yyyy-MM-dd`. Must be before `expiryDate`. |
+| `expiryDate` | Yes | `yyyy-MM-dd`. |
+
+:::warning[Always send every required field]
+A missing `gender` or date isn't necessarily rejected — it can be saved as its
+default value (`0` Male, `0001-01-01`).
+:::
+
+## Response
+
+`201 Created`:
+
+```json
+{
+  "id": "3f2c9a7e-5b1d-4e8a-9c6f-2d7b8e1a4c90",
+  "boardingPassNo": "K7M2Q9XR4TW8HC3P"
+}
+```
+
+| Field | Notes |
+| --- | --- |
+| `id` | The new passenger record. |
+| `boardingPassNo` | The passenger's **boarding pass number**: 16 characters from `ABCDEFGHJKLMNPQRSTUVWXYZ23456789` (never `0`, `O`, `1`, `I` or `L`). |
+
+**Keep `boardingPassNo`.** You need it to
+[cancel the check-in](/ferry-operator-api/cancel-passenger), and it is what the
+terminal scans at Pre-Immigration and Boarding — the boarding pass's QR code
+holds exactly this number. The standard boarding pass can also be printed from
+the Operator Portal — see
+[Reprint or Download a Boarding Pass](/ferry-operator/reprint-boarding-pass).
+
+The passenger now shows on the trip in the Operator Portal with status
+**CheckedIn**, and the trip has one free seat fewer.
+
+## Rules the API checks
+
+In this order:
+
+1. A trip matches the five trip fields.
+2. Both country codes are in the terminal's country list.
+3. The trip is **Scheduled** and has a free seat.
+4. `no` and `name` use only the allowed characters; `issueDate` is before
+   `expiryDate`, and `dateOfBirth` is before `issueDate`.
+5. `no` isn't already checked in on this trip. **Cancelled passengers don't
+   count**, so a cancelled document number can be checked in again.
+
+## If the check-in is rejected
+
+| HTTP | Message | What to do |
+| --- | --- | --- |
+| 404 | `Departure trip not found (code 'SSFHW202611021000').` | No trip has that code. Compare it with the trip in the Operator Portal — usually the departure time, the trip type or a missing suffix. |
+| 404 | `Nationality country not found.` or `Issue country not found.` | Use the two-letter code. If the country is genuinely missing, ask the terminal to add it. |
+| 400 | `Passengers can only be checked in while the trip is Scheduled.` | The trip is already Boarding, Closed, Departed or Cancelled. |
+| 400 | `No available seats on this trip.` | The vessel is full. |
+| 400 | `errors.No`: `No must contain only letters and digits. Invalid character(s): '-', '/'` | Strip the characters it lists — `A-12/3` becomes `A123`. |
+| 400 | `errors.Name`: `Name must contain only letters, digits, and spaces. Invalid character(s): …` | Remove the punctuation or accents it lists. |
+| 400 | `errors.IssueDate`: `Issue date must be before the expiry date.` | Check the document's dates. |
+| 400 | `errors.DateOfBirth`: `Date of birth must be before the issue date.` | Check the document's dates. |
+| 400 | `errors.No`: `A passenger with this No already exists on this trip.` | Already checked in — see below. |
+
+Messages under `errors.…` come in a `ValidationException`, one list per field;
+the others are in `message`. See [Errors](/ferry-operator-api/getting-started#errors).
+
+## Retrying safely
+
+The same `no` can't be checked in twice on one trip while the first check-in
+stands, so a check-in can't be duplicated. If a request times out or returns
+`500`, send it again:
+
+- **`201`** — the first attempt didn't go through; this one checked the passenger
+  in.
+- **`400` with `A passenger with this No already exists on this trip.`** — the
+  first attempt **did** succeed. Get the boarding pass number from
+  [Get Passenger Statuses](/ferry-operator-api/passenger-status-list): take the
+  row with this `no` whose `status` isn't `3` (Cancelled).
+
+Several check-ins sent **at the same moment for the same trip** can occasionally
+fail with `500` — retry them the same way.
+
+## Next
+
+- [Cancel a Check-in](/ferry-operator-api/cancel-passenger)
+- [Get Passenger Statuses](/ferry-operator-api/passenger-status-list)

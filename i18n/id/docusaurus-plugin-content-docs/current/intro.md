@@ -32,6 +32,9 @@ pengguna, bagaimana ketiganya terhubung melalui email, dan berapa lama sesi berl
   keberangkatan, dan lainnya.
 - **[Operator Feri](/ferry-operator/)** — menggunakan **Operator Portal**
   (`ts-operator.sindoferry.com.sg`).
+- **[Integrasi API Ferry Operator](/ferry-operator-api/)** — untuk developer yang
+  menghubungkan sistem pemesanan atau penjualan tiket milik operator feri, dari
+  server ke server.
 - **[Publik / Penumpang](/public-live-tv)** — papan keberangkatan **Live TV** tanpa
   login yang ditampilkan di monitor terminal.
 
@@ -139,3 +142,12 @@ Manifest
 
 - [Mengunduh Manifest](/ferry-operator/download-manifest) — Excel, penumpang berstatus Boarded
 - [Mengekspor Laporan Manifest Penumpang](/ferry-operator/export-manifest-report) — PDF/Excel, status apa pun, kata sandi opsional
+
+## Integrasi API Ferry Operator {/* #ferry-operator-api-integration */}
+
+Untuk developer yang menghubungkan sistem milik operator feri — dari server ke server.
+
+- [Memulai](/ferry-operator-api/getting-started) — akun, access token, header, kode perjalanan, error
+- [Check-in Penumpang](/ferry-operator-api/check-in-passenger) — mengembalikan nomor boarding pass
+- [Membatalkan Check-in](/ferry-operator-api/cancel-passenger)
+- [Melihat Status Penumpang](/ferry-operator-api/passenger-status-list) — semua penumpang di sebuah perjalanan, beserta statusnya

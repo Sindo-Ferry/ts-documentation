@@ -1,0 +1,78 @@
+---
+id: operator-api-passenger-status-list
+title: Get Passenger Statuses for a Trip (API)
+sidebar_label: Get Passenger Statuses
+sidebar_position: 4
+slug: /ferry-operator-api/passenger-status-list
+description: List every passenger on one of your trips with their boarding pass number and status, using GET /api/Operator/Passengers/by-trip.
+keywords:
+  - api
+  - passenger status
+  - by-trip
+  - boarding pass number
+  - reconcile
+---
+
+Lists every passenger on one of your trips, with their boarding pass number and
+how far they have got — checked in, through Pre-Immigration, boarded, or
+cancelled.
+
+> **`GET {API_BASE_URL}/api/Operator/Passengers/by-trip`** · permission `operator.passenger.read`
+
+## Request
+
+The five trip fields go in the query string — see
+[Identify the trip](/ferry-operator-api/getting-started#identify-the-trip):
+
+```http
+GET {API_BASE_URL}/api/Operator/Passengers/by-trip?tripType=0&routeTripCode=HW&tripDate=2026-11-02&departure=09:30:00
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+```
+
+Add `&suffix=B` only for a trip whose code ends with a suffix.
+
+## Response
+
+`200 OK`:
+
+```json
+[
+  { "no": "A12345678", "name": "JOHN DOE", "boardingPassNo": "K7M2Q9XR4TW8HC3P", "status": 2 },
+  { "no": "E98765432", "name": "JANE ROE", "boardingPassNo": "Q4WZ8N3HD7RK2MPA", "status": 0 },
+  { "no": "B55501234", "name": "ALEX TAN", "boardingPassNo": "H3CR9TW2YB6KXN4S", "status": 3 }
+]
+```
+
+| Field | Notes |
+| --- | --- |
+| `no` | Passport / travel document number. |
+| `name` | Full name. |
+| `boardingPassNo` | Boarding pass number. |
+| `status` | `0` CheckedIn, `1` PreImmigration, `2` Boarded, `3` Cancelled. |
+
+- **Every** passenger on the trip is listed, however they were checked in —
+  through this API, the Operator Portal or the terminal — **including cancelled
+  ones**.
+- The order isn't guaranteed. Sort the list yourself if you need to.
+- A trip with no passengers returns `[]`.
+
+## If the request is rejected
+
+| HTTP | Message | What it means |
+| --- | --- | --- |
+| 404 | `Departure trip not found (code 'SSFHW202611020930').` | No trip has that code — see [Identify the trip](/ferry-operator-api/getting-started#identify-the-trip). |
+
+## Typical uses
+
+- **Recover a boarding pass number** after a lost check-in response: take the row
+  with the passenger's `no` whose `status` isn't `3`. A document number can appear
+  more than once only if earlier check-ins were cancelled.
+- **Reconcile** your bookings with what the terminal holds before departure.
+- **Follow the day**: `1` means the passenger has cleared Pre-Immigration, `2`
+  that they have boarded.
+
+## Next
+
+- [Check In a Passenger](/ferry-operator-api/check-in-passenger)
+- [Cancel a Check-in](/ferry-operator-api/cancel-passenger)

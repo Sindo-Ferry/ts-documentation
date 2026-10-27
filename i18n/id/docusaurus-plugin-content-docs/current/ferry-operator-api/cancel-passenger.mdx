@@ -1,0 +1,89 @@
+---
+id: operator-api-cancel-passenger
+title: Membatalkan Check-in (API)
+sidebar_label: Membatalkan Check-in
+sidebar_position: 3
+slug: /ferry-operator-api/cancel-passenger
+description: Batalkan check-in penumpang dari sistem Anda sendiri dengan PATCH /api/Operator/Passengers/cancel-by-code, sehingga kursinya bebas kembali.
+keywords:
+  - api
+  - cancel
+  - cancel-by-code
+  - check-in
+  - boarding pass number
+---
+
+Membatalkan check-in penumpang dan membebaskan kursinya — sama seperti **Cancel
+Passenger** di [Operator Portal](/ferry-operator/check-in-passenger#cancel-the-check-in),
+tetapi dari sistem Anda sendiri.
+
+> **`PATCH {API_BASE_URL}/api/Operator/Passengers/cancel-by-code`** · permission `operator.passenger.cancel`
+
+## Sebelum Memulai {/* #before-you-start */}
+
+- Anda sudah memiliki access token dan kode operator — lihat
+  [Memulai](/ferry-operator-api/getting-started).
+- Anda memegang **nomor boarding pass** penumpang — dari
+  [check-in](/ferry-operator-api/check-in-passenger) atau dari
+  [daftar status](/ferry-operator-api/passenger-status-list).
+- Penumpang masih berstatus **CheckedIn** — belum dipindai di Pre-Immigration atau
+  Boarding.
+
+## Permintaan {/* #request */}
+
+```http
+PATCH {API_BASE_URL}/api/Operator/Passengers/cancel-by-code
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+Content-Type: application/json
+
+{
+  "tripType": 0,
+  "routeTripCode": "HW",
+  "tripDate": "2026-11-02",
+  "departure": "09:30:00",
+  "suffix": null,
+  "boardingPassNo": "K7M2Q9XR4TW8HC3P"
+}
+```
+
+Lima field pertama mengidentifikasi perjalanan — lihat
+[Mengidentifikasi Perjalanan](/ferry-operator-api/getting-started#identify-the-trip).
+`boardingPassNo` adalah nomor yang dikembalikan saat check-in.
+
+## Respons {/* #response */}
+
+`204 No Content`, dengan badan kosong.
+
+- Status penumpang menjadi **Cancelled** dan kursinya dibebaskan.
+- Datanya **tetap disimpan**: masih tampil di Operator Portal dan di
+  [daftar status](/ferry-operator-api/passenger-status-list), dengan status `3`.
+- Boarding pass tidak berlaku lagi — terminal menolaknya di Pre-Immigration dan
+  Boarding.
+- `no` yang sama dapat di-check-in lagi di perjalanan yang sama. Itu menerbitkan
+  nomor boarding pass **baru**.
+
+## Jika Pembatalan Ditolak {/* #if-the-cancellation-is-rejected */}
+
+| HTTP | Pesan | Artinya |
+| --- | --- | --- |
+| 404 | `Passenger not found (trip code 'SSFHW202611020930').` | Tidak ada penumpang dengan nomor boarding pass itu di perjalanan itu — nomornya atau salah satu field perjalanan salah. Pesan menyebutkan kode perjalanan yang dicari API. |
+| 400 | `Passenger is already cancelled.` | Tidak ada lagi yang perlu dilakukan — lihat di bawah. |
+| 400 | `Only CheckedIn passengers can be cancelled.` | Penumpang sudah melewati Pre-Immigration atau sudah Boarded. Hubungi terminal. |
+| 400 | `Trip occupied seats are inconsistent for cancellation.` atau `Trip check-in count is inconsistent for cancellation.` | Hitungan kursi perjalanan perlu dikoreksi. Hubungi terminal. |
+
+## Mengulang dengan Aman {/* #retrying-safely */}
+
+Jika pembatalan timeout atau menghasilkan `500`, kirim ulang:
+
+- **`204`** — percobaan pertama tidak berhasil; percobaan ini yang membatalkan
+  check-in.
+- **`400` dengan `Passenger is already cancelled.`** — percobaan pertama
+  **ternyata** berhasil.
+
+Apa pun hasilnya, penumpang akhirnya berstatus Cancelled.
+
+## Selanjutnya {/* #next */}
+
+- [Check-in Penumpang](/ferry-operator-api/check-in-passenger)
+- [Melihat Status Penumpang](/ferry-operator-api/passenger-status-list)

@@ -1,0 +1,10 @@
+{
+  "label": "Ferry Operator API Integration",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "slug": "/ferry-operator-api",
+    "title": "Ferry Operator API Integration",
+    "description": "For developers connecting a ferry operator's own booking or ticketing system to the terminal system — check passengers in, cancel check-ins and read passenger statuses for a trip, server to server."
+  }
+}

@@ -114,5 +114,17 @@
   "sidebar.docsSidebar.category.operator-administrator.link.generated-index.description": {
     "message": "Administrasi keamanan untuk Operator Portal — buat peran (role), berikan hak akses, buat pengguna, dan atur siapa yang boleh melakukan apa.",
     "description": "The generated-index page description for category 'Administrator' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator API Integration": {
+    "message": "Integrasi API Ferry Operator",
+    "description": "The label for category 'Ferry Operator API Integration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator API Integration.link.generated-index.title": {
+    "message": "Integrasi API Ferry Operator",
+    "description": "The generated-index page title for category 'Ferry Operator API Integration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Ferry Operator API Integration.link.generated-index.description": {
+    "message": "Untuk developer yang menghubungkan sistem pemesanan atau penjualan tiket milik operator feri ke sistem terminal — check-in penumpang, membatalkan check-in, dan melihat status penumpang di sebuah perjalanan, dari server ke server.",
+    "description": "The generated-index page description for category 'Ferry Operator API Integration' in sidebar 'docsSidebar'"
   }
 }

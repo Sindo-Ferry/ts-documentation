@@ -1,0 +1,78 @@
+---
+id: operator-api-passenger-status-list
+title: Melihat Status Penumpang di Perjalanan (API)
+sidebar_label: Melihat Status Penumpang
+sidebar_position: 4
+slug: /ferry-operator-api/passenger-status-list
+description: Tampilkan semua penumpang di salah satu perjalanan Anda beserta nomor boarding pass dan statusnya, dengan GET /api/Operator/Passengers/by-trip.
+keywords:
+  - api
+  - passenger status
+  - by-trip
+  - boarding pass number
+  - reconcile
+---
+
+Menampilkan semua penumpang di salah satu perjalanan Anda, beserta nomor boarding
+pass dan sejauh mana mereka sudah sampai — sudah check-in, sudah melewati
+Pre-Immigration, sudah Boarded, atau dibatalkan.
+
+> **`GET {API_BASE_URL}/api/Operator/Passengers/by-trip`** · permission `operator.passenger.read`
+
+## Permintaan {/* #request */}
+
+Lima field perjalanan dikirim di query string — lihat
+[Mengidentifikasi Perjalanan](/ferry-operator-api/getting-started#identify-the-trip):
+
+```http
+GET {API_BASE_URL}/api/Operator/Passengers/by-trip?tripType=0&routeTripCode=HW&tripDate=2026-11-02&departure=09:30:00
+Authorization: Bearer {access_token}
+X-Operator-Code: OP001
+```
+
+Tambahkan `&suffix=B` hanya untuk perjalanan yang kodenya diakhiri suffix.
+
+## Respons {/* #response */}
+
+`200 OK`:
+
+```json
+[
+  { "no": "A12345678", "name": "JOHN DOE", "boardingPassNo": "K7M2Q9XR4TW8HC3P", "status": 2 },
+  { "no": "E98765432", "name": "JANE ROE", "boardingPassNo": "Q4WZ8N3HD7RK2MPA", "status": 0 },
+  { "no": "B55501234", "name": "ALEX TAN", "boardingPassNo": "H3CR9TW2YB6KXN4S", "status": 3 }
+]
+```
+
+| Field | Catatan |
+| --- | --- |
+| `no` | Nomor paspor / dokumen perjalanan. |
+| `name` | Nama lengkap. |
+| `boardingPassNo` | Nomor boarding pass. |
+| `status` | `0` CheckedIn, `1` PreImmigration, `2` Boarded, `3` Cancelled. |
+
+- **Semua** penumpang di perjalanan itu tercantum, apa pun cara check-in-nya —
+  melalui API ini, Operator Portal, atau terminal — **termasuk yang dibatalkan**.
+- Urutannya tidak dijamin. Urutkan sendiri jika perlu.
+- Perjalanan tanpa penumpang menghasilkan `[]`.
+
+## Jika Permintaan Ditolak {/* #if-the-request-is-rejected */}
+
+| HTTP | Pesan | Artinya |
+| --- | --- | --- |
+| 404 | `Departure trip not found (code 'SSFHW202611020930').` | Tidak ada perjalanan dengan kode itu — lihat [Mengidentifikasi Perjalanan](/ferry-operator-api/getting-started#identify-the-trip). |
+
+## Kegunaan Umum {/* #typical-uses */}
+
+- **Memulihkan nomor boarding pass** setelah respons check-in hilang: pilih baris
+  dengan `no` penumpang yang `status`-nya bukan `3`. Sebuah nomor dokumen hanya
+  muncul lebih dari sekali jika check-in sebelumnya dibatalkan.
+- **Mencocokkan** pemesanan Anda dengan data yang dipegang terminal sebelum
+  keberangkatan.
+- **Memantau hari itu**: `1` berarti penumpang sudah melewati Pre-Immigration, `2`
+  berarti sudah Boarded.
+
+## Selanjutnya {/* #next */}
+
+- [Check-in Penumpang](/ferry-operator-api/check-in-passenger)
+- [Membatalkan Check-in](/ferry-operator-api/cancel-passenger)
