@@ -60,7 +60,7 @@ sequenceDiagram
 | --- | --- | --- |
 | **URL dasar API** | Ditulis sebagai `{API_BASE_URL}` di halaman-halaman ini. | Tim terminal. |
 | **Kode operator** | **Code** operator Anda, misalnya `OP001` — **bukan** Trip Code-nya. Dikirim di header `X-Operator-Code`. | Tim terminal. |
-| **Client id** | Selalu `opusbay-ts-web`. | — |
+| **Client id** | Selalu `opusbay-ts-api`. | — |
 | **Akun integrasi** | Email dan kata sandi yang dapat masuk, disiapkan seperti di bawah. | Anda, bersama administrator Operator Portal Anda. |
 | **Trip code Route** | Trip code singkat setiap Route Anda, misalnya `HW`. | Tim terminal — atau baca dari kode perjalanan Anda, lihat [Mengidentifikasi Perjalanan](#identify-the-trip). |
 
@@ -98,57 +98,35 @@ di badan formulir.
 POST {API_BASE_URL}/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id=opusbay-ts-web&username={email}&password={password}
+grant_type=password&client_id=opusbay-ts-api&username={email}&password={password}
 ```
 
 ```json
-{ "access_token": "eyJhbGciOi…", "expires_in": 300, "token_type": "Bearer" }
+{ "access_token": "eyJhbGciOi…", "expires_in": 3600, "token_type": "Bearer" }
 ```
 
 Kirim token di setiap panggilan sebagai `Authorization: Bearer {access_token}`.
-Token kedaluwarsa setelah `expires_in` detik — saat ini 5 menit, tetapi selalu
-baca nilainya. Simpan dan pakai ulang token sampai sesaat sebelum kedaluwarsa,
-lalu masuk lagi. Jangan masuk sebelum setiap panggilan.
+Token kedaluwarsa setelah `expires_in` detik. Masa berlakunya diatur per
+lingkungan (environment), jadi selalu baca nilainya, jangan mengandalkan angka
+tertentu. Simpan dan pakai ulang token sampai sesaat sebelum kedaluwarsa, lalu
+masuk lagi dengan permintaan yang sama. Jangan masuk sebelum setiap panggilan.
+
+Tidak ada refresh token: client ini tidak pernah menerbitkannya, jadi masuk lagi
+adalah cara memperpanjang akses.
 
 Email atau kata sandi yang salah menghasilkan `400` dengan
 `{"error":"invalid_grant","error_description":"Incorrect email or password."}`.
-[Cara Kerja Masuk dan Akses](/how-sign-in-works) menjelaskan token-token ini
-dengan bahasa sederhana.
+[Cara Kerja Masuk dan Akses](/how-sign-in-works) menjelaskan hubungan antara akun
+masuk dan pengguna operator.
 
 :::note[Batasan]
 - `/token` menerima **10 permintaan per menit per alamat IP publik**, dipakai
   bersama oleh semua yang berada di balik alamat itu. Di atas batas itu, hasilnya
   `429`.
 - **10 kata sandi salah berturut-turut** mengunci akun selama **15 menit**.
+  Setiap perpanjangan adalah proses masuk, jadi jika gagal, hentikan dan beri tahu
+  seseorang, jangan mencoba ulang terus-menerus.
 :::
-
-<details>
-<summary>Opsional: perpanjang dengan refresh token, bukan kata sandi</summary>
-
-Tambahkan `offline_access=true` ke formulir masuk. Badan responsnya sama, dan
-**refresh token** hanya dikirim di header respons `Set-Cookie: refresh_token=…`.
-Perpanjang dengan:
-
-```http
-POST {API_BASE_URL}/token
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=refresh_token&refresh_token={nilai dari Set-Cookie terakhir}
-```
-
-- **Setiap perpanjangan memutarnya (rotasi).** Simpan nilai baru dari `Set-Cookie`
-  dan buang yang lama. Mengirim refresh token yang sudah dipakai mengakhiri seluruh
-  sesi.
-- **Kirim di badan formulir.** Jangan memakai cookie jar atau mengirim header
-  `Cookie` ke `/token`: permintaan yang membawa cookie diperlakukan sebagai browser
-  dan ditolak dengan `403`.
-- **Gunakan `User-Agent` yang sama** untuk masuk dan setiap perpanjangan.
-  Perpanjangan dari OS atau jenis browser yang berbeda mengakhiri sesi.
-- **Jika perpanjangan menghasilkan `400` dengan `"error":"invalid_grant"`, masuk
-  lagi** dengan kata sandi. Sesi juga berakhir 30 hari setelah masuk, seaktif apa
-  pun.
-
-</details>
 
 ## Kirim Header Berikut {/* #send-these-headers */}
 

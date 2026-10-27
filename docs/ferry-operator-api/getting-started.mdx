@@ -60,7 +60,7 @@ sequenceDiagram
 | --- | --- | --- |
 | **API base URL** | Written as `{API_BASE_URL}` on these pages. | The terminal team. |
 | **Operator code** | Your operator's **Code**, for example `OP001` — **not** its Trip Code. Sent in the `X-Operator-Code` header. | The terminal team. |
-| **Client id** | Always `opusbay-ts-web`. | — |
+| **Client id** | Always `opusbay-ts-api`. | — |
 | **Integration account** | An email and password that can sign in, set up as below. | You, and your Operator Portal administrator. |
 | **Route trip codes** | The short trip code of each of your routes, for example `HW`. | The terminal team — or read them off your trip codes, see [Identify the trip](#identify-the-trip). |
 
@@ -97,54 +97,34 @@ form body.
 POST {API_BASE_URL}/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id=opusbay-ts-web&username={email}&password={password}
+grant_type=password&client_id=opusbay-ts-api&username={email}&password={password}
 ```
 
 ```json
-{ "access_token": "eyJhbGciOi…", "expires_in": 300, "token_type": "Bearer" }
+{ "access_token": "eyJhbGciOi…", "expires_in": 3600, "token_type": "Bearer" }
 ```
 
 Send the token on every call as `Authorization: Bearer {access_token}`. It
-expires after `expires_in` seconds — currently 5 minutes, but always read the
-value. Keep the token and reuse it until shortly before it expires, then sign in
-again. Don't sign in before every call.
+expires after `expires_in` seconds. The lifetime is set per environment, so
+always read the value rather than assuming one. Keep the token and reuse it until
+shortly before it expires, then sign in again with the same request. Don't sign
+in before every call.
+
+There is no refresh token: this client never issues one, so signing in again is
+how you renew.
 
 A wrong email or password returns `400` with
 `{"error":"invalid_grant","error_description":"Incorrect email or password."}`.
-[How Sign-In and Access Work](/how-sign-in-works) explains the tokens in plain
-language.
+[How Sign-In and Access Work](/how-sign-in-works) explains how a sign-in account
+and an operator user fit together.
 
 :::note[Limits]
 - `/token` accepts **10 requests per minute per public IP address**, shared by
   everything behind that address. Over the limit it returns `429`.
-- **10 wrong passwords in a row** lock the account for **15 minutes**.
+- **10 wrong passwords in a row** lock the account for **15 minutes**. Every
+  renewal is a sign-in, so when one fails, stop and alert someone instead of
+  retrying in a loop.
 :::
-
-<details>
-<summary>Optional: renew with a refresh token instead of the password</summary>
-
-Add `offline_access=true` to the sign-in form. The response body is the same,
-and a **refresh token** arrives only in the `Set-Cookie: refresh_token=…`
-response header. Renew with:
-
-```http
-POST {API_BASE_URL}/token
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=refresh_token&refresh_token={value from the latest Set-Cookie}
-```
-
-- **Every renewal rotates it.** Store the new value from `Set-Cookie` and drop the
-  old one. Sending an already-used refresh token ends the whole session.
-- **Post it in the form body.** Don't keep a cookie jar or send a `Cookie` header
-  to `/token`: a request carrying the cookie is treated as a browser and refused
-  with `403`.
-- **Keep the same `User-Agent`** for sign-in and every renewal. A renewal from a
-  different OS or browser family ends the session.
-- **When a renewal returns `400` with `"error":"invalid_grant"`, sign in again**
-  with the password. A session also ends 30 days after sign-in, however active.
-
-</details>
 
 ## Send these headers
 
