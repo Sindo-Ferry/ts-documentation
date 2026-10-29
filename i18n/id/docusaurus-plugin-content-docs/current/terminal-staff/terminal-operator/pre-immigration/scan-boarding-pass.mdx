@@ -12,6 +12,8 @@ keywords:
   - checked-in
   - passport check
   - gate window
+  - previous status
+  - already used
 ---
 
 Pre-Immigration adalah **titik pemindaian pertama**. Penumpang datang membawa
@@ -80,14 +82,19 @@ Kartu hijau **Passport Check #_[nomor BP]_** muncul dengan detail dokumen penump
 Country**, **Issue Date**, dan **Expiry Date** — dan di bawahnya kartu hijau kedua
 berisi **perjalanan**: kode, operator, Route, rentang Gate, dan jam keberangkatan.
 
+Kartu tersebut juga menampilkan **Previous Status**: status penumpang **sebelum**
+pemindaian ini. Pada pemindaian pertama yang normal, isinya **CheckedIn**. Jika
+isinya **PreImmigration**, kartu justru berubah merah — lihat
+[Jika Boarding Pass Sudah Pernah Dipakai](#when-a-pass-has-already-been-used).
+
 Cocokkan paspor di tangan Anda dengan kartu tersebut. Jika sesuai, penumpang boleh
 lewat.
 
 Pada saat yang sama layar penumpang berubah **hijau** dan menampilkan **Success**
 beserta nama penumpang, operatornya, dan jam keberangkatan.
 
-![Halaman Pre-Immigration Scan setelah pemindaian berhasil](/img/terminal-staff/pre-imm-scan/02-success.png)
-_Pemindaian diterima — kartu Passport Check dan perjalanan di kiri, pratinjau hijau **Success** di kanan._
+![Halaman Pre-Immigration Scan setelah pemindaian berhasil](/img/terminal-staff/pre-imm-scan/02-success.jpg)
+_Pemindaian diterima — kartu Passport Check dengan **Previous Status: CheckedIn** dan kartu perjalanan di kiri, pratinjau hijau **Success** di kanan._
 
 ### Ditolak {/* #rejected */}
 
@@ -133,11 +140,36 @@ menghalangi pemindaian Pre-Immigration — sejak saat itu aturannya hanya status
 sama dengan pemindaian Boarding, yang tidak pernah memeriksa jam Gate.
 :::
 
-## Memindai Boarding Pass yang Sama Dua Kali Itu Aman {/* #scanning-the-same-pass-twice-is-safe */}
+## Jika Boarding Pass Sudah Pernah Dipakai {/* #when-a-pass-has-already-been-used */}
 
-Jika Anda memindai penumpang yang **sudah PreImmigration**, tidak terjadi apa-apa:
-tidak ada error, dan statusnya tetap **PreImmigration**. Penumpang tidak dihitung
-dua kali. Pindai saja jika Anda ragu apakah pemindaian sudah tercatat.
+Jika Anda memindai penumpang yang **sudah PreImmigration**, pemindaian tidak
+ditolak dan tidak ada yang berubah: statusnya tetap **PreImmigration** dan
+penumpang tidak dihitung dua kali. Namun kartu **Passport Check** berubah **merah**
+dan memperingatkan Anda:
+
+> **Boarding pass already used** — Already cleared pre-immigration at _HH:mm_.
+> Check their passport against the details below.
+
+Jam tersebut adalah saat boarding pass ini **pertama kali** lolos Pre-Immigration,
+dalam waktu Port, dan **Previous Status** berisi **PreImmigration**. Layar penumpang
+tetap menampilkan **Success** hijau — peringatan hanya tampil di layar Anda.
+
+![Halaman Pre-Immigration Scan setelah memindai boarding pass yang sudah pernah dipakai](/img/terminal-staff/pre-imm-scan/09-rescan-success.jpg)
+_Pemindaian berulang — peringatan merah **Boarding pass already used** dan **Previous Status: PreImmigration** di kiri, sementara layar penumpang tetap menampilkan **Success**._
+
+| Previous Status | Artinya | Kartu |
+| --- | --- | --- |
+| **CheckedIn** | Pemindaian pertama yang normal. Penumpang baru saja dipindahkan ke PreImmigration. | Hijau |
+| **PreImmigration** | Boarding pass ini sudah lolos Pre-Immigration sebelum pemindaian ini. | Merah — **Boarding pass already used** |
+
+Yang dilakukan jika kartu merah:
+
+- **Paspor sesuai dengan kartu** — biasanya penumpang yang sama dipindai dua kali:
+  Anda ragu pemindaian pertama sudah tercatat, atau penumpang mundur lalu lewat
+  lagi. Biarkan mereka lewat.
+- **Paspor tidak sesuai dengan kartu** — mungkin seseorang memakai **salinan**
+  boarding pass milik penumpang lain. Jangan biarkan mereka lewat, dan laporkan
+  kepada supervisor Anda.
 
 ## Ada Kesalahan? {/* #made-a-mistake */}
 

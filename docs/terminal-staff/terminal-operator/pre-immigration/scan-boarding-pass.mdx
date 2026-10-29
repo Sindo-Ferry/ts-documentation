@@ -12,6 +12,8 @@ keywords:
   - checked-in
   - passport check
   - gate window
+  - previous status
+  - already used
 ---
 
 Pre-immigration is the **first scan point**. A passenger arrives holding a boarding
@@ -82,15 +84,20 @@ document details — **No**, **Name**, **Gender**, **Date Of Birth**,
 below it a second green card with the **trip**: code, operator, route, gate window
 and departure time.
 
+The card also shows **Previous Status**: the passenger's status **before** this
+scan. On a normal first scan it reads **CheckedIn**. If it reads
+**PreImmigration**, the card turns red instead — see
+[When a pass has already been used](#when-a-pass-has-already-been-used).
+
 Compare the passport in your hand against the card. If it matches, the passenger
 goes through.
 
 At the same moment the passenger display turns **green** and shows **Success** with
 the passenger's name, their operator and the departure time.
 
-![The Pre-Immigration Scan page after a successful scan](/img/terminal-staff/pre-imm-scan/02-success.png)
-_An accepted scan — the Passport Check and trip cards on the left, the green
-**Success** preview on the right._
+![The Pre-Immigration Scan page after a successful scan](/img/terminal-staff/pre-imm-scan/02-success.jpg)
+_An accepted scan — the Passport Check card with **Previous Status: CheckedIn** and
+the trip card on the left, the green **Success** preview on the right._
 
 ### Rejected
 
@@ -137,11 +144,37 @@ pre-immigration scan — from that point the rule is status alone. This matches 
 boarding scan, which never checks gate times.
 :::
 
-## Scanning the same pass twice is safe
+## When a pass has already been used
 
-If you scan a passenger who is **already PreImmigration**, nothing bad happens: no
-error, and their status stays **PreImmigration**. They are not counted twice. Scan
-freely when you are not sure whether a scan registered.
+If you scan a passenger who is **already PreImmigration**, the scan is not
+rejected and nothing changes: their status stays **PreImmigration** and they are
+not counted twice. But the **Passport Check** card turns **red** and warns you:
+
+> **Boarding pass already used** — Already cleared pre-immigration at _HH:mm_.
+> Check their passport against the details below.
+
+The time is when this pass **first** cleared pre-immigration, in the port's time,
+and **Previous Status** reads **PreImmigration**. The passenger display still shows
+the green **Success** — the warning is on your screen only.
+
+![The Pre-Immigration Scan page after scanning a pass that was already used](/img/terminal-staff/pre-imm-scan/09-rescan-success.jpg)
+_A repeat scan — the red **Boarding pass already used** warning and **Previous
+Status: PreImmigration** on the left, while the passenger display still shows
+**Success**._
+
+| Previous Status | What it means | Card |
+| --- | --- | --- |
+| **CheckedIn** | A normal first scan. The passenger has just been moved to PreImmigration. | Green |
+| **PreImmigration** | This pass had already cleared pre-immigration before this scan. | Red — **Boarding pass already used** |
+
+What to do with a red card:
+
+- **The passport matches the card** — usually the same passenger scanned twice:
+  you were not sure the first scan registered, or they stepped back and came
+  through again. Let them through.
+- **The passport does not match the card** — someone may be using a **copy** of
+  another passenger's boarding pass. Do not let them through, and raise it with
+  your supervisor.
 
 ## Made a mistake?
 

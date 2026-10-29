@@ -100,11 +100,17 @@ tersebut secara otomatis, sehingga Anda dapat bekerja terus tanpa menyentuh mous
 Date**, **Expiry Date** — dan hitungan **Boarded** perjalanan yang sesuai bertambah
 di panel Boarding Trips.
 
+Kartu tersebut juga menampilkan **Previous Status**: status penumpang **sebelum**
+pemindaian ini. Biasanya isinya **PreImmigration**, atau **CheckedIn** jika
+penumpang melewati Pre-Immigration. Jika isinya **Boarded**, kartu justru berubah
+merah — lihat
+[Jika Boarding Pass Sudah Pernah Dipakai](#when-a-pass-has-already-been-used).
+
 Layar penumpang berubah hijau: **Success — Proceed to Berth #_[Berth]_**, dengan
 logo operator dan Port tujuan.
 
-![Layar operator setelah pemindaian Boarding berhasil](/img/terminal-staff/boarding-scan/05-scan-result.png)
-_Pemindaian berhasil — detail penumpang, tombol **Revert To Pre-Immigration**, dan hitungan Boarded perjalanan yang sudah diperbarui._
+![Layar operator setelah pemindaian Boarding berhasil](/img/terminal-staff/boarding-scan/05-scan-result.jpg)
+_Pemindaian berhasil — detail penumpang dengan **Previous Status**, tombol **Revert To Pre-Immigration**, dan hitungan Boarded perjalanan yang sudah diperbarui._
 
 ![Passenger Display menampilkan pemindaian Boarding yang berhasil](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
 _Layar yang menghadap penumpang — nomor Berth adalah informasi yang dibutuhkan penumpang._
@@ -121,7 +127,8 @@ _Pemindaian ditolak — penumpang tidak naik._
 
 Melewati Pre-Immigration **diperbolehkan**. Penumpang berstatus **CheckedIn** dapat
 dipindai di Gate dan langsung menjadi **Boarded** — tanpa error, tanpa peringatan.
-Yang berkurang adalah hitungan **Check In** perjalanan, bukan hitungan **Pre-Imm**.
+Kartu menampilkan **Previous Status: CheckedIn**, dan yang berkurang adalah hitungan
+**Check In** perjalanan, bukan hitungan **Pre-Imm**.
 
 Ini disengaja: sebagian terminal tidak membuka meja Pre-Immigration di setiap
 pelayaran, dan penumpang yang terlewat di sana tidak boleh tertahan di Gate.
@@ -144,11 +151,37 @@ itu tampil sebagai **"Please Check with our terminal staff"**. Alasan sebenarnya
 tetap di layar Anda.
 :::
 
-## Memindai Boarding Pass yang Sama Dua Kali Itu Aman {/* #scanning-the-same-pass-twice-is-safe */}
+## Jika Boarding Pass Sudah Pernah Dipakai {/* #when-a-pass-has-already-been-used */}
 
-Memindai penumpang yang sudah **Boarded** tidak berpengaruh apa pun — tanpa error,
-dan hitungannya tidak berubah. Penumpang tidak dihitung dua kali. Jika ragu, pindai
-lagi.
+Jika Anda memindai penumpang yang **sudah Boarded**, pemindaian tidak ditolak dan
+tidak ada yang berubah: statusnya tetap **Boarded** dan hitungan **Boarded**
+perjalanan tidak bergerak. Namun kartu hasil berubah **merah** dan memperingatkan
+Anda:
+
+> **Boarding pass already used** — Already boarded at _HH:mm_. Check their passport
+> against the details below.
+
+Jam tersebut adalah saat boarding pass ini **pertama kali** Boarded, dalam waktu
+Port, dan **Previous Status** berisi **Boarded**. Layar penumpang tetap menampilkan
+**Success** hijau — peringatan hanya tampil di layar Anda.
+
+![Halaman Boarding Scan setelah memindai boarding pass yang sudah pernah dipakai](/img/terminal-staff/boarding-scan/09-rescan-success.jpg)
+_Pemindaian berulang — peringatan merah **Boarding pass already used** dan **Previous Status: Boarded**._
+
+| Previous Status | Artinya | Kartu |
+| --- | --- | --- |
+| **PreImmigration** | Pemindaian pertama yang normal. Penumpang baru saja Boarded. | Hijau |
+| **CheckedIn** | Pemindaian pertama untuk penumpang yang melewati Pre-Immigration. Penumpang baru saja Boarded. | Hijau |
+| **Boarded** | Boarding pass ini sudah Boarded sebelum pemindaian ini. | Merah — **Boarding pass already used** |
+
+Yang dilakukan jika kartu merah:
+
+- **Paspor sesuai dengan kartu** — biasanya penumpang yang sama dipindai dua kali:
+  Anda ragu pemindaian pertama sudah tercatat, atau penumpang mundur lalu lewat
+  lagi. Biarkan mereka lewat.
+- **Paspor tidak sesuai dengan kartu** — mungkin seseorang memakai **salinan**
+  boarding pass milik penumpang lain. Jangan biarkan mereka naik, dan laporkan
+  kepada supervisor Anda.
 
 ## Ada Kesalahan? {/* #made-a-mistake */}
 

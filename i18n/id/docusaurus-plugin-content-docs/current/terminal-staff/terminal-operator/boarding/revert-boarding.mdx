@@ -38,15 +38,19 @@ sudah ditutup.
 
 ## Langkah 1 — Tampilkan Penumpang di Layar {/* #step-1--bring-the-passenger-up-on-screen */}
 
-Tombol **Revert To Pre-Immigration** ada di **kartu hasil hijau**.
+Tombol **Revert To Pre-Immigration** ada di **kartu hasil**.
 
-- Baru saja dipindai? Kartunya sudah ada — lanjut ke Langkah 2.
+- Baru saja dipindai? Kartunya sudah ada, berwarna hijau — lanjut ke Langkah 2.
 - Kartunya hilang? **Pindai lagi boarding pass-nya.** Memindai ulang penumpang yang
   sudah Boarded tidak berbahaya — tidak mengubah apa pun dan menampilkan detailnya —
-  dan memunculkan kembali kartu beserta tombolnya.
+  dan memunculkan kembali kartu beserta tombolnya. Kali ini kartunya **merah**
+  dengan **"Boarding pass already used"** dan **Previous Status: Boarded**. Itu
+  wajar di sini — Anda memang sudah memindainya sebelumnya — dan tombolnya bekerja
+  sama saja. Lihat
+  [Jika Boarding Pass Sudah Pernah Dipakai](/terminal-operator/boarding-scan#when-a-pass-has-already-been-used).
 
-![Kartu hasil Boarding dengan tombol Revert To Pre-Immigration](/img/terminal-staff/boarding-scan/06-revert.png)
-_Kartu hasil hijau — **Revert To Pre-Immigration** ada di bagian bawahnya._
+![Kartu hasil Boarding dengan tombol Revert To Pre-Immigration](/img/terminal-staff/boarding-scan/06-revert.jpg)
+_Kartu hasil tepat setelah pemindaian — **Previous Status** menunjukkan status asal penumpang, dan **Revert To Pre-Immigration** ada di bagian bawahnya._
 
 ## Langkah 2 — Klik Revert To Pre-Immigration {/* #step-2--click-revert-to-pre-immigration */}
 
@@ -57,7 +61,7 @@ Tombol merah ada di bagian bawah kartu hasil.
 > **Revert Boarding** — This will move **_[nama penumpang]_** back to
 > Pre-Immigration status. They can be re-scanned for boarding when ready.
 
-![Dialog konfirmasi Revert Boarding](/img/terminal-staff/boarding-scan/07-confirm-revert.png)
+![Dialog konfirmasi Revert Boarding](/img/terminal-staff/boarding-scan/07-confirm-revert.jpg)
 _Konfirmasi menyebutkan nama penumpang yang dibatalkan._
 
 Klik **Confirm Revert** (atau **Cancel** untuk membatalkan).
@@ -83,8 +87,9 @@ Klik **Confirm Revert** (atau **Cancel** untuk membatalkan).
 Kasus yang paling umum: dua penumpang menyerahkan boarding pass bersamaan, dan Anda
 memindai yang salah.
 
-1. Di **Boarding Scan**, pindai boarding pass yang keliru dipindai → kartu hijau
-   muncul (memindai ulang tidak berbahaya).
+1. Di **Boarding Scan**, pindai boarding pass yang keliru dipindai → kartunya
+   muncul, merah dengan **"Boarding pass already used"** karena sudah Boarded
+   (memindai ulang tidak berbahaya).
 2. Klik **Revert To Pre-Immigration** → **Confirm Revert**. Statusnya kembali
    **PreImmigration**.
 3. Pindai boarding pass penumpang yang **benar**. Penumpang naik seperti biasa.

@@ -12,6 +12,8 @@ keywords:
   - berth
   - boarding pass
   - boarding trips
+  - previous status
+  - already used
 ---
 
 The boarding gate is the last scan point. A passenger presents their boarding pass,
@@ -98,11 +100,16 @@ A **green card** appears with the passenger's document details — **No**, **Nam
 Date**, **Expiry Date** — and the matching trip's **Boarded** count goes up in the
 Boarding Trips panel.
 
+The card also shows **Previous Status**: the passenger's status **before** this
+scan. Normally it reads **PreImmigration**, or **CheckedIn** if they skipped
+pre-immigration. If it reads **Boarded**, the card turns red instead — see
+[When a pass has already been used](#when-a-pass-has-already-been-used).
+
 The passenger display turns green: **Success — Proceed to Berth #_[berth]_**, with
 the operator's logo and the destination port.
 
-![The operator screen after a successful boarding scan](/img/terminal-staff/boarding-scan/05-scan-result.png)
-_A successful scan — passenger details, a **Revert To Pre-Immigration** button, and the trip's Boarded count updated._
+![The operator screen after a successful boarding scan](/img/terminal-staff/boarding-scan/05-scan-result.jpg)
+_A successful scan — passenger details with **Previous Status**, a **Revert To Pre-Immigration** button, and the trip's Boarded count updated._
 
 ![The Passenger Display showing a successful boarding scan](/img/terminal-staff/boarding-scan/02-passenger-display-success.png)
 _The passenger-facing display — the berth number is the thing the passenger needs._
@@ -119,7 +126,8 @@ _A rejected scan — the passenger is not boarded._
 
 Skipping pre-immigration is **allowed**. A passenger whose status is **CheckedIn**
 can be scanned at the gate and goes straight to **Boarded** — no error, no warning.
-The trip's **Check In** count drops instead of its **Pre-Imm** count.
+The card shows **Previous Status: CheckedIn**, and the trip's **Check In** count
+drops instead of its **Pre-Imm** count.
 
 This is intentional: some terminals do not operate a pre-immigration desk on every
 sailing, and a passenger who slipped past it should not be stopped at the gate.
@@ -142,10 +150,36 @@ Everything else shows as **"Please Check with our terminal staff"**. The real re
 stays on your screen.
 :::
 
-## Scanning the same pass twice is safe
+## When a pass has already been used
 
-Scan someone who is already **Boarded** and nothing happens — no error, and the
-count does not move. They are not double-counted. When in doubt, scan again.
+If you scan a passenger who is **already Boarded**, the scan is not rejected and
+nothing changes: their status stays **Boarded** and the trip's **Boarded** count
+does not move. But the result card turns **red** and warns you:
+
+> **Boarding pass already used** — Already boarded at _HH:mm_. Check their passport
+> against the details below.
+
+The time is when this pass **first** boarded, in the port's time, and **Previous
+Status** reads **Boarded**. The passenger display still shows the green **Success**
+— the warning is on your screen only.
+
+![The Boarding Scan page after scanning a pass that was already used](/img/terminal-staff/boarding-scan/09-rescan-success.jpg)
+_A repeat scan — the red **Boarding pass already used** warning and **Previous Status: Boarded**._
+
+| Previous Status | What it means | Card |
+| --- | --- | --- |
+| **PreImmigration** | A normal first scan. The passenger has just boarded. | Green |
+| **CheckedIn** | A first scan of a passenger who skipped pre-immigration. They have just boarded. | Green |
+| **Boarded** | This pass had already boarded before this scan. | Red — **Boarding pass already used** |
+
+What to do with a red card:
+
+- **The passport matches the card** — usually the same passenger scanned twice:
+  you were not sure the first scan registered, or they stepped back and came
+  through again. Let them through.
+- **The passport does not match the card** — someone may be using a **copy** of
+  another passenger's boarding pass. Do not let them board, and raise it with your
+  supervisor.
 
 ## Made a mistake?
 

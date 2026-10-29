@@ -38,15 +38,18 @@ gate is shut.
 
 ## Step 1 — Bring the passenger up on screen
 
-The **Revert To Pre-Immigration** button lives on the **green result card**.
+The **Revert To Pre-Immigration** button lives on the **result card**.
 
-- Just scanned them? The card is already there — go to Step 2.
+- Just scanned them? The card is already there, green — go to Step 2.
 - Card gone? **Scan their boarding pass again.** Re-scanning someone already
   Boarded is harmless — it changes nothing and returns their details — and brings
-  the card back with the button on it.
+  the card back with the button on it. This time the card is **red** with
+  **"Boarding pass already used"** and **Previous Status: Boarded**. That is
+  expected here — you scanned them before — and the button works the same way. See
+  [When a pass has already been used](/terminal-operator/boarding-scan#when-a-pass-has-already-been-used).
 
-![The boarding result card with the Revert To Pre-Immigration button](/img/terminal-staff/boarding-scan/06-revert.png)
-_The green result card — **Revert To Pre-Immigration** sits at its bottom._
+![The boarding result card with the Revert To Pre-Immigration button](/img/terminal-staff/boarding-scan/06-revert.jpg)
+_The result card straight after a scan — **Previous Status** shows where the passenger came from, and **Revert To Pre-Immigration** sits at its bottom._
 
 ## Step 2 — Click Revert To Pre-Immigration
 
@@ -57,7 +60,7 @@ The red button sits at the bottom of the result card.
 > **Revert Boarding** — This will move **_[passenger name]_** back to
 > Pre-Immigration status. They can be re-scanned for boarding when ready.
 
-![The Revert Boarding confirmation dialog](/img/terminal-staff/boarding-scan/07-confirm-revert.png)
+![The Revert Boarding confirmation dialog](/img/terminal-staff/boarding-scan/07-confirm-revert.jpg)
 _The confirmation names the passenger being reverted._
 
 Click **Confirm Revert** (or **Cancel** to back out).
@@ -82,8 +85,9 @@ Click **Confirm Revert** (or **Cancel** to back out).
 
 The classic case: two passengers hand over passes together, you scan the wrong one.
 
-1. On **Boarding Scan**, scan the pass you scanned by mistake → the green card
-   appears (re-scanning is harmless).
+1. On **Boarding Scan**, scan the pass you scanned by mistake → its card appears,
+   red with **"Boarding pass already used"** because it has already boarded
+   (re-scanning is harmless).
 2. Click **Revert To Pre-Immigration** → **Confirm Revert**. They are back to
    **PreImmigration**.
 3. Scan the **correct** passenger's pass. They board normally.

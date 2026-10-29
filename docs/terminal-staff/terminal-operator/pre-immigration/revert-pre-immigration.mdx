@@ -37,17 +37,22 @@ If either is wrong, the revert is rejected — see
 
 ## Step 1 — Bring the passenger up on screen
 
-The **Revert To Check-In** button lives on the **green result card**, so you need
-that passenger's card on screen.
+The **Revert To Check-In** button lives on the **Passport Check result card**, so
+you need that passenger's card on screen.
 
-- If you have **just scanned them**, the card is already there — go to Step 2.
+- If you have **just scanned them**, the card is already there, green, with
+  **Previous Status: CheckedIn** — go to Step 2.
 - If the card has been replaced by a later scan, **scan their boarding pass again**.
   Re-scanning someone who is already PreImmigration is harmless — it returns their
   details without changing anything — and brings the card back with the button on
-  it.
+  it. This time the card is **red** with **"Boarding pass already used"** and
+  **Previous Status: PreImmigration**. That is expected here — you scanned them
+  before — and the button works the same way. See
+  [When a pass has already been used](/terminal-operator/pre-immigration-scan#when-a-pass-has-already-been-used).
 
-![The Passport Check card with the Revert To Check-In button](/img/terminal-staff/pre-imm-scan/04-revert.png)
-_The green Passport Check card — **Revert To Check-In** sits at its bottom._
+![The Passport Check card with the Revert To Check-In button](/img/terminal-staff/pre-imm-scan/04-revert.jpg)
+_The Passport Check card straight after a scan — **Previous Status: CheckedIn**,
+with **Revert To Check-In** at its bottom._
 
 ## Step 2 — Click Revert To Check-In
 
@@ -63,7 +68,7 @@ A confirmation opens:
 > CheckedIn status so they can exit through the gate if needed. They can be
 > re-scanned at pre-immigration when they return.
 
-![The Revert Pre-Immigration Scan confirmation dialog](/img/terminal-staff/pre-imm-scan/05-confirm-revert.png)
+![The Revert Pre-Immigration Scan confirmation dialog](/img/terminal-staff/pre-imm-scan/05-confirm-revert.jpg)
 _The confirmation names the passenger being reverted._
 
 Click **Confirm Revert** (or **Cancel** to back out).
@@ -101,7 +106,9 @@ that allows it.
 :::tip[Revert is a correction tool, not a routine one]
 Every revert is recorded against the passenger. Use it to fix a genuine mistake —
 not as a way to "reset" a passenger you are unsure about. When you are simply not
-certain whether a scan registered, just **scan again**: repeat scans are ignored.
+certain whether a scan registered, just **scan again**: a repeat scan changes
+nothing, and a red **"Boarding pass already used"** card simply tells you the first
+scan went through.
 :::
 
 ## Next
