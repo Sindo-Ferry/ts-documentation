@@ -4,7 +4,7 @@ title: Layar Live TV Publik
 sidebar_label: Layar Live TV Publik
 sidebar_position: 6
 slug: /public-live-tv
-description: Papan keberangkatan publik tanpa login yang tampil di monitor terminal — layar Pre-Immigration, Boarding Gate, dan Gate Live-TV per Gate, serta cara mengatur tata letak dan kecepatannya.
+description: Papan keberangkatan publik tanpa login yang tampil di monitor terminal — layar Pre-Immigration, Boarding Gate, dan Gate Live-TV per Gate, serta cara mengatur tata letak, kecepatan, ukuran, dan warnanya.
 keywords:
   - live tv
   - public display
@@ -71,10 +71,10 @@ Header papan menampilkan badge besar **GATE** sehingga jelas TV itu milik Gate m
 Papan hanya mencantumkan perjalanan yang **Boarding** atau **Closed** di Gate itu —
 dengan logo operator, tujuan, jam keberangkatan, Berth, dan sinyal langsung
 (**BOARDING NOW**, **LAST CALL**, atau **GATE CLOSED**). Saat tidak ada yang Boarding,
-tertulis _"No boarding trips at this gate right now."_ — keadaan diam yang normal.
+tertulis _"NO BOARDING TRIPS AT THIS GATE RIGHT NOW."_ — keadaan diam yang normal.
 
 Hanya Gate **aktif** yang muncul di pemilih. Jika Gate kemudian dinonaktifkan atau
-dihapus, TV-nya menampilkan pesan jelas *"Gate not found"* (dan pulih sendiri jika
+dihapus, TV-nya menampilkan pesan jelas *"GATE NOT FOUND FOR THIS PORT."* (dan pulih sendiri jika
 Gate diaktifkan kembali).
 
 ### Atau Tautkan Langsung ke Papan {/* #or-link-straight-to-a-board */}
@@ -114,8 +114,10 @@ perjalanan yang sudah **berangkat** tetap tampil sekitar satu jam, lalu hilang.
 
 Papan mencantumkan perjalanan hari ini, diurutkan berdasarkan jam keberangkatan.
 Untuk setiap perjalanan Anda melihat **keberangkatan** terjadwal, **kode
-perjalanan**, **operator**, **tujuan**, **Vessel**, **Gate / Berth**, dan badge
-**status** (**Scheduled**, **Boarding**, **Closed**, **Departed**).
+perjalanan**, **operator**, **tujuan**, **Vessel**, **Gate / Berth**, dan **status**
+perjalanan: **SCHEDULED**, **BOARDING**, **CLOSED**, atau **DEPARTED**, ditampilkan
+sebagai teks berwarna. Semua tulisan di papan memakai huruf kapital agar mudah dibaca
+dari jauh.
 
 Sinyal **Remarks** menyorot hal yang penting saat ini:
 
@@ -127,8 +129,8 @@ Sinyal **Remarks** menyorot hal yang penting saat ini:
 | **DEPARTED AT hh:mm** | Jam keberangkatan sebenarnya (tampil sekitar 1 jam setelah keberangkatan). |
 
 Di papan **Pre-Immigration**, kolom **Gate** juga menampilkan status Gate imigrasi
-berdasarkan jam Gate dibuka / ditutup terjadwal: **Open at hh:mm** (belum dibuka),
-**Gate Open / until hh:mm**, atau **Gate Closed / … ago**.
+berdasarkan jam Gate dibuka / ditutup terjadwal: **OPEN AT hh:mm** (belum dibuka),
+**GATE OPEN / UNTIL hh:mm**, atau **GATE CLOSED / … AGO**.
 
 ## Pembaruan Otomatis dan Rotasi {/* #auto-refresh-and-rotation */}
 
@@ -137,19 +139,19 @@ berdasarkan jam Gate dibuka / ditutup terjadwal: **Open at hh:mm** (belum dibuka
 - Jika perjalanan lebih banyak dari yang muat di satu layar, papan **berganti
   halaman** secara otomatis, berhenti sejenak di setiap halaman sebelum pindah ke
   halaman berikutnya.
-- Saat tidak ada perjalanan, tertulis _"No departure trip schedule found for selected
-  port."_
+- Saat tidak ada perjalanan, tertulis _"NO DEPARTURE TRIP SCHEDULE FOUND FOR SELECTED
+  PORT."_
 
 ## Mengatur Tampilan Layar {/* #configuring-the-screen-display */}
 
 Saat halaman Live-TV terbuka, Anda dapat membuka panel pengaturan tersembunyi untuk
-mengatur tata letak dan kecepatan papan:
+mengatur tata letak, kecepatan, ukuran, dan warna papan:
 
 1. Klik di mana saja pada layar.
 2. Tekan **Ctrl + Shift + S** untuk membuka panel **Live TV Settings**.
 
 ![Panel Live TV Settings yang dibuka dengan Ctrl + Shift + S](/img/public-live-tv/03-settings-panel.png)
-_Panel Live TV Settings — Items per screen, Page display duration, dan Refresh interval._
+_Panel Live TV Settings — tata letak dan kecepatan, Font size, Background color, dan Text color._
 
 Di panel tersebut Anda dapat mengatur:
 
@@ -158,11 +160,24 @@ Di panel tersebut Anda dapat mengatur:
 | **Items per screen** | Berapa perjalanan (baris) yang tampil di satu halaman sebelum berganti halaman. |
 | **Page display duration** | Berapa lama (dalam detik) sebuah halaman tampil sebelum berganti ke halaman berikutnya. |
 | **Refresh interval** | Seberapa sering (dalam detik) papan mengambil data terbaru. |
-| **Font size (%)** | **Hanya papan Gate** — mengubah skala seluruh papan (100 = normal, default 150). Gunakan agar TV Gate terbaca dari jauh. |
+| **Font size (%)** | Mengubah skala seluruh papan: teks, baris, dan logo (100 = normal). Default-nya 100 di papan Pre-Immigration dan Boarding Gate, serta 150 di papan Gate. Jika baris tidak lagi muat di layar, kurangi **Items per screen**. |
+| **Background color** | Warna latar papan. Pilih warna, atau ketik kode hex seperti `#F1F5F9`. **Default** mengembalikan warna biru tua gelap semula. |
+| **Text color** | **Auto** memakai teks gelap di latar terang dan teks terang di latar gelap. **Light** atau **Dark** memaksa salah satunya. Status, Remarks, dan label berwarna lainnya selalu menyesuaikan agar tetap terbaca di latar yang dipilih. |
 
 Klik **Save** untuk menerapkan. Pengaturan ini disimpan **per perangkat** (di browser
 tersebut), sehingga setiap monitor dapat diatur sendiri dan tetap menyimpan
-pengaturannya setelah dimuat ulang.
+pengaturannya setelah dimuat ulang. Papan Pre-Immigration dan Boarding Gate memakai
+pengaturan yang sama di satu perangkat; papan Gate menyimpan pengaturannya sendiri.
+
+![Papan Boarding Gate dengan latar terang](/img/public-live-tv/04-light-background.png)
+_Papan Boarding Gate dengan Background color `#F1F5F9` — **Auto** beralih ke teks gelap dan warna yang lebih pekat._
+
+:::tip[Memilih warna latar]
+Warna pastel terang dan warna gelap paling mudah dibaca dan tetap menampilkan warna
+status serta Remarks. Pada warna sedang yang kuat, seperti biru cerah, label yang
+warnanya tidak terbaca di atasnya beralih ke warna teks biasa — tetap terbaca, tetapi
+tanpa warnanya.
+:::
 
 :::tip[Pengaturan per perangkat]
 Karena pengaturan disimpan di perangkat, atur sekali di setiap monitor terminal. Buka

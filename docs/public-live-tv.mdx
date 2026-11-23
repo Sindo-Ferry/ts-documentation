@@ -4,7 +4,7 @@ title: Public Live TV Display
 sidebar_label: Public Live TV Display
 sidebar_position: 6
 slug: /public-live-tv
-description: The public, no-login departure boards shown on terminal monitors — Pre-Immigration, Boarding Gate, and per-gate Gate Live-TV displays, and how to configure their layout and pacing.
+description: The public, no-login departure boards shown on terminal monitors — Pre-Immigration, Boarding Gate, and per-gate Gate Live-TV displays, and how to configure their layout, pacing, size and colors.
 keywords:
   - live tv
   - public display
@@ -69,10 +69,10 @@ The board's header shows a large **GATE** badge so it's obvious which gate the T
 belongs to. It lists only trips that are **Boarding** or **Closed** at that gate —
 with the operator's logo, destination, departure time, berth, and a live signal
 (**BOARDING NOW**, **LAST CALL**, or **GATE CLOSED**). When nothing is boarding, it
-shows _"No boarding trips at this gate right now."_ — the normal idle state.
+shows _"NO BOARDING TRIPS AT THIS GATE RIGHT NOW."_ — the normal idle state.
 
 Only **active** gates appear in the picker. If a gate is later deactivated or
-deleted, its TV shows a clear *"Gate not found"* message (and recovers by itself if
+deleted, its TV shows a clear *"GATE NOT FOUND FOR THIS PORT."* message (and recovers by itself if
 the gate is re-activated).
 
 ### Or link straight to a board
@@ -111,8 +111,9 @@ board for about an hour, then drops off.
 
 The board lists today's trips ordered by departure time. For each trip you see the
 scheduled **departure**, **trip code**, **operator**, **destination**, **vessel**,
-**gate / berth**, and a **status** badge (**Scheduled**, **Boarding**, **Closed**,
-**Departed**).
+**gate / berth**, and the trip's **status**: **SCHEDULED**, **BOARDING**, **CLOSED** or
+**DEPARTED**, shown as colored text. Everything on the board is in capital letters, so
+it reads well from a distance.
 
 A **Remarks** signal highlights what matters right now:
 
@@ -124,8 +125,8 @@ A **Remarks** signal highlights what matters right now:
 | **DEPARTED AT hh:mm** | The actual departure time (shown for ~1 hour after departure). |
 
 On the **Pre-Immigration** board, a **Gate** column also shows the immigration gate
-state based on the scheduled gate open / close times: **Open at hh:mm** (not open
-yet), **Gate Open / until hh:mm**, or **Gate Closed / … ago**.
+state based on the scheduled gate open / close times: **OPEN AT hh:mm** (not open
+yet), **GATE OPEN / UNTIL hh:mm**, or **GATE CLOSED / … AGO**.
 
 ## Auto-refresh and rotation
 
@@ -133,19 +134,19 @@ yet), **Gate Open / until hh:mm**, or **Gate Closed / … ago**.
   showing the last good data if a refresh briefly fails.
 - If there are more trips than fit on one screen, the board **rotates through
   pages** automatically, pausing on each page before flipping to the next.
-- When there are no trips, it shows _"No departure trip schedule found for selected
-  port."_
+- When there are no trips, it shows _"NO DEPARTURE TRIP SCHEDULE FOUND FOR SELECTED
+  PORT."_
 
 ## Configuring the screen display
 
 When a Live-TV page is open, you can open a hidden settings panel to control the
-board's layout and pacing:
+board's layout, pacing, size and colors:
 
 1. Click anywhere on the screen.
 2. Press **Ctrl + Shift + S** to open the **Live TV Settings** panel.
 
 ![The Live TV Settings panel opened with Ctrl + Shift + S](/img/public-live-tv/03-settings-panel.png)
-_The Live TV Settings panel — Items per screen, Page display duration, and Refresh interval._
+_The Live TV Settings panel — layout and pacing, Font size, Background color and Text color._
 
 In the panel you can customize:
 
@@ -154,10 +155,23 @@ In the panel you can customize:
 | **Items per screen** | How many trips (rows) are shown on a single page before it paginates. |
 | **Page display duration** | How long (in seconds) a page stays on screen before rotating to the next. |
 | **Refresh interval** | How often (in seconds) the board pulls fresh data to stay up to date. |
-| **Font size (%)** | **Gate board only** — scales the whole board (100 = normal, default 150). Use it to make the gate TV readable from a distance. |
+| **Font size (%)** | Scales the whole board: text, rows and logos (100 = normal). The default is 100 on the Pre-Immigration and Boarding Gate boards and 150 on the Gate board. If the rows no longer fit on screen, lower **Items per screen**. |
+| **Background color** | The board's background. Pick a color, or type a hex code such as `#F1F5F9`. **Default** brings back the original dark navy. |
+| **Text color** | **Auto** uses dark text on light backgrounds and light text on dark ones. **Light** or **Dark** forces one. Status, remarks and other colored labels always adjust to stay readable on the chosen background. |
 
 Click **Save** to apply. These settings are stored **per device** (in that browser),
 so each monitor can be tuned independently and keeps its settings after a reload.
+The Pre-Immigration and Boarding Gate boards share their settings on a device; the
+Gate board keeps its own.
+
+![The Boarding Gate board on a light background](/img/public-live-tv/04-light-background.png)
+_The Boarding Gate board with Background color `#F1F5F9` — **Auto** switches to dark text and deeper colors._
+
+:::tip[Choosing a background color]
+Light pastels and dark shades read best and keep the status and remarks colors. On a
+strong mid-tone color, such as a bright blue, a label whose color can't be read on it
+switches to the plain text color — still readable, but without its color.
+:::
 
 :::tip[Per-device settings]
 Because the settings are saved on the device, set them once on each terminal monitor.
